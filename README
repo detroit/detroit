@@ -1,0 +1,68 @@
+= Reap
+
+* http://reap.rubyforge.org
+
+== DESCRIPTION
+
+Reap is a Ruby-oriented build tool. Reap provides a systematic
+methodology to help developers prepare and release Ruby projects.
+
+
+== SYNOPSIS
+
+Using Reap is not diffcult, but it does take a few minutes to learn
+how it operates. 
+
+In short, Reap defines a pipeline within which all Reap tasks run.
+You define tasks as YAML configuration files in you projects +task+
+directory with a .reap extension, eg. +box.reap+.
+
+Tasks often draw on metadata about your project. This is defined using
+POM (See http://proutils.rubyforge.org/pom). Essentially you add
+files to your project's +meta+ directory to do this (or meta.yaml
+file if you'd rather).
+
+With task configuration and metadata in place, using reap is simply
+a matter of invoking the pipeline and phase you wish to complete.
+
+  $ reap document
+
+The +main+ pipeline is used by default, so the above command tiggers
+every phase in the +main+ pipeline until it complete the +document+
+phase.
+
+The use of a pipeline may seem constrictive, but it insures your project
+to always be uptodate and insync.
+
+Please see http://proutils.rubyforge.org/reap for more details on how to
+use Reap. Also try the +--help+ option to see the reap command's
+help information.
+
+
+== RELEASE NOTES
+
+Please see the NEWS file.
+
+
+== INSTALLATION
+
+Reap can, of course, be installed via RubyGems:
+
+  $ sudo gem install reap
+
+Reap can also be installed the old-fashion way by downloading the .tar.gz
+package and using Ruby Setup (See http://setup.rubyforge.org).
+
+  $ tar -xvzf reap-10.0.0.tar.gz
+  $ cd reap-10.0.0
+  $ sudo setup.rb all
+
+Ruby Setup is stand-alone version of the original setup.rb script.
+
+
+== LICENSE & COPYRIGHT
+
+Reap, Copyright (c) 2007,2008 Tiger Ops
+
+Reap is distributed under the terms of the GPLv3.
+

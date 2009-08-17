@@ -1,0 +1,6 @@
+---
+autotools:
+  service: Autotools
+  static : false
+  active : false
+

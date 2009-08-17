@@ -1,0 +1,9 @@
+---
+service  : BasicStats
+title    : ~
+loadpath : ~
+exclude  : ~
+format   : html  # text
+output   : ~
+active   : true
+

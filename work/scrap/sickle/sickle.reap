@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+---
+
+# Query infromation about reap settings and/or the current project.
+
+about:
+  desc: "about this project"
+  does:
+    - action: about
+
+tryme:
+  desc: "cool daddy"
+  does:
+    puts "Cool Daddy-O!"
+
+# Run test or spec suite.
+
+test:
+  desc: "run test suite"
+  does:
+    - service: testunit
+      action: test
+
+# Generate documentation.
+
+document:
+  desc: "generate documentation"
+  does:
+    - service: rdoc
+      action: document
+    - service: ridoc
+      action: document
+
+# Create distribution packages.
+
+package:
+  desc: "create distribution packages"
+  args: <formats>
+  does:
+    - clean
+    - action: package
+      formats: <formats>
+
+# publish website
+
+publish:
+  desc: "publish website"
+  does:
+    - service: rubyforge
+      action: publish
+
+# release packages to hosts
+
+release:
+  desc: "release packages"
+  need: [ package ]
+
+# post release announcement(s)
+
+announce:
+  desc: "make release announcment"
+  does:
+    - service: rubyforge
+      action: announce
+    - service: mailer
+      action: mail
+      file: NEWS
+
+# full rollout
+
+rollout:
+  desc: "full rollout"
+  need: [ document, publish, package, release, announce ]
+  does:
+    puts "Rollout Complete!"
+
+rdoc-service: !service
+  type: rdoc
+
+ridoc-service: !service
+  type: ridoc
+

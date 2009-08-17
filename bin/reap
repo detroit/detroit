@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'reap/application'
+
+Reap::Application.new.start
+
+

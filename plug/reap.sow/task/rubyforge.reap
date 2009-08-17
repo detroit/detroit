@@ -1,0 +1,7 @@
+---
+rubyforge:
+  service : Rubyforge
+  unixname: ~
+  groupid : ~
+  active  : true
+

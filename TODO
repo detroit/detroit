@@ -1,0 +1,35 @@
+= TODO List
+
+== Parallel Execution
+
+* Within a phase, any service instances that have the same priority can be run
+in parallel. I don not know how this would effect output, but it would be nice to have
+since some services can take some time to complete, such as rcov.
+
+== Current Considerations
+
+* When generating docs from a subdirectory, it doesn not appear to be moving up to
+the root directory before executing tasks. Chec ridoc in particular.
+
+== Action Output
+
+* Use CLIO and FOLIO!
+
+== Action Specifications
+
+* An omit_actions option for service definitions might be nice, in order to specify a specific set of action not to include.
+* Shoud actions parameters update the class attributes or be passed as options?
+
+== Platform Builds
+
+* platform builds per directoy under admin/build.
+
+== Root Indicator
+
+* What are wew using for this?
+
+== Enviornment
+
+* Should minimize use of environament variables.
+* This makes for a more repeatable build process.
+

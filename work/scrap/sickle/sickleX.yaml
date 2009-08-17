@@ -1,0 +1,84 @@
+#!/usr/bin/env ruby
+---
+
+menu:
+
+  about:    "about this project"
+  tryme:    "cool daddy"
+  test:     "run test suite"
+  document: "generate documentation"
+  publish:  "publish website"
+  package:  "create distribution packages"
+  release:  "release packages"
+  announce: "make release announcment"
+  rollout:  "full rollout"
+
+depends:
+
+    release: [ package ]
+    rollout: [ document, publish, package, release, announce ]
+
+commandline:
+
+    package: FORMATS*
+
+runmodes:
+
+  rollout:
+    confirm: true
+
+targets:
+
+  about:
+    - action: about
+
+  tryme:
+    puts "Cool Daddy-O!"
+
+  test:
+    - service: testunit
+      action: test
+
+  document:
+    - service: rdoc
+      action: document
+    - service: ridoc
+      action: document
+
+  package:
+    - clean
+    - action: package
+      formats: <FORMATS*>
+
+  publish:
+    - service: rubyforge
+      action: publish
+
+  release:
+    - service: rubyforge
+      action: release
+
+  announce:
+    - service: rubyforge
+      action: announce
+    - service: mailer
+      action: mail
+      file: NEWS
+
+  rollout:
+    puts "Rollout Complete!"
+
+services:
+
+  rdoc:
+    class: RDoc
+
+  ridoc:
+    class: RIDoc
+
+  rubyforge:
+    class: Rubyforge
+
+  mailer:
+    class: Emailer
+

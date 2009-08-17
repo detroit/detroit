@@ -1,0 +1,7 @@
+---
+rubyforge:
+  service: Rubyforge
+  sitemap:
+    site: reap
+  active: true
+

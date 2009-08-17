@@ -1,0 +1,400 @@
+<html>
+
+<head>
+  <title>Reap</title>
+  <style>
+
+    body { margin: 0; padding: 0; font-size: 10pt; font-size: 1em; }
+
+    p { font-family: sans-serif; text-align: justify;
+        font-size: 1em; line-height: 1.3em;
+      }
+
+    img { }
+
+    h2 { color: red; margin-top: 30px; }
+
+    td { margin: 0; padding: 0; vertical-align: top; }
+
+    b.p { color: white; }
+    b.b { color: black; }
+    b.r { color: red; }
+
+    pre { font-size: .9em; line-height: 1.2em;
+          margin: 0;
+          padding: 0; padding-bottom: 5px; padding-top: 15px;
+          background: #FFFFF0;
+        }
+
+    pre.white { background: white; }
+
+    span.m { font-family: monospace; }
+
+    div#title {
+      float: top;
+      background: black repeat-x;
+      border-bottom: 1px solid gray;
+    }
+
+    div#title table {}
+
+    td#meta { color: white; vertical-align: bottom;
+      font-size: 64pt; font-family: sans-serif; font-weight: bold; }
+
+    td#slogon {
+      width: 120px;
+      vertical-align: middle; text-align: left; font-family: monospace;
+      color: gray; font-size: 1.3em; padding-left: 10px; text-align: center;
+      white-space: nowrap;
+    }
+
+    div#menu { width: 100%; vertical-align: middle; padding-left: 30px;
+      font-family: sans-serif; font-size: .8em; line-height: 3em;
+      border-bottom: 1px solid black;
+      color: red; background: white; }
+
+    div#menu a { color: red; text-decoration: none; font-weight: bold; }
+
+    div#menu a:hover { color: pink; }
+
+    div#container { margin: 10px; padding: 10px; padding-top: 5px;
+      border: 0;
+    }
+
+    #foot { font-size: 7pt; font-family: sans-serif; margin: 5px;
+      color: gray;
+    }
+
+    div#copy { font-size: 7pt; font-family: sans-serif; margin: 5px;
+      border-top: 1px solid #cccccc; color: gray;
+    }
+
+    div#eg { float: right; margin: 20px; margin-top: -110px;
+      padding: 0px; padding-top: 7px;
+      border: solid 1px lightgray;
+      text-align: center;
+      font-family: monospace; font-size: .9em;
+      color: black; background: #cccccc; }
+
+    iframe { width: 430px; height: 1000px; border: 0; border-left: solid 1px #DDDDDD;
+      margin: 0px; margin-top: 5px; padding-left: 5px;
+      background: #FFEEFF; }
+
+  </style>
+</head>
+
+<body>
+
+<div id="title">
+  <table width="100%" border="0" style="padding: 0;">
+  <tr>
+    <td id="slogon">
+      <b class="p">w h e n</b> <br/>
+      <b class="p">y o u r</b> <br/>
+      <b class="r">r u b y</b> <br/>
+      <b class="p">r u n s</b> <br/>
+      <b class="p">o v e r</b>&nbsp;
+    </td>
+    <td id="meta">
+      RE<b class="r">A</b>P
+    </td>
+  </tr>
+  <tr>
+  </tr>
+  </table>
+</div>
+
+<div id="menu" colspan="2">
+  <a href="http://rubyforge.org/frs/?group_id=811">Download</a> &middot;
+  <a href="doc/api/index.html">Documentation</a> &middot;
+  <a href="http://rubyforge.org/projects/reap/">Development</a>
+</div>
+
+<div id="eg">
+  <b>Example ProjectInfo File</b><br/>
+  <iframe src="ProjectInfo.html">Sorry, there are no iframes in your web world.</iframe>
+</div>
+
+<div id="container">
+
+<p>Reap is a set of integrated tasks designed to simplify the life of Ruby application developers and project managers. The tasks cover the range of common needs, from setting up a standard project structure to packaging and announcments. Because of the commonality between the tasks, Reap utilizes a central YAML configuration file(s) to harvest project information. This significantly simplifies usage.</p>
+
+<p>Custom tasks can also be easily created to suit specific project requirements. In this respect Reap is much like Rake. In fact Reap is a nearly 100% compatible replacement for Rake<sup>1</sup>. On the other hand, if you can't pull yourself away from Rake, Reap's tasks can also be used via Rake much like any other set of addon Rake tasks.</p>
+
+<p id="foot">
+<sup>1</sup> Reap still needs a Rule task to be completely compatible. Also, Reap does not come withe Rake's particular task classes since Reap has it's own.
+</p>
+
+
+  <h2> Installation </h2>
+
+<p>Reap depends on Facets and Sow. So be sure you have these installed before using Reap. To install from source simply follow the common procedure.</p>
+
+  <pre>
+    % tar -xvzf reap-7.0.tar.gz
+    % cd reap-7.0
+    % sudo ruby setup.rb
+  </pre>
+
+<p>To install from a gem, which will also install the Facets and Sow dependencies if you don't have them installed already, type:</p>
+
+  <pre>
+    % gem install sow
+  </pre>
+
+<p>And you should be good to go.</p>
+
+
+  <h2> Usage </h2>
+
+<p>To use Reap, you simply need to add a <code><i>projectinfo</i></code> file to your project's repository. Reap supports the standard project layout as promoted by setup.rb, with the addition of single directory called <code><i>meta</i></code>. This directory is designated for storing all project related information and tasks. So the best place to put the project file is <code>meta/projectinfo</code>. Although, Reap will also find the file if it is placed directly in project's root location. Capitalization is insignifficant --<code>ProjectInfo</code> would do as well.</p>
+
+<p>The easiest way to create a projectinfo file is to copy some other project's and modify it to fit yours. That makes it easier to learn how to fill them out. But if you don't have that option or are already familiar with the layout, Reap comes with a special command that can create a new one for you called, <code>seed</code>.</p>
+
+  <pre>
+    ~/myproj$ seed template
+  </pre>
+
+<p>This will create the meta/ directory if it doesn't already exist and drop in a projectinfo template. The seed command can do a few other things too, which we'll touch on later.</p>
+
+<p>The structure of the projectinfo file is pretty self-explanitory. The header is devoted to common information. This is followed by a <i>tasks</i> section. Each task is a YAML map where the key represnts the task name followed by a private type (!!) which identifies the type of task it represents. The next line begins the indented attributes the task needs to do the job. To find out what parameters each task accepts see Reap's RDoc API.</p>
+
+<p>Once you projectinfo file is filled out you can see what tasks are ready to run simply by typing 'reap' into the command line. For example you might see something like:</p>
+
+  <pre>
+    ~/myproj$ reap
+    [from /home/foome/myprojs/myproj]
+      announce       Email project announcement.
+      doap           Generate DOAP project file.
+      extest         Extract unit-tests from script comments.
+      info           Display the ProjectInfo file.
+      install        Locally install package using setup.rb.
+      package        Build distribution packages.
+      publish        Publish documents to the web.
+      rdoc           Generate API Documentation.
+      release        Release distribution files.
+      test           Run unit-tests (each in a separate process).
+  </pre>
+
+<p>To run a task specifiy the name of the task to reap, eg. <code>reap announce</code>.</p>
+
+
+  <h2> Creating Tasks </h2>
+
+<p>Adding a extra Reap task is pretty easy. Just define a task in a the special <i>meta/reapfile</i>. If you have ever created a task in Rake's 'Rakefile' then you know how to do it here too. A simple task would look like this:</p>
+
+  <pre>
+    desc "My special task"
+    task :hello do
+      puts "Hello, World!"
+    end
+  </pre>
+
+<p>You may not like keeping a "monolithic" file of tasks and instead prefer to keep a collection of individual task scripts. You can do this by placing your script in the <i>meta/tasks</i> folder and encapsulating your task defintion in the Tasks module.</p>
+
+  <pre>
+    module Tasks
+
+      desc "My special task"
+      task :hello do
+        puts "Hello, World!"
+      end
+
+    end
+  </pre>
+
+<p>Adding code to the reapfile or a task script is fine for one-off tasks. But what if you need a more versitle and reusable task --one you can add to your projectinfo file like Reap's builtin tasks? In that case you need to build a custom <i>task constructor</i>. As with a simple task add a script to the meta/tasks folder, but in this case you define the task constructor in the TaskSpace module.</p>
+
+<!--
+<p>If you have custom tasks you'd like to use for all your projects
+you can place them either in you home  directory under ~/.config/reap/task/,
+or you could make them universally available to all users in the
+shared data directory, on Debian, /usr/share/reap/task/.</p>
+-->
+
+<p>Here's a "simple" example of a custom task:</p>
+
+  <pre>
+    module TaskSpace
+
+      def simple( name, &amp;data )
+
+        desc 'This is a custom reap task class.'
+
+        task name do
+          data = data.to_openobject
+
+          data.message ||= master.message
+          puts data.message + "\n\n" + data.signed
+        end
+
+      end
+
+    end
+  </pre>
+
+  <p>The corresponding settings in the ProjectInfo file will then be:</p>
+
+  <pre>
+     message: Hi, how are you?
+
+     simple: !!simple
+       signed: Your friend, Tom.
+  </pre>
+
+  <p>And to use it type:</p>
+
+  <pre>
+     % reap simple
+  </pre>
+
+<p>Notice the reference to 'master'. This is an OpenCascade interface (similar to OpenObject and OpenStruct) to the whole ProjectInfo dataset.</p>
+
+<p>You might recognize the core methods of creating a task, 'desc' and 'task'. These are used exactly as they are in Rake. We encapsulate them in a task-definition method (eg. simple) so the task can be generated dyanmically if such a section (!!simple) appears in the projectinfo file. Such task-definition methods are recognized by reap b/c they are stored in the special purpose <code>Tasks</code> module.</p>
+
+<p>It's a good idea to take some time and learn all the standard properties of a project's information file which you can draw on for your own tasks. Looking at the RDoc API documentation will elucidate most of them. And of course you can also invent your own if needed.</p>
+
+<p>The rest of building a task is a matter or writing the code to have it do what you want it to. If you develop any nice tasks, be sure to pass them along!
+</p>
+
+
+  <h2> Reap vs. Rake </h2>
+
+<p>Reap started life as pruely a project assistant application (ironically born of a complex Rakefile), handling things like package generation, code testing, and announcements, etc. As it evolved, Reap developed it's own underlying task system, which over time has becaome more and more like Rake's. Rake is the most widely used task tool for Ruby, but small implementation details keep Reap to it's own system. While Reap's task system is almost 100% compatible with Rake's, it has some additional benefits that make it worth while. Here's a rundown of the major innovations that Reap offers.</p>
+
+<p><b>(1)</b> The default task is, by default, the -T option, i.e. to list the tasks. That's better than an error and in practice it is much more usable. It is also mildly dangerous, since just typig 'rake<enter>' can suddenly invoke unknown events.</p>
+
+<p><b>(2)</b> Reap relys on a <i>core integrated</i> task system. In other words, tasks are like other methods and can be defined relative to a class or module, instead of globally as is the case with Rake. This means the "task pattern", if you will, can be used in defining one's classes and modules and called upon interchangablly by other methods and can even inherit from ancestor tasks --they do not need to be used just for creating Rake/Reap tasks. But in every other way, Reap task are like Rake's.</p>
+
+<p><b>(3)</b> Instead of the Class#new notation that Rake uses for building custom defined tasks. Eg. </p>
+
+<pre>
+  Rake::PackageTask.new("rake", "1.2.3") do |p|
+    p.need_tar = true
+    p.package_files.include("lib/**/*.rb")
+  end
+</pre>
+
+<p>Reap alwasy provides method a interfaces starting with the prefix 'task_'. For exmaple the above would be written something like this in a Reapfile:</p>
+
+<pre>
+  desc "pack"
+  task_package("rake", "1.2.3") do |p|
+    p.need_tar = true
+    p.package_files.include("lib/**/*.rb")
+  end
+</pre>
+
+<p>This notation really helps with the reability of task scripts.</p>
+
+<p><b>(4)</b> One of the niciest thing about Reap, and really it's biggest feature is the use of a central YAML file that provides common metadata like package name and version, etc. and can be used to define prebuilt tasks. For exmple the above would be:</p>
+
+<pre>
+  pack: !!package
+    need_tar: true
+    include:
+      - "lib/**/*.rb"
+</pre>
+
+<p>The conversion is almost seemless. The task class needs only conform to some simple conventions (in this case for example you can see the package_file.include needs to be reduced to a single 'include' attribnute) which are farily trivial to implement. This format has been a big hit with Reap's users. Of course it's optional, one can still do everything through the Reapfile (but why?).</p>
+
+<p>Of course, you don't have to use Reap's task system. You can still use Rake's for all your project tasks if you prefer or for some reason must, and you can still get Reap's task functionality. Reap provides a simple interface for doing this. Here's an example of a Rakefile using Reap.</p>
+
+  <pre>
+    require 'reap/reap'
+
+    task_package 'pack' do |pkg|
+      pkg.distribute = [ 'gem' ]
+      pkg.dependencies = [ facets ]
+    end
+  </pre>
+
+<p>In the above, all information is provided directly via the Ruby task code. No information is coming from the projectinfo file (same is tru for a Reapfile). But you can also use Rake while utilizing the projectinfo file if you wish. In your Rakefile simple put:</p>
+
+  <pre>
+    require 'reap/rake'
+  </pre>
+
+<p>Then all the tasks defined in the projectinfo file will be available via Rake. You can still add additional Rake tasks, of course.</p>
+
+
+  <h2> Ruby Comment Tests </h2>
+
+<p>You may learn about Reap's ability to extract unit tests from source code wrapped in <code>=begin test...=end</code> comment blocks.</p>
+
+  <pre>
+    =begin test
+
+      require 'test/unit'
+
+      class TestThis &lt; Test::Unit::TestCase
+        assert_equal( 2, 1+1 )
+      end
+
+    =end
+  </pre>
+
+<p>This can be amazing convenient, especailly for testing functional support scripts. But it's not a convenient to have to extract your tests every time you need to run <i>one</i>. To solve this problem, Reap also includes a command called <code>rubytest</code>. To us it simply navigate to the file in question (eg. the one with the commented test, of course) and type:</p>
+
+  <pre>
+    % rubytest myscript.rb
+  </pre>
+
+<p>And you'll see your standard test assertion feedback.</p>
+
+
+  <h2> Seeding a Project </h2>
+
+<p>As we mention earlier Reap include a special command called 'seed'. With it you can generate a new projectinfo template. But it can also be used to generate an entire new project layout. Simply create a new project directory, change into it and invoke the command:</p>
+
+  <pre>
+    % mkdir mynewproj
+    % cd mynewproj
+    % seed standard
+  </pre>
+
+<p>Besides 'standard' seed also recognizes 'subversion' as a layout type which include the typcial <code>branches  tags  truck</code> tier.</p>
+
+
+  <h2> Packaging with Sow </h2>
+
+<p>Reap no longer handles it's own package task, but depends on the Sow library to do the job. Sow is a separate albeit releated project, which can be used on it's own. See <a href="http://sow.rubyforge.org">http://sow.rubyforge.org</a> for details. The Reap package task of course still acts just like any other task.
+
+
+  <h2> Code Status </h2>
+
+<p>Reap works fairly well at this point, although not every inch of intended functionality is complete. The primary tasks, like packaging, testing and rdocing are the most well developed. Other tasks have some limitations. For instance, the publish task is limited to uploading to RubyForge at the moment. And the announcment task can't route email via TLS servers. But Reap is very usable and is used in a number of projects including Facets and Nitro. Moreover, if you use it, contributions to it's improvement are very welcome and will be sung many wonderous praises &nbsp;<span class="m">;)</span></p>
+
+<p>IMPORTANT!!! Microsoft Windows support is weak, to say the least. No doubt a few of the built-in tasks will fail under Windows. But fixing this issues is a high priority for upcoming releases. So staty tuned --or heck, help out!</p>
+
+
+  <h2> Future </h2>
+
+<p>The future of Reap looks very bright. Possible plans for the future include:</p>
+
+<p>
+  <b>(1)</b> Full Windows compatability, replacing most of the shell calls.<br/>
+  <b>(2)</b> SCM related tasks, starting with Darcs, then CVS and Subversion.<br/>
+  <b>(3)</b> RSpec support for Reap's testing taks and rubytest command.<br/>
+  <b>(4)</b> And of course, continued incremental improvements on the present code.<br/>
+</p>
+
+
+  <h2> License </h2>
+
+<p>Reap Copyright (c) 2004-2006 Thomas Sawyer, Ruby License</p>
+
+<p>THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+   IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+   WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+   PURPOSE.
+</p>
+
+<br/><br/>
+
+</div>
+
+<div id="copy">Copyright (c) 2006 Thomas Sawyer, All Rights Reserved.</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+#!/usr/bin/env ratch
+
+# update version stamps
+
+# You can change these via the command line.
+version = commandline['version'] || rollrc.version
+status  = commandline['status']  || rollrc.status
+
+# Update ROLLRC file.
+
+main :stamp do
+  if version != rollrc.version or status != rollrc.status
+    build rollrc.file
+  end
+end
+
+#
+
+file rollrc.file do
+  w = ''
+  w << "#{rollrc.name} #{version} #{status} #{Time.now.strftime('%Y-%m-%d')}"
+  w << " #{rollrc.default}" if rollrc.default
+  w << "\n"
+  w << rollrc.libpath.join("\n")
+
+  if dryrun?
+    puts rollrc.file + ":"
+    puts w
+  else
+    File.open(rollrc.file, 'w'){|f| f << w}
+    puts "#{rollrc.file} updated."
+  end
+end

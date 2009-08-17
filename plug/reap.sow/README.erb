@@ -1,0 +1,49 @@
+= <%= title %>
+
+* http://<%%= package %>.rubyforge.org
+
+
+== DESCRIPTION
+
+<%%= description %>
+
+
+== FEATURES/ISSUES
+
+* List features and issues... __FIX__
+
+
+== RELEASE NOTES
+
+Please see RELEASE file.
+
+
+== SYNOPSIS
+
+Describe how to use your library or application here...__FIX__
+
+
+== HOW TO INSTALL
+
+To install with RubyGems simply open a console and type:
+
+  gem install <%%= package %>
+
+Local installation requires Setup.rb (gem install setup),
+then download the tarball package and type:
+
+  tar -xvzf <%%= package %>-<%%= version %>.tgz
+  cd <%%= package %>-<%%= version %>.tgz
+  sudo setup.rb all
+
+Windows users use 'ruby setup.rb all'.
+
+
+== LICENSE
+
+Copyright (c) <%= Time.now.strftime('%Y') %> <%%= authors %>
+
+This program is ditributed unser the terms of the <%%= license %> license.
+
+See LICENSE file for details.
+

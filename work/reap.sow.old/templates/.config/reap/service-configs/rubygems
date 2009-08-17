@@ -1,0 +1,5 @@
+---
+service: Gem
+include: ~
+exclude: [ doc/rdoc, doc/ri ]
+

@@ -1,0 +1,60 @@
+# This is an interseting idea for a possible
+# future build system. It uses sematic triplets
+# to describe the build.
+#
+# Rule inference would be used to "comprehend" the
+# build.
+
+about     <desc> "about this project"
+tryme     <desc> "cool daddy"
+test      <desc> "run test suite"
+document  <desc> "generate documentation"
+publish   <desc> "publish website"
+package   <desc> "create distribution packages"
+release   <desc> "release packages"
+announce  <desc> "make release announcment"
+rollout   <desc> "full rollout"
+
+release   <depends> package
+rollout   <depends> document
+rollout   <depends> publish
+rollout   <depends> package
+rollout   <depends> release
+rollout   <depends> announce
+
+package   <cliopts> *FORMATS
+
+rollout   <mode> confirm
+
+about     <does> about
+
+tryme     <does> ruby:{ puts "Cool Daddy-O!" }
+
+test      <does> testunit/test
+
+document  <does> rdoc/document
+document  <does> ridoc/document
+
+package   <does> clean
+package   <does> package?formats=*FORMATS
+
+publish   <does> rubyforge/publish
+
+release   <does> rubyforge/release
+
+announce  <does> rubyforge/announce
+announce  <does> mailer/mail?file=NEWS
+
+rollout   <does> ruby:{ puts "Rollout Complete!" }
+
+rdoc      <service> RDoc    # <- Ruby classes
+ridoc     <service> RIDoc
+rubyforge <service> Rubyforge
+mailer    <service> Emailer
+
+document  <makes> doc/rdoc, doc/ri
+document  <needs> [A-Z]*, lib
+
+RDoc      <template> html
+RDoc      <output>   doc/rdoc
+

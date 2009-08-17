@@ -1,0 +1,10 @@
+= HISTORY
+
+== <%= version %> / <%= released %>
+
+This is the initial release of <%= title %>.
+
+* 1 Major Enhancment
+
+    * Happy Birthday!
+

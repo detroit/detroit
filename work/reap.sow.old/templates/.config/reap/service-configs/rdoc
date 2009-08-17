@@ -1,0 +1,10 @@
+---
+service  : RDoc
+include  : ~
+exclude  : ~
+template : html
+inline   : true
+main     : ~
+extra    : ~
+active   : true
+

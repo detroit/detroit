@@ -1,0 +1,89 @@
+  email:
+    server: nil                                             # Email server to route message.
+    account: #{metadata.email}                              # Email account name [email].
+    port: 25                                                # Email server's port, if not secure.
+    secure: false                                           # Uses TLS security, true or false?
+    login: plain                                            # Login type: plain, cram_md5 or login.
+    domain: rubyforge.org                                   # Your domain. (Not sure why one needs this for an email.)
+    from: #{metadata.email}                                 # Message FROM address.
+    to: #{metadata.email}                                   # Email address(es) to send announcemnt.
+
+  announce:
+    subject: "%s v%s released"                              # Subject of email message. Sprintf'd against name and version.
+    template: '{ANNOUNCE}{,.txt}'                           # Announcement template file glob.
+    cutoff: 30                                              # How many lines of changelog to provide.
+
+  check:
+    loadpath: ~                                             # Defaults to metadata.loadpath.
+    exclude: []                                             # Files or directories to specifically exclude.
+
+  check-syntax:
+    loadpath: ~                                             # Defaults to metadata.loadpath.
+    exclude: [ext]                                          # Files or directories to specifically exclude.
+
+  check-load:
+    loadpath: ~                                             # Defaults to metadata.loadpath.
+    exclude: []                                             # Files or directories to specifically exclude.
+
+  clean:
+    remove: [**/*~, **/*.bak]                               # Files globs to remove when cleaning.
+
+  log:
+    policy: [cap, ext]                                      # How to save log files. (cap=capitialize, up=uppercase, low=lowercase, ext=extension)
+    output: log                                             # Where to store log files. (This is to become convention!)
+
+  log-notes:
+    loadpath: ~                                             # File paths to search for notes. Defaults to metadata.loadpath.
+    labels: [TODO, FIXME, OPTIMIZE]                         # Note labels to scan.
+
+  package:
+    formats: [tgz, gem]                                     # Package formats to create (gem, zip, tgz)
+
+  publish:
+    source: site                                            # Directory to publish.
+    webdir: ~                                               # Remote directory to copy to.
+    username: ~                                             # Account username. Deafults to ENV['RUBYFORGE_USERNAME'].
+    protect: [usage, statcvs, statsvn, robot.txt, wiki]     # Used as defaults for creating .rsync-filter (after that edit .rsync-filter)
+    exclude: [.svn, scrap]                                  # Used as defaults for creating .rsync-filter (after that edit .rsync-filter)
+
+  rdoc:
+    template: ~                                             # Template to use (defaults to ENV['RDOC_TEMPLATE'] or 'html'
+    output: doc/rdoc                                        # Where to save rdoc files.
+    main: 'README{,.txt}'                                   # Main file (pattern).
+    inline: true                                            # Inline source?
+    merge: true                                             # Merge code?
+    include: [lib, '[A-Z]*']                                # Which files to include (be careful of including a Rakefile).
+    exclude: []                                             # Paths to specifically exclude. (RDOC SUCKS --THIS DOESN'T WORK!!!)
+    adfile: site/ads/rdoc.html                              # Ad file html snippet to add te html rdocs.
+    targets: ~                                              # If you need more then one rdoc set, use targets.
+
+  ri:
+    output: doc/ri                                          # Where to save ri files.
+    include: ~                                              # Defaults to metadata.loadpath.
+    exclude: []                                             # Paths to specifically exclude.
+
+  release:
+    username: ~                                             # Account username. Deafults to ENV['RUBYFORGE_USERNAME'].
+    changelog: 'CHANGES{,.txt}'                             # File to send as changes.
+    notelog: 'NOTES{,.txt}'                                 # File to send as notes.
+
+  spec:
+    specs: [spec/**/*_spec.rb, spec/**/spec_*.rb]           # Pattern for rspec files.
+    loadpath: ~                                             # Defaults to metadata.loadpath.
+    require: []                                             # Any files to pre-require.
+    warning: false                                          # Run specs with Ruby's warning turned-on.
+    command: spec                                           # The spec command.
+    live: false                                             # If true, will not use loadpath setting.
+
+  stats:
+    loadpath: ~                                             # Defaults to metadata.loadpath.
+    exclude: ['ext']                                        # File to specifically exclude from stats.
+
+  test:
+    tests: 'test/**/{test,tc}_*.rb'                         # Pattern for unit test files. (Looks for test/suite.rb first.)
+    loadpath: ~                                             # Defaults to metadata.loadpath.
+    require: []                                             # Any files to pre-require.
+    exclude: ext                                            # ?
+    command: testrb                                         # The test command.
+    live: false                                             # If true, will not use loadpath setting.
+

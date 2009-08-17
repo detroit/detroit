@@ -1,0 +1,8 @@
+---
+rdoc:
+  service  : RDoc
+  template : ~
+  files    : ["lib", "plug/*.reap", "[A-Z]*"]
+  exclude  : []
+  extra    : '-d'
+

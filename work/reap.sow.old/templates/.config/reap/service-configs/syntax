@@ -1,0 +1,6 @@
+---
+service  : Syntax
+loadpath : ~
+exclude  : ~
+active   : false
+

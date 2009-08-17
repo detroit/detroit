@@ -1,0 +1,372 @@
+
+<h1>Task Creation</h1>
+
+
+<h2>Creating Your First Task</h2>
+
+
+<p>Let jump right in by creating a Ratch script so you can see just how easy it is.
+  First create a faux project dirctory in which to conduct our tutorial. We&#8217;ll call it
+  <code>myproject/</code>.</p>
+
+
+<pre><code>
+    $ mkdir myproject
+  </code></pre>
+
+
+<p>Now <code>cd</code> into it and create a directory to store your ratch scripts. The name of the directory
+  can be anything you like. Ratch doesn&#8217;t require that it have a special name. For the purposes
+  of this tutorial we will call it <code>task/</code>.</p>
+
+
+<pre><code>
+    $ cd myproject
+    $ mkdir task
+  </code></pre>
+
+
+<p>Now lets create a ratch script.</p>
+
+
+<pre><code>
+    $ vi task/list
+  </code></pre>
+
+
+<p>This example uses <code>vi</code>. You can use your favorite editor, of course. Now, edit the file to read:</p>
+
+
+<pre><code>
+    # !/usr/bin/env ratch
+
+    # List project files
+
+    puts glob('/')
+  </code></pre>
+
+
+<p>Save the file. If you are using a Unix-based operating system, also change the file&#8217;s
+  mode to be user executable<sup><a href="#fn2">2</a></sup>.</p>
+
+
+<pre><code>
+    $ chmod u+x task/list
+  </code></pre>
+
+
+<p>Now run it like you might any executable file on your system:</p>
+
+
+<pre><code>
+    $ task/list
+  </code></pre>
+
+
+<p id="fn2"><sup>2</sup> On Windows systems you do this a little differntly. Instead you need to run the task
+  via either of the <code>ruby</code> command. Ie. <code>ruby task/list</code>. You&#8217;ll need to keep
+  that in mind throughout this tutorial.</p>
+
+
+<p>And, as you might have expected, our first task printed a listing of every file in our
+  project directory. Pretty simple. Yet there are a few things to notice about this example.</p>
+
+
+<p>First, the <code>glob</code> command. <code>glob</code> is not a standard main method in Ruby. So this method
+  comes instead from the Ratch <span class="caps">DSL</span>. In normal Ruby you&#8217;d have to use <code>Dir.glob</code> to do the same
+  thing. Wile a minor difference, this is a simple example of how Ratch makes building project
+  tasks easier than just using normal Ruby scripts. There are many more methods provided by
+  Ratch&#8217;s <span class="caps">DSL</span>, and we will cover many of them later in this tutorial.</p>
+
+
+<p>The other thing to notice is that we executed our script like we would any local command,
+  and we did so <em>from the project&#8217;s root directory</em>. This is very important. <i>The task will
+    act on the directory from which it is called</i>. This can be useful if a task provides
+  behavior effective relative to the call location, but it also means we must remain aware
+  this versitility, and use our task accordinginly. However, often a task is designed to be
+  run only from the project&#8217;s root directory, as we did in our example. In those cases it
+  is not uncommon for the task to perform <em>sanity</em> checks to make sure that&#8217;s indeed were a
+  task is being run. One thing you should not do though, but may at first be tempted to do,
+  is <code>cd</code> down into that task directory and run the tasks from there. Do not do that.
+  It won&#8217;t work!!!</p>
+
+
+<h2>Task and System Calls</h2>
+
+
+<p>Okay, that&#8217;s our first teeny tiny example. Now&#8217;s its time to dig a little deeper into the
+  Ratch <span class="caps">DSL</span>.</p>
+
+
+<p>One of more unique aspects of Ratch scripts is the way in polymophizes internal method calls,
+  external task calls and external command calls. To demonstrate lets define a second task
+  called &#8216;list2&#8217;.</p>
+
+
+<pre><code>
+    $ vi task/list2
+  </code></pre>
+
+
+<p>Make it read:</p>
+
+<pre><code>
+    # !/usr/bin/env ratch
+
+    # List project files
+
+    puts "How many lists?"
+    list
+    list
+    list
+  </code></pre>
+
+
+<p>Be sure to change the mode to user executable, then run it.</p>
+
+
+<pre><code>
+    $ task/list2
+  </code></pre>
+
+
+<p>You will notice that calling <code>list2</code>, in turn, calls our first script, <code>list</code>. But it didn&#8217;t generate
+  a list three times, as you may have expected, but only once. That&#8217;s because tasks, by definition, are
+  only supposed to run once in a given run session. Internally, task results are cached to facilitate this.</p>
+
+
+<p>Now lets try another example. First, rename <code>last2</code> to <code>rdoc</code></p>
+
+
+<pre><code>
+    $ mv task/list2 task/rdoc
+  </code></pre>
+
+
+<p>Then edit it to read:</p>
+
+
+<pre><code>
+    # !/usr/bin/env ratch
+
+    # Generate RDocs
+
+    rdoc "README", 'm' =&gt; true, 'op' =&gt; 'doc'
+  </code></pre>
+
+
+<p>For this example to work we&#8217;ll need to create a <code>README</code> file in project&#8217;s root directory.
+  Anything content will do:</p>
+
+
+<pre><code>
+    $ echo "= Welcome" &gt; README
+  </code></pre>
+
+<p>Now, rather than run the task outright, let&#8217;s see what it would do without actually running the task.
+  Ratch provieds a&#8212;dryrun global flag that allows you to check/debug scripts easily.</p>
+
+
+<pre><code>
+    $ task/rdoc --dryrun
+    rdoc -m --op doc lib
+  </code></pre>
+
+
+<p>Ratch prints out the command that would have been run without the&#8212;dryrun flag. Notice how
+  Ratch interpreted the Ruby-esque method call as a commandline tool. It knew this b/c
+  1) there were no methods defined with then name &#8216;rdoc&#8217;, 2) there were not other local tasks
+  with the name rdoc (the task&#8217;s own filename does not count), and 3) it looked up the
+  systems list of executable files and found &#8216;rdoc&#8217; listed. It then interprets the arguments
+  accordingly, the main trick being that any trailing keyword arguments will be truned into
+  flag options of the command. However sometimes an external command will have an argument
+  usage that Ratch can&#8217;t handle. In thos cases simple trail along argument text. For instance
+  the above #rdoc call could have been written in any number of ways:</p>
+
+
+<pre><code>
+    rdoc "-m --op doc "README"
+    rdoc "-m --op doc", "README"
+    rdoc "<del>m", "</del>-op doc", "README"
+  </code></pre>
+
+
+<p>Occasionally, there may be a name conflict bwetween a method and an external task
+  or command you wish to use. In those cases you can invoke the task or command using
+  either the <code>target</code> or <code>system</code> reference object, respectively. For instance the above
+  could have also been written:</p>
+
+
+<pre><code>
+    system.rdoc "README", 'm' =&gt; true, 'op' =&gt; 'doc'
+  </code></pre>
+
+
+<p>The two forms are completely equivalent. The former is simply using <code>system</code>
+  behined the scenes.</p>
+
+
+<h2>Integrated Build Tools</h2>
+
+
+<p>Well Ratch wouldn&#8217;t be much a build tool if it didn&#8217;t facilitate the defintion
+  of file creation tasks, beyond simply running shell commands on demand. Ratch
+  provides a <span class="caps">DSL</span> method, <code>file</code>, just for this purpose. With it we can rewrite</p>
+
+
+<pre><code>
+    # !/usr/bin/env ratch
+
+    # Generate RDocs
+
+    file 'doc' =&gt; ['README'] do
+    rdoc "README", 'm' =&gt; true, 'op' =&gt; 'doc'
+    end
+
+    target 'doc'
+  </code></pre>
+
+
+<p>If you are familiar with Rake or Rant what this does is clear. It says that the
+  construction of a target file, in this case a directory called &#8216;doc&#8217;, depends on
+  a file &#8216;README&#8217;. What this does in practice is compare the modification times
+  of the target and it&#8217;s dependsencies. If <em>any</em> of the dependencies
+  have a modification time <em>after</em> the target file&#8217;s, then the target clearly
+  needs to be regenerated and so the task will execute. But if <em>none</em> of the
+  the dependecies have a last modification time <em>after</em> the targets, the the
+  target is considered upto date, and will not be rebuilt.</p>
+
+
+<p>Note the last line <code>target :doc</code>, which invokes an <em>internal target</em>,
+  as opposed to external target which is another task script.</p>
+
+
+
+
+<h2>On Your Own</h2>
+
+
+<p>The rest of building a task is just a matter of writing the code to have
+  it do what you want. If you develop any nice tasks, be sure to pass them along!</p>
+
+
+<p><img src="images/clipboard.jpg" alt="" /></p>
+
+
+<h1>Task Management</h1>
+
+
+<h2>Listings Tasks</h2>
+
+
+<p>Of course, it&#8217;s not enough to just create tasks and run them willy-nilly. A good build tool
+  will let us see what tasks we have available and what they do. It&#8217;s eay enough to use <code>ls</code>
+  or <code>dir</code> to list the targets in the task directory.</p>
+
+
+<pre><code>
+    $ ls task/
+    list
+  </code></pre>
+
+
+<p>But that only tells us the names of avaialble tasks. What about what the tasks do? Ratch
+  comes with a command line tool to faciltiate this called <code>lt</code>. It works much like <code>ls</code>.
+  Try it:</p>
+
+
+<pre><code>
+    $ lt task/
+    [/home/me/projects/foo]
+    task/list     # List project files
+  </code></pre>
+
+
+<p>So now we know waht the task does as well. Didi you notice where lt got that information?
+  It&#8217;s form the first comment line of the ratch script. <code>lt</code> is enven a bit smater than
+  this. If you give it an actual script, it will output full help-details, if the script
+  provides it. In our case, the <code>list</code> task doesn&#8217;t have further details (it doesn&#8217;t
+  really need them), but ew can add some for sample sake.</p>
+
+
+<p>Edit the <code>list</code> file to look like:</p>
+
+
+<pre><code>
+    #!/usr/bin/env ratch
+
+    # List project files
+    # This task simply prints out a list
+    # of all the files in the project.
+
+    puts glob('/')
+  </code></pre>
+
+
+<p>Now try:</p>
+
+
+<pre><code>
+    $ lt task/list
+
+    # List project files
+
+    # This task simply prints out a list
+    # of all the files in the project.
+  </code></pre>
+
+
+<p>As you can see, in the mode, <code>lt</code> outputs all the comments line at the top of script.
+  It stops at the first non-blank, non-commnet line.</p>
+
+
+<h2>Lookup and Do</h2>
+
+
+What if I want to run a task script, but I&#8217;m currently way down in the
+project&#8217;s directory tree. I dont want to <code>cd</code> all the way up or type
+<code>../</code> a bunch of times.
+
+<p>Sake provides a utility called <code>ludo</code> which stands for
+  <i>lookup and do</i>. Just prepend that command to your invocation and it
+  will find the executable and execute it.</p>
+
+
+<pre><code>
+    $ ludo task/list
+  </code></pre>
+
+
+<p>By the way, the <code>ludo</code> command can be used anywhere you like, it is
+  not dependent on Sake to work. Albeit you should exercise some caution when doing
+  so since <code>ludo</code> actively searches up the directory tree for a script
+  to execute.</p>
+
+
+<p>Sometimes, you may want to lookup and run a command but rather than change directories to
+  the where the command match was made you want the task will be run from the current
+  directory. You can do that with the&#8212;here switch (or -h for short).</p>
+
+
+<pre><code>
+    $ ludo -h task/list
+  </code></pre>
+
+
+<p>This will list all the files relative to the current directory.</p>
+
+
+<p><img src="images/mints.png" alt="" /></p>
+
+
+<h2>Task Trading via Mint</h2>
+
+
+<p>Mint is another ProUtil, like Ratch, taht is extermely useful for distributing and resusing Ratch tasks.
+  In fact Racth comes with a dozen or so general purpose tasks that you can install to you&#8217;re projects
+  right aay using <code>mint</code>.</p>
+
+
+<pre><code>
+    $ mint -s ratch/setup
+  </code></pre>

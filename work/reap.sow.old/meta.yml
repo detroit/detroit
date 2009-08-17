@@ -1,0 +1,9 @@
+plugin   : reap
+version  : 4
+type     : sow
+scaffold : true
+abstract :
+  Provides project scaffolding suitable
+  for Ruby projects managed by the Reap
+  build system.
+
