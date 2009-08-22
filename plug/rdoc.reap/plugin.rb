@@ -116,28 +116,16 @@ module Plugins
 
       main = Dir.glob(main, File::FNM_CASEFOLD).first
 
-      # RDOC SUCKS --THIS DOESN'T WORK ON RDOC LINE, WE MUST DO IT OURSELVES!!!
-      exclude = exclude.to_list
-      #exclude = exclude.collect{ |g| Dir.glob(File.join(g, '**/*')) }.flatten
+      include_files = files.to_list.uniq
+      exclude_files = exclude.to_list.uniq
 
-      files = files.to_list
-      #files = files.map{ |g| Dir.glob(g) }.flatten
-      #files = files.map{ |f| File.directory?(f) ? File.join(f,'**','*') : f }
-      #files = files.map{ |g| Dir.glob(g) }.flatten  # need this to remove unwanted toplevel files
-      #files = files.reject{ |f| File.directory?(f) }
+      if mfile = project.manifest_file       
+        exclude_files << mfile.basename.to_s # TODO: I think base name should retun a string?
+      end
 
-      #files = files - Dir.glob('rakefile{,.rb}', File::FNM_CASEFOLD)
-      mfile = project.manifest_file
-      mfile = project.manifest_file.basename if mfile
+      filelist = amass(include_files, exclude_files)
 
-      exclude = (exclude + [mfile].compact).uniq
-
-      #files = files - [mfile].compact
-      #files = files - exclude
-
-      input = files.uniq
-
-      if outofdate?(output, *input) or force?
+      if outofdate?(output, *filelist) or force?
         status "Generating #{output}"
 
         #target_main = Dir.glob(target['main'].to_s, File::FNM_CASEFOLD).first
@@ -150,9 +138,9 @@ module Plugins
         cmdopts['main']       = main if main
         cmdopts['template']   = template
         cmdopts['title']      = title
-        #cmdopts['exclude']   = exclude
+        cmdopts['exclude']    = exclude_files
 
-        rdoc_target(output, input, cmdopts)
+        rdoc_target(output, include_files, cmdopts)
         rdoc_insert_ads(output, adfile)
 
         touch(output)
