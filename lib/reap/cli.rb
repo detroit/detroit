@@ -10,18 +10,19 @@ module Reap
   class CLI #< ::Clio::Commandline  #::Ratch::Commandline
 
     def initialize
-      usage.opt('--help'       , "Display this help message.")
-      usage.opt('--trace'      , "Trace execution")
-      usage.opt('--debug'      , "Run in DEBUG mode.")
-      usage.opt('--pretend -p' , "No disk writes.")
-      usage.opt('--quiet   -q' , "Run silently.")
-      usage.opt('--verbose'    , "Provided extra output.")
-      usage.opt('--force'      , "Force operations.")
+      usage.opt('--help'         , "Display this help message.")
+      usage.opt('--trace'        , "Trace execution")
+      usage.opt('--debug'        , "Run in DEBUG mode.")
+      usage.opt('--pretend -p'   , "No disk writes.")  # dryrun
+      usage.opt('--quiet   -q'   , "Run silently.")
+      usage.opt('--verbose'      , "Provided extra output.")
+      usage.opt('--force'        , "Force operations.")
+      usage.opt('--multitask -m' , "Run in parallel.")
 
       usage.option('skip', 's') do
         desc "Skip service(s). Separate multiple serives with a semicolon."
         arg "VALUE"
-        multiple
+        multiple  # FIXME: multiple is not working!!! fix Clio or switch to optparser
       end
     end
 

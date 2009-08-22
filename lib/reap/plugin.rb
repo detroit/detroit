@@ -33,6 +33,8 @@ module Reap
 
     attr :key
 
+    attr_accessor :priority
+
     private
 
     # Sets the context and assigns options to setter attributes
@@ -42,9 +44,11 @@ module Reap
 
     #
     def initialize(context, key, options=nil)
-      @context = context
-      @project = context.project
-      @key     = key
+      @context  = context
+      @project  = context.project
+      @key      = key
+
+      @priority = 0
 
       raise TypeError, "context must be a subclass of Reap::DSL" unless context.is_a?(Reap::Domain) # Reap::DSL
 

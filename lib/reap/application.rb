@@ -1,5 +1,12 @@
 require 'erb'
 
+begin
+  require 'parallel'
+  $REAP_PARALLEL = true
+rescue LoadError
+  $REAP_PARALLEL = false
+end
+
 require 'reap/domain'
 #require 'reap/project'
 require 'reap/cli'
@@ -15,12 +22,15 @@ require 'reap/plugins'
 #require 'facets/consoleutils'
 #require 'facets/ansicode'
 
+# TODO: Not all io output is running through the io object.
+
 module Reap
 
   # = Application
   #
   # TODO: This class can be simplified.
   # TODO: Probably rename this class.
+  # TODO: Need to add a CLI layer separate from the rest.
   #
   class Application
 
@@ -39,6 +49,10 @@ module Reap
       io  = Reap::IO.new(cli)
       @domain = Domain.new(:io=>io, :cli=>cli)
       #@services, @actions = *load_service_configuration
+    end
+
+    def multitask?
+      $REAP_PARALLEL && cli.multitask?
     end
 
     def io
@@ -241,43 +255,19 @@ module Reap
         srv.preconfigure if srv.respond_to?("preconfigure")
       end
 
-      status_header("#{project.metadata.title} v#{project.metadata.version}", "#{project.root}")
+      if multitask?
+        h = ["#{project.metadata.title} v#{project.metadata.version}   [M]", "#{project.root}"]
+      else
+        h = ["#{project.metadata.title} v#{project.metadata.version}", "#{project.root}"]
+      end
+      status_header(*h)
 
       start_time = Time.now
 
       system.each do |run_phase|
-
         next if skip.include?("#{run_phase}")  # TODO: Should we really allow skipping phases?
-
         service_calls(pipe, run_phase)
-
-=begin
-        services.each do |srv_class, srv_class_name, srv_odd_name, srv_options|
-
-          acts = srv_class.supports(pipe, run_phase)
-
-          next if acts.empty?
-
-          service_instance = srv_class.new(domain, srv_options) #project,
-
-          acts.each do |act|
-
-            if domain.verbose?
-              status_line("#{srv_odd_name} (#{srv_class_name}##{act})", run_phase.to_s.capitalize)
-            else
-              status_line("#{srv_odd_name}", run_phase.to_s.capitalize)
-            end
-
-            #acts = actions.collect{ |a| a.service == service }
-
-            service_instance.send(act)
-
-          end
-        end
-=end
-
         break if phase == run_phase
-
       end
 
       stop_time = Time.now
@@ -286,18 +276,33 @@ module Reap
 
     # Make service calls.
     def service_calls(pipe, phase)
-      active_services.each do |srv|
-        # skip
-        next if skip.include?(srv.key.to_s)
-        # run if the service supports the pipe and phase.
-        if srv.respond_to?("#{pipe}_#{phase}")
-          if domain.verbose?
-            status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.capitalize)
-          else
-            status_line("#{srv.key.to_s}", phase.to_s.capitalize)
+      prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
+      prioritized_services.each do |(priority, services)|
+        # remove any services specified by the -s option on the comamndline.
+        services = services.reject{ |srv| skip.include?(srv.key.to_s) }
+        tasklist = services.map{ |srv| [srv, pipe, phase] }
+        if multitask?
+          results = Parallel.in_processes(tasklist.size) do |i|
+            run_a_service(*tasklist[i])
           end
-          srv.send("#{pipe}_#{phase}")
+        else
+          tasklist.each do |args|
+            run_a_service(*args)
+          end
         end
+      end
+    end
+
+    # Run a service given the service, pipe name and phase name.
+    def run_a_service(srv, pipe, phase)
+      # run if the service supports the pipe and phase.
+      if srv.respond_to?("#{pipe}_#{phase}")
+        if domain.verbose?
+          status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.capitalize)
+        else
+          status_line("#{srv.key.to_s}", phase.to_s.capitalize)
+        end
+        srv.send("#{pipe}_#{phase}")
       end
     end
 
