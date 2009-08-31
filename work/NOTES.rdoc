@@ -1,0 +1,18 @@
+
+On Complex Staging
+
+      # Prepare hardlink stage for complex staging.
+      #
+      # NOTE: This is not going to be supported, at least for
+      # the time being. It creates additional complexities in
+      # that a manifest on a staged package will not be the same
+      # as that on the original. We can of course rerun the
+      # manifest on the staged package, but this creates a
+      # dicotomy between what one has and what is actually being
+      # distributed. Maybe the whole idea of a user created
+      # manifest that can be used to see what's changed is not
+      # such great idea after all. Ie. a manifest is something
+      # that should just be behind the scenes. On the other hand,
+      # in keeping with my one-to-one package philosophy complex
+      # staging should not be needed.
+
