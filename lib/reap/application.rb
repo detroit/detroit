@@ -126,10 +126,9 @@ module Reap
       )
     end
 
-    # Load service configuration. These are stored in the
+    # Service configuration. These are stored in the
     # project's reap/ folder as YAML configuration files.
     #
-    # TODO: Should an .yaml extension be required?
     def service_configs
       @service_configs ||= (
         data = {}
@@ -141,25 +140,46 @@ module Reap
 
         files = files.select{ |f| File.file?(f) }
 
-        abort "No reap services defined." if files.empty?
+        load_service_configs(files)
 
-        files.each do |file|
-          # run through erb
-          env  = TemplateEnv.new(project.metadata)
-          erb  = ERB.new(File.read(file))
-          txt  = erb.result(env.get_binding)
-
-          conf = YAML.load(txt)
-          data.update(conf || {})
-
-          #begin
-          #rescue ArgumentError => e
-          #  puts "Error loading config -- #{file}"
-          #  puts e
-          #end
-        end
-        data
+        #abort "No reap services defined." if files.empty?
+        #files.each do |file|
+        #  # run through erb
+        # env  = TemplateEnv.new(project.metadata)
+        #  erb  = ERB.new(File.read(file))
+        #  txt  = erb.result(env.get_binding)
+        #  conf = YAML.load(txt)
+        #  data.update(conf || {})
+        #  #begin
+        #  #rescue ArgumentError => e
+        #  #  puts "Error loading config -- #{file}"
+        #  #  puts e
+        #  #end
+        #end
+        #data
       )
+    end
+
+    # Load service configs for a select set of reap scripts/tasks.
+    def load_service_configs(files)
+      abort "No reap services defined." if files.empty?
+      data = {}
+      files.each do |file|
+        # run through erb
+        env  = TemplateEnv.new(project.metadata)
+        erb  = ERB.new(File.read(file))
+        txt  = erb.result(env.get_binding)
+
+        conf = YAML.load(txt)
+        data.update(conf || {})
+
+        #begin
+        #rescue ArgumentError => e
+        #  puts "Error loading config -- #{file}"
+        #  puts e
+        #end
+      end
+      data
     end
 
     # setup cli
@@ -183,6 +203,13 @@ module Reap
     # Returns a list of services to skip as specificed on the commandline.
     def skip
       @skip ||= cli.skip.to_list.map{ |s| s.downcase }
+    end
+
+    # Run individual reap scripts/tasks.
+    #
+    def runscript(script, job)
+      @service_configuration = load_service_configs(script)
+      run(job)
     end
 
     # Run the pipeline.
@@ -209,7 +236,11 @@ module Reap
         end
         exit
       end
+      run(job)
+    end
 
+    #
+    def run(job)
       # Improve this in the future.
       #if cli == '?'
       #  m, l = [], []
@@ -245,7 +276,8 @@ module Reap
       if phase
         system = pipeline.system_with_phase(phase)
       else
-        overview
+        #overview
+        $stderr.puts "Unknown pipe:phase given."
         exit 0
       end
 
@@ -319,12 +351,13 @@ module Reap
     end
 
     # Returns a list of all the phases that terminate a pipleline execution.
+    # FIXME: phase_map is not defined.
     def end_phases
       (phase_map.keys - phase_map.values).compact
     end
 
     # Give an overview of phases this pipeline supports.
-    # FIXME
+    # FIXME: end_phases blows up.
     def overview
       end_phases.each do |phase_name|
         action_plan(phase_name).each do |act|

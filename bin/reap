@@ -2,6 +2,10 @@
 
 require 'reap/application'
 
-Reap::Application.new.start
-
+if /\.reap$/ =~ ARGV[0]
+  job = ARGV[1]
+  Reap::Application.new.runscript(ARGV[0], job)
+else
+  Reap::Application.new.start
+end
 
