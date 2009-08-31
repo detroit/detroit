@@ -65,6 +65,9 @@ module Plugins
     # This is not used unless remanifest is set to true.
     attr_accessor :ignore
 
+    # Save spec file (if applicable)
+    attr_accessor :spec
+
     # Set package types to produce.
     # This is a special writer to allow for a single glob or a list of globs.
     def types=(val)
@@ -97,6 +100,7 @@ module Plugins
       @distribute = DEFAULT_INCLUDE
       @exclude    = DEFAULT_EXCLUDE
       @ignore     = DEFAULT_IGNORE
+      @spec       = false
     end
 
     # Check for available MANIFEST file if needed.
@@ -112,9 +116,12 @@ module Plugins
 
       loc = Dir.pwd
 
+      # DEPRECATE: safe option is replaced by dryrun
       opts = {
-        :force => force?,
-        :safe  => dryrun?
+        :force  => force?,
+        :dryrun => dryrun?,
+        :safe   => dryrun?,
+        :spec   => spec
       }
 
       create_manifest if remanifest? #(*files)
@@ -125,8 +132,8 @@ module Plugins
           status("zip -r #{package_name}.zip .")
           box = ::Box::Zip.new(loc, opts)
         when 'tar'
-          status("tar -c #{package_name}.tar.gz .")
-          box = ::Box::Tar.new(loc, opts)
+          status("tar -cz #{package_name}.tar.gz .")
+          box = ::Box::Gz.new(loc, opts)
         when 'gem'
           status("gem build #{package_name}.gem .")
           box = ::Box::Gem.new(loc, opts)
