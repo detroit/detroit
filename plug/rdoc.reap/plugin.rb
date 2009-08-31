@@ -86,6 +86,9 @@ module Plugins
     # Paths to specifically exclude.
     attr_accessor :exclude
 
+    # File patterns to ignore.
+    #attr_accessor :ignore
+
     # Ad file html snippet to add to html rdocs.
     attr_accessor :adfile
 

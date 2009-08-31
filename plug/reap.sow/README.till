@@ -1,4 +1,4 @@
-= <%= title %>
+= <%%= title %>
 
 * http://<%%= package %>.rubyforge.org
 

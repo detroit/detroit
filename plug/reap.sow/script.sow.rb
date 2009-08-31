@@ -1,17 +1,31 @@
 #!/usr/bin/env ruby
 
-help "Create a Reap-ready Ruby project."
+about "Scaffold a Reap-ready Ruby project."
 
-usage "reap [options] <name>"
+usage "--reap[=<package-name>]"
 
 argument(:package) do |val|
+  val = val || pathname
   raise ArgumentError, "Package name required." unless val
   raise ArgumentError, "Package name must be a single word." unless /^\w+$/ =~ val
   metadata.package = val
 end
 
-manifest do
-  copy "**/*", '.'
+scaffold do
+  copy "**/[A-Z]*"
+  copy "lib"
   #copy "README.till", '.', :verbatim=>true
 end
+
+#component :test do
+#  copy 'test'
+#end
+
+#component :bin do
+#  copy 'bin'
+#end
+
+#component :site do
+#  copy 'site'
+#end
 
