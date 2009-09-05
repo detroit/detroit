@@ -3,7 +3,7 @@
 module Syckle
 
   #
-  PLUGIN_DIRECTORY = "scythes"
+  PLUGIN_DIRECTORY = "syckles"
 
   # This routine searches through the $LOAD_PATH
   # looking for plugins matching 'scythes/*.rb'.
