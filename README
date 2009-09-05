@@ -2,41 +2,73 @@
 
 * http://proutils.rubyforge.org/syckle
 
+
 == DESCRIPTION
 
-Syckle is a Ruby-oriented build tool. Syckle provides a systematic
-methodology to help developers prepare and release Ruby projects.
+Syckle is a life-cycle based Ruby project mangement tool. Syckle
+provides a systematic methodology to help developers prepare
+and release Ruby projects.
 
 
 == SYNOPSIS
 
-Using Syckle is not diffcult, but it does take a few minutes to learn
-how it operates. 
+Using Syckle is not diffcult, but it does take a few minutes to understand
+how it operates. If you are familiar with Maven form Java ecosystem, then
+you have as fair notion about Sykle as well. In short, Syckle defines lifecyles
+within which all Syckle services run. You define serivce instances as YAML
+configuration files in you projects +task+ or +script+ directory with a
+.syckle extension, eg. +box.syckle+. For example, Sycle's own Rubyforge
+service config looks like this:
 
-In short, Syckle defines a pipeline within which all Syckle tasks run.
-You define tasks as YAML configuration files in you projects +task+
-directory with a .syckle extension, eg. +box.syckle+.
+  ---
+  rubyforge:
+    service: Rubyforge
+    sitemap:
+      site: <%= package %>
+    active: true
 
-Tasks often draw on metadata about your project. This is defined using
-POM (See http://proutils.rubyforge.org/pom). Essentially you add
-files to your project's +meta+ directory to do this (or meta.yaml
-file if you'd rather).
+Service configs often draw on metadata about your project, as in the above
+example's use of <tt><%= package %></tt>. Metadata is defined using POM
+(see http://proutils.rubyforge.org/pom). Essentially, you add files to your
+project's +meta+ directory, and the information becomes available via Erb
+embedded tags.
 
-With task configuration and metadata in place, using syckle is simply
-a matter of invoking the pipeline and phase you wish to complete.
+With service configuration and metadata in place, using syckle is simply
+a matter of specifying the cycle and phase you wish to complete.
+
+  $ syckle main:document
+
+The cycle name and its phase are separated by a colon. This command
+would run every phase in the +main+ cycle, in order, until it completes
+the +document+ phase. Since +main+ is the default cycle, we could have
+more easily executed the above without specifying it.
 
   $ syckle document
 
-The +main+ pipeline is used by default, so the above command tiggers
-every phase in the +main+ pipeline until it complete the +document+
-phase.
+The use of a cycle may seem constrictive to users of tools like Rake,
+but it helps ensure your project is always up-to-date and in-sync. Syckle
+includes three life-cycles out of the box. The most significant of
+which is +main+ which entails a subcycle with ordred phases:
 
-The use of a pipeline may seem constrictive, but it insures your project
-to always be uptodate and insync.
+  configure -> generate -> analyize -> compile ->
+      validate -> document -> package -> release ->
+          promote -> archive
+
+It also has a clean subcycle, which is common to many life-cycles. it consits
+of two phases:
+
+  reset -> clean
+
+Where reset marks generated files out-of-date, and clean actually removes them.
+
+In additon to +main+, Syckle includes +site+ and +attn+ life-cycles which are used
+to generate and publish a project website, and make project announcements
+respectively.
 
 Please see http://proutils.rubyforge.org/syckle for more details on how to
-use Syckle. Also try the +--help+ option to see the syckle command's
-help information.
+use Syckle, include creating custom cycles and phases, and service plugins.
+Also try the <tt>--help</tt> option to see the syckle command's help
+information.
 
 
 == RELEASE NOTES
@@ -50,19 +82,36 @@ Syckle can, of course, be installed via RubyGems:
 
   $ sudo gem install syckle
 
-Syckle can also be installed the old-fashion way by downloading the .tar.gz
-package and using Ruby Setup (See http://setup.rubyforge.org).
+Syckle can also be installed the old-fashion way by downloading the
+.tar.gz package and using Ruby Setup (See http://setup.rubyforge.org).
 
-  $ tar -xvzf syckle-10.0.0.tar.gz
-  $ cd syckle-10.0.0
-  $ sudo setup.rb all
+  $ tar -xvzf syckle-1.0.0.tar.gz
+  $ cd syckle-1.0.0
+  $ sudo setup.rb
 
 Ruby Setup is stand-alone version of the original setup.rb script.
 
 
-== LICENSE & COPYRIGHT
+== COPYRIGHT & LICENSE
 
-Syckle, Copyright (c) 2007,2008 Tiger Ops
+Syckle
 
-Syckle is distributed under the terms of the GPLv3.
+Copyright (c) 2007,2008 Tiger Ops
+
+Unless otherwise permited by the author, Syckle is distributed
+under the terms of the GPL version 3 or above. See COPYING
+for full license.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
