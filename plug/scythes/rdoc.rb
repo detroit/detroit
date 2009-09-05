@@ -1,4 +1,4 @@
-module Reap
+module Syckles
 
   # RDoc documentation plugin generates RDocs for your project.
   #

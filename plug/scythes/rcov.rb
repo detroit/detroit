@@ -1,4 +1,4 @@
-module Reap
+module Syckles
 
   # = RCov Service
   #

@@ -10,10 +10,10 @@ require 'facets/platform'
 
 require 'pom/project'
 
-require 'reap/core_ext'
-require 'reap/log'
+require 'syckle/core_ext'
+require 'syckle/log'
 
-require 'reap/support/emailer'
+require 'syckle/support/emailer'
 
 #require 'ratch/io'
 #require 'ratch/commandline'
@@ -23,12 +23,12 @@ require 'reap/support/emailer'
 #require 'facets/openhash'
 #require 'facets/argvector'
 
-module Reap
+module Syckle
 
-  # = Reap DSL Domain
+  # = Syckle DSL Domain
   #
-  # The DSL class is the heart of Reap, it provides all the convenece methods
-  # that make Reap services so convenient to write.
+  # The DSL class is the heart of Syckle, it provides all the convenece methods
+  # that make Syckle services so convenient to write.
   #
   # TODO: Rename to DSL ?
   #

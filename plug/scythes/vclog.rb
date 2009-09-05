@@ -1,4 +1,4 @@
-module Reap
+module Syckles
 
   # VClog plugin. Automatically generate changelogs from SCM commits messages.
   #

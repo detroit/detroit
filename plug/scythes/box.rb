@@ -18,14 +18,14 @@
 #end
 
 
-module Reap
+module Syckles
 
-  # = Box Packaging Plugin
+  # = Box Packaging Service
   #
   # The Box plugin, as the name suggests, utilizes the
   # stand-alone +box+ tool to build packages.
   #
-  class Box < Plugin
+  class Box < Service
 
     cycle :main, :package
 

@@ -1,4 +1,4 @@
-module Reap
+module Syckles
 
   # Yard documentation plugin generates docs for your project.
   #

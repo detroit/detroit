@@ -1,4 +1,4 @@
-module Reap #Sykle
+module Syckle
 
   #
   def self.lifecycles

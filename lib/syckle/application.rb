@@ -7,18 +7,18 @@ rescue LoadError
   $REAP_PARALLEL = false
 end
 
-require 'reap/domain'
-#require 'reap/project'
-require 'reap/cli'
-require 'reap/io'
+require 'syckle/domain'
+#require 'syckle/project'
+require 'syckle/cli'
+require 'syckle/io'
 
-require 'reap/cycles'
-require 'reap/cycles/main'
-require 'reap/cycles/site'
-require 'reap/cycles/attn'
+require 'syckle/cycles'
+require 'syckle/cycles/main'
+require 'syckle/cycles/site'
+require 'syckle/cycles/attn'
 
-require 'reap/service'
-require 'reap/plugins'
+require 'syckle/service'
+require 'syckle/plugins'
 
 
 #require 'facets/consoleutils'
@@ -26,7 +26,7 @@ require 'reap/plugins'
 
 # TODO: Not all io output is running through the io object.
 
-module Reap
+module Syckle
 
   # = Application
   #
@@ -36,7 +36,7 @@ module Reap
   #
   class Application
 
-    #CONFIG_FILE      = 'reap'
+    #CONFIG_FILE      = 'syckle'
     #PLUGIN_DIRECTORY = 'plugin'
 
     attr :cli
@@ -49,17 +49,17 @@ module Reap
     # Actions (from services).
     attr :actions
 
-    # New Reap Application.
+    # New Syckle Application.
     def initialize(options={})
-      @cli = Reap::CLI.new
-      @io  = Reap::IO.new(cli)
+      @cli = Syckle::CLI.new
+      @io  = Syckle::IO.new(cli)
       @domain = Domain.new(:io=>io, :cli=>cli)
       #@services, @actions = *load_service_configuration
       load_plugins
     end
 
     def load_plugins
-      Reap.plugins.each do |file|
+      Syckle.plugins.each do |file|
         require(file)
       end
     end
@@ -91,7 +91,7 @@ module Reap
           next unless opts && opts['active'] != false
 
           service_name  = opts.delete('service') || key
-          service_class = Reap.services[service_name.downcase]
+          service_class = Syckle.services[service_name.downcase]
 
           abort "Unkown service #{service_name}." unless service_class
 
@@ -152,16 +152,16 @@ module Reap
     def service_configs
       @service_configs ||= (
         files = []
-        files += project.task.glob('*.reap')
-        files += project.script.glob('*.reap')
+        files += project.task.glob('*.syckle')
+        files += project.script.glob('*.syckle')
         files = files.select{ |f| File.file?(f) }
         load_service_configs(files)
       )
     end
 
-    # Load service configs for a select set of reap scripts/tasks.
+    # Load service configs for a select set of syckle scripts/tasks.
     def load_service_configs(files)
-      abort "No reap services defined." if files.empty?
+      abort "No syckle services defined." if files.empty?
       files.inject({}) do |cfg, file|
         tmp = TMP.new(project.metadata)
         erb = ERB.new(File.read(file))
@@ -175,7 +175,7 @@ module Reap
     #def cli
     #  @cli ||= (
     #    cli = domain.cli
-    #    Reap.lifecycles.each do |key, lifecycle|
+    #    Syckle.lifecycles.each do |key, lifecycle|
     #      lifecycle.cycles.each do |phases|
     #        phases.each do |phase|
     #          if key.to_sym == :main
@@ -196,7 +196,7 @@ module Reap
       @skip ||= cli.skip.to_list.map{ |s| s.downcase }
     end
 
-    # Run individual reap scripts/tasks.
+    # Run individual syckle scripts/tasks.
     #
     def runscript(script, job)
       @service_configs = load_service_configs(script)
@@ -231,7 +231,7 @@ module Reap
       # Improve this in the future.
       #if cli == '?'
       #  m, l = [], []
-      #  Reap.pipelines.each do |key, pipe|
+      #  Syckle.pipelines.each do |key, pipe|
       #     pipe.phasemap.keys.each do |phase|
       #       if key == :main
       #         m << "#{phase}"
@@ -256,7 +256,7 @@ module Reap
       name  = name.to_sym
       phase = phase.to_sym if phase
 
-      lifecycle = Reap.lifecycles[name]
+      lifecycle = Syckle.lifecycles[name]
 
       raise "Unknown life-cycle -- #{name}" unless lifecycle
 
@@ -327,7 +327,7 @@ module Reap
     # Load custom plugins.
     # FIXME: how to load?
     def load_project_plugins
-      #scripts = project.config_reap.glob('*.rb')
+      #scripts = project.config_syckle.glob('*.rb')
      scripts = project.plugin.glob('*.rb')
       scripts.each do |script|
         load(script.to_s)
@@ -373,7 +373,7 @@ module Reap
 
   end
 
-end#module Reap
+end#module Syckle
 
 
 
@@ -437,7 +437,7 @@ end#module Reap
         phases.each do |phase, actions|
           puts "\n[#{phase}]"
           actions.each do |label, service, action|
-            puts "reap #{phase} #{label} #{action}"
+            puts "syckle #{phase} #{label} #{action}"
           end
         end
       end

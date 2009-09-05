@@ -14,4 +14,4 @@ binary design is more flexible for supporting per-project plugins.
 
 An important previous change, that I will reiterate in these
 notes: doc/, pkg/ and log/ directories are now fixed standard
-conventions.
+conventions.s

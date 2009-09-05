@@ -1,7 +1,7 @@
 require 'rexml/text'
 #require 'reap/project/scm'
 
-module Reap
+module Syckles
 
   # = Development Notes Plugin
   #

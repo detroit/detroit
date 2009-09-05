@@ -1,6 +1,6 @@
 require 'optparse'
 
-module Reap
+module Syckle
 
   # = Commandline Interface
   #
@@ -16,7 +16,7 @@ module Reap
         :force=>nil,:multitask=>nil,:skip=>[]
       }
 
-      usage.banner = "Usage: reap [<cycle>:]<phase> [options]"
+      usage.banner = "Usage: syckle [<cycle>:]<phase> [options]"
 
       usage.on('--trace', "Trace execution") do
         options[:trace] = true

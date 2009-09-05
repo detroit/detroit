@@ -1,6 +1,6 @@
 require 'facets/boolean'
 
-module Reap
+module Syckles
 
   # = Email Plugin
   #

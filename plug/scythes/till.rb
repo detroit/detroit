@@ -1,6 +1,6 @@
 #require 'sow/plugins/generic/generator'
 
-module Reap
+module Syckles
 
   # = Code Generator Service
   #

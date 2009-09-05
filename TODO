@@ -1,11 +1,5 @@
 = TODO List
 
-== CLIO or OptionParser
-
-* If CLIO can be moved to it's new state based system in a reasonable
-period, and it proveds worthy, then use it. Other wise let it do
-and switch to OptPaerser.
-
 == Parallel Execution [DONE]
 
 * Within a phase, any service instances that have the same priority can be run

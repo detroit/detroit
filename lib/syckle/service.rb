@@ -3,12 +3,12 @@
 #    module Loader
       #
       def service(name, &block)
-        #Reap.services[name] = Service.factory(&block)
-        Reap::Service.registry[name.to_s] = Reap::Service.factory(&block)
+        #Syckle.services[name] = Service.factory(&block)
+        Syckle::Service.registry[name.to_s] = Syckle::Service.factory(&block)
       end
 #    end
 
-module Reap
+module Syckle
 
   #
   def self.services
@@ -28,7 +28,7 @@ module Reap
   # can cause effects in plugin behvior that can be harder
   # to track down and fix if a bug arises.
   #
-  # The context must be a subclass of Reap::Domain.
+  # The context must be a subclass of Syckle::Domain.
   #
   class Service #< Ratch::Plugin
 
@@ -112,7 +112,7 @@ module Reap
 
       @priority = 0
 
-      raise TypeError, "context must be a subclass of Reap::DSL" unless context.is_a?(Reap::Domain) # Reap::DSL
+      raise TypeError, "context must be a subclass of Syckle::DSL" unless context.is_a?(Syckle::Domain) # Syckle::DSL
 
       initialize_defaults
 
@@ -246,4 +246,9 @@ module Reap
 
   end #class Service
 
-end #module Reap
+end #module Syckle
+
+module Syckles
+  Service = Syckle::Service
+end
+

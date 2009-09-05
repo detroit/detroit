@@ -1,6 +1,6 @@
-#require 'reap/plugin'
+#require 'syckle/plugin'
 
-module Reap
+module Syckle
 
   #
   PLUGIN_DIRECTORY = "scythes"
@@ -56,7 +56,7 @@ module Reap
   #}
 
   #STANDARD_PLUGINS.each do |name|
-  #  #require "reap/plugins/#{plugin}/plugin"
+  #  #require "syckle/plugins/#{plugin}/plugin"
   #  require plugins[name] + '/plugin' if plugins[name]
   #end
 

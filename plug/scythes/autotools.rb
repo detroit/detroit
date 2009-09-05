@@ -1,4 +1,4 @@
-module Reap
+module Syckles
 
   # = Autotools Compile Plugin
   #

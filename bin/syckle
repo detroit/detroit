@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'syckle/application'
+
+if /\.reap$/ =~ ARGV[0]
+  job = ARGV[1]
+  Syckle::Application.new.runscript(ARGV[0], job)
+else
+  Syckle::Application.new.start
+end
+

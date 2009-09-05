@@ -14,8 +14,7 @@ require 'facets/hash/rekey'
 
 require 'pom/metadata'
 
-module Reap
-module Plugins
+module Syckles
 
   class SupportService
     attr_accessor :dryrun
@@ -1029,5 +1028,4 @@ module Plugins
 
   end
 
-end
 end

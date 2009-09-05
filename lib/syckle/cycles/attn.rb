@@ -1,4 +1,4 @@
-module Reap
+module Syckle
 
   # = Special Announcement Cycle
   #

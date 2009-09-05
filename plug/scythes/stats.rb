@@ -1,4 +1,4 @@
-module Reap
+module Syckles
 
   # = Simple Code Statistics Plugin
   #

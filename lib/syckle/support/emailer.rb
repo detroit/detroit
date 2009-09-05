@@ -1,10 +1,10 @@
 begin
-  require 'facets/net/smtp_tls'
+  require 'smtp_tls'
 rescue LoadError
   require 'net/smtp'
 end
 
-module Reap
+module Syckle
 
   # Emailer class makes it easy send out an email.
   #
