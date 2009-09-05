@@ -12,12 +12,14 @@ require 'reap/domain'
 require 'reap/cli'
 require 'reap/io'
 
-require 'reap/pipeline'
-require 'reap/pipelines/main'
-require 'reap/pipelines/site'
-require 'reap/pipelines/attn'
+require 'reap/cycles'
+require 'reap/cycles/main'
+require 'reap/cycles/site'
+require 'reap/cycles/attn'
 
+require 'reap/service'
 require 'reap/plugins'
+
 
 #require 'facets/consoleutils'
 #require 'facets/ansicode'
@@ -37,6 +39,10 @@ module Reap
     #CONFIG_FILE      = 'reap'
     #PLUGIN_DIRECTORY = 'plugin'
 
+    attr :cli
+
+    attr :io
+
     # Run Domain
     attr :domain
 
@@ -45,48 +51,62 @@ module Reap
 
     # New Reap Application.
     def initialize(options={})
-      cli = Reap::CLI.new
-      io  = Reap::IO.new(cli)
+      @cli = Reap::CLI.new
+      @io  = Reap::IO.new(cli)
       @domain = Domain.new(:io=>io, :cli=>cli)
       #@services, @actions = *load_service_configuration
+      load_plugins
+    end
+
+    def load_plugins
+      Reap.plugins.each do |file|
+        require(file)
+      end
     end
 
     def multitask?
       $REAP_PARALLEL && cli.multitask?
     end
 
-    def io
-      domain.io
-    end
+    #def io
+    #  domain.io
+    #end
 
     def project
       domain.project
     end
 
-    # Returns an array of service class, class name, service key, options
-    def available_services
-      @available_services ||= (
+    # Returns an array of actived services.
+    #
+    def active_services
+      @active_services ||= (
         a = []
-        s = service_configuration
+
+        configs = service_configs #uration
+
         # only services configs that have options and are active
-        s = s.select{ |key, opts| opts && opts['active'] != false }
-        s.each do |(service_key, options)|
-          #next unless options
-          #next if options['active'] == false
-          classname = options.delete('service')
-          abort "No service for #{service_key}." unless classname
-          #
-          service_class = Reap.services[classname.downcase]
-          abort "Unkown service #{classname}." unless service_class
-          #
-          options = inject_environment(options)
-          #
+        #s = s.select{ |key, opts| opts && opts['active'] != false }
+
+        configs.each do |key, opts|
+          next unless opts && opts['active'] != false
+
+          service_name  = opts.delete('service') || key
+          service_class = Reap.services[service_name.downcase]
+
+          abort "Unkown service #{service_name}." unless service_class
+
+          opts = inject_environment(opts) # TODO: REMOVE
+
           if service_class.available?(project)
-            a << [service_class, classname, service_key, options]
+            a << service_class.new(domain, key, opts) #project,
+            #a << [service_class, classname, service_key, options]
           end
         end
+
         # sorting here trickles down to processing
-        a = a.sort_by{ |sc, cn, key, opts| opts['priority'] || 0 }
+        a = a.sort_by{ |s| s.priority || 0 }
+
+        #a = a.sort_by{ |sc, cn, key, opts| opts['priority'] || 0 }
         a
       )
     end
@@ -94,11 +114,11 @@ module Reap
     #alias_method :services, :available_services
 
     # Returns a list of activated services.
-    def active_services
-      available_services.map do |srvClass, className, key, options|
-        srvClass.new(domain, key, options) #project,
-      end
-    end
+    #def active_services
+    #  available_services.map do |srvClass, className, key, options|
+    #    srvClass.new(domain, key, options) #project,
+    #  end
+    #end
 
     # This substitutes environment vairables in for
     # service options if they are given in the form
@@ -116,89 +136,60 @@ module Reap
     end
 
     #
-    def service_configuration
-      @service_configuration ||= (
-        services = {}
-        service_configs.each do |classname, options|
-          services[classname] = options
-        end
-        services
-      )
-    end
+    #def service_configuration
+    #  @service_configuration ||= (
+    #    services = {}
+    #    service_configs.each do |classname, options|
+    #      services[classname] = options
+    #    end
+    #    services
+    #  )
+    #end
 
     # Service configuration. These are stored in the
-    # project's reap/ folder as YAML configuration files.
+    # project's task/ or script/ folder as YAML files.
     #
     def service_configs
       @service_configs ||= (
-        data = {}
-        files  = project.task.glob('*.reap')
-        files += project.config.glob('*.reap')
-
-        # DEPRECATE
-        files += (project.config + 'reap').glob('*')
-
+        files = []
+        files += project.task.glob('*.reap')
+        files += project.script.glob('*.reap')
         files = files.select{ |f| File.file?(f) }
-
         load_service_configs(files)
-
-        #abort "No reap services defined." if files.empty?
-        #files.each do |file|
-        #  # run through erb
-        # env  = TemplateEnv.new(project.metadata)
-        #  erb  = ERB.new(File.read(file))
-        #  txt  = erb.result(env.get_binding)
-        #  conf = YAML.load(txt)
-        #  data.update(conf || {})
-        #  #begin
-        #  #rescue ArgumentError => e
-        #  #  puts "Error loading config -- #{file}"
-        #  #  puts e
-        #  #end
-        #end
-        #data
       )
     end
 
     # Load service configs for a select set of reap scripts/tasks.
     def load_service_configs(files)
       abort "No reap services defined." if files.empty?
-      data = {}
-      files.each do |file|
-        # run through erb
-        env  = TemplateEnv.new(project.metadata)
-        erb  = ERB.new(File.read(file))
-        txt  = erb.result(env.get_binding)
-
-        conf = YAML.load(txt)
-        data.update(conf || {})
-
-        #begin
-        #rescue ArgumentError => e
-        #  puts "Error loading config -- #{file}"
-        #  puts e
-        #end
+      files.inject({}) do |cfg, file|
+        tmp = TMP.new(project.metadata)
+        erb = ERB.new(File.read(file))
+        txt = erb.result(tmp._binding)
+        yml = YAML.load(txt) || {}
+        cfg.update(yml)
       end
-      data
     end
 
     # setup cli
-    def cli
-      @cli ||= (
-        cli = domain.cli
-        Reap.pipelines.each do |key, pipe|
-          pipe.phasemap.keys.each do |phase|
-            if key == :main
-              cli.usage.subcommand("#{phase}") #.desc("no help")
-              cli.usage.subcommand("#{key}:#{phase}")
-            else
-              cli.usage.subcommand("#{key}:#{phase}")
-            end
-          end
-        end
-        cli
-      )
-    end
+    #def cli
+    #  @cli ||= (
+    #    cli = domain.cli
+    #    Reap.lifecycles.each do |key, lifecycle|
+    #      lifecycle.cycles.each do |phases|
+    #        phases.each do |phase|
+    #          if key.to_sym == :main
+    #            cli.usage.subcommand("#{phase}") #.desc("no help")
+    #            cli.usage.subcommand("#{key}:#{phase}")
+    #          else
+    #            cli.usage.subcommand("#{key}:#{phase}")
+    #          end
+    #        end
+    #      end
+    #    end
+    #    cli
+    #  )
+    #end
 
     # Returns a list of services to skip as specificed on the commandline.
     def skip
@@ -208,38 +199,34 @@ module Reap
     # Run individual reap scripts/tasks.
     #
     def runscript(script, job)
-      @service_configuration = load_service_configs(script)
+      @service_configs = load_service_configs(script)
       run(job)
     end
 
-    # Run the pipeline.
+    # Start the cycle.
     def start
-      # change into project directory
-      Dir.chdir(project.root)
-      # load any plugins
-      load_plugins
-      # parse the cli
-      cli.parse
-      # what job has been requested (ie. pipe & phase )
-      job = cli.command
-      # if no job then show help and exit
-      unless job
-        puts cli.help #_text
-        exit
-      end
-      # display help message if requested
-      if cli.options[:help] #cli.help?
-        if job
-          puts cli.usage.subcommand(job).help_text
-        else
-          puts cli.usage.help_text
-        end
-        exit
-      end
+      Dir.chdir(project.root)      # change into project directory
+      load_project_plugins         # load any local plugins
+      cli.parse                    # parse the cli
+      job = ARGV.shift #cli.command            # what cycle-phase has been requested
+      #help(job) if !job            # if none then show help and exit
+      #help(cli,job) if cli.help?  # display help message if requested
+      #help(job) if cli.options[:help]
       run(job)
     end
 
-    #
+    # Show commndline help and exit.
+    #def help(job)
+    #  case job
+    #  when nil
+    #    puts cli.usage.help #_text
+    #  else
+    #    puts cli.usage.subcommand(job).help_text
+    #  end
+    #  exit
+    #end
+
+    # Run the cycle upto the specified cycle-phase.
     def run(job)
       # Improve this in the future.
       #if cli == '?'
@@ -259,30 +246,29 @@ module Reap
       #end
 
       if job
-        pipe, phase = job.split(':')
-        pipe, phase = 'main', pipe unless phase
+        name, phase = job.split(':')
+        name, phase = 'main', name unless phase
       else
-        pipe = 'main'
+        name  = 'main'
         phase = nil
       end
 
-      pipe  = pipe.to_sym
+      name  = name.to_sym
       phase = phase.to_sym if phase
 
-      pipeline = Reap.pipelines[pipe]
+      lifecycle = Reap.lifecycles[name]
 
-      raise "Unknown pipeline -- #{pipe}" unless pipeline
+      raise "Unknown life-cycle -- #{name}" unless lifecycle
 
       if phase
-        system = pipeline.system_with_phase(phase)
+        system = lifecycle.cycle_with_phase(phase)
       else
         #overview
-        $stderr.puts "Unknown pipe:phase given."
+        $stderr.puts "Unknown name:phase given."
         exit 0
       end
 
       # prime the services (so as to fail early)
-      #active_services
       active_services.each do |srv|
         srv.preconfigure if srv.respond_to?("preconfigure")
       end
@@ -292,13 +278,13 @@ module Reap
       else
         h = ["#{project.metadata.title} v#{project.metadata.version}", "#{project.root}"]
       end
-      status_header(*h)
+      io.status_header(*h)
 
       start_time = Time.now
 
       system.each do |run_phase|
         next if skip.include?("#{run_phase}")  # TODO: Should we really allow skipping phases?
-        service_calls(pipe, run_phase)
+        service_calls(name, run_phase)
         break if phase == run_phase
       end
 
@@ -330,9 +316,9 @@ module Reap
       # run if the service supports the pipe and phase.
       if srv.respond_to?("#{pipe}_#{phase}")
         if domain.verbose?
-          status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.capitalize)
+          io.status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.capitalize)
         else
-          status_line("#{srv.key.to_s}", phase.to_s.capitalize)
+          io.status_line("#{srv.key.to_s}", phase.to_s.capitalize)
         end
         srv.send("#{pipe}_#{phase}")
       end
@@ -340,9 +326,9 @@ module Reap
 
     # Load custom plugins.
     # FIXME: how to load?
-    def load_plugins
+    def load_project_plugins
       #scripts = project.config_reap.glob('*.rb')
-      scripts = project.plugin.glob('*.rb')
+     scripts = project.plugin.glob('*.rb')
       scripts.each do |script|
         load(script.to_s)
         #  self.class.class_eval(File.read(script))
@@ -361,72 +347,25 @@ module Reap
     def overview
       end_phases.each do |phase_name|
         action_plan(phase_name).each do |act|
-          display(act)
+          io.display_action(act)
         end
         puts
       end
     end
 
+    # = Configuration Template Binding
     #
-    def display(action_item)
-      phase, service, action, parameters = *action_item
-      puts "  %-10s %-10s %-10s" % [phase.to_s.capitalize, service.service_title, action]
-      #status_line(service.service_title, phase.to_s.capitalize)
-    end
-
+    # This class is used to render service congifs via erb.
     #
-    #
-    def status_header(left, right='')
-      left, right = left.to_s, right.to_s
-
-      #left.color  = 'blue'
-      #right.color = 'magenta'
-
-      unless domain.quiet?
-        puts
-        io.print_header(left, right)
-        #puts "=" * io.screen_width
-      end
-    end
-
-    #
-    #
-    def status_line(left, right='')
-      left, right = left.to_s, right.to_s
-
-      #left.color  = 'blue'
-      #right.color = 'magenta'
-
-      unless domain.quiet?
-        puts
-        #puts "-" * io.screen_width
-        io.print_phase(left, right)
-        #puts "-" * io.screen_width
-        #puts
-      end
-    end
-
-    #
-    class TemplateEnv
-
+    class TMP
+      instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
       attr :metadata
-
       def initialize(metadata)
         @metadata = metadata
       end
-
-      def get_binding
+      def _binding
         binding
       end
-
-      #def notelog
-      #  File.read('NOTES')
-      #end
-
-      #def changelog
-      #  File.read('CHANGES')
-      #end
-
       def method_missing(s)
         metadata.send(s)
       end
@@ -434,7 +373,7 @@ module Reap
 
   end
 
-end
+end#module Reap
 
 
 

@@ -72,11 +72,11 @@ module Reap
       return inp.chomp
     end
 
-    def print(str)
+    def print(str='')
       super(str) unless quiet?
     end
 
-    def puts(str)
+    def puts(str='')
       super(str) unless quiet?
     end
 
@@ -113,6 +113,42 @@ module Reap
       line = style.inject(line){ |s, c| ansize(s, c) }
 
       puts line + ansize('', :clear)
+    end
+
+    #
+    #
+    def display_action(action_item)
+      phase, service, action, parameters = *action_item
+      puts "  %-10s %-10s %-10s" % [phase.to_s.capitalize, service.service_title, action]
+      #status_line(service.service_title, phase.to_s.capitalize)
+    end
+
+    #
+    #
+    def status_header(left, right='')
+      left, right = left.to_s, right.to_s
+      #left.color  = 'blue'
+      #right.color = 'magenta'
+      unless quiet?
+        puts
+        print_header(left, right)
+        #puts "=" * io.screen_width
+      end
+    end
+
+    #
+    #
+    def status_line(left, right='')
+      left, right = left.to_s, right.to_s
+      #left.color  = 'blue'
+      #right.color = 'magenta'
+      unless quiet?
+        puts
+        #puts "-" * io.screen_width
+        print_phase(left, right)
+        #puts "-" * io.screen_width
+        #puts
+      end
     end
 
     #

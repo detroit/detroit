@@ -1,54 +1,46 @@
-# TODO: Perhaps generalize plugin lookup and move it to POM, or Roll?
-
-require 'reap/plugin'
+#require 'reap/plugin'
 
 module Reap
 
-  def self.plugins
-    @plugins ||= (
-       h = {}
-       plugin_directories.each do |dir|
-         h[File.basename(dir).chomp('.reap')] = dir
-       end
-       h
-    )
-  end
+  #
+  PLUGIN_DIRECTORY = "scythes"
 
   # This routine searches through the $LOAD_PATH
-  # looking for directories which end in '.reap'.
+  # looking for plugins matching 'scythes/*.rb'.
   #
-  def self.plugin_directories
-    paths = []
+  def self.plugins
+    @plugins ||= (
+      f = []
 
-    # standard load path
-    $LOAD_PATH.uniq.each do |path|
-      dirs = Dir.glob(File.join(path, '**', '*.reap/'))
-      #dirs = dirs.select{ |d| File.directory?(d) }
-      paths.concat(dirs)
-    end
+      # LOAD_PATH
+      $LOAD_PATH.uniq.map do |path|
+        dirs = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
+        f.concat(dirs)
+      end
 
-    # rolls
-    if defined?(::Roll)
-      ::Roll::Library.ledger.each do |name, lib|
-        lib = lib.sort.first if Array===lib
-        lib.load_path.each do |path|
-          path = File.join(lib.location, path)
-          dirs = Dir.glob(File.join(path, '**', '*.reap/'))
-          #dirs = dirs.select{ |d| File.directory?(d) }
-          paths.concat(dirs)
+      # ROLL
+      if defined?(::Roll)
+        ::Roll::Library.ledger.each do |name, lib|
+          lib = lib.sort.first if Array===lib
+          lib.load_path.each do |path|
+            path = File.join(lib.location, path)
+            dirs = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
+            f.concat(dirs)
+          end
         end
       end
-    end
 
-    #if defined?(::Gem)
-    #  Gem.find_files('*.sow').reverse_each do |path|
-    #    if File.directory?(path)
-    #      paths << path
-    #    end
-    #  end
-    #end
+      # TODO: RubyGems
+      #if defined?(::Gem)
+      #  Gem.find_files('*.sow').reverse_each do |path|
+      #    if File.directory?(path)
+      #      paths << path
+      #    end
+      #  end
+      #end
 
-    return paths.map{ |d| d.chomp('/') }
+      f
+    )
   end
 
   # TODO: Open this up to all plugins
@@ -59,13 +51,13 @@ module Reap
   #   txt2man vclog svn hg git
   # }
 
-  STANDARD_PLUGINS = %w{
-    box stats custom notes email rcov rdoc ridoc rubyforge rubyprof testrb turn webri yard
-  }
+  #STANDARD_PLUGINS = %w{
+  #  box stats custom notes email rcov rdoc ridoc rubyforge rubyprof testrb turn webri yard
+  #}
 
-  STANDARD_PLUGINS.each do |name|
-    #require "reap/plugins/#{plugin}/plugin"
-    require plugins[name] + '/plugin' if plugins[name]
-  end
+  #STANDARD_PLUGINS.each do |name|
+  #  #require "reap/plugins/#{plugin}/plugin"
+  #  require plugins[name] + '/plugin' if plugins[name]
+  #end
 
 end

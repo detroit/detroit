@@ -1,54 +1,83 @@
-require 'clio/usage'
+require 'optparse'
 
 module Reap
 
   # = Commandline Interface
   #
-  # TODO: skip should be a multiple argument option, but Clio is having issues with that right now.
-  # For now we can just use a ';' to separate service names.
-  #
-  class CLI #< ::Clio::Commandline  #::Ratch::Commandline
+  class CLI
+
+    attr :usage
+    attr :options
 
     def initialize
-      usage.opt('--help'         , "Display this help message.")
-      usage.opt('--trace'        , "Trace execution")
-      usage.opt('--debug'        , "Run in DEBUG mode.")
-      usage.opt('--pretend -p'   , "No disk writes.")  # dryrun
-      usage.opt('--quiet   -q'   , "Run silently.")
-      usage.opt('--verbose'      , "Provided extra output.")
-      usage.opt('--force'        , "Force operations.")
-      usage.opt('--multitask -m' , "Run in parallel.")
+      @usage   = OptionParser.new
+      @options = {
+        :trace=>nil,:debug=>nil,:pretend=>nil,:quiet=>nil,:verbose=>nil,
+        :force=>nil,:multitask=>nil,:skip=>[]
+      }
 
-      usage.option('skip', 's') do
-        desc "Skip service(s). Separate multiple serives with a semicolon."
-        arg "VALUE"
-        multiple  # FIXME: multiple is not working!!! fix Clio or switch to optparser
+      usage.banner = "Usage: reap [<cycle>:]<phase> [options]"
+
+      usage.on('--trace', "Trace execution") do
+        options[:trace] = true
+      end
+
+      usage.on('--debug', "Run in DEBUG mode.") do
+        options[:debug] = true
+      end
+
+      usage.on('-p', '--pretend', "No disk writes.") do  # dryrun
+        options[:pretend] = true
+      end
+
+      usage.on('-q', '--quiet', "Run silently.") do
+        options[:quiet] = true
+      end
+
+      usage.on('--verbose', "Provided extra output.") do
+        options[:verbose] = true
+      end
+
+      usage.on('--force', "Force operations.") do
+        options[:multitask] = true
+      end
+
+      usage.on('-m', '--multitask', "Run in parallel.") do
+        options[:multitask] = true
+      end
+
+      usage.on('-s', '--skip [SERVICE]', 'Skip service.') do |s|
+        options[:skip] << s
+      end
+
+      usage.on_tail('--help', "Display this help message.") do
+        puts usage
+        exit
       end
     end
 
-    def usage
-      @usage ||= Clio::Usage.new
-    end
-
-    def cli
-      @cli ||= parse
-    end
-
-    def help
-      usage.help.to_s(:bold=>true)
-    end
+    #def help
+    #  usage.help.to_s(:bold=>true)
+    #end
 
     def parse
-      @cli = usage.parse(ARGV)
+      usage.parse!(ARGV)
     end
 
-    def dryrun? ; pretend? ; end
+    def dryrun?
+      pretend?
+    end
 
     #
     def method_missing(s, *a)
-      cli.send(s, *a)
+      s = s.to_s.chomp('?').to_sym
+      if options.key?(s)
+        options[s]
+      else
+        super
+      end
     end
+
   end
 
 end
-
