@@ -30,13 +30,16 @@ module Syckles
     cycle :main, :package
 
     # Default package types passed to the +box+ command.
-    DEFAULT_TYPES = ['tar']
+    DEFAULT_TYPES = ['gz']
 
     # Default patterns of files to include in a manifest file.
     DEFAULT_INCLUDE = ['**/*']
 
     # Directories that a typically excluded from a distribution.
-    DEFAULT_EXCLUDE = %w{ .cache .config log pack pkg temp temps tmp tmps web site website work }
+    DEFAULT_EXCLUDE = %w{
+      .cache .config log pack pkg temp temps tmp tmps
+      web site website work
+    }
 
     # File pattern are files/dirs that are typically ignored.
     DEFAULT_IGNORE  = %w{ .* }
@@ -188,7 +191,7 @@ module Syckles
     end
 
     # List of files included in the package. This is generated
-    # using +include+ and +exlude+.
+    # using +include+ and +exclude+.
     #
     def files
       @files ||= collect_files(true)
@@ -201,20 +204,18 @@ module Syckles
       files = []
 
       Dir.chdir(project.source) do
-        files += Dir.multiglob_r(*distribute)
-        files -= Dir.multiglob_r(*remove)
-        files -= Dir.multiglob_r(*ignore)
-
-        #files -= Dir.multiglob_r(*ignore) # TODO: shoud be based on basename
-        #files = files.reject{ |f| ignore.any?{ |i| File.fnmatch?(i, File.basename(f)) } }
+        files = amass(distribue, remove, ignore)
+        #files += Dir.multiglob_r(*distribute)
+        #files -= Dir.multiglob_r(*exclude)
+        #files -= Dir.multiglob_r(*ignore)
 
         #files -= Dir.multiglob_r(project.pack.to_s) #package_directory
       end
 
-      # do not include symlinks
+      # Do not include symlinks
       files.reject!{ |f| FileTest.symlink?(f) }
 
-      # option to exclude directories for list
+      # Option to exclude directories
       unless with_dirs
         files = files.select{ |f| !File.directory?(f) }
       end
@@ -224,9 +225,9 @@ module Syckles
 
     # Combines exclude and ignore into a single pattern list.
     # Ignore patterns are just exclude patterns applied to the basename.
-    def remove
-      exclude + ignore.map{ |i| File.join('**', i) }
-    end
+    #def remove
+    #  exclude + ignore.map{ |i| File.join('**', i) }
+    #end
 
   end
 
