@@ -39,7 +39,7 @@ module Syckle
       end
 
       usage.on('--force', "Force operations.") do
-        options[:multitask] = true
+        options[:force] = true
       end
 
       usage.on('-m', '--multitask', "Run in parallel.") do
