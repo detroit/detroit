@@ -125,7 +125,7 @@ module Syckles
       # TODO: Use a subdirectory for log. Also html or xml format possible?
 
       filelist = files.select{|file| !File.directory?(file) }.join(' ')
-      logfile  = log('testrb.log').file
+      logfile  = project.log + 'testrb.log'
 
       # TODO: Does tee work on Windows?
 
@@ -135,7 +135,7 @@ module Syckles
         command = %[testrb -I#{loadpath.join(':')} #{filelist} 2>&1 | tee -a #{logfile}]
       end
 
-      success = sh(command, :show=>true)
+      success = sh(command) #, :show=>true)
 
       abort "Tests failed." unless success
 

@@ -53,7 +53,9 @@ module Syckles
       max     = files.collect{ |f| f.size }.max
       list    = []
 
-      if logfile('syntax.log').outofdate?(*files) or force?
+      logfile = project.log + 'syntax.log'
+
+      if logfile.outofdate?(*files) or force?
         io.puts "Started"
 
         start = Time.now
@@ -99,15 +101,16 @@ module Syckles
 
     #
     def log_syntax_errors(list)
+      logfile = project.log + 'syntax.log'
       if list.empty?
-         logfile('syntax.log').clear
+         logfile.write('') #logfile.clear
       else
         io.puts "\n-- Syntax Errors --\n"
         list.each do |file|
           io.print "* #{file}"
           err = `ruby -c -I#{libsI} #{file} 2>&1`
           io.puts(err) if verbose?
-          logfile('syntax.log').write("=== #{file}\n#{err}\n\n")
+          logfile.write("=== #{file}\n#{err}\n\n")
         end
       end
     end

@@ -7,17 +7,24 @@ module Syckles
   # directory, in which case the rdoc documentation will be
   # stored there.
   #
-  # This plugin provides two services for both the +main+ and +site+ pipelines.
+  # This plugin provides the following cycle-phases:
   #
-  # * +document+ - create rdocs
-  # * +clean+    - remove rdocs
+  #   main:document  - generate rdocs
+  #   main:reset     - mark rdocs out-of-date
+  #   main:clean     - remove rdocs
+  #
+  #   site:document
+  #   site:reset
+  #   site:clean
   #
   class RDoc < Service
 
     cycle :main, :document
-    cycle :site, :document
-
+    cycle :main, :reset
     cycle :main, :clean
+
+    cycle :site, :document
+    cycle :site, :reset
     cycle :site, :clean
 
     # TODO: IMPROVE
@@ -29,7 +36,7 @@ module Syckles
     DEFAULT_OUTPUT       = "doc/rdoc"
 
     # Locations to check for existance in deciding where to store rdoc documentation.
-    DEFAULT_OUTPUT_MATCH = "{rdoc,doc/rdoc}"
+    DEFAULT_OUTPUT_MATCH = "{doc/rdoc,rdoc}"
 
     # Default main file.
     DEFAULT_MAIN         = "README"
@@ -40,25 +47,17 @@ module Syckles
     # Deafult extra options to add to rdoc call.
     DEFAULT_EXTRA        = ''
 
-    #DEFAULT_FILES        = '[A-Z]*;lib/**/*;bin/*'
-
   private
 
     # Setup default attribute values.
     def initialize_defaults
       @title    = metadata.title
       @files    = metadata.loadpath + ['[A-Z]*', 'bin'] # DEFAULT_FILES
-
       @output   = Dir[DEFAULT_OUTPUT_MATCH].first || DEFAULT_OUTPUT
-      @main     = DEFAULT_MAIN
       @extra    = DEFAULT_EXTRA
+      @main     = DEFAULT_MAIN
       @template = ENV['RDOC_TEMPLATE'] || DEFAULT_TEMPLATE
     end
-
-    #def main_document ; document ; end
-    #def site_document ; document ; end
-    #def main_clean    ; clean    ; end
-    #def site_clean    ; clean    ; end
 
   public
 
@@ -119,7 +118,7 @@ module Syckles
       include_files = files.to_list.uniq
       exclude_files = exclude.to_list.uniq
 
-      if mfile = project.manifest_file       
+      if mfile = project.manifest_file
         exclude_files << mfile.basename.to_s # TODO: I think base name should retun a string?
       end
 
@@ -184,10 +183,10 @@ module Syckles
         end
 
         if verbose? or dryrun?
-          shell(cmd)
+          sh(cmd) #shell(cmd)
         else
           silently do
-            shell(cmd)
+            sh(cmd) #shell(cmd)
           end
         end
       #else

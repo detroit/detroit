@@ -224,7 +224,8 @@ module Syckles
     #
     def log_notes_save(dir, text, format)
       file = dir + "notes.#{format}"
-      log(file).write(text)
+      mkdir_p(file.parent)
+      write(file, text)
       return file
     end
 

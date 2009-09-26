@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-about "Scaffold a Reap-ready Ruby project."
+about "Scaffold a Syckle-ready Ruby project."
 
-usage "--reap[=<package-name>]"
+usage "--syckle[=<package-name>]"
 
 argument(:package) do |val|
   val = val || pathname

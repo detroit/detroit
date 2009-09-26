@@ -121,7 +121,7 @@ module Syckles
       # TODO: Use a subdirectory for log. Also html or xml format possible?
 
       filelist = files.select{|file| !File.directory?(file) }.join(' ')
-      logfile  = log('turn.log').file
+      logfile  = project.log + 'turn.log'
 
       # TODO: Does tee work on Windows? Hmmm... I rather add a logging option to turn itself.
       # TODO: Also, turn needs to return a failing exist code if tests fail.
@@ -134,7 +134,7 @@ module Syckles
         command = %[turn -D --log #{logfile} -I#{loadpath.join(':')} #{filelist}]
       end
 
-      success = sh(command, :show=>true)
+      success = sh(command) #, :show=>true)
 
       abort "Tests failed." unless success
 

@@ -68,10 +68,10 @@ module Syckles
       #() #.inject([]){ |memo, find| memo.concat(glob(find)); memo }
       #Dir.multiglob_with_default(DEFAULT_STATS_FILES)
 
-      if log(output).outofdate?(*files) or force?
+      if output.outofdate?(*files) or force?
         generate_stats(files)
       else
-        out = log(output).file.relative_path_from(project.root)
+        out = output.relative_path_from(project.root)
         report "Stats are current (#{out})."
       end
     end
@@ -85,9 +85,9 @@ module Syckles
       if dryrun?
         report "write #{log_file}"
       else
-        mkdir_p(File.dirname(log_file.to_s))
-        log(log_file).write(text)
-        rfile = log(log_file).file.relative_path_from(project.root)
+        mkdir_p(log_file.parent)
+        write(log_file, text)
+        rfile = log_file.relative_path_from(project.root)
         status "Updated #{rfile}"
       end
     end
