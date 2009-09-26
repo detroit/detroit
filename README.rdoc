@@ -73,7 +73,7 @@ information.
 
 == RELEASE NOTES
 
-Please see the NEWS file.
+Please see the HISTORY file.
 
 
 == INSTALLATION
@@ -90,6 +90,28 @@ Syckle can also be installed the old-fashion way by downloading the
   $ sudo setup.rb
 
 Ruby Setup is stand-alone version of the original setup.rb script.
+
+
+== ISSUES
+
+All in all, Syckle works very well. However, there are still some
+rough edges with regards to the built-in service plugins. So from time
+to time you might run into an odd error. Ususally it mean a service
+confirguraiton needs to adjusted.
+
+Please note, Windows support has not been considered at all.
+While I do not see any specific reason it should not work,
+there may well be issues I have not considered since I do
+not use Windows. If you are Windows user and give Syckle
+a try please let us know of any issues you encounter.
+
+
+== HISTORY:
+
+Syckle is actaully the offspring of Reap 10, and represents
+about four years worth of design consideration and reconsideration,
+that brought Reap from a simple Rake extension to the life-cycle
+system Syckle is today.
 
 
 == COPYRIGHT & LICENSE
