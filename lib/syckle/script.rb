@@ -1,19 +1,18 @@
-require 'ostruct'
-require 'tmpdir'
-require 'yaml'
-require 'rbconfig'  # replace with facets/rbsystem?
-require 'fileutils'
+#require 'ostruct'
+#require 'tmpdir'
+#require 'yaml'
+#require 'rbconfig'  # replace with facets/rbsystem?
+#require 'fileutils'
 
-require 'folio'
+#require 'folio'
 
-require 'facets/platform'
+#require 'facets/platform'
+#require 'pom/project'
 
-require 'pom/project'
+#require 'syckle/core_ext'
+#require 'syckle/log'
 
-require 'syckle/core_ext'
-require 'syckle/log'
-
-require 'syckle/support/emailer'
+#require 'syckle/support/emailer'
 
 #require 'ratch/io'
 #require 'ratch/commandline'
@@ -23,8 +22,16 @@ require 'syckle/support/emailer'
 #require 'facets/openhash'
 #require 'facets/argvector'
 
+require 'ratch/project_script'
+
 module Syckle
 
+  class Script < Ratch::ProjectScript
+  end
+
+end
+
+=begin
   # = Syckle DSL Domain
   #
   # The DSL class is the heart of Syckle, it provides all the convenece methods
@@ -119,7 +126,7 @@ module Syckle
       Platform.local.to_s
     end
 
-=begin
+--
     # Shell runner.
     def shell(cmd)
       if dryrun?
@@ -137,7 +144,7 @@ module Syckle
 
     # TODO: DEPRECATE #sh in favor of #shell (?)
     alias_method :sh, :shell
-=end
+--
 
     # Delegate to Filio::Shell.
     def method_missing(s, *a, &b)
@@ -353,7 +360,7 @@ module Syckle
 
 end
 
-
+=end
 
 
 
