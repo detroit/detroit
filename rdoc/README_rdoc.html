@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: README.rdoc [Syckle]</title>
+
+	<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file">
+	<div id="metadata">
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="./HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="./NEWS.html">NEWS</a></li>
+				
+					<li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="./TODO.html">TODO</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./Syckle.html">Syckle</a></li>
+				
+					<li><a href="./Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="./Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+				
+					<li><a href="./Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="./Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="./Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="./Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="./Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="./Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="./Syckle/Service.html">Syckle::Service</a></li>
+				
+					<li><a href="./Reap.html">Reap</a></li>
+				
+					<li><a href="./Reap/Plugins.html">Reap::Plugins</a></li>
+				
+					<li><a href="./Reap/Plugins/ReleaseLog.html">Reap::Plugins::ReleaseLog</a></li>
+				
+					<li><a href="./Reap/Plugins/Txt2Man.html">Reap::Plugins::Txt2Man</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./Syckles.html">Syckles</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1><a href="Syckle.html">Syckle</a></h1>
+<ul>
+<li><a
+href="http://proutils.rubyforge.org/syckle">proutils.rubyforge.org/syckle</a>
+
+</li>
+</ul>
+<h2>DESCRIPTION</h2>
+<p>
+<a href="Syckle.html">Syckle</a> is a life-cycle based Ruby project
+mangement tool. <a href="Syckle.html">Syckle</a> provides a systematic
+methodology to help developers prepare and release Ruby projects.
+</p>
+<h2>SYNOPSIS</h2>
+<p>
+Using <a href="Syckle.html">Syckle</a> is not diffcult, but it does take a
+few minutes to understand how it operates. If you are familiar with Maven
+form Java ecosystem, then you have as fair notion about Sykle as well. In
+short, <a href="Syckle.html">Syckle</a> defines lifecyles within which all
+<a href="Syckle.html">Syckle</a> services run. You define serivce instances
+as YAML configuration files in you projects <tt>task</tt> or
+<tt>script</tt> directory with a .syckle extension, eg.
+<tt>box.syckle</tt>. For example, Sycle&#8217;s own Rubyforge service
+config looks like this:
+</p>
+<pre>
+  ---
+  rubyforge:
+    service: Rubyforge
+    sitemap:
+      site: &lt;%= package %&gt;
+    active: true
+</pre>
+<p>
+Service configs often draw on metadata about your project, as in the above
+example&#8217;s use of <tt>&lt;%= package %&gt;</tt>. Metadata is defined
+using POM (see <a
+href="http://proutils.rubyforge.org/pom">proutils.rubyforge.org/pom</a>).
+Essentially, you add files to your project&#8217;s <tt>meta</tt> directory,
+and the information becomes available via Erb embedded tags.
+</p>
+<p>
+With service configuration and metadata in place, using syckle is simply a
+matter of specifying the cycle and phase you wish to complete.
+</p>
+<pre>
+  $ syckle main:document
+</pre>
+<p>
+The cycle name and its phase are separated by a colon. This command would
+run every phase in the <tt>main</tt> cycle, in order, until it completes
+the <tt>document</tt> phase. Since <tt>main</tt> is the default cycle, we
+could have more easily executed the above without specifying it.
+</p>
+<pre>
+  $ syckle document
+</pre>
+<p>
+The use of a cycle may seem constrictive to users of tools like Rake, but
+it helps ensure your project is always up-to-date and in-sync. <a
+href="Syckle.html">Syckle</a> includes three life-cycles out of the box.
+The most significant of which is <tt>main</tt> which entails a subcycle
+with ordred phases:
+</p>
+<pre>
+  configure -&gt; generate -&gt; analyize -&gt; compile -&gt;
+      validate -&gt; document -&gt; package -&gt; release -&gt;
+          promote -&gt; archive
+</pre>
+<p>
+It also has a clean subcycle, which is common to many life-cycles. it
+consits of two phases:
+</p>
+<pre>
+  reset -&gt; clean
+</pre>
+<p>
+Where reset marks generated files out-of-date, and clean actually removes
+them.
+</p>
+<p>
+In additon to <tt>main</tt>, <a href="Syckle.html">Syckle</a> includes
+<tt>site</tt> and <tt>attn</tt> life-cycles which are used to generate and
+publish a project website, and make project announcements respectively.
+</p>
+<p>
+Please see <a
+href="http://proutils.rubyforge.org/syckle">proutils.rubyforge.org/syckle</a>
+for more details on how to use <a href="Syckle.html">Syckle</a>, including
+the creation of custom cycles, phases, and service plugins. Also try the
+<tt>--help</tt> option to see the syckle command&#8217;s help information.
+</p>
+<h2>RELEASE NOTES</h2>
+<p>
+Please see the <a href="NEWS.html">NEWS</a> file.
+</p>
+<h2>INSTALLATION</h2>
+<p>
+<a href="Syckle.html">Syckle</a> can, of course, be installed via RubyGems:
+</p>
+<pre>
+  $ sudo gem install syckle
+</pre>
+<p>
+<a href="Syckle.html">Syckle</a> can also be installed the old-fashion way
+by downloading the .tar.gz package and using Ruby Setup (See <a
+href="http://setup.rubyforge.org">setup.rubyforge.org</a>).
+</p>
+<pre>
+  $ tar -xvzf syckle-1.0.0.tar.gz
+  $ cd syckle-1.0.0
+  $ sudo setup.rb
+</pre>
+<p>
+Ruby Setup is stand-alone version of the original setup.rb script.
+</p>
+<h2>COPYRIGHT &amp; LICENSE</h2>
+<p>
+<a href="Syckle.html">Syckle</a>
+</p>
+<p>
+Copyright &#169; 2007,2009 Thomas Sawyer
+</p>
+<p>
+Unless otherwise permited by the author, <a href="Syckle.html">Syckle</a>
+is distributed under the terms of the GPL version 3 or above. See <a
+href="COPYING.html">COPYING</a> for full license.
+</p>
+<p>
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <<a
+href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>>.
+</p>
+
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::Service#service_actions
+is_singleton: false
+name: service_actions
+params: ()
+visibility: private

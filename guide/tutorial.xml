@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet href="layout.xsl" type="text/xsl" ?>
+
+<content>
+
+<h1>Reap Tutorial <span class="rev">rev. 13</span></h1>
+
+<p><img src="img/ratch.jpg" alt="" /></p>
+
+
+<h1>Introduction</h1>
+
+<p>Reap is the original Ruby project management application. It provides most of tools
+Ruby project designers commonly need to manage their projects, such as packaging, releasing,
+publishing, and so forth. Reap provides many of functions that one might normally writes 
+using a build tool, such as Rake. Reap is not intended as a replacement for Rake.
+Rake is general purpose build tool, whereas Reap is a specialized application. However
+for the typical project, Reap does greatly reduce the need for Rake.</p>
+
+<p>Here are a list of benefits you can expect from using Reap.</p>
+
+<ul>
+  <li>Provides a unified means of project management, from start to finish.</li>
+  <li>Logical defaults mean little configuration is required.</li>
+  <li>Yet it is also versitle, allowing a fair amount of configuration.</li>
+  <li>Tools are easily listed via standard command line tab-completion.</li>
+  <li>Reap is not viral. End users do not need it to install, test or rdoc.</li>
+  <li>Reap has only one dependency, Facets, which is widely used.</li>
+  <li>Follows standard "setup.rb" conventions.</li>
+</ul>
+
+
+<h1>Getting Started</h1>
+
+<p>If you haven&#8217;t already done so, you&#8217;ll first need to install Reap.
+The process is straight-forward with RubyGems.</p>
+
+<pre><code>
+    $ gem install reap
+</code></pre>
+
+<p>Alternatively you can install from source. Simply, download the package file,
+decompress it, &#8216;cd&#8217; into the package directory and run <code>task/setup</code>.</p>
+
+<pre><code>
+    $ tar -xvzf reap-10.0.0.gzip
+    $ cd ratch-10.0.0
+    $ sudo setup.rb
+</code></pre>
+
+<p>Once installed, you can make sure Reap installed correctly by typing <code>reap-</code>
+and hitting tab on the command line. You should see a fair-sized list of commands.</p>
+
+<p>For Reap to operate it needs information about your project and what you expect
+from various reap tools. Reap has reasonable presets for nearly everything, but a few pieces
+of information are required. Of course, it's best to offer up more information then is
+strictly necessary for enhanced results. Three files are involved in configuring a
+project to be <i>reap-ready</i>: the <i>.reap config file</i>, the <i>project file</i>
+and the <i>version file</i>. In the following sections we will go through each file in turn.</p>
+
+
+<h1>.reap</h1>
+
+<p>The first file Reap needs is the <code>.reap</code> file. This file is stored in a project's
+root directory. In fact, the location of this file is how Reap identifies the project's root
+directory. When a Reap command is run, Reap searches for the <code>.reap</code> file by moving
+up the directory hierarchy from the present working directory, until the file is found. 
+All operations Reap preforms is relative to this location.</p>
+
+<p>The <code>.reap</code> file provides individual settings for Reap's tools.
+While default settings are usually sufficient, extra tool configuration is 
+sometimes necessary. An example <code>.reap</code> file might look something like:</p>
+
+<pre><code>
+  package:
+    formats: [ zip, gem ]
+    exclude: [ doc, site, ri, work ]
+
+  publish:
+    source   : web
+
+  mail:
+    server    : smtp.gmail.com
+    port      : 465
+    domain    : psytower.info
+    secure    : true
+    login     : plain
+    mail_from : transfire@gmail.com
+</code></pre>
+
+<p>To learn what configuration settings a particular tool supports, have a look at the 
+<a href="rdoc/files/lib/reap/default_yaml.html">default.yaml</a> file in Reap's API
+Documentation. Note that these settings can be set or overridden at the command-line too,
+using <code>--name=value</code> notation. Most entries are labeled exactly for the command
+the effect. Other's however are extra data, such as the <code>mail</code> entry above,
+use by various commands.</p>
+
+<p>The .reap file doesn't control all tool settings. There are a couple configuration options
+that can be set via environment variable, as they may be considered somewhat private.
+These are "RUBYFORGE_USERNAME" and "EMAIL_USERNAME". Passwords are prompted for if not
+given on the command line itself, so there's no need to store those in an insecure locations.</p>
+
+
+<h1>Project Information</h1>
+
+<p><img src="images/box.jpg" style="float: left; width: 100px;;" alt="" /></p>
+
+<p>The project file is a <span class="caps">YAML</span>-formatted file storing general 
+metadata about a project. This information includes the general information about
+a project, such as title, description, homepage, etc. which is essentially static
+--once set, it will probably will never change. The class also contains settings for
+packaging; information that is usually static, but may vary for a particular package
+platform or format.</p>
+
+<p>The file is usually named <code>project.yaml</code> and kept in a project sub-directory
+called <code>meta/</code>, though there is some flexibility here. Capitalization of the
+file name is insignificant, and the extension can be omitted, and "info" can be tacked on,
+ie. <code>ProjectInfo</code>. The file can also be kept in the project's root directory,
+if prefered.</p>
+
+<p>The structure of the project file is fairly self-explainitory.</p>
+
+<p>Example Project File</p>
+
+<pre><code>
+    project  : foo
+    version  : 1.0.0
+    status   : beta
+    author   : Thomas Sawyer
+    created  : '2004-04-01'
+    email    : foofire@zmail.com
+    homepage : 'http://foo.rubyforge.org'
+
+    title    : Foo
+    summary  : The Foo Example
+    description: &gt;
+      For is an dummy example of project that isn't.
+      You don't install it, you don't use it.
+      It's just here demonstrate potentials.
+
+    rubyforge:
+      project: foo
+
+    dependencies:
+      - [ facets, '&gt; 1.5' ]
+
+    exclude:
+      - snip
+      - doc
+</code></pre>
+
+<p>Rather then create a file from scratch, it's perhaps better to simply copy one from some
+other project and modify it to suit your needs. That makes it fairly easy to jump right in, learning
+how to fill it in as one progresses. If no other project is available, you can create a basic
+template via the <code>reap-init</code> command (which will also create a .reap file).</p>
+
+<p>Reap has one command that can be used to verify the project information: <code>reap-inspect</code>.
+Running this command without arguments will dump the parsed contents of the project file to stdout.
+This may seem trivial, but it can be sometimes be useful to verify information is correct. Supplying
+an argument to <code>reap-inspect</code> provides the specific piece of information. For instance:</p>
+
+<pre>
+    $ reap-inspect version
+    1.0.0
+</pre>
+
+<p>It&#8217;s a good idea to take some time and learn all the standard properties of a project&#8217;s metadata
+which you can draw on for your own tools. Looking at the <a href="rdoc/index.html">RDoc API
+documentation</a> will elucidate them. Note, you can also add your own entries to this file if needed
+for other uses. Reap won't mind.</p>
+
+  <p class="tip">TIP: It is important not get confused thinking that a project is not a
+  project just because it is a sub-project. A sub-project is a project, it just happens
+  to belong to a master collection "project".</p>
+
+
+<h1>Version File</h1>
+
+<p>Complementing the project file is a <i>version file</i> (also called the <i>release stamp</i>).
+This file simply augments the project file with current release information, such as version
+number, status and release date. It is possible to provide this release information in the
+project file alone, so it is not strictly necessary, but the additional version file is preferred
+because the project data rarely changes, while the version changes with every new release.</p>
+
+<p>The version file is named <code>version</code>. And like the project file it has some flexibility
+--case insensitive and an optional '.txt. extension. Again, we recommend storing it in the
+<code>meta/</code> directory, but it will also work in the project's root directory --it is not
+uncommon to see it there as <code>VERSION</code>, all caps.</p>
+
+<p>The internal format of the file is quite simple. Here is a dump of Reap's:</p>
+
+<pre>
+  $ cat meta/version
+  10.0.0 stable (2008-01-31)
+</pre>
+
+<p>As you can see it contains just three pieces of information: a version number, a status and
+a release date. The status is intended for a term to indicate the state of development, such as alpha,
+beta or stable, or a release candidate such as rc1, rc2, etc. The release date should be in ISO
+standard format, the parenthesis are actually optional.</p>
+
+<p>The Reap command <code>reap-version</code> can be used to update this file conveniently. For example:</p>
+
+<pre><code>
+  $ reap-version --version=1.0.1 --status=beta
+  1.0.1 beta (2008-01-31)
+  meta/version updated.
+</code></pre>
+
+<p>A even better way to update the version is</p>
+
+<pre><code>
+  $ reap-version --tiny
+  1.0.2 beta (2008-01-31)
+  meta/version updated.
+</code></pre>
+
+<p>Besides tiny there is --major and --minor. The release date set by <code>reap-version</code> is always the
+current date. reap-version is also invoked when running <code>reap-rollout</code>, so the same options apply for it as well.</p>
+
+
+<h1>All Systems Go</h1>
+
+<p>With these files in place, it's a simple matter of putting Reap to use. A very nice feature of Reap, is the ability
+to run any command in <code>--dryrun</code> mode. This makes it possible to see what a tool <i>would</i> do without it
+actually doing it. This is especially a good idea when just getting started with reap, as it will provide
+a better understanding of what Reap does.</p>
+
+<p>Another useful option is the <code>--trace</code> option. If you encounter an error, using this option will provide
+a more detailed account of the issue. When reporting issues, it's a good idea to provide the trace output. Other
+options include --verbose which sometimes provided more detailed output; and --force which will override certain
+limitations, for example, if rdocs are current you force their regeneration.</p>
+
+<p>That's the end of this basic tutorial. In the future we hope to expand it will additional details. In the
+mean time feel free to contact <a href="tigerops.psytower.info">Tiger Ops</a> if you have any additional questions,
+comments or suggestions.</p>
+
+<p><img src="images/appendix.png" alt="" /></p>
+
+<h1>Appendix</h1>
+
+<h2>License</h2>
+
+<p>Reap, Copyright &#169; 2006,2007 Tiger Ops<br/></p>
+
+<p>GPL License</p>
+
+<p>This program is free software; you can redistribute it and/or modify
+it under the terms of <span class="caps">GNU</span> General Public License
+as published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+but <span class="caps">WITHOUT ANY WARRANTY</span>; without even the implied warranty of
+<span class="caps">MERCHANTABILITY</span> or <span class="caps">FITNESS FOR A PARTICULAR PURPOSE</span>.  See the
+<span class="caps">GNU</span> General Public License for more details.</p>
+
+<p>You should have received a copy of the <span class="caps">GNU</span> General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, <span class="caps">MA  02111</span>-1307 <span class="caps">USA</span></p>
+
+</content>

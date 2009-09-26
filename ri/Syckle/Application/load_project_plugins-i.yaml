@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "Load custom plugins. FIXME: how to load?"
+full_name: Syckle::Application#load_project_plugins
+is_singleton: false
+name: load_project_plugins
+params: ()
+visibility: public

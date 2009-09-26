@@ -1,0 +1,31 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: []
+
+  name: cycles
+  rw: R
+class_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: LifeCycle
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: LifeCycle
+constants: []
+
+full_name: Syckle::LifeCycle
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: cycle
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: cycle_with_phase
+name: LifeCycle
+superclass: Object

@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Returns an array of actived services.
+full_name: Syckle::Application#active_services
+is_singleton: false
+name: active_services
+params: ()
+visibility: public

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: Reap::Plugins::ReleaseLog</title>
+
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../lib/syckle/plugins/relnotes/plugin_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/syckle/plugins/relnotes/plugin.rb">lib/syckle/plugins/relnotes/plugin.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Plugin</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000070">#changelog</a></li>
+					
+					<li><a href="#M000067">#document</a></li>
+					
+					<li><a href="#M000066">#initialize_defaults</a></li>
+					
+					<li><a href="#M000071">#save</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="../../NEWS.html">NEWS</a></li>
+				
+					<li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../../TODO.html">TODO</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../../Syckle.html">Syckle</a></li>
+				
+					<li><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="../../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+				
+					<li><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+				
+					<li><a href="../../Reap.html">Reap</a></li>
+				
+					<li><a href="../../Reap/Plugins.html">Reap::Plugins</a></li>
+				
+					<li><a href="../../Reap/Plugins/ReleaseLog.html">Reap::Plugins::ReleaseLog</a></li>
+				
+					<li><a href="../../Reap/Plugins/Txt2Man.html">Reap::Plugins::Txt2Man</a></li>
+				
+					<li><a href="../../Object.html">Object</a></li>
+				
+					<li><a href="../../Syckles.html">Syckles</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">Reap::Plugins::ReleaseLog</h1>
+
+		<div id="description">
+			<h1>Release Log Service</h1>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="output-attribute-method" class="method-detail">
+				<a name="output"></a>
+				
+				<a name="output="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">output</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="document-method" class="method-detail ">
+				<a name="M000067"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">document</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Collect embedded notes.
+</p>
+<p>
+This task scans source code for developer notes and writes to well
+organized files. This tool can lookup and list <a
+href="../../TODO.html">TODO</a>, FIXME and other types of labeled comments
+from source code.
+</p>
+<pre>
+  files    Glob(s) of files to search.
+  labels   Labels to search for. Defaults to [ 'TODO', 'FIXME' ].
+  output   Output directory. Defaults to log/.
+</pre>
+<p>
+TODO: Remove format field, and ultimately use XML as primary format?
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="document-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/plugins/relnotes/plugin.rb, line 33</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">document</span>
+      <span class="ruby-identifier">date_limit</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-value">30</span><span class="ruby-operator">*</span><span class="ruby-value">24</span><span class="ruby-operator">*</span><span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span> <span class="ruby-comment cmt"># FIXME</span>
+
+      <span class="ruby-comment cmt">#apply_naming_policy('NEWS', log_format.downcase)</span>
+
+      <span class="ruby-identifier">file</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">glob_first</span>(<span class="ruby-value str">&quot;{RELEASE,NOTES,NEWS}{,.txt}&quot;</span>, <span class="ruby-identifier">:casefold</span>)
+      <span class="ruby-identifier">file</span> = (<span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'RELEASE'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">file</span>
+
+      <span class="ruby-identifier">text</span> = <span class="ruby-identifier">changelog</span>.<span class="ruby-identifier">recent_text</span>(<span class="ruby-identifier">date_limit</span>)
+
+      <span class="ruby-identifier">save</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">text</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="initialize-defaults-method" class="method-detail ">
+				<a name="M000066"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">initialize_defaults</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/plugins/relnotes/plugin.rb, line 17</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'proutils/vclog/vcs'</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="changelog-method" class="method-detail ">
+				<a name="M000070"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">changelog</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="changelog-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/plugins/relnotes/plugin.rb, line 48</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">changelog</span>
+      <span class="ruby-identifier">project</span>.<span class="ruby-identifier">vcs</span>.<span class="ruby-identifier">changelog</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="save-method" class="method-detail ">
+				<a name="M000071"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">save</span><span
+						class="method-args">(file, text)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="save-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/plugins/relnotes/plugin.rb, line 57</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">text</span>)
+      <span class="ruby-identifier">text</span> = <span class="ruby-node">&quot;### #{Time.now}\n\n#{text}&quot;</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">exist?</span>
+        <span class="ruby-identifier">content</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">read</span>.<span class="ruby-identifier">strip</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">content</span> = <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">index</span>(<span class="ruby-regexp re">/^###/</span><span class="ruby-identifier">m</span>)
+        <span class="ruby-identifier">content</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] = <span class="ruby-identifier">text</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">content</span> <span class="ruby-operator">+=</span> (<span class="ruby-value str">&quot;\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">text</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">file_write</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">content</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

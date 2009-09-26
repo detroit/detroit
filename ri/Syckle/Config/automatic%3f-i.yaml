@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Use automatic services?
+full_name: Syckle::Config#automatic?
+is_singleton: false
+name: automatic?
+params: ()
+visibility: public

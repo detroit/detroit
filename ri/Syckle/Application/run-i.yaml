@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Run the cycle upto the specified cycle-phase.
+full_name: Syckle::Application#run
+is_singleton: false
+name: run
+params: (job)
+visibility: public

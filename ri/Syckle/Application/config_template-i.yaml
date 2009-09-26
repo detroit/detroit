@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Generates a master configuration template. This is only used for reference.
+full_name: Syckle::Application#config_template
+is_singleton: false
+name: config_template
+params: ()
+visibility: public

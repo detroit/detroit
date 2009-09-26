@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "NOTE: How is this being used?"
+full_name: Syckle::Service::init
+is_singleton: true
+name: init
+params: (&block)
+visibility: public

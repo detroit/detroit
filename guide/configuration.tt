@@ -1,0 +1,151 @@
+h1. Consideration on Project Layout
+
+h2. Traditional Approach
+
+There is little in the way of standards ofr laying out
+development projects --in particular the location of project
+support files. The traditional appeach is just to pile
+everything in to the project root directory.
+
+  myapp/
+    README
+    bin/
+    config/
+    lib/
+    packages/
+    plugins/
+    website/
+
+While there is nothing terminally wrong with this layout, it
+is lacking a couple significant respects. First, it simply
+has no consideration for organization at all.  So, for instance,
+there is no way to disern which files will be distributed
+as part or package and which file are there simply for
+development purposes.
+
+To address these shortcommings Reap's development explored
+alternate approaches to this traditonal layout. Three
+approaches in particular were given consideration.
+
+
+h2. Tiered Layout
+
+The first layout considered was the tiered layout.
+
+  myapp/
+    config/
+    packages/
+    plugins/
+    website/
+    source/
+      README
+      bin/
+      lib/
+
+The tiered layout is probably the most "correct" on the ground
+of shear technical accuracy. All the "meta" files are kept on
+directory above the project source. So this makes a lot of sense,
+and is certaintly a good way to organize a project. It is the way
+java projects are essentially organized, in fact. But, it has a
+few downsides.
+
+First, it creates an additional layer between you and the most
+important part of the project --the source code. I'm already not
+so happy with the need to add the project name as a directory
+under lib/, the last thing we want is to to compound the issue
+yet again. 
+
+Secondly, it does not mirror the layout of distributed installation.
+In other words, gems/myapp/lib is not reflected by mydev/myapp/source/lib.
+A minor point, but I'm a sucker for consistancy where I can get it ;)
+
+Lastly, and I think most importantly, existing projects are not easily
+augmented to support a tiered layout, since it requires moving the current 
+project directory into a subdirectory.
+
+
+h2. Using an 'admin' Subdirectory
+
+For the duration of development, Reap followed the practice of
+placing support files under a single admin/ subfolder. 
+
+  myapp/
+    README
+    admin/
+      config/
+      packages/
+      plugins/
+      website/
+    bin/
+    lib/
+
+This created a very clean separation between the files that were
+distributable as part of the project's package, and files intended
+just for use by project administrators. This was also a nice design
+because it made it very easy to scaffold into to a current project.
+For example:
+
+  $ cd myapp
+  $ sow reap/admin .
+
+The were only two signifficant downsides to the design. Firstly,
+it adds yet another tier to the access of some of these files.
+While many of them are "setup-and-forget", some of them will be
+accessed more regularly, such as website files or code generation
+templates. Secondly, the layout is a bit unusual. Most coders are
+used to just dropping all sorts of files in the top tier of their
+project without worrying about what is or is not to be distributed
+--that is left to later configuration. As such some tools are simply
+not going to play along with such a design. Git and Rake are
+prefectly good examples, there will be a .git and a Rakefile 
+in our project's root directory despite the clean separation
+offerd by admin/. In other words admin/ is simply not a standard,
+and given the nature things, is not likely to become so.
+
+
+h2. XDG-esque Directories
+
+Toward the end of Reap's major redevelopment. XDG was discovered.
+This is a standard for storing support files on one's system. It
+does not directly address project support files, but by extension
+it is easy enough to map the same concepts to this purpose. The
+result is something like:
+
+  myapp/
+    .config/
+    .share/
+      plugins/
+    .cache
+      packages/
+    README
+    admin/
+    bin/
+    lib/
+    website/
+
+This layout is not optimal in that it does not create a perfect
+deliniation between distributed and non-distributed files
+(we will have to fallback to some configuration for that), but it
+does follow a clear standard, and hides the files that will rarely
+be accessed once setup, while exposing the support files that will
+be more commonly modified.
+
+Since it does not make a hard distinction between where ditributed
+and non-distributed files go, it does not become a mute point if
+some tools doesn't play along. Yet, the big advantage here, is that
+it is a general standard and one that has th epotential to become
+widely supported. Applying it to poject layouts can only further
+that goal.
+
+
+h2. Conclusion
+
+For all the reasons layoued out concerning the possible project
+layouts Reap could support, the XDG standard si the one that
+had the best balance of positives.
+
+
+
+
+
+
