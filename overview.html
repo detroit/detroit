@@ -1,0 +1,215 @@
+<html>
+<head>
+  <title>Reap</title>
+  <link href="assets/styles/style.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/images/icon.png"  rel="shortcut icon"/>
+</head>
+
+<body>
+
+<!--
+<div class="menu">
+  <a href="index.html">Home</a> &#x00B7;
+  <a href="tutorial.xml">Tutorial</a> &#x00B7;
+  <a href="rdoc/index.html">Library</a> |
+  <a href="http://rubyforge.org/frs/?group_id=811">Download</a> &#x00B7;
+  <a href="http://rubyforge.org/mail/?group_id=811">Mail</a> &#x00B7;
+  <a href="http://rubyforge.org/forum/?group_id=811">Forum</a> &#x00B7;
+  <a href="http://rubyforge.org/news/?group_id=811">News</a> &#x00B7;
+  <a href="http://rubyforge.org/scm/?group_id=811">Source</a> &#x00B7;
+  <a href="http://rubyforge.org/tracker/?group_id=811">Ticket</a>
+</div>
+-->
+
+<div class="container">
+
+  <!--
+  <div class="ad">
+    <div class="tiger" style="padding-top: 10px;">
+      <img src="img/tiger-sm.png"/>
+
+      <a href="http://tigerops.psytower.info">
+        <img src="img/tiger_logo.png" width="150px" align="top"/>
+      </a>
+
+      Ads for OSS!<br/><br/>
+
+      <b>ALSO BY US</b><br/>
+
+      <a href="http://english.rubyforge.org">English</a> <br/>
+      <a href="http://stick.rubyforge.org">Stick</a> <br/>
+      <a href="http://facets.rubyforge.org">Facets</a> <br/>
+    </div>
+
+    <iframe class="adframe" src="ads/amazon.html" scrolling="no" align="middle" frameborder="0" marginwidth="0"></iframe>
+    <br/><br/>
+    <iframe class="adframe" src="ads/google.html" scrolling="no" align="middle" frameborder="0" marginwidth="0"></iframe>
+  </div>
+  -->
+
+  <div class="banner">
+    <img src="assets/images/clipboard.png" align="right" style="margin: 15px -25px 15px 20px;"/> <br/>
+    <span class="title">REAP</span> <br/>
+    <span class="subtitle">Ruby Project Management</span> <!-- toolbox -->
+  </div>
+
+  <div class="content">
+
+    <h1>Introduction</h1>
+
+    <p class="intro">Reap is an advanced life-cycle based build system and project
+    mangement tool. Reap organizes the various tools Ruby developers need to manage their projects,
+    from code generation to releasing and promotion.</p>
+
+    <p>Reap is the original project management application for Ruby developers.
+    It was first developed in 2005 as a simple add-on to Rake. Since then it has
+    gone through a number of transformations in an exploration for the best possible system.
+    The final product, Reap 10, is culmination of this work.</p>
+
+    <p>NOTE: The current release is actually the 9.x series. This is a beta series before
+    the final release of Reap 10.</p>
+
+    <p>This poor little video is my first crack at a screencast :) It's me creating a new
+    project for my <a href="http://cuts.rubyforge.org">Cut-based AOP</a> library. It's a bit scant, but it will at least
+    give you a quick idea of what Reap does and how it works.
+    <a href="img/reap-r1.ogg">Click here to enlarge...</a></p>
+
+    <!--
+    <div style="margin: 0 auto; width: 604px;">
+    <object type="video/ogg" data="img/reap-r1.ogg" width="600" height="418">
+    <param name="movie" value="img/reap-r1.flv"/>
+    </object>
+    -->
+<!--
+    <h1>News</h1>
+
+    <h3 class="date">2007-11-11</h3>
+
+    <h2>Finally, Reap 10</h2>
+
+    <p>Whew! It's been a long journey... Reap 10 is the culmination of a long exploration
+    into the design of a Ruby project management tool, which I conducted on-and-off over
+    the last couple of years. Reap started out as an add-on to Rake (similar to Hoe).
+    But had soon transformed into a Rake-like build tool in it's own right. However, I
+    wasn't satisfied with the design. So Reap remained semi-incomplete as I explored various
+    redesigns. It truned out to be a tedious endeavor, and at times I came quite close to
+    just putting the whole thing aside. But my own project management requirements kept
+    drawing me back. A good thing too. All the work has finally paid off. Reap is proving to
+    be an awesome tool.</p>
+-->
+
+    <h1>Installation</h1>
+
+    <p>Via RubyGems:</p>
+
+    <pre>
+      $ gem install reap
+    </pre>
+
+    <p>With the source code:</p>
+
+    <pre>
+      $ tar -xzf reap-x.y.z.tar.gz
+      $ cd reap-x.y.z
+      $ sudo setup.rb
+    </pre>
+
+    <p>Microsoft Windows users, you'll have to use <code>ruby setup</code> instead.</p>
+
+
+    <h1>Usage</h1>
+
+    <p>Reap is a life-cycle based build system. This means there is a linear set of actions
+    that are taken with each execution of +reap+. These cycles are called *pipelines* --since
+    they pass the project from one action to the next in order. Reap can support any
+    variety of pipelines, but three pipelines are provided out of the box. The most central
+    of which is the 'main' pipeline.</p>
+
+    <p>Each pipeline consits of a set (or sets) of ordered phases. For instance,
+    the main pipeline consists of the following ordered phases:</p>
+
+    <pre>
+      configure
+      generate
+      analyize
+      compile
+      validate
+      document
+      package
+      release
+      promote
+      archive
+    </pre>
+
+    <!-- reset -->
+
+    <p>To execute reap, one provides the pipeline name and the phase desired, separated by a colon (':').</p>
+
+    <pre>
+      $ reap main:document
+    </pre>
+
+    <p>Since +main+ is Reap's primary pipeline, it is the default and can be omitted. The above can
+    therefore be written more conveniently:
+
+    <pre>
+      $ reap document
+    </pre>
+
+    <p>When the above command is run, Reap will begin with the top phase (configure) and work it's way down
+    executing every phase in order until it completes the phase specified on the command line (in this case
+    'document').</p>
+
+    <p>Now you might wonder what the various phases actually do. That all depends on what services are available
+    and which and how they are configured. Services are contected to pipelines and phases. For example,
+    Reap provides a built-in RDoc service. This is contected to the 'main' pipeline's document phase, as
+    well as to the 'site' pipeline's document phase. So if an RDoc service is defined in a project's
+    reap configuration, the running 'read document' generated RDoc's for the projects, as will any
+    phase after 'document'.</p>
+
+    <p>For more detailed usage documentation, please refer to the <a href="tutorial.xml">tutorial</a>
+    and <a href="rdoc/index.html">RDocs</a>.</p>
+
+
+    <h1>Development</h1>
+
+    <p>Reap is hosted by Rubyforge and GitHub as part of the ProUtils project
+
+    <ul>
+    <li><a href="http://proutils.rubyforge.org">http://proutils.rubyforge.org</a>.</p>
+    <li><a href="http://http://github.com/transfire/protuils">http://github.com/transfire/protuils</a>.</p>
+    </ul>
+
+    <h1>Special Thanks</h1>
+
+    <p>Special thanks to Mikel Lansaar (<a href="http://tmail.rubyforge.org">TMail</a>) for being the first
+    guinea pig... I mean beta tester ;) And thanks to Peter Van Broekhoven, as always, for his ongoing encouragment.</p>
+
+
+    <h1>License and Copyright</h1>
+
+    <p>Reap, Copyright &#x00A9; 2007 <a href="http://proutils.tigerops.org">Tiger Ops</a></p>
+
+    <p>This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.</p>
+
+    <p>This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.</p>
+
+    <p>You should have received a copy of the GNU General Public License
+    along with this program.  If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+
+  </div>
+
+  <div class="footer">
+    <p>Reap, Copyright &#x00A9; 2007 <a href="http://psytower.info/tigerops">Tiger Ops</a></p>
+  </div>
+
+</div>
+
+</body>
+</html>
