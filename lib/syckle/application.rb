@@ -24,15 +24,14 @@ require 'syckle/plugins'
 #require 'facets/consoleutils'
 #require 'facets/ansicode'
 
-# TODO: Not all io output is running through the io object.
+# FIXME: Not all io output is running through the io object.
 
 module Syckle
 
   # = Application
   #
-  # TODO: This class can be simplified.
-  # TODO: Probably rename this class.
-  # TODO: Need to add a CLI layer separate from the rest.
+  # TODO: Probably rename this class --"Application" is too generic.
+  # TODO: Continue to imporve CLI layer.
   #
   class Application
 
