@@ -28,7 +28,7 @@ module Syckle
   # can cause effects in plugin behvior that can be harder
   # to track down and fix if a bug arises.
   #
-  # The context must be a subclass of Syckle::Domain.
+  # The context must be a subclass of Syckle::Script.
   #
   class Service #< Ratch::Plugin
 
@@ -49,14 +49,14 @@ module Syckle
       Class.new(self, &block)
     end
 
-    #
+    # NOTE: How is this being used?
     def self.init(&block)
       define_method(:init, &block)
     end
 
-    # Use this to designate service action(s).
+    # Define the procedure for a given cycle-phase.
     #
-    #   cycle '<pipe>:<phase>' do
+    #   cycle '<cycle>:<phase>' do
     #     ...
     #   end
     #
@@ -74,6 +74,28 @@ module Syckle
       end
     end
 
+    # Designate the procedure to run prior to the main
+    # cycle procedure.
+    def self.precycle(name, phase=nil, &block)
+      unless phase
+        name, phase = *name.split(':')
+        name, phase = 'main', name unless phase
+      end
+      phase = ('pre_' + phase.to_s).to_sym
+      cycle(name, phase, &block)
+    end
+
+    # Designate the procedure to run after the main
+    # cycle procedure.
+    def self.aftcycle(name, phase=nil, &block)
+      unless phase
+        name, phase = *name.split(':')
+        name, phase = 'main', name unless phase
+      end
+      phase = ('aft_' + phase.to_s).to_sym
+      cycle(name, phase, &block)
+    end
+
     #
     def self.available(&block)
       @available = block if block
@@ -84,6 +106,18 @@ module Syckle
     def self.available?(project)
       return true unless @available
       @available.call(project)
+    end
+
+    #
+    def self.autorun(&block)
+      @autorun = block if block
+      @autorun
+    end
+
+    #
+    def self.autorun?(project)
+      return false unless @autorun
+      @autorun.call(project)
     end
 
 
@@ -112,7 +146,7 @@ module Syckle
 
       @priority = 0
 
-      raise TypeError, "context must be a subclass of Syckle::DSL" unless context.is_a?(Syckle::Domain) # Syckle::DSL
+      raise TypeError, "context must be a subclass of Syckle::Script" unless context.is_a?(Syckle::Script) # Syckle::DSL
 
       initialize_defaults
 

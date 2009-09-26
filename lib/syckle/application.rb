@@ -7,10 +7,11 @@ rescue LoadError
   $REAP_PARALLEL = false
 end
 
-require 'syckle/domain'
+require 'syckle/script'
 #require 'syckle/project'
 require 'syckle/cli'
 require 'syckle/io'
+require 'syckle/config'
 
 require 'syckle/cycles'
 require 'syckle/cycles/main'
@@ -19,7 +20,6 @@ require 'syckle/cycles/attn'
 
 require 'syckle/service'
 require 'syckle/plugins'
-
 
 #require 'facets/consoleutils'
 #require 'facets/ansicode'
@@ -39,21 +39,27 @@ module Syckle
     #CONFIG_FILE      = 'syckle'
     #PLUGIN_DIRECTORY = 'plugin'
 
+    # Commandline interface controller.
     attr :cli
 
+    # Input/Ouput controller
     attr :io
 
-    # Run Domain
-    attr :domain
+    # Syckle mater configuration.
+    attr :config
+
+    # Run context
+    attr :script
 
     # Actions (from services).
     attr :actions
 
     # New Syckle Application.
-    def initialize(options={})
-      @cli = Syckle::CLI.new
-      @io  = Syckle::IO.new(cli)
-      @domain = Domain.new(:io=>io, :cli=>cli)
+    def initialize(cli_options)
+      @cli    = cli_options #Syckle::CLI.new
+      @config = Syckle::Config.new
+      @io     = Syckle::IO.new(@cli)
+      @script = Syckle::Script.new(:io=>io, :cli=>cli)
       #@services, @actions = *load_service_configuration
       load_plugins
     end
@@ -68,12 +74,22 @@ module Syckle
       $REAP_PARALLEL && cli.multitask?
     end
 
-    #def io
-    #  domain.io
-    #end
-
     def project
-      domain.project
+      script.project
+    end
+
+    # Generates a master configuration template.
+    # This is only used for reference.
+    def config_template
+      cfg = {}
+      Syckle.services.each do |srv_name, srv_class|
+        attrs = srv_class.instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
+        atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
+        atcfg['service'] = srv_class.basename.downcase
+        atcfg['active']  = false
+        cfg[srv_name] = atcfg
+      end
+      cfg
     end
 
     # Returns an array of actived services.
@@ -82,12 +98,23 @@ module Syckle
       @active_services ||= (
         a = []
 
-        configs = service_configs #uration
-
+        #configs = service_configs #uration
         # only services configs that have options and are active
         #s = s.select{ |key, opts| opts && opts['active'] != false }
 
-        configs.each do |key, opts|
+        autolist = []
+
+        if config.automatic?
+          Syckle.services.each do |service_name, service_class|
+            if service_class.available?(project) && 
+               service_class.autorun?(project) && 
+               !config.auto_omit.include?(service_name)
+              autolist << service_class
+            end
+          end
+        end
+
+        service_configs.each do |key, opts|
           next unless opts && opts['active'] != false
 
           service_name  = opts.delete('service') || key
@@ -98,9 +125,15 @@ module Syckle
           opts = inject_environment(opts) # TODO: REMOVE
 
           if service_class.available?(project)
-            a << service_class.new(domain, key, opts) #project,
-            #a << [service_class, classname, service_key, options]
+            autolist.delete(service_class) # remove class from autolist
+            a << service_class.new(script, key, opts) #project,
           end
+        end
+
+        # If any autorunning services are not accounted for then add to active list.
+        autolist.each do |service_class|
+          service_name = service_class.basename.downcase
+          a << service_class.new(script, service_name) #, {})
         end
 
         # sorting here trickles down to processing
@@ -116,7 +149,7 @@ module Syckle
     # Returns a list of activated services.
     #def active_services
     #  available_services.map do |srvClass, className, key, options|
-    #    srvClass.new(domain, key, options) #project,
+    #    srvClass.new(script, key, options) #project,
     #  end
     #end
 
@@ -174,7 +207,7 @@ module Syckle
     # setup cli
     #def cli
     #  @cli ||= (
-    #    cli = domain.cli
+    #    cli = script.cli
     #    Syckle.lifecycles.each do |key, lifecycle|
     #      lifecycle.cycles.each do |phases|
     #        phases.each do |phase|
@@ -205,12 +238,12 @@ module Syckle
 
     # Start the cycle.
     def start
-      Dir.chdir(project.root)      # change into project directory
-      load_project_plugins         # load any local plugins
-      cli.parse                    # parse the cli
-      job = ARGV.shift #cli.command            # what cycle-phase has been requested
-      #help(job) if !job            # if none then show help and exit
-      #help(cli,job) if cli.help?  # display help message if requested
+      Dir.chdir(project.root)        # change into project directory
+      load_project_plugins           # load any local plugins
+      cli.parse                      # parse the cli
+      job = ARGV.shift #cli.command  # what cycle-phase has been requested
+      #help(job) if !job             # if none then show help and exit
+      #help(cli,job) if cli.help?    # display help message if requested
       #help(job) if cli.options[:help]
       run(job)
     end
@@ -284,12 +317,14 @@ module Syckle
 
       system.each do |run_phase|
         next if skip.include?("#{run_phase}")  # TODO: Should we really allow skipping phases?
+        service_calls(name, ('pre_' + run_phase.to_s).to_sym)
         service_calls(name, run_phase)
+        service_calls(name, ('aft_' + run_phase.to_s).to_sym)
         break if phase == run_phase
       end
 
       stop_time = Time.now
-      puts "\nFinished in #{stop_time - start_time} seconds." unless domain.quiet?
+      puts "\nFinished in #{stop_time - start_time} seconds." unless script.quiet?
     end
 
     # Make service calls.
@@ -315,12 +350,12 @@ module Syckle
     def run_a_service(srv, pipe, phase)
       # run if the service supports the pipe and phase.
       if srv.respond_to?("#{pipe}_#{phase}")
-        if domain.verbose?
+        if script.verbose?
           io.status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.capitalize)
         else
           io.status_line("#{srv.key.to_s}", phase.to_s.capitalize)
         end
-        srv.send("#{pipe}_#{phase}")
+        srv.__send__("#{pipe}_#{phase}")
       end
     end
 

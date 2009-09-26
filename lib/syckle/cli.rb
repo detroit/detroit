@@ -1,3 +1,4 @@
+require 'syckle/application'
 require 'optparse'
 
 module Syckle
@@ -11,23 +12,30 @@ module Syckle
 
     def initialize
       @usage   = OptionParser.new
+
       @options = {
-        :trace=>nil,:debug=>nil,:pretend=>nil,:quiet=>nil,:verbose=>nil,
+        :noop=>nil,:debug=>nil,:quiet=>nil,:verbose=>nil,
         :force=>nil,:multitask=>nil,:skip=>[]
       }
 
       usage.banner = "Usage: syckle [<cycle>:]<phase> [options]"
 
       usage.on('--trace', "Trace execution") do
-        options[:trace] = true
+        options[:debug]   = true
+        options[:verbose] = true
       end
 
       usage.on('--debug', "Run in DEBUG mode.") do
         options[:debug] = true
       end
 
-      usage.on('-p', '--pretend', "No disk writes.") do  # dryrun
-        options[:pretend] = true
+      usage.on('-n', '--noop', "No disk writes.") do  # dryrun
+        options[:noop] = true
+      end
+
+      usage.on('--dryrun', "No disk writes and verbose.") do  # dryrun
+        options[:noop] = true
+        options[:verbose] = true
       end
 
       usage.on('-q', '--quiet', "Run silently.") do
@@ -54,18 +62,34 @@ module Syckle
         puts usage
         exit
       end
+
+      usage.on_tail('--config', "Produce a configuration template.") do
+        puts application.config_template.to_yaml
+        exit
+      end
     end
 
     #def help
     #  usage.help.to_s(:bold=>true)
     #end
 
+    def application
+      @application ||= Syckle::Application.new(self)
+    end
+
+    #
     def parse
       usage.parse!(ARGV)
     end
 
-    def dryrun?
-      pretend?
+    #
+    def run
+      if /\.syckle$/ =~ ARGV[0]
+        job = ARGV[1]
+        application.runscript(ARGV[0], job)
+      else
+        application.start
+      end
     end
 
     #

@@ -1,5 +1,3 @@
-#require 'syckle/plugin'
-
 module Syckle
 
   #
@@ -10,36 +8,31 @@ module Syckle
   #
   def self.plugins
     @plugins ||= (
-      f = []
-
-      # LOAD_PATH
+      plugins = []
+      # Standard LOAD_PATH
       $LOAD_PATH.uniq.map do |path|
-        dirs = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
-        f.concat(dirs)
+        files = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
+        plugins.concat(files)
       end
-
-      # ROLL
+      # ROLL (load latest versions only)
       if defined?(::Roll)
         ::Roll::Library.ledger.each do |name, lib|
           lib = lib.sort.first if Array===lib
           lib.load_path.each do |path|
             path = File.join(lib.location, path)
-            dirs = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
-            f.concat(dirs)
+            files = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
+            plugins.concat(files)
           end
         end
       end
-
-      # TODO: RubyGems
-      #if defined?(::Gem)
-      #  Gem.find_files('*.sow').reverse_each do |path|
-      #    if File.directory?(path)
-      #      paths << path
-      #    end
-      #  end
-      #end
-
-      f
+      # RubyGems (load latest versions only)
+      if defined?(::Gem)
+        Gem.latest_load_paths do |path|
+          files = Dir.glob(File.join(path, PLUGIN_DIRECTORY, '*.rb'))
+          plugins.concat(files)
+        end
+      end
+      plugins.uniq
     )
   end
 

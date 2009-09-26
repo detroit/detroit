@@ -1,3 +1,4 @@
+require 'ratch/io'
 require 'ansi/terminal'
 require 'ansi/code'
 
@@ -8,79 +9,8 @@ module Syckle
   # The IO class is used to cleanly separate out the
   # basic input/output "dialog" between user and script.
   #
-  class IO
+  class IO < ::Ratch::IO
 
-    # DEPRECATE THIS IN FAVOR OF #REPORT (?)
-    def status(message)
-      puts message unless quiet?
-    end
-
-    #
-    def report(message)
-      puts message unless quiet?
-    end
-
-    #
-    attr :commandline
-
-    #
-    def initialize(commandline)
-      @commandline = commandline
-    end
-
-    def force?   ; commandline.force?   ; end
-    def quiet?   ; commandline.quiet?   ; end
-    def trace?   ; commandline.trace?   ; end
-    def debug?   ; commandline.debug?   ; end
-    def pretend? ; commandline.pretend? ; end
-
-    # Internal status report.
-    #
-    # Only output if dryrun or trace mode.
-    #
-    def trace(message)
-      if pretend? or trace?
-        puts message
-      end
-    end
-
-    # Convenient method to get simple console reply.
-    #
-    def ask(question, answers=nil)
-      print "#{question}"
-      print " [#{answers}] " if answers
-      until inp = $stdin.gets ; sleep 1 ; end
-      inp.strip
-    end
-
-    # Ask for a password. (FIXME: only for unix so far)
-    #
-    def password(prompt=nil)
-      prompt ||= "Enter Password: "
-      inp = ''
-      $stdout << "#{prompt} "
-      $stdout.flush
-      begin
-        #system "stty -echo"
-        #inp = gets.chomp
-        until inp = $stdin.gets
-          sleep 1
-        end
-      ensure
-        #system "stty echo"
-      end
-      return inp.chomp
-    end
-
-    def print(str='')
-      super(str) unless quiet?
-    end
-
-    def puts(str='')
-      super(str) unless quiet?
-    end
-
-    #
     #
     def printline(left, right='', options={})
       return if quiet?
@@ -170,6 +100,8 @@ module Syckle
         printline(left, right, :pad=>2, :sep=>'-')
       end
     end
+
+  private
 
     #
     def ansize(text, code)

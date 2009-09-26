@@ -22,11 +22,11 @@
 #require 'facets/openhash'
 #require 'facets/argvector'
 
-require 'ratch/project_script'
+require 'ratch/script'
 
 module Syckle
 
-  class Script < Ratch::ProjectScript
+  class Script < ::Ratch::Script
   end
 
 end
