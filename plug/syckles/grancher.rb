@@ -80,7 +80,7 @@ module Syckles
         #g.message = (quiet? ? '' : 'Tranferred site files to #{branch}.')
 
         sitemap.each do |(src, dest)|
-#report "#{src} => #{dest}"
+          #trace "transfer: #{src} => #{dest}"
           if directory?(src)
             dest ? g.directory(src, dest) : g.directory(src)
           else
@@ -110,12 +110,32 @@ module Syckles
     def initialize_defaults
       @branch   ||= 'gh-pages'
       @remote   ||= 'origin'
-      @sitemap  ||= [site_directory]
+      @sitemap  ||= default_sitemap
       #@keep_all ||= noop?
     end
 
-    def site_directory
-      Dir['{site,web,website,doc/rdoc,doc}'].first
+    # Default sitemap includes the website directoy, if it exists
+    # and doc if it exists. Eg.
+    #
+    #    - site
+    #    - doc
+    #
+    # Otherwise it includes just the doc/rdoc or doc directory.
+    #
+    def default_sitemap
+      sm = []
+      site = Dir['{site,web,website}'].first
+      if site
+        sm << site
+        sm << 'doc' if Dir['doc']
+      else
+        if Dir['doc/rdoc']
+          sm << 'doc/rdoc'
+        else
+          sm << 'doc' if Dir['doc']
+        end
+      end
+      sm
     end
 
   end
