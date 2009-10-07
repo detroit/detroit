@@ -57,6 +57,8 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: config_template
 - !ruby/object:RDoc::RI::MethodSummary 
+  name: defaults
+- !ruby/object:RDoc::RI::MethodSummary 
   name: end_phases
 - !ruby/object:RDoc::RI::MethodSummary 
   name: inject_environment
