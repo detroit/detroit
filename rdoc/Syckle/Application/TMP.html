@@ -76,11 +76,11 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li class="method"><a href="#M000032">::new</a></li>
+          <li class="method"><a href="#M000035">::new</a></li>
           
-          <li class="method"><a href="#M000033">#_binding</a></li>
+          <li class="method"><a href="#M000036">#_binding</a></li>
           
-          <li class="method"><a href="#M000034">#method_missing</a></li>
+          <li class="method"><a href="#M000037">#method_missing</a></li>
           
         </ul>
       </div>
@@ -218,7 +218,7 @@ This class is used to render service congifs via erb.
 
     
       <div id="new-method" class="method-detail ">
-        <a name="M000032"></a>
+        <a name="M000035"></a>
 
         <div class="method-heading">
         
@@ -237,7 +237,7 @@ This class is used to render service congifs via erb.
           <div class="method-source-code"
             id="new-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 411</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 408</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">metadata</span>)
         <span class="ruby-ivar">@metadata</span> = <span class="ruby-identifier">metadata</span>
       <span class="ruby-keyword kw">end</span></pre>
@@ -256,7 +256,7 @@ This class is used to render service congifs via erb.
 
     
       <div id="-binding-method" class="method-detail ">
-        <a name="M000033"></a>
+        <a name="M000036"></a>
 
         <div class="method-heading">
         
@@ -275,7 +275,7 @@ This class is used to render service congifs via erb.
           <div class="method-source-code"
             id="-binding-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 414</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 411</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_binding</span>
         <span class="ruby-identifier">binding</span>
       <span class="ruby-keyword kw">end</span></pre>
@@ -288,7 +288,7 @@ This class is used to render service congifs via erb.
 
     
       <div id="method-missing-method" class="method-detail ">
-        <a name="M000034"></a>
+        <a name="M000037"></a>
 
         <div class="method-heading">
         
@@ -307,7 +307,7 @@ This class is used to render service congifs via erb.
           <div class="method-source-code"
             id="method-missing-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 417</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 414</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">s</span>)
         <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">s</span>)
       <span class="ruby-keyword kw">end</span></pre>
