@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Syckle</title>
+
+  <link rel="SHORTCUT ICON" href="images/ruby.png">
+
+  <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/thickbox.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/highlight.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#documentation pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+    });
+  </script>
+
+  <link type="text/css" rel="stylesheet" href="rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="js/github.css" title="GitHub" />
+
+  
+</head>
+<body class="indexpage">
+
+  <div class="head">
+    <h1>
+      <img src="images/project.png" align="absmiddle">&nbsp;
+      <a href="index.html">Syckle</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li class="module"><a href="Syckles.html">Syckles</a></li>
+        
+          <li class="class"><a href="Syckles/Autotools.html">Syckles::Autotools</a></li>
+        
+          <li class="class"><a href="Syckles/Custom.html">Syckles::Custom</a></li>
+        
+          <li class="class"><a href="Syckles/EMail.html">Syckles::EMail</a></li>
+        
+          <li class="class"><a href="Syckles/Grancher.html">Syckles::Grancher</a></li>
+        
+          <li class="class"><a href="Syckles/Notes.html">Syckles::Notes</a></li>
+        
+          <li class="class"><a href="Syckles/RCov.html">Syckles::RCov</a></li>
+        
+          <li class="class"><a href="Syckles/RDoc.html">Syckles::RDoc</a></li>
+        
+          <li class="class"><a href="Syckles/RIDoc.html">Syckles::RIDoc</a></li>
+        
+          <li class="class"><a href="Syckles/RSpec.html">Syckles::RSpec</a></li>
+        
+          <li class="class"><a href="Syckles/RubyProf.html">Syckles::RubyProf</a></li>
+        
+          <li class="class"><a href="Syckles/Rubyforge.html">Syckles::Rubyforge</a></li>
+        
+          <li class="class"><a href="Syckles/Stats.html">Syckles::Stats</a></li>
+        
+          <li class="class"><a href="Syckles/Syntax.html">Syckles::Syntax</a></li>
+        
+          <li class="class"><a href="Syckles/Testrb.html">Syckles::Testrb</a></li>
+        
+          <li class="class"><a href="Syckles/Till.html">Syckles::Till</a></li>
+        
+          <li class="class"><a href="Syckles/Turn.html">Syckles::Turn</a></li>
+        
+          <li class="class"><a href="Syckles/VClog.html">Syckles::VClog</a></li>
+        
+          <li class="class"><a href="Syckles/Yard.html">Syckles::Yard</a></li>
+        
+          <li class="module"><a href="Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+        
+          <li class="class"><a href="Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="Syckle/Defaults.html">Syckle::Defaults</a></li>
+        
+          <li class="class"><a href="Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="class"><a href="Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="Syckle/Service.html">Syckle::Service</a></li>
+        
+          <li class="module"><a href="Reap.html">Reap</a></li>
+        
+          <li class="module"><a href="Reap/Plugins.html">Reap::Plugins</a></li>
+        
+          <li class="class"><a href="Reap/Plugins/ReleaseLog.html">Reap::Plugins::ReleaseLog</a></li>
+        
+          <li class="class"><a href="Reap/Plugins/Txt2Man.html">Reap::Plugins::Txt2Man</a></li>
+        
+          <li class="class"><a href="Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      <!-- METHODS -->
+      <div id="methodindex-section" class="section project-section">
+        <h3 class="section-header">Method Index</h3>
+        <ul>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000047">::aftcycle</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000051">::autorun</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000053">::autorun?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000049">::available</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000050">::available?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000045">::cycle</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000043">::factory</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000041">::inherited</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000044">::init</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle</span>
+              <a href="Syckle.html#M000073">::lifecycle</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle</span>
+              <a href="Syckle.html#M000072">::lifecycles</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::CLI</span>
+              <a href="Syckle/CLI.html#M000026">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application::TMP</span>
+              <a href="Syckle/Application/TMP.html#M000033">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000003">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000013">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000055">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::LifeCycle</span>
+              <a href="Syckle/LifeCycle.html#M000074">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Custom</span>
+              <a href="Syckles/Custom.html#M000140">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Config</span>
+              <a href="Syckle/Config.html#M000000">::new</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle</span>
+              <a href="Syckle.html#M000009">::plugins</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000046">::precycle</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000040">::registry</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle</span>
+              <a href="Syckle.html#M000039">::services</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000019">#<<</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application::TMP</span>
+              <a href="Syckle/Application/TMP.html#M000036">#_binding</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000008">#active_services</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000134">#analyize</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000082">#analyize</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RubyProf</span>
+              <a href="Syckles/RubyProf.html#M000177">#analyize</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RCov</span>
+              <a href="Syckles/RCov.html#M000170">#analyize</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000130">#announce</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::EMail</span>
+              <a href="Syckles/EMail.html#M000186">#announce</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000135">#announcement</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000064">#ansize</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000020">#append</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::CLI</span>
+              <a href="Syckle/CLI.html#M000031">#application</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Config</span>
+              <a href="Syckle/Config.html#M000002">#auto_omit=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Config</span>
+              <a href="Syckle/Config.html#M000001">#automatic?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000090">#changelog</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Reap::Plugins::ReleaseLog</span>
+              <a href="Reap/Plugins/ReleaseLog.html#M000068">#changelog</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RIDoc</span>
+              <a href="Syckles/RIDoc.html#M000173">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000151">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Yard</span>
+              <a href="Syckles/Yard.html#M000101">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RCov</span>
+              <a href="Syckles/RCov.html#M000174">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RDoc</span>
+              <a href="Syckles/RDoc.html#M000105">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RubyProf</span>
+              <a href="Syckles/RubyProf.html#M000181">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000160">#clean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000021">#clear</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000162">#clobber</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000159">#compile</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000155">#compiles?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000007">#config_template</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000163">#configure</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000133">#confirm?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::LifeCycle</span>
+              <a href="Syckle/LifeCycle.html#M000075">#cycle</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::LifeCycle</span>
+              <a href="Syckle/LifeCycle.html#M000076">#cycle_with_phase</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Grancher</span>
+              <a href="Syckles/Grancher.html#M000127">#default_sitemap</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000048">#display_action</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000161">#distclean</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Yard</span>
+              <a href="Syckles/Yard.html#M000098">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Reap::Plugins::Txt2Man</span>
+              <a href="Reap/Plugins/Txt2Man.html#M000071">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RSpec</span>
+              <a href="Syckles/RSpec.html#M000182">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000145">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000085">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Reap::Plugins::ReleaseLog</span>
+              <a href="Reap/Plugins/ReleaseLog.html#M000067">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RDoc</span>
+              <a href="Syckles/RDoc.html#M000100">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RIDoc</span>
+              <a href="Syckles/RIDoc.html#M000168">#document</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000086">#document_master_changelog</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000087">#document_public_changelog</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000029">#end_phases</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Testrb</span>
+              <a href="Syckles/Testrb.html#M000109">#exclude=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000079">#exclude=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Turn</span>
+              <a href="Syckles/Turn.html#M000115">#exclude=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000156">#extensions</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000152">#extract</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000083">#format=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000165">#format_rdoc</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000157">#format_records</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000158">#format_xml</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000146">#gen_html</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000143">#gen_text</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Till</span>
+              <a href="Syckles/Till.html#M000096">#generate</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000138">#generate_stats</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Grancher</span>
+              <a href="Syckles/Grancher.html#M000121">#grancher</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000149">#html_row2</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000148">#html_rowd</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000147">#html_rowh</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RubyProf</span>
+              <a href="Syckles/RubyProf.html#M000176">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000057">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000077">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RIDoc</span>
+              <a href="Syckles/RIDoc.html#M000167">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000131">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RCov</span>
+              <a href="Syckles/RCov.html#M000169">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RSpec</span>
+              <a href="Syckles/RSpec.html#M000178">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Turn</span>
+              <a href="Syckles/Turn.html#M000118">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::EMail</span>
+              <a href="Syckles/EMail.html#M000189">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Yard</span>
+              <a href="Syckles/Yard.html#M000097">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000154">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000122">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000144">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Testrb</span>
+              <a href="Syckles/Testrb.html#M000112">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Custom</span>
+              <a href="Syckles/Custom.html#M000142">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Reap::Plugins::ReleaseLog</span>
+              <a href="Reap/Plugins/ReleaseLog.html#M000066">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RDoc</span>
+              <a href="Syckles/RDoc.html#M000099">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Reap::Plugins::Txt2Man</span>
+              <a href="Reap/Plugins/Txt2Man.html#M000070">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Grancher</span>
+              <a href="Syckles/Grancher.html#M000126">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000081">#initialize_defaults</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000010">#inject_environment</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000061">#inspect</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000084">#layout=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000093">#libsI</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000141">#line_count</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000004">#load_plugins</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000028">#load_project_plugins</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000012">#load_service_configs</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000078">#loadpath=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Testrb</span>
+              <a href="Syckles/Testrb.html#M000108">#loadpath=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Turn</span>
+              <a href="Syckles/Turn.html#M000114">#loadpath=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000166">#log_notes_save</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000091">#log_syntax_errors</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::EMail</span>
+              <a href="Syckles/EMail.html#M000187">#mail_confirm?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::EMail</span>
+              <a href="Syckles/EMail.html#M000188">#mailopts</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Autotools</span>
+              <a href="Syckles/Autotools.html#M000164">#make</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::EMail</span>
+              <a href="Syckles/EMail.html#M000185">#message</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000063">#metadata</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000015">#method_missing</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000058">#method_missing</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application::TMP</span>
+              <a href="Syckle/Application/TMP.html#M000037">#method_missing</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::CLI</span>
+              <a href="Syckle/CLI.html#M000035">#method_missing</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000005">#multitask?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000153">#organize</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000022">#outofdate?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000030">#overview</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::CLI</span>
+              <a href="Syckle/CLI.html#M000032">#parse</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Custom</span>
+              <a href="Syckles/Custom.html#M000139">#pipeline=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Till</span>
+              <a href="Syckles/Till.html#M000094">#preconfigure</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000056">#print_header</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000062">#print_phase</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000042">#printline</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000006">#project</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000129">#publish</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RDoc</span>
+              <a href="Syckles/RDoc.html#M000107">#rdoc_insert_ads</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Yard</span>
+              <a href="Syckles/Yard.html#M000103">#rdoc_insert_ads</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RDoc</span>
+              <a href="Syckles/RDoc.html#M000106">#rdoc_target</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000092">#relative_from_root</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000128">#release</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Grancher</span>
+              <a href="Syckles/Grancher.html#M000124">#release</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Testrb</span>
+              <a href="Syckles/Testrb.html#M000111">#require=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Turn</span>
+              <a href="Syckles/Turn.html#M000117">#require=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Testrb</span>
+              <a href="Syckles/Testrb.html#M000110">#requires=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Turn</span>
+              <a href="Syckles/Turn.html#M000116">#requires=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RubyProf</span>
+              <a href="Syckles/RubyProf.html#M000179">#reset</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RCov</span>
+              <a href="Syckles/RCov.html#M000172">#reset</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RDoc</span>
+              <a href="Syckles/RDoc.html#M000104">#reset</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RIDoc</span>
+              <a href="Syckles/RIDoc.html#M000171">#reset</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Notes</span>
+              <a href="Syckles/Notes.html#M000150">#reset</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RIDoc</span>
+              <a href="Syckles/RIDoc.html#M000175">#ridoc_target</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000125">#rubyforge</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::CLI</span>
+              <a href="Syckle/CLI.html#M000034">#run</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000023">#run</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000027">#run_a_service</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000017">#runscript</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Testrb</span>
+              <a href="Syckles/Testrb.html#M000113">#runtests</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Turn</span>
+              <a href="Syckles/Turn.html#M000119">#runtests</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Till</span>
+              <a href="Syckles/Till.html#M000095">#safe?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Reap::Plugins::ReleaseLog</span>
+              <a href="Reap/Plugins/ReleaseLog.html#M000069">#save</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000136">#save_stats</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000065">#screen_width</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::EMail</span>
+              <a href="Syckles/EMail.html#M000184">#secure=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Object</span>
+              <a href="Object.html#M000038">#service</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000060">#service_actions</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000025">#service_calls</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000011">#service_configs</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Service</span>
+              <a href="Syckle/Service.html#M000059">#service_title</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RSpec</span>
+              <a href="Syckles/RSpec.html#M000183">#shellout</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Grancher</span>
+              <a href="Syckles/Grancher.html#M000120">#sitemap=</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000014">#skip</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Application</span>
+              <a href="Syckle/Application.html#M000018">#start</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000052">#status_header</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::IO</span>
+              <a href="Syckle/IO.html#M000054">#status_line</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Syntax</span>
+              <a href="Syckles/Syntax.html#M000088">#syntax_check_file</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Stats</span>
+              <a href="Syckles/Stats.html#M000137">#testfiles</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Rubyforge</span>
+              <a href="Syckles/Rubyforge.html#M000132">#touch</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Grancher</span>
+              <a href="Syckles/Grancher.html#M000123">#transfer</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000024">#uptodate?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000080">#valid?</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::RSpec</span>
+              <a href="Syckles/RSpec.html#M000180">#validate</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::VClog</span>
+              <a href="Syckles/VClog.html#M000089">#vcs</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckle::Log</span>
+              <a href="Syckle/Log.html#M000016">#write</a>
+            </li>
+          
+            <li class="method" style="clear: both;">
+              <span style="float: right; font-size: 0.8em;">&nbsp;Syckles::Yard</span>
+              <a href="Syckles/Yard.html#M000102">#yard_target</a>
+            </li>
+          
+        </ul>
+      </div>
+
+      
+
+    </div>
+
+    <!-- ISSUE: Can't find RDoc::Generator::Redfish::VERSION -->
+    <div id="validator-badges">
+      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
+      <a href="http://validator.w3.org/check/referer">[Validate]</a>
+    </div>
+  </div>
+
+<!--
+  
+  
+  <h2>Files</h2>
+  <ul>
+    
+      <li class="file"><a href="COPYING.html">COPYING</a></li>
+    
+      <li class="file"><a href="HISTORY.html">HISTORY</a></li>
+    
+      <li class="file"><a href="README_rdoc.html">README.rdoc</a></li>
+    
+      <li class="file"><a href="TODO.html">TODO</a></li>
+    
+  </ul>
+  
+
+  <h2>Classes/Modules</h2>
+  <ul>
+    
+    <li class="module"><a href="Syckles.html">Syckles</a></li>
+    
+    <li class="class"><a href="Syckles/Autotools.html">Syckles::Autotools</a></li>
+    
+    <li class="class"><a href="Syckles/Custom.html">Syckles::Custom</a></li>
+    
+    <li class="class"><a href="Syckles/EMail.html">Syckles::EMail</a></li>
+    
+    <li class="class"><a href="Syckles/Grancher.html">Syckles::Grancher</a></li>
+    
+    <li class="class"><a href="Syckles/Notes.html">Syckles::Notes</a></li>
+    
+    <li class="class"><a href="Syckles/RCov.html">Syckles::RCov</a></li>
+    
+    <li class="class"><a href="Syckles/RDoc.html">Syckles::RDoc</a></li>
+    
+    <li class="class"><a href="Syckles/RIDoc.html">Syckles::RIDoc</a></li>
+    
+    <li class="class"><a href="Syckles/RSpec.html">Syckles::RSpec</a></li>
+    
+    <li class="class"><a href="Syckles/RubyProf.html">Syckles::RubyProf</a></li>
+    
+    <li class="class"><a href="Syckles/Rubyforge.html">Syckles::Rubyforge</a></li>
+    
+    <li class="class"><a href="Syckles/Stats.html">Syckles::Stats</a></li>
+    
+    <li class="class"><a href="Syckles/Syntax.html">Syckles::Syntax</a></li>
+    
+    <li class="class"><a href="Syckles/Testrb.html">Syckles::Testrb</a></li>
+    
+    <li class="class"><a href="Syckles/Till.html">Syckles::Till</a></li>
+    
+    <li class="class"><a href="Syckles/Turn.html">Syckles::Turn</a></li>
+    
+    <li class="class"><a href="Syckles/VClog.html">Syckles::VClog</a></li>
+    
+    <li class="class"><a href="Syckles/Yard.html">Syckles::Yard</a></li>
+    
+    <li class="module"><a href="Syckle.html">Syckle</a></li>
+    
+    <li class="class"><a href="Syckle/Application.html">Syckle::Application</a></li>
+    
+    <li class="class"><a href="Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+    
+    <li class="class"><a href="Syckle/CLI.html">Syckle::CLI</a></li>
+    
+    <li class="class"><a href="Syckle/Config.html">Syckle::Config</a></li>
+    
+    <li class="class"><a href="Syckle/Defaults.html">Syckle::Defaults</a></li>
+    
+    <li class="class"><a href="Syckle/IO.html">Syckle::IO</a></li>
+    
+    <li class="class"><a href="Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+    
+    <li class="class"><a href="Syckle/Log.html">Syckle::Log</a></li>
+    
+    <li class="class"><a href="Syckle/Script.html">Syckle::Script</a></li>
+    
+    <li class="class"><a href="Syckle/Service.html">Syckle::Service</a></li>
+    
+    <li class="module"><a href="Reap.html">Reap</a></li>
+    
+    <li class="module"><a href="Reap/Plugins.html">Reap::Plugins</a></li>
+    
+    <li class="class"><a href="Reap/Plugins/ReleaseLog.html">Reap::Plugins::ReleaseLog</a></li>
+    
+    <li class="class"><a href="Reap/Plugins/Txt2Man.html">Reap::Plugins::Txt2Man</a></li>
+    
+    <li class="class"><a href="Object.html">Object</a></li>
+    
+  </ul>
+
+  <h2>Methods</h2>
+  <ul>
+    
+      <li><a href="Syckle/Service.html#M000047">::aftcycle &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000051">::autorun &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000053">::autorun? &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000049">::available &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000050">::available? &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000045">::cycle &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000043">::factory &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000041">::inherited &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000044">::init &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle.html#M000073">::lifecycle &mdash; Syckle</a></li>
+    
+      <li><a href="Syckle.html#M000072">::lifecycles &mdash; Syckle</a></li>
+    
+      <li><a href="Syckle/CLI.html#M000026">::new &mdash; Syckle::CLI</a></li>
+    
+      <li><a href="Syckle/Application/TMP.html#M000033">::new &mdash; Syckle::Application::TMP</a></li>
+    
+      <li><a href="Syckle/Application.html#M000003">::new &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Log.html#M000013">::new &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckle/Service.html#M000055">::new &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/LifeCycle.html#M000074">::new &mdash; Syckle::LifeCycle</a></li>
+    
+      <li><a href="Syckles/Custom.html#M000140">::new &mdash; Syckles::Custom</a></li>
+    
+      <li><a href="Syckle/Config.html#M000000">::new &mdash; Syckle::Config</a></li>
+    
+      <li><a href="Syckle.html#M000009">::plugins &mdash; Syckle</a></li>
+    
+      <li><a href="Syckle/Service.html#M000046">::precycle &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Service.html#M000040">::registry &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle.html#M000039">::services &mdash; Syckle</a></li>
+    
+      <li><a href="Syckle/Log.html#M000019">#<< &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckle/Application/TMP.html#M000036">#_binding &mdash; Syckle::Application::TMP</a></li>
+    
+      <li><a href="Syckle/Application.html#M000008">#active_services &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000134">#analyize &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000082">#analyize &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckles/RubyProf.html#M000177">#analyize &mdash; Syckles::RubyProf</a></li>
+    
+      <li><a href="Syckles/RCov.html#M000170">#analyize &mdash; Syckles::RCov</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000130">#announce &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckles/EMail.html#M000186">#announce &mdash; Syckles::EMail</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000135">#announcement &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckle/IO.html#M000064">#ansize &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckle/Log.html#M000020">#append &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckle/CLI.html#M000031">#application &mdash; Syckle::CLI</a></li>
+    
+      <li><a href="Syckle/Config.html#M000002">#auto_omit= &mdash; Syckle::Config</a></li>
+    
+      <li><a href="Syckle/Config.html#M000001">#automatic? &mdash; Syckle::Config</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000090">#changelog &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Reap/Plugins/ReleaseLog.html#M000068">#changelog &mdash; Reap::Plugins::ReleaseLog</a></li>
+    
+      <li><a href="Syckles/RIDoc.html#M000173">#clean &mdash; Syckles::RIDoc</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000151">#clean &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/Yard.html#M000101">#clean &mdash; Syckles::Yard</a></li>
+    
+      <li><a href="Syckles/RCov.html#M000174">#clean &mdash; Syckles::RCov</a></li>
+    
+      <li><a href="Syckles/RDoc.html#M000105">#clean &mdash; Syckles::RDoc</a></li>
+    
+      <li><a href="Syckles/RubyProf.html#M000181">#clean &mdash; Syckles::RubyProf</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000160">#clean &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckle/Log.html#M000021">#clear &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000162">#clobber &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000159">#compile &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000155">#compiles? &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckle/Application.html#M000007">#config_template &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000163">#configure &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000133">#confirm? &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckle/LifeCycle.html#M000075">#cycle &mdash; Syckle::LifeCycle</a></li>
+    
+      <li><a href="Syckle/LifeCycle.html#M000076">#cycle_with_phase &mdash; Syckle::LifeCycle</a></li>
+    
+      <li><a href="Syckles/Grancher.html#M000127">#default_sitemap &mdash; Syckles::Grancher</a></li>
+    
+      <li><a href="Syckle/IO.html#M000048">#display_action &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000161">#distclean &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/Yard.html#M000098">#document &mdash; Syckles::Yard</a></li>
+    
+      <li><a href="Reap/Plugins/Txt2Man.html#M000071">#document &mdash; Reap::Plugins::Txt2Man</a></li>
+    
+      <li><a href="Syckles/RSpec.html#M000182">#document &mdash; Syckles::RSpec</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000145">#document &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000085">#document &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Reap/Plugins/ReleaseLog.html#M000067">#document &mdash; Reap::Plugins::ReleaseLog</a></li>
+    
+      <li><a href="Syckles/RDoc.html#M000100">#document &mdash; Syckles::RDoc</a></li>
+    
+      <li><a href="Syckles/RIDoc.html#M000168">#document &mdash; Syckles::RIDoc</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000086">#document_master_changelog &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000087">#document_public_changelog &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckle/Application.html#M000029">#end_phases &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Testrb.html#M000109">#exclude= &mdash; Syckles::Testrb</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000079">#exclude= &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckles/Turn.html#M000115">#exclude= &mdash; Syckles::Turn</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000156">#extensions &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000152">#extract &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000083">#format= &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000165">#format_rdoc &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000157">#format_records &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000158">#format_xml &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000146">#gen_html &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000143">#gen_text &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Till.html#M000096">#generate &mdash; Syckles::Till</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000138">#generate_stats &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Grancher.html#M000121">#grancher &mdash; Syckles::Grancher</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000149">#html_row2 &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000148">#html_rowd &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000147">#html_rowh &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/RubyProf.html#M000176">#initialize_defaults &mdash; Syckles::RubyProf</a></li>
+    
+      <li><a href="Syckle/Service.html#M000057">#initialize_defaults &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000077">#initialize_defaults &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckles/RIDoc.html#M000167">#initialize_defaults &mdash; Syckles::RIDoc</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000131">#initialize_defaults &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/RCov.html#M000169">#initialize_defaults &mdash; Syckles::RCov</a></li>
+    
+      <li><a href="Syckles/RSpec.html#M000178">#initialize_defaults &mdash; Syckles::RSpec</a></li>
+    
+      <li><a href="Syckles/Turn.html#M000118">#initialize_defaults &mdash; Syckles::Turn</a></li>
+    
+      <li><a href="Syckles/EMail.html#M000189">#initialize_defaults &mdash; Syckles::EMail</a></li>
+    
+      <li><a href="Syckles/Yard.html#M000097">#initialize_defaults &mdash; Syckles::Yard</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000154">#initialize_defaults &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000122">#initialize_defaults &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000144">#initialize_defaults &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/Testrb.html#M000112">#initialize_defaults &mdash; Syckles::Testrb</a></li>
+    
+      <li><a href="Syckles/Custom.html#M000142">#initialize_defaults &mdash; Syckles::Custom</a></li>
+    
+      <li><a href="Reap/Plugins/ReleaseLog.html#M000066">#initialize_defaults &mdash; Reap::Plugins::ReleaseLog</a></li>
+    
+      <li><a href="Syckles/RDoc.html#M000099">#initialize_defaults &mdash; Syckles::RDoc</a></li>
+    
+      <li><a href="Reap/Plugins/Txt2Man.html#M000070">#initialize_defaults &mdash; Reap::Plugins::Txt2Man</a></li>
+    
+      <li><a href="Syckles/Grancher.html#M000126">#initialize_defaults &mdash; Syckles::Grancher</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000081">#initialize_defaults &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckle/Application.html#M000010">#inject_environment &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Service.html#M000061">#inspect &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000084">#layout= &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000093">#libsI &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000141">#line_count &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckle/Application.html#M000004">#load_plugins &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Application.html#M000028">#load_project_plugins &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Application.html#M000012">#load_service_configs &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000078">#loadpath= &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckles/Testrb.html#M000108">#loadpath= &mdash; Syckles::Testrb</a></li>
+    
+      <li><a href="Syckles/Turn.html#M000114">#loadpath= &mdash; Syckles::Turn</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000166">#log_notes_save &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000091">#log_syntax_errors &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckles/EMail.html#M000187">#mail_confirm? &mdash; Syckles::EMail</a></li>
+    
+      <li><a href="Syckles/EMail.html#M000188">#mailopts &mdash; Syckles::EMail</a></li>
+    
+      <li><a href="Syckles/Autotools.html#M000164">#make &mdash; Syckles::Autotools</a></li>
+    
+      <li><a href="Syckles/EMail.html#M000185">#message &mdash; Syckles::EMail</a></li>
+    
+      <li><a href="Syckle/Service.html#M000063">#metadata &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Log.html#M000015">#method_missing &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckle/Service.html#M000058">#method_missing &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Application/TMP.html#M000037">#method_missing &mdash; Syckle::Application::TMP</a></li>
+    
+      <li><a href="Syckle/CLI.html#M000035">#method_missing &mdash; Syckle::CLI</a></li>
+    
+      <li><a href="Syckle/Application.html#M000005">#multitask? &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000153">#organize &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckle/Log.html#M000022">#outofdate? &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckle/Application.html#M000030">#overview &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/CLI.html#M000032">#parse &mdash; Syckle::CLI</a></li>
+    
+      <li><a href="Syckles/Custom.html#M000139">#pipeline= &mdash; Syckles::Custom</a></li>
+    
+      <li><a href="Syckles/Till.html#M000094">#preconfigure &mdash; Syckles::Till</a></li>
+    
+      <li><a href="Syckle/IO.html#M000056">#print_header &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckle/IO.html#M000062">#print_phase &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckle/IO.html#M000042">#printline &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckle/Application.html#M000006">#project &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000129">#publish &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckles/RDoc.html#M000107">#rdoc_insert_ads &mdash; Syckles::RDoc</a></li>
+    
+      <li><a href="Syckles/Yard.html#M000103">#rdoc_insert_ads &mdash; Syckles::Yard</a></li>
+    
+      <li><a href="Syckles/RDoc.html#M000106">#rdoc_target &mdash; Syckles::RDoc</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000092">#relative_from_root &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000128">#release &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckles/Grancher.html#M000124">#release &mdash; Syckles::Grancher</a></li>
+    
+      <li><a href="Syckles/Testrb.html#M000111">#require= &mdash; Syckles::Testrb</a></li>
+    
+      <li><a href="Syckles/Turn.html#M000117">#require= &mdash; Syckles::Turn</a></li>
+    
+      <li><a href="Syckles/Testrb.html#M000110">#requires= &mdash; Syckles::Testrb</a></li>
+    
+      <li><a href="Syckles/Turn.html#M000116">#requires= &mdash; Syckles::Turn</a></li>
+    
+      <li><a href="Syckles/RubyProf.html#M000179">#reset &mdash; Syckles::RubyProf</a></li>
+    
+      <li><a href="Syckles/RCov.html#M000172">#reset &mdash; Syckles::RCov</a></li>
+    
+      <li><a href="Syckles/RDoc.html#M000104">#reset &mdash; Syckles::RDoc</a></li>
+    
+      <li><a href="Syckles/RIDoc.html#M000171">#reset &mdash; Syckles::RIDoc</a></li>
+    
+      <li><a href="Syckles/Notes.html#M000150">#reset &mdash; Syckles::Notes</a></li>
+    
+      <li><a href="Syckles/RIDoc.html#M000175">#ridoc_target &mdash; Syckles::RIDoc</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000125">#rubyforge &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckle/CLI.html#M000034">#run &mdash; Syckle::CLI</a></li>
+    
+      <li><a href="Syckle/Application.html#M000023">#run &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Application.html#M000027">#run_a_service &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Application.html#M000017">#runscript &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckles/Testrb.html#M000113">#runtests &mdash; Syckles::Testrb</a></li>
+    
+      <li><a href="Syckles/Turn.html#M000119">#runtests &mdash; Syckles::Turn</a></li>
+    
+      <li><a href="Syckles/Till.html#M000095">#safe? &mdash; Syckles::Till</a></li>
+    
+      <li><a href="Reap/Plugins/ReleaseLog.html#M000069">#save &mdash; Reap::Plugins::ReleaseLog</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000136">#save_stats &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckle/IO.html#M000065">#screen_width &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckles/EMail.html#M000184">#secure= &mdash; Syckles::EMail</a></li>
+    
+      <li><a href="Object.html#M000038">#service &mdash; Object</a></li>
+    
+      <li><a href="Syckle/Service.html#M000060">#service_actions &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckle/Application.html#M000025">#service_calls &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Application.html#M000011">#service_configs &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Service.html#M000059">#service_title &mdash; Syckle::Service</a></li>
+    
+      <li><a href="Syckles/RSpec.html#M000183">#shellout &mdash; Syckles::RSpec</a></li>
+    
+      <li><a href="Syckles/Grancher.html#M000120">#sitemap= &mdash; Syckles::Grancher</a></li>
+    
+      <li><a href="Syckle/Application.html#M000014">#skip &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/Application.html#M000018">#start &mdash; Syckle::Application</a></li>
+    
+      <li><a href="Syckle/IO.html#M000052">#status_header &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckle/IO.html#M000054">#status_line &mdash; Syckle::IO</a></li>
+    
+      <li><a href="Syckles/Syntax.html#M000088">#syntax_check_file &mdash; Syckles::Syntax</a></li>
+    
+      <li><a href="Syckles/Stats.html#M000137">#testfiles &mdash; Syckles::Stats</a></li>
+    
+      <li><a href="Syckles/Rubyforge.html#M000132">#touch &mdash; Syckles::Rubyforge</a></li>
+    
+      <li><a href="Syckles/Grancher.html#M000123">#transfer &mdash; Syckles::Grancher</a></li>
+    
+      <li><a href="Syckle/Log.html#M000024">#uptodate? &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000080">#valid? &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckles/RSpec.html#M000180">#validate &mdash; Syckles::RSpec</a></li>
+    
+      <li><a href="Syckles/VClog.html#M000089">#vcs &mdash; Syckles::VClog</a></li>
+    
+      <li><a href="Syckle/Log.html#M000016">#write &mdash; Syckle::Log</a></li>
+    
+      <li><a href="Syckles/Yard.html#M000102">#yard_target &mdash; Syckles::Yard</a></li>
+    
+  </ul>
+-->
+
+  
+  <div id="documentation">
+    <h1><a href="Syckle.html">Syckle</a></h1>
+<ul>
+<li><a
+href="http://proutils.rubyforge.org/syckle">proutils.rubyforge.org/syckle</a>
+
+</li>
+</ul>
+<h2>DESCRIPTION</h2>
+<p>
+<a href="Syckle.html">Syckle</a> is a life-cycle based Ruby project
+mangement tool. <a href="Syckle.html">Syckle</a> provides a systematic
+methodology to help developers prepare and release Ruby projects.
+</p>
+<h2>SYNOPSIS</h2>
+<p>
+Using <a href="Syckle.html">Syckle</a> is not diffcult, but it does take a
+few minutes to understand how it operates. If you are familiar with Maven
+form Java ecosystem, then you have as fair notion about Sykle as well. In
+short, <a href="Syckle.html">Syckle</a> defines lifecyles within which all
+<a href="Syckle.html">Syckle</a> services run. You define serivce instances
+as YAML configuration files in you projects <tt>task</tt> or
+<tt>script</tt> directory with a .syckle extension, eg.
+<tt>box.syckle</tt>. For example, Sycle&#8217;s own Rubyforge service
+config looks like this:
+</p>
+<pre>
+  ---
+  rubyforge:
+    service: Rubyforge
+    sitemap:
+      site: &lt;%= package %&gt;
+    active: true
+</pre>
+<p>
+Service configs often draw on metadata about your project, as in the above
+example&#8217;s use of <tt>&lt;%= package %&gt;</tt>. Metadata is defined
+using POM (see <a
+href="http://proutils.rubyforge.org/pom">proutils.rubyforge.org/pom</a>).
+Essentially, you add files to your project&#8217;s <tt>meta</tt> directory,
+and the information becomes available via Erb embedded tags.
+</p>
+<p>
+With service configuration and metadata in place, using syckle is simply a
+matter of specifying the cycle and phase you wish to complete.
+</p>
+<pre>
+  $ syckle main:document
+</pre>
+<p>
+The cycle name and its phase are separated by a colon. This command would
+run every phase in the <tt>main</tt> cycle, in order, until it completes
+the <tt>document</tt> phase. Since <tt>main</tt> is the default cycle, we
+could have more easily executed the above without specifying it.
+</p>
+<pre>
+  $ syckle document
+</pre>
+<p>
+The use of a cycle may seem constrictive to users of tools like Rake, but
+it helps ensure your project is always up-to-date and in-sync. <a
+href="Syckle.html">Syckle</a> includes three life-cycles out of the box.
+The most significant of which is <tt>main</tt> which entails a subcycle
+with ordred phases:
+</p>
+<pre>
+  configure -&gt; generate -&gt; analyize -&gt; compile -&gt;
+      validate -&gt; document -&gt; package -&gt; release -&gt;
+          promote -&gt; archive
+</pre>
+<p>
+It also has a clean subcycle, which is common to many life-cycles. it
+consits of two phases:
+</p>
+<pre>
+  reset -&gt; clean
+</pre>
+<p>
+Where reset marks generated files out-of-date, and clean actually removes
+them.
+</p>
+<p>
+In additon to <tt>main</tt>, <a href="Syckle.html">Syckle</a> includes
+<tt>site</tt> and <tt>attn</tt> life-cycles which are used to generate and
+publish a project website, and make project announcements respectively.
+</p>
+<p>
+Please see <a
+href="http://proutils.rubyforge.org/syckle">proutils.rubyforge.org/syckle</a>
+for more details on how to use <a href="Syckle.html">Syckle</a>, including
+the creation of custom cycles, phases, and service plugins. Also try the
+<tt>--help</tt> option to see the syckle command&#8217;s help information.
+</p>
+<h2>RELEASE NOTES</h2>
+<p>
+Please see the <a href="HISTORY.html">HISTORY</a> file.
+</p>
+<h2>INSTALLATION</h2>
+<p>
+<a href="Syckle.html">Syckle</a> can, of course, be installed via RubyGems:
+</p>
+<pre>
+  $ sudo gem install syckle
+</pre>
+<p>
+<a href="Syckle.html">Syckle</a> can also be installed the old-fashion way
+by downloading the .tar.gz package and using Ruby Setup (See <a
+href="http://setup.rubyforge.org">setup.rubyforge.org</a>).
+</p>
+<pre>
+  $ tar -xvzf syckle-1.0.0.tar.gz
+  $ cd syckle-1.0.0
+  $ sudo setup.rb
+</pre>
+<p>
+Ruby Setup is stand-alone version of the original setup.rb script.
+</p>
+<h2>ISSUES</h2>
+<p>
+All in all, <a href="Syckle.html">Syckle</a> works very well. However,
+there are still some rough edges with regards to the built-in service
+plugins. So from time to time you might run into an odd error. Ususally it
+mean a service confirguraiton needs to adjusted.
+</p>
+<p>
+Please note, Windows support has not been considered at all. While I do not
+see any specific reason it should not work, there may well be issues I have
+not considered since I do not use Windows. If you are Windows user and give
+<a href="Syckle.html">Syckle</a> a try please let us know of any issues you
+encounter.
+</p>
+<h2>HISTORY:</h2>
+<p>
+<a href="Syckle.html">Syckle</a> is actaully the offspring of <a
+href="Reap.html">Reap</a> 10, and represents about four years worth of
+design consideration and reconsideration, that brought <a
+href="Reap.html">Reap</a> from a simple Rake extension to the life-cycle
+system <a href="Syckle.html">Syckle</a> is today.
+</p>
+<h2>COPYRIGHT &amp; LICENSE</h2>
+<p>
+<a href="Syckle.html">Syckle</a>
+</p>
+<p>
+Copyright &#169; 2007,2009 Thomas Sawyer
+</p>
+<p>
+Unless otherwise permited by the author, <a href="Syckle.html">Syckle</a>
+is distributed under the terms of the GPL version 3 or above. See <a
+href="COPYING.html">COPYING</a> for full license.
+</p>
+<p>
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <<a
+href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>>.
+</p>
+
+  </div>
+  
+
+</body>
+</html>
+
