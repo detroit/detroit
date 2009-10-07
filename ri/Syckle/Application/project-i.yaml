@@ -2,7 +2,8 @@
 aliases: []
 
 block_params: 
-comment: 
+comment: []
+
 full_name: Syckle::Application#project
 is_singleton: false
 name: project

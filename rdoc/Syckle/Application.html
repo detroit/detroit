@@ -85,43 +85,41 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li class="method"><a href="#M000001">::new</a></li>
+          <li class="method"><a href="#M000003">::new</a></li>
           
           <li class="method"><a href="#M000009">#active_services</a></li>
           
-          <li class="method"><a href="#M000008">#config_template</a></li>
+          <li class="method"><a href="#M000007">#config_template</a></li>
           
-          <li class="method"><a href="#M000007">#defaults</a></li>
+          <li class="method"><a href="#M000031">#end_phases</a></li>
           
-          <li class="method"><a href="#M000030">#end_phases</a></li>
-          
-          <li class="method"><a href="#M000011">#inject_environment</a></li>
+          <li class="method"><a href="#M000010">#inject_environment</a></li>
           
           <li class="method"><a href="#M000004">#load_plugins</a></li>
           
-          <li class="method"><a href="#M000029">#load_project_plugins</a></li>
+          <li class="method"><a href="#M000028">#load_project_plugins</a></li>
           
-          <li class="method"><a href="#M000013">#load_service_configs</a></li>
+          <li class="method"><a href="#M000012">#load_service_configs</a></li>
           
           <li class="method"><a href="#M000005">#multitask?</a></li>
           
-          <li class="method"><a href="#M000032">#overview</a></li>
+          <li class="method"><a href="#M000034">#overview</a></li>
           
           <li class="method"><a href="#M000006">#project</a></li>
           
-          <li class="method"><a href="#M000025">#run</a></li>
+          <li class="method"><a href="#M000024">#run</a></li>
           
-          <li class="method"><a href="#M000028">#run_a_service</a></li>
+          <li class="method"><a href="#M000027">#run_a_service</a></li>
           
-          <li class="method"><a href="#M000020">#runscript</a></li>
+          <li class="method"><a href="#M000019">#runscript</a></li>
           
-          <li class="method"><a href="#M000027">#service_calls</a></li>
+          <li class="method"><a href="#M000026">#service_calls</a></li>
           
-          <li class="method"><a href="#M000012">#service_configs</a></li>
+          <li class="method"><a href="#M000011">#service_configs</a></li>
           
-          <li class="method"><a href="#M000017">#skip</a></li>
+          <li class="method"><a href="#M000018">#skip</a></li>
           
-          <li class="method"><a href="#M000021">#start</a></li>
+          <li class="method"><a href="#M000022">#start</a></li>
           
         </ul>
       </div>
@@ -320,6 +318,23 @@ Actions (from services).
         </div>
       </div>
       
+      <div id="defaults-attribute-method" class="method-detail">
+        <a name="defaults"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">defaults</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+User definable service defaults.
+</p>
+        
+        </div>
+      </div>
+      
     </div>
     
 
@@ -330,7 +345,7 @@ Actions (from services).
 
     
       <div id="new-method" class="method-detail ">
-        <a name="M000001"></a>
+        <a name="M000003"></a>
 
         <div class="method-heading">
         
@@ -352,7 +367,7 @@ href="Application.html">Application</a>.
           <div class="method-source-code"
             id="new-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 60</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 63</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">cli_options</span>)
       <span class="ruby-ivar">@cli</span>      = <span class="ruby-identifier">cli_options</span> <span class="ruby-comment cmt">#Syckle::CLI.new</span>
       <span class="ruby-ivar">@io</span>       = <span class="ruby-constant">Syckle</span><span class="ruby-operator">::</span><span class="ruby-constant">IO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@cli</span>)
@@ -461,7 +476,7 @@ TODO: Support config.automatic as a list of automated servies.
 
     
       <div id="config-template-method" class="method-detail ">
-        <a name="M000008"></a>
+        <a name="M000007"></a>
 
         <div class="method-heading">
         
@@ -502,40 +517,8 @@ Generates a master configuration template. This is only used for reference.
       </div>
 
     
-      <div id="defaults-method" class="method-detail ">
-        <a name="M000007"></a>
-
-        <div class="method-heading">
-        
-          <span class="method-name">defaults</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
-
-        <div class="method-description">
-          
-          <p class="missing-docs">(Not documented)</p>
-          
-
-          
-          <div class="method-source-code"
-            id="defaults-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 84</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">defaults</span>
-      <span class="ruby-ivar">@defaults</span>
-    <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-      </div>
-
-    
       <div id="end-phases-method" class="method-detail ">
-        <a name="M000030"></a>
+        <a name="M000031"></a>
 
         <div class="method-heading">
         
@@ -570,7 +553,7 @@ FIXME: phase_map is not defined.
 
     
       <div id="inject-environment-method" class="method-detail ">
-        <a name="M000011"></a>
+        <a name="M000010"></a>
 
         <div class="method-heading">
         
@@ -632,7 +615,7 @@ given in the form of +ENV[NAME]+.
           <div class="method-source-code"
             id="load-plugins-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 70</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 73</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_plugins</span>
       <span class="ruby-constant">Syckle</span>.<span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">require</span>(<span class="ruby-identifier">file</span>)
@@ -647,7 +630,7 @@ given in the form of +ENV[NAME]+.
 
     
       <div id="load-project-plugins-method" class="method-detail ">
-        <a name="M000029"></a>
+        <a name="M000028"></a>
 
         <div class="method-heading">
         
@@ -687,7 +670,7 @@ Load custom plugins. FIXME: how to load?
 
     
       <div id="load-service-configs-method" class="method-detail ">
-        <a name="M000013"></a>
+        <a name="M000012"></a>
 
         <div class="method-heading">
         
@@ -747,7 +730,7 @@ Load service configs for a select set of syckle scripts/tasks.
           <div class="method-source-code"
             id="multitask--source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 76</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 79</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multitask?</span>
       <span class="ruby-identifier">$REAP_PARALLEL</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">multitask?</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -760,7 +743,7 @@ Load service configs for a select set of syckle scripts/tasks.
 
     
       <div id="overview-method" class="method-detail ">
-        <a name="M000032"></a>
+        <a name="M000034"></a>
 
         <div class="method-heading">
         
@@ -774,7 +757,7 @@ Load service configs for a select set of syckle scripts/tasks.
           
           <p>
 Give an overview of phases this pipeline supports. FIXME: <a
-href="Application.html#M000030">end_phases</a> blows up.
+href="Application.html#M000031">end_phases</a> blows up.
 </p>
           
 
@@ -812,14 +795,14 @@ href="Application.html#M000030">end_phases</a> blows up.
 
         <div class="method-description">
           
-          <p class="missing-docs">(Not documented)</p>
+          
           
 
           
           <div class="method-source-code"
             id="project-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 80</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 84</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">project</span>
       <span class="ruby-identifier">script</span>.<span class="ruby-identifier">project</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -832,7 +815,7 @@ href="Application.html#M000030">end_phases</a> blows up.
 
     
       <div id="run-method" class="method-detail ">
-        <a name="M000025"></a>
+        <a name="M000024"></a>
 
         <div class="method-heading">
         
@@ -929,7 +912,7 @@ Run the cycle upto the specified cycle-phase.
 
     
       <div id="run-a-service-method" class="method-detail ">
-        <a name="M000028"></a>
+        <a name="M000027"></a>
 
         <div class="method-heading">
         
@@ -971,7 +954,7 @@ Run a service given the service, pipe name and phase name.
 
     
       <div id="runscript-method" class="method-detail ">
-        <a name="M000020"></a>
+        <a name="M000019"></a>
 
         <div class="method-heading">
         
@@ -1006,7 +989,7 @@ Run individual syckle scripts/tasks.
 
     
       <div id="service-calls-method" class="method-detail ">
-        <a name="M000027"></a>
+        <a name="M000026"></a>
 
         <div class="method-heading">
         
@@ -1054,7 +1037,7 @@ Make service calls.
 
     
       <div id="service-configs-method" class="method-detail ">
-        <a name="M000012"></a>
+        <a name="M000011"></a>
 
         <div class="method-heading">
         
@@ -1095,7 +1078,7 @@ project&#8217;s task/ or script/ folder as YAML files.
 
     
       <div id="skip-method" class="method-detail ">
-        <a name="M000017"></a>
+        <a name="M000018"></a>
 
         <div class="method-heading">
         
@@ -1129,7 +1112,7 @@ Returns a list of services to skip as specificed on the commandline.
 
     
       <div id="start-method" class="method-detail ">
-        <a name="M000021"></a>
+        <a name="M000022"></a>
 
         <div class="method-heading">
         

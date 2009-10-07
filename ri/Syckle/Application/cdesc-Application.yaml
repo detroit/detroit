@@ -21,6 +21,12 @@ attributes:
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
   - !ruby/struct:RDoc::Markup::Flow::P 
+    body: User definable service defaults.
+  name: defaults
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
     body: Input/Ouput controller
   name: io
   rw: R
@@ -56,8 +62,6 @@ instance_methods:
   name: active_services
 - !ruby/object:RDoc::RI::MethodSummary 
   name: config_template
-- !ruby/object:RDoc::RI::MethodSummary 
-  name: defaults
 - !ruby/object:RDoc::RI::MethodSummary 
   name: end_phases
 - !ruby/object:RDoc::RI::MethodSummary 
