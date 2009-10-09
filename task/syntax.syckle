@@ -1,5 +1,6 @@
 ---
 syntax:
-  service: Syntax
-  active: false
+  service: syntax
+  exclude: [ plug/seeds ]
+  active : false
 

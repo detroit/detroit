@@ -1,7 +1,7 @@
 ---
 rdoc:
   service : RDoc
-  include : ["lib", "plug/syckles/*.rb", "[A-Z]*"]
+  include : ["lib", "plug/syckle/**/*.rb", "[A-Z]*"]
   exclude : []
   extra   : '-d'
 

@@ -1,4 +1,5 @@
 ---
 notes:
-  service: Notes
+  service : Notes
   priority: -1
+  active  : true
