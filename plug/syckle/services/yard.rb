@@ -6,22 +6,44 @@ module Syckles
   # unless an 'yard' directory exists in the project's root
   # directory, in which case the documentation will be stored there.
   #
-  # This plugin provides two services for both the +main+ and +site+ pipelines.
+  # This plugin provides the following cycle-phases:
   #
-  # * +document+ - create yard docs
-  # * +clean+    - remove yard docs
+  #   main:document  - generate yardocs
+  #   main:reset     - mark yardocs out-of-date
+  #   main:clean     - remove yardocs
+  #
+  #   site:document  - generate yardocs
+  #   site:reset     - mark yardocs out-of-date
+  #   site:clean     - remove yardocs
+  #
+  # Yard service will be available automatically if the project
+  # has a +doc/yard+ directory.
   #
   class Yard < Service
 
     cycle :main, :document
-    cycle :site, :document
-
+    cycle :main, :reset
     cycle :main, :clean
+
+    cycle :site, :document
+    cycle :site, :reset
     cycle :site, :clean
 
-    # TODO: IMPROVE
+    # Make sure YARD is available.
     available do |project|
-      !project.metadata.loadpath.empty?
+      #!project.metadata.loadpath.empty?
+      begin
+        require 'yard'
+        true
+      rescue LoadError
+        false
+      end
+    end
+
+    # RDoc can run automatically if the project has
+    # a +doc/rdoc+ directory.
+    autorun do |project|
+      project.root.glob('doc/yard').first
     end
 
     # Default location to store yard documentation files.
@@ -80,9 +102,6 @@ module Syckles
     # Paths to specifically exclude.
     attr_accessor :exclude
 
-    # Ad file html snippet to add to html.
-    attr_accessor :adfile
-
     # Additional options passed to the yardoc command.
     attr_accessor :extra
 
@@ -101,12 +120,6 @@ module Syckles
       files    = options['files']    || self.files
       exclude  = options['exclude']  || self.exclude
       extra    = options['extra']    || self.extra
-      adfile   = options['adfile']   || self.adfile
-
-      # you can specify more than one possibility, first match wins
-      adfile = [adfile].flatten.compact.find do |f|
-        File.exist?(f)
-      end
 
       readme = Dir.glob(readme, File::FNM_CASEFOLD).first
 
@@ -193,25 +206,7 @@ module Syckles
       #end
     end
 
-    # Insert an ad into rdocs, if available.
-    def rdoc_insert_ads(site, adfile)
-      return if dryrun?
-      return unless adfile && File.file?(adfile)
-      adtext = File.read(adfile)
-      #puts
-      dirs = Dir.glob(File.join(site,'*/'))
-      dirs.each do |dir|
-        files = Dir.glob(File.join(dir, '**/*.html'))
-        files.each do |file|
-          html = File.read(file)
-          bodi = html.index('<body>')
-          next unless bodi
-          html[bodi + 7] = "\n" + adtext
-          File.write(file, html) unless dryrun?
-        end
-      end
-    end
-
   end
 
 end
+

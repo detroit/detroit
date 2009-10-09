@@ -2,15 +2,26 @@ module Syckles
 
   # = RSpec Plugin
   #
+  # Can automatically run if there is a spec/ directory.
+  # 
   class RSpec < Service
 
     cycle :main, :validate
     cycle :main, :document
 
-    # Only availabel if there is a spec/ directory.
-    # TODO: Is this too restrictive?
+    #
     available do |project|
-      Dir['spec']
+      begin
+        #require 'rspec' # can we do this?
+        true
+      rescue LoadError
+        false
+      end
+    end
+
+    #
+    autorun do |project|
+      project.root.glob('spec').first
     end
 
     # File glob(s) of spec files. Defaults to ['spec/**/*_spec.rb', 'spec/**/spec_*.rb'].

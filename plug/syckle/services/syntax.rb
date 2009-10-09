@@ -4,7 +4,7 @@ module Syckles
   #
   # The Syntax plugin simply checks all Ruby code for
   # syntax errors. It's a rather trivial tool, and is
-  # here mostly for example sake.
+  # here simply for example sake.
   #
   class Syntax < Service
 
@@ -122,6 +122,10 @@ module Syckles
       loadpath.join(';')
     end
 
+  end
+
+end
+
 =begin
     # Load each script independently to ensure there are no
     # require dependency issues.
@@ -177,8 +181,6 @@ module Syckles
         end
       end
     end
+
 =end
 
-  end
-
-end

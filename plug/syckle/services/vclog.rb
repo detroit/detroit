@@ -1,12 +1,7 @@
 module Syckles
 
-  # VClog plugin. Automatically generate changelogs from SCM commits messages.
-  #
-  # TODO: tie in Metadata#scm, but probably via project/scm.rb.
-  #
-  # TODO: Allow for a way to dump the text-based Changelog to standard out. "$stdout" as the filename?
-  #
-  # TODO: How to apply naming policy from here?
+  # VClog service automatically generates changelogs from
+  # SCM commit messages.
   #
   class VClog < Service
 
@@ -14,8 +9,8 @@ module Syckles
 
     available do |project|
       begin
-        require 'proutils/vcs'
-        true #(project.root + '.svn').directory?
+        require 'vclog/vcs'
+        true
       rescue LoadError
         false
       end
@@ -162,3 +157,4 @@ module Syckles
   end
 
 end
+

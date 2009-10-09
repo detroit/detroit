@@ -4,9 +4,9 @@ module Syckles
   #
   # This plugin copies designated files to a git branch.
   # This is useful for dealing with situations like GitHub's
-  # gh-pages branch for hosting project websites.*
+  # gh-pages branch for hosting project websites.[1]
   #
-  # * A poor design they copied from the Git project itself.
+  # [1] A poor design copied from the Git project itself.
   #
   class Grancher < Service
 
@@ -16,17 +16,13 @@ module Syckles
       transfer
     end
 
-    cycle :main, :release do
-      release
-    end
+    cycle :main, :release
 
     aftcycle :site, :document do
       transfer
     end
 
-    cycle :site, :release do
-      release
-    end
+    cycle :site, :release
 
     # Gancher will be available automatically if the POM repository
     # entry indicates the use of GitHub.

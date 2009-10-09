@@ -16,9 +16,9 @@ module Syckles
   #   main:reset     - mark ri docs out-of-date
   #   main:clean     - remove ri docs
   #
-  #   site:document
-  #   site:reset
-  #   site:clean
+  #   site:document  - generate ri docs
+  #   site:reset     - mark ri docs out-of-date
+  #   site:clean     - remove ri docs
   #
   class RIDoc < Service
 
@@ -33,6 +33,12 @@ module Syckles
     #available do |project|
     #  !project.metadata.loadpath.empty?
     #end
+
+    # RIDoc can run automatically if the project has
+    # a +doc/ri+ directory.
+    autorun do |project|
+      project.root.glob('doc/ri').first
+    end
 
     # Default location to store ri documentation files.
     DEFAULT_OUTPUT       = "doc/ri"
@@ -135,3 +141,4 @@ module Syckles
   end#RIDoc
 
 end#Syckles
+

@@ -1,4 +1,4 @@
-module Syckles
+module Syckle::Plugins
 
   # RDoc documentation plugin generates RDocs for your project.
   #
@@ -13,17 +13,22 @@ module Syckles
   #   main:reset     - mark rdocs out-of-date
   #   main:clean     - remove rdocs
   #
-  #   site:document
-  #   site:reset
-  #   site:clean
+  #   site:document  - generate rdocs
+  #   site:reset     - mark rdocs out-of-date
+  #   site:clean     - remove rdocs
   #
   # RDoc service will be available automatically if the project
   # has a +doc/rdoc+ directory.
   #
-  class RDoc < Service
+  class RDoc < Service #Plugin
 
+    ##
+    # Generate rdocs in main cycle.
+    # :method: main_document
     cycle :main, :document
+
     cycle :main, :reset
+
     cycle :main, :clean
 
     cycle :site, :document
@@ -35,7 +40,7 @@ module Syckles
     #  !project.metadata.loadpath.empty?
     #end
 
-    # RDoc will be available automatically if the project has
+    # RDoc can run automatically if the project has
     # a +doc/rdoc+ directory.
     autorun do |project|
       project.root.glob('doc/rdoc').first
@@ -76,13 +81,10 @@ module Syckles
     # Where to save rdoc files (doc/rdoc).
     attr_accessor :output
 
-    # Template library to use. This may be needed if an alternate template is a gem.
-    attr_accessor :templib
-
     # Template to use (defaults to ENV['RDOC_TEMPLATE'] or 'darkfish')
     attr_accessor :template
 
-    # Main file.  This can be file pattern. (README{,.txt})
+    # Main file.  This can be a file pattern. (README{,.*})
     attr_accessor :main
 
     # Which files to document.
@@ -114,7 +116,6 @@ module Syckles
       title    = options['title']    || self.title
       output   = options['output']   || self.output
       main     = options['main']     || self.main
-      templib  = options['templib']  || self.templib
       template = options['template'] || self.template
       files    = options['files']    || self.files
       exclude  = options['exclude']  || self.exclude
@@ -170,7 +171,6 @@ module Syckles
         argv = argv + filelist #include_files
 
         rdoc_target(output, include_files, argv)
-
         rdoc_insert_ads(output, adfile)
 
         touch(output)
@@ -257,3 +257,4 @@ module Syckles
   end
 
 end
+

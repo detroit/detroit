@@ -1,9 +1,11 @@
 module Syckles
 
-  # = Testrb Plugin
+  # = Test::Unit Plugin via testrb
   #
-  # This Reap service plugin runs your test/unit (or mint/test ?)
-  # based unit tests using the +testrb+ commandline tool.
+  # This Reap service plugin runs your test/unit (or minitest)
+  # tests based unit tests using the +testrb+ commandline tool.
+  #
+  # TODO: How to abort if fail?
   #
   class Testrb < Service
 
@@ -62,26 +64,25 @@ module Syckles
       @live     = false
     end
 
-=begin
     # Collect test configuation.
-    def test_configuration(options=nil)
-      #options = configure_options(options, 'test')
-      #options['loadpath'] ||= metadata.loadpath
+    #def test_configuration(options=nil)
+    #  #options = configure_options(options, 'test')
+    #  #options['loadpath'] ||= metadata.loadpath
+    #
+    #  options['tests']    ||= self.tests
+    #  options['loadpath'] ||= self.loadpath
+    #  options['requires'] ||= self.requires
+    #  options['live']     ||= self.live
+    #  options['exclude']  ||= self.exclude
+    #
+    #  #options['tests']    = options['tests'].to_list
+    #  options['loadpath'] = options['loadpath'].to_list
+    #  options['exclude']  = options['exclude'].to_list
+    #  options['require']  = options['require'].to_list
+    #
+    #  return options
+    #end
 
-      options['tests']    ||= self.tests
-      options['loadpath'] ||= self.loadpath
-      options['requires'] ||= self.requires
-      options['live']     ||= self.live
-      options['exclude']  ||= self.exclude
-
-      #options['tests']    = options['tests'].to_list
-      options['loadpath'] = options['loadpath'].to_list
-      options['exclude']  = options['exclude'].to_list
-      options['require']  = options['require'].to_list
-
-      return options
-    end
-=end
 
   public
 
@@ -135,7 +136,7 @@ module Syckles
         command = %[testrb -I#{loadpath.join(':')} #{filelist} 2>&1 | tee -a #{logfile}]
       end
 
-      success = sh(command) #, :show=>true)
+      success = sh(command) #, :show=>true) #show?
 
       abort "Tests failed." unless success
 
@@ -145,6 +146,10 @@ module Syckles
       #  puts "Updated #{logfile}"
       #end
     end
+
+  end
+
+end
 
 =begin
     # Load each test independently to ensure there are no
@@ -194,6 +199,3 @@ module Syckles
     end
 =end
 
-  end
-
-end

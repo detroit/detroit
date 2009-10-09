@@ -2,13 +2,14 @@ require 'erb'
 
 begin
   require 'parallel'
-  $REAP_PARALLEL = true
 rescue LoadError
-  $REAP_PARALLEL = false
 end
 
+require 'facets/plugin_manager'
+
+require 'syckle/core_ext'
+
 require 'syckle/script'
-#require 'syckle/project'
 require 'syckle/cli'
 require 'syckle/io'
 require 'syckle/config'
@@ -19,14 +20,13 @@ require 'syckle/cycles/site'
 require 'syckle/cycles/attn'
 
 require 'syckle/service'
-require 'syckle/plugins'
-
-#require 'facets/consoleutils'
-#require 'facets/ansicode'
 
 # FIXME: Not all io output is running through the io object.
 
 module Syckle
+
+  #
+  PLUGIN_DIRECTORY = "syckle/services"
 
   # = Application
   #
@@ -35,50 +35,75 @@ module Syckle
   #
   class Application
 
-    #CONFIG_FILE      = 'syckle'
-    #PLUGIN_DIRECTORY = 'plugin'
-
     # Commandline interface controller.
     attr :cli
 
-    # Input/Ouput controller
+    # Input/Ouput controller.
     attr :io
 
     # Syckle mater configuration.
     attr :config
 
-    # Run context
+    # Run context.
     attr :script
 
-    # Actions (from services).
+    # Actions (extracted from services).
     attr :actions
 
     # New Syckle Application.
     def initialize(cli_options)
-      @cli    = cli_options #Syckle::CLI.new
-      @config = Syckle::Config.new
-      @io     = Syckle::IO.new(@cli)
-      @script = Syckle::Script.new(:io=>io, :cli=>cli)
+      @cli      = cli_options #Syckle::CLI.new
+      @io       = Syckle::IO.new(@cli)
+      @script   = Syckle::Script.new(:io=>io, :cli=>cli)
+      @config   = Syckle::Config.new(@script.project)
       #@services, @actions = *load_service_configuration
       load_plugins
     end
 
+    #
     def load_plugins
-      Syckle.plugins.each do |file|
+      PluginManager.find(PLUGIN_DIRECTORY + '/*.rb').each do |file|
+      #Syckle.plugins.each do |file|
         require(file)
+        #Syckle.module_eval(File.read(file))
       end
     end
 
+    # Multitask mode?
+
     def multitask?
-      $REAP_PARALLEL && cli.multitask?
+      cli.multitask? && defined?(Parallel) #parallel?
     end
+
+    # Parallel library installed?
+
+    #def parallel?
+    #  if @parallel.nil?
+    #    begin
+    #      require 'parallel'
+    #      @parallel = true
+    #    rescue LoadError
+    #      @parallel = false
+    #    end
+    #  end
+    #  @parallel
+    #end
+
+    # Provides access to the Project instance.
 
     def project
       script.project
     end
 
+    # User-defined service defaults.
+
+    def defaults
+      config.defaults
+    end
+
     # Generates a master configuration template.
-    # This is only used for reference.
+    # This is only used for reference purposes.
+
     def config_template
       cfg = {}
       Syckle.services.each do |srv_name, srv_class|
@@ -93,6 +118,8 @@ module Syckle
 
     # Returns an array of actived services.
     #
+    # TODO: Support config.automatic as a list of automated servies.
+
     def active_services
       @active_services ||= (
         a = []
@@ -106,8 +133,8 @@ module Syckle
         if config.automatic?
           Syckle.services.each do |service_name, service_class|
             if service_class.available?(project) && 
-               service_class.autorun?(project) && 
-               !config.auto_omit.include?(service_name)
+                 service_class.autorun?(project) && 
+                 !config.manual.include?(service_name)
               autolist << service_class
             end
           end
@@ -121,10 +148,10 @@ module Syckle
 
           abort "Unkown service #{service_name}." unless service_class
 
-          opts = inject_environment(opts) # TODO: REMOVE
-
           if service_class.available?(project)
             autolist.delete(service_class) # remove class from autolist
+            opts = inject_environment(opts) # TODO: DEPRECATE
+            opts = defaults[service_name.downcase].to_h.merge(opts)
             a << service_class.new(script, key, opts) #project,
           end
         end
@@ -132,7 +159,8 @@ module Syckle
         # If any autorunning services are not accounted for then add to active list.
         autolist.each do |service_class|
           service_name = service_class.basename.downcase
-          a << service_class.new(script, service_name) #, {})
+          service_opts = defaults[service_name.downcase].to_h
+          a << service_class.new(script, service_name, service_opts)
         end
 
         # sorting here trickles down to processing
@@ -143,18 +171,12 @@ module Syckle
       )
     end
 
-    #alias_method :services, :available_services
-
-    # Returns a list of activated services.
-    #def active_services
-    #  available_services.map do |srvClass, className, key, options|
-    #    srvClass.new(script, key, options) #project,
-    #  end
-    #end
+    #alias_method :services, :active_services
 
     # This substitutes environment vairables in for
     # service options if they are given in the form
     # of +ENV[NAME]+.
+
     def inject_environment(options)
       opts = {}
       options.each do |k,v|
@@ -180,7 +202,7 @@ module Syckle
 
     # Service configuration. These are stored in the
     # project's task/ or script/ folder as YAML files.
-    #
+
     def service_configs
       @service_configs ||= (
         files = []
@@ -192,6 +214,7 @@ module Syckle
     end
 
     # Load service configs for a select set of syckle scripts/tasks.
+
     def load_service_configs(files)
       abort "No syckle services defined." if files.empty?
       files.inject({}) do |cfg, file|
@@ -224,18 +247,20 @@ module Syckle
     #end
 
     # Returns a list of services to skip as specificed on the commandline.
+
     def skip
       @skip ||= cli.skip.to_list.map{ |s| s.downcase }
     end
 
     # Run individual syckle scripts/tasks.
-    #
+
     def runscript(script, job)
       @service_configs = load_service_configs(script)
       run(job)
     end
 
     # Start the cycle.
+
     def start
       Dir.chdir(project.root)        # change into project directory
       load_project_plugins           # load any local plugins
@@ -259,6 +284,7 @@ module Syckle
     #end
 
     # Run the cycle upto the specified cycle-phase.
+
     def run(job)
       # Improve this in the future.
       #if cli == '?'
@@ -327,6 +353,7 @@ module Syckle
     end
 
     # Make service calls.
+
     def service_calls(pipe, phase)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
@@ -346,6 +373,7 @@ module Syckle
     end
 
     # Run a service given the service, pipe name and phase name.
+
     def run_a_service(srv, pipe, phase)
       # run if the service supports the pipe and phase.
       if srv.respond_to?("#{pipe}_#{phase}")
@@ -360,6 +388,7 @@ module Syckle
 
     # Load custom plugins.
     # FIXME: how to load?
+
     def load_project_plugins
       #scripts = project.config_syckle.glob('*.rb')
      scripts = project.plugin.glob('*.rb')
@@ -372,12 +401,14 @@ module Syckle
 
     # Returns a list of all the phases that terminate a pipleline execution.
     # FIXME: phase_map is not defined.
+
     def end_phases
       (phase_map.keys - phase_map.values).compact
     end
 
     # Give an overview of phases this pipeline supports.
     # FIXME: end_phases blows up.
+
     def overview
       end_phases.each do |phase_name|
         action_plan(phase_name).each do |act|
@@ -389,8 +420,9 @@ module Syckle
 
     # = Configuration Template Binding
     #
-    # This class is used to render service congifs via erb.
-    #
+    # This class provide a clean scope in which to render
+    # service congifs via erb.
+
     class TMP
       instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
       attr :metadata
@@ -407,7 +439,7 @@ module Syckle
 
   end
 
-end#module Syckle
+end #module Syckle
 
 
 

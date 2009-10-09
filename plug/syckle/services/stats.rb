@@ -9,6 +9,14 @@ module Syckles
   #
   class Stats < Service
 
+    cycle :main, :analyize
+    cycle :main, :reset
+    cycle :main, :clean
+
+    cycle :site, :analyize
+    cycle :site, :reset
+    cycle :site, :clean
+
     # Default folder to store generated files under log/.
     DEFAULT_FOLDER = 'stats'
 
@@ -17,14 +25,6 @@ module Syckles
 
     # Default folders and/or file patterns to exclude from analysis.
     DEFAULT_EXCLUDE = ['ext']
-
-    cycle :main, :analyize
-    cycle :main, :reset
-    cycle :main, :clean
-
-    cycle :site, :analyize
-    cycle :site, :reset
-    cycle :site, :clean
 
     # Directories to scan for scripts. The default is the project's loadpath.
     attr_accessor :loadpath

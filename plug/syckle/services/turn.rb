@@ -2,8 +2,8 @@ module Syckles
 
   # = Turn Plugin
   #
-  # This Reap service plugin runs your test/unit (or mint/test ?)
-  # based unit tests using the +turn+ commandline tool.
+  # This service plugin runs your test/unit (or mint/test)
+  # unit tests using the +turn+ commandline tool.
   #
   class Turn < Service
 
@@ -62,26 +62,24 @@ module Syckles
       @live     = false
     end
 
-=begin
     # Collect test configuation.
-    def test_configuration(options=nil)
-      #options = configure_options(options, 'test')
-      #options['loadpath'] ||= metadata.loadpath
-
-      options['tests']    ||= self.tests
-      options['loadpath'] ||= self.loadpath
-      options['requires'] ||= self.requires
-      options['live']     ||= self.live
-      options['exclude']  ||= self.exclude
-
-      #options['tests']    = options['tests'].to_list
-      options['loadpath'] = options['loadpath'].to_list
-      options['exclude']  = options['exclude'].to_list
-      options['require']  = options['require'].to_list
-
-      return options
-    end
-=end
+    #def test_configuration(options=nil)
+    #  #options = configure_options(options, 'test')
+    #  #options['loadpath'] ||= metadata.loadpath
+    #
+    #  options['tests']    ||= self.tests
+    #  options['loadpath'] ||= self.loadpath
+    #  options['requires'] ||= self.requires
+    #  options['live']     ||= self.live
+    #  options['exclude']  ||= self.exclude
+    #
+    #  #options['tests']    = options['tests'].to_list
+    #  options['loadpath'] = options['loadpath'].to_list
+    #  options['exclude']  = options['exclude'].to_list
+    #  options['require']  = options['require'].to_list
+    #
+    #  return options
+    #end
 
   public
 
@@ -145,6 +143,11 @@ module Syckles
       #end
     end
 
+  end
+
+end
+
+
 =begin
     # Load each test independently to ensure there are no
     # require dependency issues. This is actually a bit redundant
@@ -193,6 +196,3 @@ module Syckles
     end
 =end
 
-  end
-
-end

@@ -16,16 +16,11 @@ module Syckles
   #
   # TODO: Use new REST API.
   #
-  # TODO: Check Rubyforge admin config to see which Rubyforge 
+  # TODO: Check Rubyforge config to see which Rubyforge
   # services are being used and adjust actions for this plugin
   # accordingly.
   #
   class Rubyforge < Service
-
-    #pipeline :main, :publish  => :release,
-    #                :release  => :release,
-    #                :announce => :promote
-    #pipeline :site, :publish  => :release
 
     cycle :main, :release do
       release
@@ -350,6 +345,10 @@ module Syckles
       project.announcement
     end
 
+  end
+
+end
+
 =begin
     #
     README = "readme{,.txt}"
@@ -423,7 +422,6 @@ module Syckles
     #    false
     #  end
     #end
-  end
+#  end
 
-end
-
+#end

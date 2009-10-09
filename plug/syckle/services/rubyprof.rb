@@ -1,21 +1,17 @@
 module Syckles
 
-  # = RCov Service
+  # = RubyProf Profiling Plugin
   #
-  # RCov code coverage utility.
+  # This is a service plugin for ruby-proof command line tool.
   #
-  class RCov < Service
+  class RubyProf < Service
 
     cycle :main, :analyize
     cycle :main, :reset
     cycle :main, :clean
 
-    # Default script files to run via rcov.
+    # Default script files to run via ruby-prof.
     DEFAULT_SCRIPTS = ['test/**/test_*.rb', 'test/**/*_test.rb']
-
-    # Output directory. This defaults to an rcov/ folder in the
-    # the project's log directory.
-    attr :output
 
     # Pattern of script files to run for coverage check. Usually
     # these are your test files, but they can be any ruby scripts.
@@ -23,27 +19,39 @@ module Syckles
     # whose name begins with test_ or ends with _test.
     attr :scripts
 
-    # Additional commandline options string passed to rcov.
+    # Output directory. This defaults to an rubyprof/ folder in the
+    # the project's log directory.
+    attr :output
+
+    # Additional commandline options string passed to ruby-prof.
     attr :options
 
-    # TODO: Default scripts must be improved. How?
-    #       esp. how to use Quarry?
+    #
     def initialize_defaults
-      @output  = project.log + 'rcov'
+      @output  = project.log + 'rubyprof'
       @scripts = DEFAULT_SCRIPTS
     end
 
-    # Shell out to rcov.
+    # Shell out to ruby-prof.
+    #
+    # TODO: Need to create an index.html file to link to all the others.
+    #
     def analyize
       files = scripts.map{ |s| Dir[s] }.flatten
       # create output directory if needed
       mkdir_p(output) unless File.exist?(output)
       # if nothing is out-of-date
       if outofdate?(output, *files) or force?
-        sh "rcov #{options} -t -o #{output} #{files.join(' ')}"
-        report "rcov updated (at #{output.sub(Dir.pwd,'')})"
+        # make a profile for each script
+        files.each do |file|
+          fname = output + "#{File.basename(file)}.html"
+          if outofdate?(output, file) or force?
+            sh "ruby-prof #{options} -m 1 -p graph_html -f #{fname} #{file}"
+          end
+        end
+        report "ruby-prof updated (at #{output.sub(Dir.pwd,'')})"
       else
-        report "rcov is current (at #{output.sub(Dir.pwd,'')})"
+        report "ruby-prof is current (at #{output.sub(Dir.pwd,'')})"
       end
     end
 
@@ -77,3 +85,4 @@ module Syckles
   end
 
 end
+

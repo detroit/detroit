@@ -10,12 +10,14 @@ module Syckles
   class Autotools < Service
 
     cycle :main, :compile
+    cycle :main, :reset
     cycle :main, :clean
-    cycle :main, :reset do
-      distclean
-    end
 
-    #service_condition do |project|
+    #available do |project|
+    #  # check for make tools
+    #end
+
+    #autorun do |project|
     #  project.compiles?
     #end
 
@@ -85,7 +87,7 @@ module Syckles
         cd(directory) do
           sh "ruby extconf.rb"
         end
-      end  
+      end
     end
 
   private
@@ -96,7 +98,7 @@ module Syckles
         cd(directory) do
           shell "#{MAKE_COMMAND} #{target}"
         end
-      end  
+      end
     end
 
     # Eric Hodel said NOT to copy the compiled libs.
@@ -122,4 +124,5 @@ module Syckles
   end
 
 end
+
 

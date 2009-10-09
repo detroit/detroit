@@ -25,9 +25,6 @@ module Syckles
   #
   class Notes < Service
 
-    # Default note labels to look for in source code.
-    DEFAULT_LABELS = ['TODO', 'FIXME', 'OPTIMIZE', 'DEPRECATE']
-
     cycle :main, :document
     cycle :main, :reset
     cycle :main, :clean
@@ -35,6 +32,9 @@ module Syckles
     #available do |project|
     #  true
     #end
+
+    # Default note labels to look for in source code.
+    DEFAULT_LABELS = ['TODO', 'FIXME', 'OPTIMIZE', 'DEPRECATE']
 
     # Paths to search.
     attr_accessor :loadpath

@@ -1,22 +1,28 @@
 module Syckles
 
-  # = Till Code Generator Service
+  # = Till Generation Service
   #
   class Till < Service
 
     cycle :main, :generate
+    cycle :site, :generate
 
-    # Only available if there is a template store.
-    #available do |project|
-    #  Dir[::Sow::GenericGenerator::TEMPLATE_GLOB].first
+    # Make automatic?
+    #autorun do
+    #  ...
     #end
 
-    def preconfigure
-      require 'till'
+    available do |project|
+      begin
+        require 'till'
+        true
+      rescue LoadError
+        false
+      end
     end
 
     #
-    def safe?; @safe; end
+    #def safe?; @safe; end
 
     #
     def generate(options={})

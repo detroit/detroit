@@ -1,6 +1,6 @@
 require 'facets/boolean'
 
-module Syckles
+module Syckle::Plugins
 
   # = Email Plugin
   #
@@ -10,15 +10,13 @@ module Syckles
   # By default it generates an release announcement based
   # on your README.* file.
   #
+  # TODO: Use Ratch's email command.
+  #
   class EMail < Service
 
-    cycle :main, :promote do
-      announce
-    end
+    cycle :main, :promote
 
-    cycle :attn, :promote do
-      announce
-    end
+    cycle :attn, :promote
 
     #available do |project|
     #  true # when ?
@@ -157,3 +155,5 @@ module Syckles
   end
 
 end
+
+
