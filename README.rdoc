@@ -1,7 +1,8 @@
 = Syckle
 
-* http://proutils.rubyforge.org/syckle
-
+* Home Page: http://proutils.github.com/syckle
+* Development: http://github.com/proutils/syckle
+* Mailing List: http://googlegroups.com/group/proutils
 
 == DESCRIPTION
 

@@ -1,35 +1,15 @@
-= TODO List
-
-== Parallel Execution [DONE]
-
-* Within a phase, any service instances that have the same priority can be run
-in parallel. I do not know how this would effect output, but it would be nice to have
-since some services can take some time to complete, such as rcov.
-
-== Current Considerations
+= Task List
 
 * When generating docs from a subdirectory, it doesn not appear to be moving up to
 the root directory before executing tasks. Check ridoc in particular.
 
-== Action Output
-
-* Use CLIO and FOLIO!
-
-== Action Specifications
-
-* An omit_actions option for service definitions might be nice,
-in order to specify a specific set of action not to include.
-
-== Platform Builds
+* Use CLIO?
 
 * platform builds (part of BOX).
 
-== Root Indicator
+* Should minimize use of environament variables. This makes for a more repeatable build process.
 
-* What are we using for this? The Roor indicatoer should become meta/ruby.
-
-== Environment
-
-* Should minimize use of environament variables.
-* This makes for a more repeatable build process.
+* [DONE] Parallel Execution. Within a phase, any service instances that have the same priority can be run
+in parallel. I do not know how this would effect output, but it would be nice to have
+since some services can take some time to complete, such as rcov.
 
