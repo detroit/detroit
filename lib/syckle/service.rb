@@ -1,13 +1,5 @@
-    # = Service Loader
-    #
-#    module Loader
-      #
-      def service(name, &block)
-        #Syckle.services[name] = Service.factory(&block)
-        Syckle::Service.registry[name.to_s] = Syckle::Service.factory(&block)
-      end
-#    end
-
+# = Service Loader
+#
 module Syckle
 
   #
@@ -126,6 +118,8 @@ module Syckle
 
     attr :key
 
+    attr :options
+
     #
     attr_accessor :priority
 
@@ -139,10 +133,11 @@ module Syckle
     # +nil+ will instead allow any default setting to be used.
 
     #
-    def initialize(context, key, options=nil)
+    def initialize(context, key, options={})
       @context  = context
       @project  = context.project
       @key      = key
+      @options  = options || {}
 
       @priority = 0
 
@@ -209,71 +204,6 @@ module Syckle
     # = Plugin Registry MetaMixin
     #
     #module Registry
-
-      #
-      #def registry
-      #  @@registry ||= {}
-      #end
-
-
-      # TODO: support auto available.
-      #def auto_available(&block)
-      #  @auto_available = block if block
-      #  @auto_available
-      #end
-
-      #
-      #def auto_available?(project)
-      #  return true unless @auto_available
-      #  @auto_available.call(project)
-      #end
-
-      #
-      #def actions
-      #  @actions ||= []
-      #end
-
-      #
-      #def service_actions
-      #  @service_actions ||= Hash.new{|h,k| h[k]={}}
-      #end
-
-
-      #def pipeline(pipeline, method_to_phase=nil)
-      #  if method_to_phase
-      #    method_to_phase.each do |meth, phase|
-      #      #actions << Action.new(pipeline, phase, meth)
-      #
-      #      service_actions[pipeline]
-      #      service_actions[pipeline][phase] ||= []
-      #      service_actions[pipeline][phase] << meth.to_sym
-      #    end
-      #  else
-      #    #actions << Action.new(pipeline)
-      #    service_actions[pipeline] = nil  # match_by_method
-      #  end
-      #end
-
-      #
-      #def supports(pipe, phase)
-      #  pipe, phase = pipe.to_sym, phase.to_sym
-      #  return [] unless service_actions.key?(pipe)
-      #  if service_actions[pipe]
-      #    return [] unless service_actions[pipe].key?(phase)
-      #    return service_actions[pipe][phase]
-      #  else
-      #    return [phase] if instance_methods.find{ |im| im.to_sym == phase }
-      #  end
-      #  return []
-      #end
-
-      #
-      #def acts(pipe, phase)
-      #  #@actions.select{ |a| a.pipe == pipe & a.phase == phae }
-      #  return nil unless service_actions[pipe]
-      #  service_actions[pipe][phase]
-      #end
-
     #end
 
     #extend Registry
@@ -282,7 +212,13 @@ module Syckle
 
 end #module Syckle
 
-module Syckles
+module Syckle::Plugins
   Service = Syckle::Service
 end
+
+# TOPLEVEL DSL?
+#def service(name, &block)
+#  #Syckle.services[name] = Service.factory(&block)
+#  Syckle::Service.registry[name.to_s] = Syckle::Service.factory(&block)
+#end
 
