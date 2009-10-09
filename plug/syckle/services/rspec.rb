@@ -1,4 +1,4 @@
-module Syckles
+module Syckle::Plugins
 
   # = RSpec Plugin
   #

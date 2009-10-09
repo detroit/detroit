@@ -1,4 +1,4 @@
-module Syckles
+module Syckle::Plugins
 
   # = Autotools Compile Plugin
   #

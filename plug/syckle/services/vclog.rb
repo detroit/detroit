@@ -1,4 +1,4 @@
-module Syckles
+module Syckle::Plugins
 
   # VClog service automatically generates changelogs from
   # SCM commit messages.

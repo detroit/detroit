@@ -1,4 +1,4 @@
-module Syckles
+module Syckle::Plugins
 
   # Yard documentation plugin generates docs for your project.
   #

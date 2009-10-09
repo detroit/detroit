@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/rubyforge/rubyforge.rb'
+#require File.dirname(__FILE__) + '/rubyforge/rubyforge.rb'
 
-module Syckles
+module Syckle::Plugins
 
   # = Rubyforge Plugin
   #
@@ -41,14 +41,14 @@ module Syckles
       /rubyforge.org/ =~ project.metadata.repository
     end
 
-    #available do |project|
-    #  begin
-    #    require 'forge/rubyforge'
-    #    true
-    #  #rescue LoadError
-    #  #  false
-    #  end
-    #end
+    available do |project|
+      begin
+        require 'forge'
+        true
+      rescue LoadError
+        false
+      end
+    end
 
     HOME    = ENV["HOME"] || ENV["HOMEPATH"] || File.expand_path("~")
     REPORT  = /<h\d><span style="color:red">(.*?)<\/span><\/h\d>/
@@ -172,7 +172,7 @@ module Syckles
 
           options[:metadata] = metadata
 
-          RubyforgeREST.new(options)
+          ForgeRubyforge.new(options)
         )
       end
 

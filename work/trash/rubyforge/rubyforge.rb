@@ -14,7 +14,7 @@ require 'facets/hash/rekey'
 
 require 'pom/metadata'
 
-module Syckles
+module Syckle::Plugins
 
   class SupportService
     attr_accessor :dryrun
