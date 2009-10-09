@@ -1,0 +1,14 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Define the procedure for a given cycle-phase.
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: "  cycle '&lt;cycle&gt;:&lt;phase&gt;' do\n    ...\n  end\n"
+full_name: Syckle::Service::cycle
+is_singleton: true
+name: cycle
+params: (name, phase=nil, &block)
+visibility: public

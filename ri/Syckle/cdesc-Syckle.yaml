@@ -1,0 +1,34 @@
+--- !ruby/object:RDoc::RI::ModuleDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: lifecycle
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: lifecycles
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: services
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "FIXME: Not all io output is running through the io object."
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 1
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Service Loader
+constants: 
+- !ruby/object:RDoc::RI::Constant 
+  comment: []
+
+  name: PLUGIN_DIRECTORY
+  value: "\"syckle/services\""
+- !ruby/object:RDoc::RI::Constant 
+  comment: 
+  name: VERSION
+  value: "\"1.0.0\""
+full_name: Syckle
+includes: []
+
+instance_methods: []
+
+name: Syckle

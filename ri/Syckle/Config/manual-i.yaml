@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Services to omit from automatic execution. If automatic is set to true, the manual setting can be used to exclude specify services for autorunning. Should be an array of service names (class basenames).
+full_name: Syckle::Config#manual
+is_singleton: false
+name: manual
+params: ()
+visibility: public

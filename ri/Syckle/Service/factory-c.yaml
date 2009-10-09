@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::Service::factory
+is_singleton: true
+name: factory
+params: (&block)
+visibility: public

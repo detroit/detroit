@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Multitask mode?
+full_name: Syckle::Application#multitask?
+is_singleton: false
+name: multitask?
+params: ()
+visibility: public

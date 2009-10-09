@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: This isn't strictly neccessary since method_missing will pick it up, but it will make execution a bit faster.
+full_name: Syckle::Service#metadata
+is_singleton: false
+name: metadata
+params: ()
+visibility: private

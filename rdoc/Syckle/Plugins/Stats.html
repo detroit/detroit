@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckle::Plugins::Stats</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../../images/class.png">
+  
+
+  <link type="text/css" media="screen" rel="stylesheet" href="../../rdoc.css" />
+
+  <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../../images/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::Plugins::Stats</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../plug/syckle/services/stats_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="plug/syckle/services/stats.rb">plug/syckle/services/stats.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li class="method"><a href="#M000128">#analyize</a></li>
+          
+          <li class="method"><a href="#M000142">#gen_html</a></li>
+          
+          <li class="method"><a href="#M000138">#gen_text</a></li>
+          
+          <li class="method"><a href="#M000133">#generate_stats</a></li>
+          
+          <li class="method"><a href="#M000146">#html_row2</a></li>
+          
+          <li class="method"><a href="#M000145">#html_rowd</a></li>
+          
+          <li class="method"><a href="#M000144">#html_rowh</a></li>
+          
+          <li class="method"><a href="#M000127">#initialize_defaults</a></li>
+          
+          <li class="method"><a href="#M000135">#line_count</a></li>
+          
+          <li class="method"><a href="#M000129">#save_stats</a></li>
+          
+          <li class="method"><a href="#M000132">#testfiles</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../../COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+        
+          <li class="class"><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Notes.html">Syckle::Plugins::Notes</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+
+    <div id="validator-badges">
+      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
+      <a href="http://validator.w3.org/check/referer">[Validate]</a>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1>Simple Code Statistics Plugin</h1>
+<p>
+The <a href="Stats.html">Stats</a> plugin is a simple code statistics
+analyizer, producing a basic LOC analysis.
+</p>
+<p>
+TODO: Add support for testable demo/ (how?).
+</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="DEFAULT_FOLDER">DEFAULT_FOLDER</a></dt>
+        
+        <dd class="description"><p>
+Default folder to store generated files under log/.
+</p></dd>
+        
+      
+        <dt><a name="DEFAULT_TESTPATH">DEFAULT_TESTPATH</a></dt>
+        
+        <dd class="description"><p>
+Default folder(s) to find test scripts.
+</p></dd>
+        
+      
+        <dt><a name="DEFAULT_EXCLUDE">DEFAULT_EXCLUDE</a></dt>
+        
+        <dd class="description"><p>
+Default folders and/or file patterns to exclude from analysis.
+</p></dd>
+        
+      
+      </dl>
+    </div>
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="loadpath-attribute-method" class="method-detail">
+        <a name="loadpath"></a>
+        
+        <a name="loadpath="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">loadpath</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Directories to scan for scripts. The default is the project&#8217;s
+loadpath.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="exclude-attribute-method" class="method-detail">
+        <a name="exclude"></a>
+        
+        <a name="exclude="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">exclude</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Files patterns to specially exclude from loadpath. Default is
+[&#8216;ext&#8217;] b/c this does not yet support C analysis.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="testpath-attribute-method" class="method-detail">
+        <a name="testpath"></a>
+        
+        <a name="testpath="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">testpath</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Directories to scan for tests. The default is test/.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="output-attribute-method" class="method-detail">
+        <a name="output"></a>
+        
+        <a name="output="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">output</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Output directory. Default is stats/ folder under the project&#8217;s log
+directory. This should alwasy be a dedicated directory because mutiple
+files are generated with generic names, eg. <tt>index.html</tt>.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="title-attribute-method" class="method-detail">
+        <a name="title"></a>
+        
+        <a name="title="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">title</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Title of pacakge. Thisis used to put a header in the output.
+</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="analyize-method" class="method-detail ">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">analyize</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Scan source code counting files, lines of code and comments and presents a
+report of it&#8217;s findings.
+</p>
+<p>
+TODO: Add C support for ext/.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="analyize-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 62</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">analyize</span>
+      <span class="ruby-identifier">loadpath</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">loadpath</span>.<span class="ruby-identifier">to_list</span>
+      <span class="ruby-identifier">exclude</span>  = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">exclude</span>.<span class="ruby-identifier">to_list</span>
+
+      <span class="ruby-identifier">files</span> = <span class="ruby-identifier">multiglob_r</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">loadpath</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">multiglob_r</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">exclude</span>)
+
+      <span class="ruby-comment cmt">#() #.inject([]){ |memo, find| memo.concat(glob(find)); memo }</span>
+      <span class="ruby-comment cmt">#Dir.multiglob_with_default(DEFAULT_STATS_FILES)</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">outofdate?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">files</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">force?</span>
+        <span class="ruby-identifier">generate_stats</span>(<span class="ruby-identifier">files</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">out</span> = <span class="ruby-identifier">output</span>.<span class="ruby-identifier">relative_path_from</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>)
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;Stats are current (#{out}).&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Setup default attribute values.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 49</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+      <span class="ruby-ivar">@title</span>    = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">title</span> <span class="ruby-comment cmt">#|| metadata.package</span>
+      <span class="ruby-ivar">@loadpath</span> = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">loadpath</span> <span class="ruby-comment cmt">#|| ['lib']</span>
+      <span class="ruby-ivar">@testpath</span> = <span class="ruby-constant">DEFAULT_TESTPATH</span>
+      <span class="ruby-ivar">@exclude</span>  = <span class="ruby-constant">DEFAULT_EXCLUDE</span>
+      <span class="ruby-ivar">@output</span>   = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">log</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DEFAULT_FOLDER</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="gen-html-method" class="method-detail ">
+        <a name="M000142"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">gen_html</span><span
+            class="method-args">(head, prod, test, totl, rat, c, r, s, t, l)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Builds the HTML-based layout.
+</p>
+<p>
+TODO: Need to improve the microformat-ness of stats output.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="gen-html-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 235</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gen_html</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
+      <span class="ruby-node">%{
+        &lt;html&gt;
+        &lt;head&gt;
+          &lt;title&gt;#{title} Code Statistics&lt;/title&gt;
+          &lt;style&gt;
+            h2{margin: 5px 0;}
+            table{width: 95%;}
+            th{background: #dcc;}
+            td{padding: 5px;}
+            .basic_stats{margin: 0 auto; width: 800px;}
+          &lt;/style&gt;
+          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;stats.css&quot;/&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;div class=&quot;basic_stats&quot;&gt;
+          &lt;h1&gt;#{title} -- Basic Code Statistics&lt;/h1&gt;
+          &lt;table class=&quot;counts&quot; border=&quot;1&quot;&gt;
+            &lt;tr&gt;&lt;th colspan=&quot;9&quot;&gt;&lt;h2&gt;Counts&lt;/h2&gt;&lt;/th&gt;&lt;/tr&gt;
+            #{ html_rowh % [ &quot;TYPE&quot;  , *head ] }
+            #{ html_rowd % [ &quot;Source&quot;, *prod ] }
+            #{ html_rowd % [ &quot;Test&quot;  , *test ] }
+            #{ html_rowd % [ &quot;Total&quot; , *totl ] }
+          &lt;/table&gt;
+          &lt;br/&gt;
+          &lt;table class=&quot;ratios&quot; border=&quot;1&quot;&gt;
+            &lt;tr&gt;&lt;th colspan=&quot;6&quot;&gt;&lt;h2&gt;Ratios&lt;/h2&gt;&lt;/th&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;th&gt;x:1&lt;/th&gt;&lt;th&gt;Code&lt;/th&gt;&lt;th&gt;Docs&lt;/th&gt;&lt;th&gt;Blank&lt;/th&gt;&lt;th&gt;Test&lt;/th&gt;&lt;th&gt;Total&lt;/th&gt;&lt;/tr&gt;
+            #{ html_row2 % [ &quot;Code&quot;  , rat[c,c], rat[c,r], rat[c,s], rat[c,t], rat[c,l] ] }
+            #{ html_row2 % [ &quot;Docs&quot;  , rat[r,c], rat[r,r], rat[r,s], rat[r,t], rat[r,l] ] }
+            #{ html_row2 % [ &quot;Blank&quot; , rat[s,c], rat[s,r], rat[s,s], rat[s,t], rat[s,l] ] }
+            #{ html_row2 % [ &quot;Test&quot;  , rat[t,c], rat[t,r], rat[t,s], rat[t,t], rat[t,l] ] }
+            #{ html_row2 % [ &quot;Total&quot; , rat[l,c], rat[l,r], rat[l,s], rat[l,t], rat[l,l] ] }
+          &lt;/table&gt;
+          &lt;br/&gt;
+          &lt;div class=&quot;date&quot;&gt;#{Time.now.to_s}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+      }</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="gen-text-method" class="method-detail ">
+        <a name="M000138"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">gen_text</span><span
+            class="method-args">(head, prod, test, totl, rat, c, r, s, t, l)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Builds the text-based layout.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="gen-text-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 210</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gen_text</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
+      <span class="ruby-identifier">max</span>  = <span class="ruby-value">8</span>
+      <span class="ruby-identifier">text</span> = []
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{title} Statistics&quot;</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;TYPE    %#{max}s %#{max}s %4s %#{max}s %4s %#{max}s %4s %#{max}s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">head</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Source  %#{max}s %#{max}s %4s %#{max}s %4s %#{max}s %4s %#{max}s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">prod</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Test    %#{max}s %#{max}s %4s %#{max}s %4s %#{max}s %4s %#{max}s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">test</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Total   %#{max}s %#{max}s %4s %#{max}s %4s %#{max}s %4s %#{max}s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">totl</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;RATIO     Code    Docs    Blank   Test   Total&quot;</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Code   %7s %7s %7s %7s %7s&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">c</span>,<span class="ruby-identifier">c</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">c</span>,<span class="ruby-identifier">r</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">c</span>,<span class="ruby-identifier">s</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">c</span>,<span class="ruby-identifier">t</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">c</span>,<span class="ruby-identifier">l</span>] ]
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Docs   %7s %7s %7s %7s %7s&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">r</span>,<span class="ruby-identifier">c</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">r</span>,<span class="ruby-identifier">r</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">r</span>,<span class="ruby-identifier">s</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">r</span>,<span class="ruby-identifier">t</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">r</span>,<span class="ruby-identifier">l</span>] ]
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Blank  %7s %7s %7s %7s %7s&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">s</span>,<span class="ruby-identifier">c</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">s</span>,<span class="ruby-identifier">r</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">s</span>,<span class="ruby-identifier">s</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">s</span>,<span class="ruby-identifier">t</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">s</span>,<span class="ruby-identifier">l</span>] ]
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Test   %7s %7s %7s %7s %7s&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">t</span>,<span class="ruby-identifier">c</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">t</span>,<span class="ruby-identifier">r</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">t</span>,<span class="ruby-identifier">s</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">t</span>,<span class="ruby-identifier">t</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">t</span>,<span class="ruby-identifier">l</span>] ]
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Total  %7s %7s %7s %7s %7s&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">l</span>,<span class="ruby-identifier">c</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">l</span>,<span class="ruby-identifier">r</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">l</span>,<span class="ruby-identifier">s</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">l</span>,<span class="ruby-identifier">t</span>], <span class="ruby-identifier">rat</span>[<span class="ruby-identifier">l</span>,<span class="ruby-identifier">l</span>] ]
+      <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-identifier">text</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="generate-stats-method" class="method-detail ">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">generate_stats</span><span
+            class="method-args">(files)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Figure out the statistics.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="generate-stats-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 102</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_stats</span>(<span class="ruby-identifier">files</span>)
+      <span class="ruby-identifier">fc</span>, <span class="ruby-identifier">l</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">s</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">line_count</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">files</span>)
+
+      <span class="ruby-identifier">fct</span>, <span class="ruby-identifier">lt</span>, <span class="ruby-identifier">ct</span>, <span class="ruby-identifier">rt</span>, <span class="ruby-identifier">tt</span>, <span class="ruby-identifier">st</span> = <span class="ruby-operator">*</span>([<span class="ruby-value">0</span>]<span class="ruby-operator">*</span><span class="ruby-value">6</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-value str">'test'</span>)
+        <span class="ruby-identifier">fct</span>, <span class="ruby-identifier">lt</span>, <span class="ruby-identifier">ct</span>, <span class="ruby-identifier">rt</span>, <span class="ruby-identifier">tt</span>, <span class="ruby-identifier">st</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">line_count</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">testfiles</span>)
+        <span class="ruby-identifier">t</span> = <span class="ruby-identifier">lt</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lt</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">rat</span> = <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">d</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+          <span class="ruby-value str">&quot;-&quot;</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">d</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">n</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+          <span class="ruby-value str">&quot;%.1f&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">n</span> ]
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">d</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+          <span class="ruby-value str">&quot;%.1f&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">n</span> ]
+          <span class="ruby-comment cmt">#'-' #&quot;%.1f:1&quot; % [ n.to_f / d ]</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-value str">&quot;1.0&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">per</span> = <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span>,<span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">d</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+          (((<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">d</span>)<span class="ruby-operator">*</span><span class="ruby-value">100</span>).<span class="ruby-identifier">to_i</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;%&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-value str">&quot;-&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">max</span> = <span class="ruby-identifier">l</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-value">4</span>
+
+      <span class="ruby-identifier">head</span> = [<span class="ruby-value str">&quot;Total&quot;</span>, <span class="ruby-value str">&quot;Code&quot;</span>, <span class="ruby-value str">&quot;-%-&quot;</span>, <span class="ruby-value str">&quot;Docs&quot;</span>, <span class="ruby-value str">&quot;-%-&quot;</span>, <span class="ruby-value str">&quot;Blank&quot;</span>, <span class="ruby-value str">&quot;-%-&quot;</span>, <span class="ruby-value str">&quot;Files&quot;</span>]
+      <span class="ruby-identifier">prod</span> = [<span class="ruby-identifier">l</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">per</span>[<span class="ruby-identifier">c</span>,<span class="ruby-identifier">l</span>], <span class="ruby-identifier">r</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">per</span>[<span class="ruby-identifier">r</span>,<span class="ruby-identifier">l</span>], <span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">per</span>[<span class="ruby-identifier">s</span>,<span class="ruby-identifier">l</span>], <span class="ruby-identifier">fc</span>]
+      <span class="ruby-identifier">test</span> = [<span class="ruby-identifier">lt</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">per</span>[<span class="ruby-identifier">ct</span>,<span class="ruby-identifier">l</span>], <span class="ruby-identifier">rt</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">per</span>[<span class="ruby-identifier">rt</span>,<span class="ruby-identifier">l</span>], <span class="ruby-identifier">st</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">per</span>[<span class="ruby-identifier">st</span>,<span class="ruby-identifier">l</span>], <span class="ruby-identifier">fct</span>]
+      <span class="ruby-identifier">totl</span> = [(<span class="ruby-identifier">l</span><span class="ruby-operator">+</span><span class="ruby-identifier">lt</span>), (<span class="ruby-identifier">c</span><span class="ruby-operator">+</span><span class="ruby-identifier">ct</span>), <span class="ruby-identifier">per</span>[<span class="ruby-identifier">c</span><span class="ruby-operator">+</span><span class="ruby-identifier">ct</span>,<span class="ruby-identifier">l</span><span class="ruby-operator">+</span><span class="ruby-identifier">lt</span>], (<span class="ruby-identifier">r</span><span class="ruby-operator">+</span><span class="ruby-identifier">rt</span>), <span class="ruby-identifier">per</span>[<span class="ruby-identifier">r</span><span class="ruby-operator">+</span><span class="ruby-identifier">rt</span>,<span class="ruby-identifier">l</span><span class="ruby-operator">+</span><span class="ruby-identifier">lt</span>], (<span class="ruby-identifier">s</span><span class="ruby-operator">+</span><span class="ruby-identifier">st</span>), <span class="ruby-identifier">per</span>[<span class="ruby-identifier">s</span><span class="ruby-operator">+</span><span class="ruby-identifier">st</span>,<span class="ruby-identifier">l</span><span class="ruby-operator">+</span><span class="ruby-identifier">lt</span>], (<span class="ruby-identifier">fc</span><span class="ruby-operator">+</span><span class="ruby-identifier">fct</span>)]
+
+      <span class="ruby-comment cmt"># produce .txt file</span>
+      <span class="ruby-identifier">text</span> = <span class="ruby-identifier">gen_text</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
+      <span class="ruby-identifier">save_stats</span>(<span class="ruby-value str">'stats.txt'</span>, <span class="ruby-identifier">text</span>)
+
+      <span class="ruby-comment cmt"># produce .html file</span>
+      <span class="ruby-identifier">text</span> = <span class="ruby-identifier">gen_html</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
+      <span class="ruby-identifier">save_stats</span>(<span class="ruby-value str">'index.html'</span>, <span class="ruby-identifier">text</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="html-row--method" class="method-detail ">
+        <a name="M000146"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">html_row2</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="html-row--source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 285</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_row2</span>
+      <span class="ruby-value str">&quot;&lt;tr&gt;&lt;th&gt;%s&lt;/th&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="html-rowd-method" class="method-detail ">
+        <a name="M000145"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">html_rowd</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="html-rowd-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 281</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_rowd</span>
+      <span class="ruby-value str">&quot;&lt;tr&gt;&lt;th&gt;%s&lt;/th&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="html-rowh-method" class="method-detail ">
+        <a name="M000144"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">html_rowh</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="html-rowh-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 277</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_rowh</span>
+      <span class="ruby-identifier">html_rowd</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'td'</span>, <span class="ruby-value str">'th'</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="line-count-method" class="method-detail ">
+        <a name="M000135"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">line_count</span><span
+            class="method-args">(*files)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Return line counts for files.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="line-count-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 150</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">line_count</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">files</span>)
+      <span class="ruby-identifier">files</span> = <span class="ruby-identifier">files</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-regexp re">/\.rb/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">f</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">f</span>) }
+
+      <span class="ruby-comment cmt">#files = files.inject([]) do |memo, find|</span>
+      <span class="ruby-comment cmt">#  glob = Dir.glob(find).map{ |f| File.file?(f) }</span>
+      <span class="ruby-comment cmt">#  memo.concat(glob)</span>
+      <span class="ruby-comment cmt">#  memo</span>
+      <span class="ruby-comment cmt">#end</span>
+
+      <span class="ruby-identifier">fc</span>, <span class="ruby-identifier">l</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">r</span> = <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>
+      <span class="ruby-identifier">bt</span>, <span class="ruby-identifier">rb</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">false</span>
+
+      <span class="ruby-identifier">files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fname</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">fname</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.rb$/</span>      <span class="ruby-comment cmt"># TODO should this be done?</span>
+        <span class="ruby-identifier">fc</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">fname</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">gets</span>
+            <span class="ruby-identifier">l</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\s*$/</span>
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">line</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^=begin\s+test/</span>
+              <span class="ruby-identifier">tb</span> = <span class="ruby-keyword kw">true</span>; <span class="ruby-identifier">t</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^=begin/</span>
+              <span class="ruby-identifier">rb</span> = <span class="ruby-keyword kw">true</span>; <span class="ruby-identifier">r</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^=end/</span>
+              <span class="ruby-identifier">t</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tb</span>
+              <span class="ruby-identifier">r</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rb</span>
+              <span class="ruby-identifier">rb</span>, <span class="ruby-identifier">tb</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">false</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\s*#/</span>
+              <span class="ruby-identifier">r</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">c</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">rb</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">tb</span>)
+              <span class="ruby-identifier">r</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rb</span>
+              <span class="ruby-identifier">t</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tb</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">s</span> = <span class="ruby-identifier">l</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">t</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fc</span>, <span class="ruby-identifier">l</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">s</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="save-stats-method" class="method-detail ">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">save_stats</span><span
+            class="method-args">(file, text)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Save stats to output.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="save-stats-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 83</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save_stats</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">text</span>)
+      <span class="ruby-identifier">log_file</span> = <span class="ruby-identifier">output</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">file</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dryrun?</span>
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;write #{log_file}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">log_file</span>.<span class="ruby-identifier">parent</span>)
+        <span class="ruby-identifier">write</span>(<span class="ruby-identifier">log_file</span>, <span class="ruby-identifier">text</span>)
+        <span class="ruby-identifier">rfile</span> = <span class="ruby-identifier">log_file</span>.<span class="ruby-identifier">relative_path_from</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>)
+        <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;Updated #{rfile}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="testfiles-method" class="method-detail ">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">testfiles</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="testfiles-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 96</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testfiles</span>
+      <span class="ruby-ivar">@testfiles</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">multiglob_r</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">testpath</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</body>
+</html>

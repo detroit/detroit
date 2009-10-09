@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckle::Plugins::RubyProf</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../../images/class.png">
+  
+
+  <link type="text/css" media="screen" rel="stylesheet" href="../../rdoc.css" />
+
+  <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../../images/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::Plugins::RubyProf</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../plug/syckle/services/rubyprof_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="plug/syckle/services/rubyprof.rb">plug/syckle/services/rubyprof.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li class="method"><a href="#M000170">#analyize</a></li>
+          
+          <li class="method"><a href="#M000172">#clean</a></li>
+          
+          <li class="method"><a href="#M000169">#initialize_defaults</a></li>
+          
+          <li class="method"><a href="#M000171">#reset</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../../COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+        
+          <li class="class"><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Notes.html">Syckle::Plugins::Notes</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+
+    <div id="validator-badges">
+      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
+      <a href="http://validator.w3.org/check/referer">[Validate]</a>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="RubyProf.html">RubyProf</a> Profiling Plugin</h1>
+<p>
+This is a service plugin for ruby-proof command line tool.
+</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="DEFAULT_SCRIPTS">DEFAULT_SCRIPTS</a></dt>
+        
+        <dd class="description"><p>
+Default script files to run via ruby-prof.
+</p></dd>
+        
+      
+      </dl>
+    </div>
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="scripts-attribute-method" class="method-detail">
+        <a name="scripts"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">scripts</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Pattern of script files to run for coverage check. Usually these are your
+test files, but they can be any ruby scripts. By default this is includes
+.rb file in the test/ directory whose name begins with test_ or ends with
+_test.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="output-attribute-method" class="method-detail">
+        <a name="output"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">output</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Output directory. This defaults to an rubyprof/ folder in the the
+project&#8217;s log directory.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="options-attribute-method" class="method-detail">
+        <a name="options"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">options</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Additional commandline options string passed to ruby-prof.
+</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="analyize-method" class="method-detail ">
+        <a name="M000170"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">analyize</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Shell out to ruby-prof.
+</p>
+<p>
+TODO: Need to create an index.html file to link to all the others.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="analyize-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/rubyprof.rb, line 39</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">analyize</span>
+      <span class="ruby-identifier">files</span> = <span class="ruby-identifier">scripts</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">s</span>] }.<span class="ruby-identifier">flatten</span>
+      <span class="ruby-comment cmt"># create output directory if needed</span>
+      <span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">output</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">output</span>)
+      <span class="ruby-comment cmt"># if nothing is out-of-date</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">outofdate?</span>(<span class="ruby-identifier">output</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">files</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">force?</span>
+        <span class="ruby-comment cmt"># make a profile for each script</span>
+        <span class="ruby-identifier">files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">fname</span> = <span class="ruby-identifier">output</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;#{File.basename(file)}.html&quot;</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">outofdate?</span>(<span class="ruby-identifier">output</span>, <span class="ruby-identifier">file</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">force?</span>
+            <span class="ruby-identifier">sh</span> <span class="ruby-node">&quot;ruby-prof #{options} -m 1 -p graph_html -f #{fname} #{file}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;ruby-prof updated (at #{output.sub(Dir.pwd,'')})&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;ruby-prof is current (at #{output.sub(Dir.pwd,'')})&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="clean-method" class="method-detail ">
+        <a name="M000172"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">clean</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Remove output directory and it&#8217;s contents.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="clean-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/rubyprof.rb, line 67</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clean</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">output</span>)
+        <span class="ruby-identifier">rm_r</span>(<span class="ruby-identifier">output</span>)
+        <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;removed #{output}&quot;</span> <span class="ruby-comment cmt">#unless dryrun?</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000169"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/rubyprof.rb, line 30</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+      <span class="ruby-ivar">@output</span>  = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">log</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'rubyprof'</span>
+      <span class="ruby-ivar">@scripts</span> = <span class="ruby-constant">DEFAULT_SCRIPTS</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="reset-method" class="method-detail ">
+        <a name="M000171"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">reset</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Reset output directory, ie. set mtime to oldest date possible.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="reset-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckle/services/rubyprof.rb, line 59</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">output</span>)
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">utime</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-identifier">output</span>)
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;reset #{output}&quot;</span> <span class="ruby-comment cmt">#unless dryrun?</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Syckle IO
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The IO class is used to cleanly separate out the basic input/output &quot;dialog&quot; between user and script.
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Syckle IO
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The IO class is used to cleanly separate out the basic input/output &quot;dialog&quot; between user and script.
+constants: []
+
+full_name: Syckle::IO
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: ansize
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: display_action
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: print_header
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: print_phase
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: printline
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: screen_width
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: status_header
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: status_line
+name: IO
+superclass: "::Ratch::IO"

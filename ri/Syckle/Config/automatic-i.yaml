@@ -1,0 +1,13 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: 
+- !ruby/object:RDoc::RI::AliasName 
+  name: automatic?
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Use automatic services feature? If set to <tt>true</tt>, all services with autorun modes will run if their autorun criteria is met. Or this can be set to a list of service names for which autorub mode will apply.
+full_name: Syckle::Config#automatic
+is_singleton: false
+name: automatic
+params: ()
+visibility: public

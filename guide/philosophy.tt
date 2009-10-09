@@ -1,0 +1,143 @@
+h1. Reap's Sickle
+
+The Philosophy Behind the Reap Build Tool
+
+  2008-07-18
+
+h2. The Pipline
+
+  NOTE: The exact terminology to best represent these phases is still being explored.
+        So the current develpoment may not match what is written here.
+
+Reap has a predefined build cycle with the following consectutive phases:
+
+  inspect
+  generate
+  analyse*
+  document*
+  compile
+  test
+  debug
+  package
+  deploy
+  tag
+
+It's called a pipeline because any invocation of a step will ensure the execution
+of all the previous steps. For instance, 'reap document' will perform inspect,
+generate, analyse and finally document. However, if 'reap analyse' were 
+previously run, then Reap will not generally repeat these step unless something has
+changed that requires it. In other words, Reap attempts to avoid unecessary and
+redundant work.
+
+The following is a more indepth look as each phase in turn.
+
+h3. Inspect
+
+Inspection simply checks to ensure are configuration files necessary are present
+and valid. This step will provide a simple "About" report on the current project.
+
+h3. Generate
+
+Generation involves source code generation, as well as resources, such
+as pre-configuration data, and it might also include simple non-source
+dependent documentation such as a generated README.
+
+Generation phase of build life cycle, handles sourcecode generation
+and resource generation. Source code generation may include test code.
+Resources include such as preset prefence files,
+or preloaded database tables. The generation phase may also update
+some documentation-oriented files, such as a README, but these are
+specifically non-dependent on source or resources.
+
+h3. Analyse
+
+Analysis examines source code and checks for syntax errors, provided warnings and tips
+for improving code, statistic on code, etc. Becuase analysis is not a pre-requisite
+for compilation, this process is run as a background task.
+
+h3. Document
+
+Documentation phase produces all source-based documentation, such as API docs, as 
+well as any website documents.  Becuase documentation is not a pre-requisite
+for compilation, this process is run as a background task.
+
+h3. Compile
+
+The compilation turns any source code into object code. Compilation is
+dependent on *platform*. All subsequent phases are effected by this
+choice. Each platform is processed independently.
+
+API Documentation is then generated based-on the sourecode. It might seem
+strange to generate documentation before a test cycle is complete,
+but good documentation can be helpul in debugging. Since documentation
+is not instrumental to the subsequent compile phase, and can often take
+more than a few seconds to complete, it is run in a background process.
+
+h3. Test
+
+Run unit tests and/or behavior specifications.
+
+h3. Debug
+
+Debuging is a phases largely left to the programmer to handle, however certin tools
+make the process more efficient. For instance a failed test can trigger a
+debug session in an execution shell (eg. irb) at the point of failure.
+
+h3. Package
+
+Generate packages. Packages vary based on a *package format*.
+
+h3. Deploy
+
+Deployment involces uploading packages, publising documentation and
+webpages to hosts, and making release annoucements.
+
+h3. Tag
+
+Tagging is the final phase of the build process.
+
+
+h2. Services
+
+Reap implements the different build phases via *services*. Services are generally adaptors to external tools, linking
+a tool's capability to a particular build phase, and tying the configuration of that tool to the project metadata,
+build configuration, and commandline interface.
+
+A few services are built-in and do not depend on external tools.
+
+Service classes follow a command pattern. Rather then allowing
+an instance of a service class be called upon multiple times
+--eg. through some means of pre method configuration, one has
+to create a new service instance for each possibility. There is
+an importnat reason for this. A service can support more than
+one phase and those phases are likely to share configuration in
+common. Being able to alter configuration on a per method call
+bases would destroy that intertwix.
+
+In general services should generate some sort of log, and use the
+log to determine if they are current or not. If they are current
+then they do not have to be run. The user can use the --force option
+to override this restriction. Logs kept in the log/ folder should
+generally be in html, preferably a microformat, but can also allow
+the end user to pick from alternate format options such as xml or
+plain text. This aspect of the system is currently left to the service
+designer to implement. In the future we may try to provide some 
+systematic means of providing this functionality.
+
+
+h2. Platforms
+
+Central to process of project building is platform dependency. Platform differentiation begins at the compile phase.
+It could be argued that it should begin with the generation phase, as some platforms may require files that other's
+do not, but we have purposefully chosen to not use this as the starting point. Rather the developer should generate 
+all neccessary files and data for every platform during this phase, and simply make differentiations, where neccessary,
+by name. We beleive this promotes better, cross-platform design.
+
+At compile time the platform(s) designation will split the build into separate tracks. The common platform (x-platform),
+serves for the deafult for all others. For most Ruby project's this will be the only platform used, since no extension
+compilation is neccessary.
+
+
+--
+(c) 2008 TigerOps
+

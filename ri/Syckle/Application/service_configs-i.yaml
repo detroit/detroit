@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Service configuration. These are stored in the project's task/ or script/ folder as YAML files.
+full_name: Syckle::Application#service_configs
+is_singleton: false
+name: service_configs
+params: ()
+visibility: public

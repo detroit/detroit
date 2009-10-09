@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::IO#printline
+is_singleton: false
+name: printline
+params: (left, right='', options={})
+visibility: public

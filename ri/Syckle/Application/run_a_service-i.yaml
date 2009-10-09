@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Run a service given the service, pipe name and phase name.
+full_name: Syckle::Application#run_a_service
+is_singleton: false
+name: run_a_service
+params: (srv, pipe, phase)
+visibility: public
