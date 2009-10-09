@@ -1,8 +1,7 @@
 ---
 rdoc:
-  service  : RDoc
-  template : ~
-  files    : ["lib", "plug/*.reap", "[A-Z]*"]
-  exclude  : []
-  extra    : '-d'
+  service : RDoc
+  include : ["lib", "plug/syckles/*.rb", "[A-Z]*"]
+  exclude : []
+  extra   : '-d'
 
