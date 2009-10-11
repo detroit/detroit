@@ -67,8 +67,6 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: load_project_plugins
 - !ruby/object:RDoc::RI::MethodSummary 
-  name: load_service_configs
-- !ruby/object:RDoc::RI::MethodSummary 
   name: multitask?
 - !ruby/object:RDoc::RI::MethodSummary 
   name: overview

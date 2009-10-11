@@ -3,10 +3,8 @@ aliases: []
 
 block_params: 
 comment: 
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "Alias for #automatic"
-full_name: Syckle::Config#automatic?
+full_name: Syckle::Config::TMP#_binding
 is_singleton: false
-name: automatic?
+name: _binding
 params: ()
 visibility: public

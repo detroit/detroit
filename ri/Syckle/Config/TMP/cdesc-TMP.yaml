@@ -29,7 +29,7 @@ comment:
   body: This class provide a clean scope in which to render service congifs via erb.
 constants: []
 
-full_name: Syckle::Application::TMP
+full_name: Syckle::Config::TMP
 includes: []
 
 instance_methods: 

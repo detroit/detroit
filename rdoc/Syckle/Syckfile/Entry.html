@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: Syckle::Syckfile::Entry</title>
+
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../lib/syckle/syckfile_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/syckle/syckfile.rb">lib/syckle/syckfile.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000067">::new</a></li>
+					
+					<li><a href="#M000069">#method_missing</a></li>
+					
+					<li><a href="#M000068">#to_h</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="../../NOTES_rdoc.html">NOTES.rdoc</a></li>
+				
+					<li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../../TODO.html">TODO</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../../Syckle.html">Syckle</a></li>
+				
+					<li><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="../../Syckle/Config/TMP.html">Syckle::Config::TMP</a></li>
+				
+					<li><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+				
+					<li><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+				
+					<li><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+				
+					<li><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+				
+					<li><a href="../../Syckle/Syckfile.html">Syckle::Syckfile</a></li>
+				
+					<li><a href="../../Syckle/Syckfile/Entry.html">Syckle::Syckfile::Entry</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">Syckle::Syckfile::Entry</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="M000067"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(&block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/syckfile.rb, line 72</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-ivar">@hash</span> = {}
+        <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="method-missing-method" class="method-detail ">
+				<a name="M000069"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">method_missing</span><span
+						class="method-args">(sym, *args, &block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="method-missing-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/syckfile.rb, line 81</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-ivar">@hash</span>[<span class="ruby-identifier">sym</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="to-h-method" class="method-detail ">
+				<a name="M000068"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">to_h</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="to-h-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/syckfile.rb, line 77</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_h</span>
+        <span class="ruby-ivar">@hash</span>
+      <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

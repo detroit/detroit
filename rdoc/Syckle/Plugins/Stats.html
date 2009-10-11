@@ -1,222 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: Syckle::Plugins::Stats</title>
+	<title>Class: Syckle::Plugins::Stats</title>
 
-  
-    <link rel="SHORTCUT ICON" href="../../images/class.png">
-  
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
 
-  <link type="text/css" media="screen" rel="stylesheet" href="../../rdoc.css" />
-
-  <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
 
 </head>
 <body class="class">
 
-  <div class="head">
-    <h1>
-      
-        <img src="../../images/class.png" align="absmiddle">&nbsp;
-      
-      <a href="../../index.html">Syckle</a>&nbsp;
-      <a href="/">Syckle::Plugins::Stats</a>
-    </h1>
-  </div>
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../plug/syckle/services/stats_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="plug/syckle/services/stats.rb">plug/syckle/services/stats.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
 
-  <div id="metadata">
-    <div id="project-metadata">
+			
+		</div>
 
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li class="file"><a href="../../plug/syckle/services/stats_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="plug/syckle/services/stats.rb">plug/syckle/services/stats.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+		<div id="class-metadata">
 
-      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Service</p>
+				
+			</div>
+			
 
-      
-    </div>
+			<!-- Namespace Contents -->
+			
 
-    <div id="class-metadata">
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000128">#analyize</a></li>
+					
+					<li><a href="#M000141">#gen_html</a></li>
+					
+					<li><a href="#M000139">#gen_text</a></li>
+					
+					<li><a href="#M000134">#generate_stats</a></li>
+					
+					<li><a href="#M000149">#html_row2</a></li>
+					
+					<li><a href="#M000148">#html_rowd</a></li>
+					
+					<li><a href="#M000147">#html_rowh</a></li>
+					
+					<li><a href="#M000126">#initialize_defaults</a></li>
+					
+					<li><a href="#M000135">#line_count</a></li>
+					
+					<li><a href="#M000130">#save_stats</a></li>
+					
+					<li><a href="#M000133">#testfiles</a></li>
+					
+				</ul>
+			</div>
+			
 
-      <!-- Parent Class -->
-      
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        <ul>
-          
-          <li class="class">Service</li>
-          
-        </ul>
-      </div>
-      
+			<!-- Included Modules -->
+			
+		</div>
 
-      <!-- Namespace Contents -->
-      
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="../../NOTES_rdoc.html">NOTES.rdoc</a></li>
+				
+					<li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../../TODO.html">TODO</a></li>
+				
+				</ul>
+			</div>
+			
 
-      <!-- Method Quickref -->
-      
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li class="method"><a href="#M000128">#analyize</a></li>
-          
-          <li class="method"><a href="#M000142">#gen_html</a></li>
-          
-          <li class="method"><a href="#M000138">#gen_text</a></li>
-          
-          <li class="method"><a href="#M000133">#generate_stats</a></li>
-          
-          <li class="method"><a href="#M000146">#html_row2</a></li>
-          
-          <li class="method"><a href="#M000145">#html_rowd</a></li>
-          
-          <li class="method"><a href="#M000144">#html_rowh</a></li>
-          
-          <li class="method"><a href="#M000127">#initialize_defaults</a></li>
-          
-          <li class="method"><a href="#M000135">#line_count</a></li>
-          
-          <li class="method"><a href="#M000129">#save_stats</a></li>
-          
-          <li class="method"><a href="#M000132">#testfiles</a></li>
-          
-        </ul>
-      </div>
-      
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
 
-      <!-- Included Modules -->
-      
-    </div>
+				<ul class="link-list">
+				
+					<li><a href="../../Syckle.html">Syckle</a></li>
+				
+					<li><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="../../Syckle/Config/TMP.html">Syckle::Config::TMP</a></li>
+				
+					<li><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+				
+					<li><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+				
+					<li><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+				
+					<li><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+				
+					<li><a href="../../Syckle/Syckfile.html">Syckle::Syckfile</a></li>
+				
+					<li><a href="../../Syckle/Syckfile/Entry.html">Syckle::Syckfile::Entry</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
 
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="../../COPYING.html">COPYING</a></li>
-        
-          <li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
-        
-          <li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
-        
-          <li class="file"><a href="../../TODO.html">TODO</a></li>
-        
-        </ul>
-      </div>
-      
+			
+		</div>
+	</div>
 
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class Index
-          <span class="search-toggle"><img src="../../images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
+	<div id="documentation">
+		<h1 class="class">Syckle::Plugins::Stats</h1>
 
-        <!-- classpage.html : classes -->
-        <ul class="link-list">
-        
-          <li class="module"><a href="../../Syckle.html">Syckle</a></li>
-        
-          <li class="class"><a href="../../Syckle/Application.html">Syckle::Application</a></li>
-        
-          <li class="class"><a href="../../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
-        
-          <li class="class"><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
-        
-          <li class="class"><a href="../../Syckle/Config.html">Syckle::Config</a></li>
-        
-          <li class="class"><a href="../../Syckle/IO.html">Syckle::IO</a></li>
-        
-          <li class="class"><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
-        
-          <li class="class"><a href="../../Syckle/Log.html">Syckle::Log</a></li>
-        
-          <li class="module"><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Notes.html">Syckle::Plugins::Notes</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
-        
-          <li class="class"><a href="../../Syckle/Script.html">Syckle::Script</a></li>
-        
-          <li class="class"><a href="../../Syckle/Service.html">Syckle::Service</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
-
-    <div id="validator-badges">
-      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
-      <a href="http://validator.w3.org/check/referer">[Validate]</a>
-    </div>
-  </div>
-
-  <div id="documentation">
-
-    <div id="description">
-      
-
-      <h1>Simple Code Statistics Plugin</h1>
+		<div id="description">
+			<h1>Simple Code Statistics Plugin</h1>
 <p>
 The <a href="Stats.html">Stats</a> plugin is a simple code statistics
 analyizer, producing a basic LOC analysis.
@@ -225,178 +206,178 @@ analyizer, producing a basic LOC analysis.
 TODO: Add support for testable demo/ (how?).
 </p>
 
-    </div>
+		</div>
 
-    <!-- Constants -->
-    
-    <div id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt><a name="DEFAULT_FOLDER">DEFAULT_FOLDER</a></dt>
-        
-        <dd class="description"><p>
+		<!-- Constants -->
+		
+		<div id="constants-list" class="section">
+			<h3 class="section-header">Constants</h3>
+			<dl>
+			
+				<dt><a name="DEFAULT_FOLDER">DEFAULT_FOLDER</a></dt>
+				
+				<dd class="description"><p>
 Default folder to store generated files under log/.
 </p></dd>
-        
-      
-        <dt><a name="DEFAULT_TESTPATH">DEFAULT_TESTPATH</a></dt>
-        
-        <dd class="description"><p>
+				
+			
+				<dt><a name="DEFAULT_TESTPATH">DEFAULT_TESTPATH</a></dt>
+				
+				<dd class="description"><p>
 Default folder(s) to find test scripts.
 </p></dd>
-        
-      
-        <dt><a name="DEFAULT_EXCLUDE">DEFAULT_EXCLUDE</a></dt>
-        
-        <dd class="description"><p>
+				
+			
+				<dt><a name="DEFAULT_EXCLUDE">DEFAULT_EXCLUDE</a></dt>
+				
+				<dd class="description"><p>
 Default folders and/or file patterns to exclude from analysis.
 </p></dd>
-        
-      
-      </dl>
-    </div>
-    
+				
+			
+			</dl>
+		</div>
+		
 
-    <!-- Attributes -->
-    
-    <div id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
 
-      
-      <div id="loadpath-attribute-method" class="method-detail">
-        <a name="loadpath"></a>
-        
-        <a name="loadpath="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">loadpath</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+			
+			<div id="loadpath-attribute-method" class="method-detail">
+				<a name="loadpath"></a>
+				
+				<a name="loadpath="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">loadpath</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Directories to scan for scripts. The default is the project&#8217;s
 loadpath.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="exclude-attribute-method" class="method-detail">
-        <a name="exclude"></a>
-        
-        <a name="exclude="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">exclude</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="exclude-attribute-method" class="method-detail">
+				<a name="exclude"></a>
+				
+				<a name="exclude="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">exclude</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Files patterns to specially exclude from loadpath. Default is
 [&#8216;ext&#8217;] b/c this does not yet support C analysis.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="testpath-attribute-method" class="method-detail">
-        <a name="testpath"></a>
-        
-        <a name="testpath="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">testpath</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="testpath-attribute-method" class="method-detail">
+				<a name="testpath"></a>
+				
+				<a name="testpath="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">testpath</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Directories to scan for tests. The default is test/.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="output-attribute-method" class="method-detail">
-        <a name="output"></a>
-        
-        <a name="output="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">output</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="output-attribute-method" class="method-detail">
+				<a name="output"></a>
+				
+				<a name="output="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">output</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Output directory. Default is stats/ folder under the project&#8217;s log
 directory. This should alwasy be a dedicated directory because mutiple
 files are generated with generic names, eg. <tt>index.html</tt>.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="title-attribute-method" class="method-detail">
-        <a name="title"></a>
-        
-        <a name="title="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">title</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="title-attribute-method" class="method-detail">
+				<a name="title"></a>
+				
+				<a name="title="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">title</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Title of pacakge. Thisis used to put a header in the output.
 </p>
-        
-        </div>
-      </div>
-      
-    </div>
-    
+				
+				</div>
+			</div>
+			
+		</div>
+		
 
-    <!-- Methods -->
-    
-    <div id="public-instance-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
 
-    
-      <div id="analyize-method" class="method-detail ">
-        <a name="M000128"></a>
+		
+			<div id="analyize-method" class="method-detail ">
+				<a name="M000128"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">analyize</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">analyize</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Scan source code counting files, lines of code and comments and presents a
 report of it&#8217;s findings.
 </p>
 <p>
 TODO: Add C support for ext/.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="analyize-source">
+					
+					<div class="method-source-code"
+						id="analyize-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 62</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">analyize</span>
@@ -415,35 +396,35 @@ TODO: Add C support for ext/.
         <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;Stats are current (#{out}).&quot;</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="initialize-defaults-method" class="method-detail ">
-        <a name="M000127"></a>
+		
+			<div id="initialize-defaults-method" class="method-detail ">
+				<a name="M000126"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">initialize_defaults</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">initialize_defaults</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Setup default attribute values.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="initialize-defaults-source">
+					
+					<div class="method-source-code"
+						id="initialize-defaults-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 49</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
@@ -453,44 +434,44 @@ Setup default attribute values.
       <span class="ruby-ivar">@exclude</span>  = <span class="ruby-constant">DEFAULT_EXCLUDE</span>
       <span class="ruby-ivar">@output</span>   = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">log</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DEFAULT_FOLDER</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-    </div>
-  
-    <div id="private-instance-method-details" class="method-section section">
-      <h3 class="section-header">Private Instance Methods</h3>
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
 
-    
-      <div id="gen-html-method" class="method-detail ">
-        <a name="M000142"></a>
+		
+			<div id="gen-html-method" class="method-detail ">
+				<a name="M000141"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">gen_html</span><span
-            class="method-args">(head, prod, test, totl, rat, c, r, s, t, l)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">gen_html</span><span
+						class="method-args">(head, prod, test, totl, rat, c, r, s, t, l)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Builds the HTML-based layout.
 </p>
 <p>
 TODO: Need to improve the microformat-ness of stats output.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="gen-html-source">
+					
+					<div class="method-source-code"
+						id="gen-html-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 235</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gen_html</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
@@ -534,35 +515,35 @@ TODO: Need to improve the microformat-ness of stats output.
         &lt;/html&gt;
       }</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="gen-text-method" class="method-detail ">
-        <a name="M000138"></a>
+		
+			<div id="gen-text-method" class="method-detail ">
+				<a name="M000139"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">gen_text</span><span
-            class="method-args">(head, prod, test, totl, rat, c, r, s, t, l)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">gen_text</span><span
+						class="method-args">(head, prod, test, totl, rat, c, r, s, t, l)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Builds the text-based layout.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="gen-text-source">
+					
+					<div class="method-source-code"
+						id="gen-text-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 210</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gen_text</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
@@ -586,35 +567,35 @@ Builds the text-based layout.
       <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
       <span class="ruby-identifier">text</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="generate-stats-method" class="method-detail ">
-        <a name="M000133"></a>
+		
+			<div id="generate-stats-method" class="method-detail ">
+				<a name="M000134"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">generate_stats</span><span
-            class="method-args">(files)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">generate_stats</span><span
+						class="method-args">(files)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Figure out the statistics.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="generate-stats-source">
+					
+					<div class="method-source-code"
+						id="generate-stats-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 102</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_stats</span>(<span class="ruby-identifier">files</span>)
@@ -662,131 +643,131 @@ Figure out the statistics.
       <span class="ruby-identifier">text</span> = <span class="ruby-identifier">gen_html</span>(<span class="ruby-identifier">head</span>, <span class="ruby-identifier">prod</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">totl</span>, <span class="ruby-identifier">rat</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">s</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">l</span>)
       <span class="ruby-identifier">save_stats</span>(<span class="ruby-value str">'index.html'</span>, <span class="ruby-identifier">text</span>)
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="html-row--method" class="method-detail ">
-        <a name="M000146"></a>
+		
+			<div id="html-row--method" class="method-detail ">
+				<a name="M000149"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">html_row2</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">html_row2</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p class="missing-docs">(Not documented)</p>
-          
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
 
-          
-          <div class="method-source-code"
-            id="html-row--source">
+					
+					<div class="method-source-code"
+						id="html-row--source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 285</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_row2</span>
       <span class="ruby-value str">&quot;&lt;tr&gt;&lt;th&gt;%s&lt;/th&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;td&gt;%7s&lt;/td&gt;&lt;/tr&gt;&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="html-rowd-method" class="method-detail ">
-        <a name="M000145"></a>
+		
+			<div id="html-rowd-method" class="method-detail ">
+				<a name="M000148"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">html_rowd</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">html_rowd</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p class="missing-docs">(Not documented)</p>
-          
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
 
-          
-          <div class="method-source-code"
-            id="html-rowd-source">
+					
+					<div class="method-source-code"
+						id="html-rowd-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 281</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_rowd</span>
       <span class="ruby-value str">&quot;&lt;tr&gt;&lt;th&gt;%s&lt;/th&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;/tr&gt;&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="html-rowh-method" class="method-detail ">
-        <a name="M000144"></a>
+		
+			<div id="html-rowh-method" class="method-detail ">
+				<a name="M000147"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">html_rowh</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">html_rowh</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p class="missing-docs">(Not documented)</p>
-          
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
 
-          
-          <div class="method-source-code"
-            id="html-rowh-source">
+					
+					<div class="method-source-code"
+						id="html-rowh-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 277</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_rowh</span>
       <span class="ruby-identifier">html_rowd</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'td'</span>, <span class="ruby-value str">'th'</span>)
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="line-count-method" class="method-detail ">
-        <a name="M000135"></a>
+		
+			<div id="line-count-method" class="method-detail ">
+				<a name="M000135"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">line_count</span><span
-            class="method-args">(*files)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">line_count</span><span
+						class="method-args">(*files)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Return line counts for files.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="line-count-source">
+					
+					<div class="method-source-code"
+						id="line-count-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 150</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">line_count</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">files</span>)
@@ -831,35 +812,35 @@ Return line counts for files.
 
       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fc</span>, <span class="ruby-identifier">l</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">t</span>, <span class="ruby-identifier">s</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="save-stats-method" class="method-detail ">
-        <a name="M000129"></a>
+		
+			<div id="save-stats-method" class="method-detail ">
+				<a name="M000130"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">save_stats</span><span
-            class="method-args">(file, text)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">save_stats</span><span
+						class="method-args">(file, text)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Save stats to output.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="save-stats-source">
+					
+					<div class="method-source-code"
+						id="save-stats-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 83</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save_stats</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">text</span>)
@@ -873,57 +854,64 @@ Save stats to output.
         <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;Updated #{rfile}&quot;</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="testfiles-method" class="method-detail ">
-        <a name="M000132"></a>
+		
+			<div id="testfiles-method" class="method-detail ">
+				<a name="M000133"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">testfiles</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">testfiles</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          
-          
+				<div class="method-description">
+					
+					
+					
 
-          
-          <div class="method-source-code"
-            id="testfiles-source">
+					
+					<div class="method-source-code"
+						id="testfiles-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/stats.rb, line 96</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testfiles</span>
       <span class="ruby-ivar">@testfiles</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">multiglob_r</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">testpath</span>)
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-    </div>
-  
+		
+		</div>
+	
 
-  </div>
+	</div>
 
 
-  <div id="rdoc-debugging-section-dump" class="debugging-section">
-  
-    <p>Disabled; run with --debug to generate this.</p>
-  
-  </div>
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
 
 </body>
 </html>
+

@@ -5,8 +5,8 @@ block_params:
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: Load service configs for a select set of syckle scripts/tasks.
-full_name: Syckle::Application#load_service_configs
+full_name: Syckle::Config#load_service_configs
 is_singleton: false
 name: load_service_configs
-params: (files)
-visibility: public
+params: (project)
+visibility: private

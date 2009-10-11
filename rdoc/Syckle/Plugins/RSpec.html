@@ -1,438 +1,419 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: Syckle::Plugins::RSpec</title>
+	<title>Class: Syckle::Plugins::RSpec</title>
 
-  
-    <link rel="SHORTCUT ICON" href="../../images/class.png">
-  
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
 
-  <link type="text/css" media="screen" rel="stylesheet" href="../../rdoc.css" />
-
-  <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
 
 </head>
 <body class="class">
 
-  <div class="head">
-    <h1>
-      
-        <img src="../../images/class.png" align="absmiddle">&nbsp;
-      
-      <a href="../../index.html">Syckle</a>&nbsp;
-      <a href="/">Syckle::Plugins::RSpec</a>
-    </h1>
-  </div>
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../plug/syckle/services/rspec_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="plug/syckle/services/rspec.rb">plug/syckle/services/rspec.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
 
-  <div id="metadata">
-    <div id="project-metadata">
+			
+		</div>
 
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li class="file"><a href="../../plug/syckle/services/rspec_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="plug/syckle/services/rspec.rb">plug/syckle/services/rspec.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+		<div id="class-metadata">
 
-      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Service</p>
+				
+			</div>
+			
 
-      
-    </div>
+			<!-- Namespace Contents -->
+			
 
-    <div id="class-metadata">
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000168">#document</a></li>
+					
+					<li><a href="#M000166">#initialize_defaults</a></li>
+					
+					<li><a href="#M000169">#shellout</a></li>
+					
+					<li><a href="#M000167">#validate</a></li>
+					
+				</ul>
+			</div>
+			
 
-      <!-- Parent Class -->
-      
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        <ul>
-          
-          <li class="class">Service</li>
-          
-        </ul>
-      </div>
-      
+			<!-- Included Modules -->
+			
+		</div>
 
-      <!-- Namespace Contents -->
-      
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="../../NOTES_rdoc.html">NOTES.rdoc</a></li>
+				
+					<li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../../TODO.html">TODO</a></li>
+				
+				</ul>
+			</div>
+			
 
-      <!-- Method Quickref -->
-      
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li class="method"><a href="#M000175">#document</a></li>
-          
-          <li class="method"><a href="#M000173">#initialize_defaults</a></li>
-          
-          <li class="method"><a href="#M000176">#shellout</a></li>
-          
-          <li class="method"><a href="#M000174">#validate</a></li>
-          
-        </ul>
-      </div>
-      
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
 
-      <!-- Included Modules -->
-      
-    </div>
+				<ul class="link-list">
+				
+					<li><a href="../../Syckle.html">Syckle</a></li>
+				
+					<li><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="../../Syckle/Config/TMP.html">Syckle::Config::TMP</a></li>
+				
+					<li><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+				
+					<li><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+				
+					<li><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+				
+					<li><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+				
+					<li><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+				
+					<li><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+				
+					<li><a href="../../Syckle/Syckfile.html">Syckle::Syckfile</a></li>
+				
+					<li><a href="../../Syckle/Syckfile/Entry.html">Syckle::Syckfile::Entry</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
 
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="../../COPYING.html">COPYING</a></li>
-        
-          <li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
-        
-          <li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
-        
-          <li class="file"><a href="../../TODO.html">TODO</a></li>
-        
-        </ul>
-      </div>
-      
+			
+		</div>
+	</div>
 
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class Index
-          <span class="search-toggle"><img src="../../images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
+	<div id="documentation">
+		<h1 class="class">Syckle::Plugins::RSpec</h1>
 
-        <!-- classpage.html : classes -->
-        <ul class="link-list">
-        
-          <li class="module"><a href="../../Syckle.html">Syckle</a></li>
-        
-          <li class="class"><a href="../../Syckle/Application.html">Syckle::Application</a></li>
-        
-          <li class="class"><a href="../../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
-        
-          <li class="class"><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
-        
-          <li class="class"><a href="../../Syckle/Config.html">Syckle::Config</a></li>
-        
-          <li class="class"><a href="../../Syckle/IO.html">Syckle::IO</a></li>
-        
-          <li class="class"><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
-        
-          <li class="class"><a href="../../Syckle/Log.html">Syckle::Log</a></li>
-        
-          <li class="module"><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Notes.html">Syckle::Plugins::Notes</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
-        
-          <li class="class"><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
-        
-          <li class="class"><a href="../../Syckle/Script.html">Syckle::Script</a></li>
-        
-          <li class="class"><a href="../../Syckle/Service.html">Syckle::Service</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
-
-    <div id="validator-badges">
-      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
-      <a href="http://validator.w3.org/check/referer">[Validate]</a>
-    </div>
-  </div>
-
-  <div id="documentation">
-
-    <div id="description">
-      
-
-      <h1><a href="RSpec.html">RSpec</a> Plugin</h1>
+		<div id="description">
+			<h1><a href="RSpec.html">RSpec</a> Plugin</h1>
 <p>
 Can automatically run if there is a spec/ directory.
 </p>
 
-    </div>
+		</div>
 
-    <!-- Constants -->
-    
+		<!-- Constants -->
+		
 
-    <!-- Attributes -->
-    
-    <div id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
 
-      
-      <div id="specs-attribute-method" class="method-detail">
-        <a name="specs"></a>
-        
-        <a name="specs="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">specs</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+			
+			<div id="specs-attribute-method" class="method-detail">
+				<a name="specs"></a>
+				
+				<a name="specs="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">specs</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 File glob(s) of spec files. Defaults to [&#8216;spec/**/*_spec.rb&#8217;,
 &#8216;spec/*<b>/spec_</b>.rb&#8217;].
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="loadpath-attribute-method" class="method-detail">
-        <a name="loadpath"></a>
-        
-        <a name="loadpath="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">loadpath</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="loadpath-attribute-method" class="method-detail">
+				<a name="loadpath"></a>
+				
+				<a name="loadpath="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">loadpath</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Paths to add $LOAD_PATH. Defaults to [&#8216;lib&#8217;].
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="require-attribute-method" class="method-detail">
-        <a name="require"></a>
-        
-        <a name="require="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">require</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="require-attribute-method" class="method-detail">
+				<a name="require"></a>
+				
+				<a name="require="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">require</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Lib(s) to require before excuting specifications.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="warning-attribute-method" class="method-detail">
-        <a name="warning"></a>
-        
-        <a name="warning="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">warning</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="warning-attribute-method" class="method-detail">
+				<a name="warning"></a>
+				
+				<a name="warning="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">warning</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Whether to show warnings or not. Default is false.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="command-attribute-method" class="method-detail">
-        <a name="command"></a>
-        
-        <a name="command="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">command</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="command-attribute-method" class="method-detail">
+				<a name="command"></a>
+				
+				<a name="command="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">command</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Spec command to use. Defaults to &#8216;spec&#8217;.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="format-attribute-method" class="method-detail">
-        <a name="format"></a>
-        
-        <a name="format="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">format</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="format-attribute-method" class="method-detail">
+				<a name="format"></a>
+				
+				<a name="format="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">format</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Format of <a href="RSpec.html">RSpec</a> output.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="rubyopt-attribute-method" class="method-detail">
-        <a name="rubyopt"></a>
-        
-        <a name="rubyopt="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">rubyopt</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="rubyopt-attribute-method" class="method-detail">
+				<a name="rubyopt"></a>
+				
+				<a name="rubyopt="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">rubyopt</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Additional options to pass to the ruby command.
 </p>
-        
-        </div>
-      </div>
-      
-      <div id="specopt-attribute-method" class="method-detail">
-        <a name="specopt"></a>
-        
-        <a name="specopt="></a>
-        
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">specopt</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+				
+				</div>
+			</div>
+			
+			<div id="specopt-attribute-method" class="method-detail">
+				<a name="specopt"></a>
+				
+				<a name="specopt="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">specopt</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-        
-        <p>
+				<div class="method-description">
+				
+				<p>
 Additional commandline options for spec command.
 </p>
-        
-        </div>
-      </div>
-      
-    </div>
-    
+				
+				</div>
+			</div>
+			
+		</div>
+		
 
-    <!-- Methods -->
-    
-    <div id="public-instance-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
 
-    
-      <div id="document-method" class="method-detail ">
-        <a name="M000175"></a>
+		
+			<div id="document-method" class="method-detail ">
+				<a name="M000168"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">document</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">document</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Run all specs with text output
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="document-source">
+					
+					<div class="method-source-code"
+						id="document-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rspec.rb, line 87</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">document</span>
       <span class="ruby-identifier">shellout</span>(<span class="ruby-value str">'specdoc'</span>)
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="initialize-defaults-method" class="method-detail ">
-        <a name="M000173"></a>
+		
+			<div id="initialize-defaults-method" class="method-detail ">
+				<a name="M000166"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">initialize_defaults</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">initialize_defaults</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p class="missing-docs">(Not documented)</p>
-          
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
 
-          
-          <div class="method-source-code"
-            id="initialize-defaults-source">
+					
+					<div class="method-source-code"
+						id="initialize-defaults-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rspec.rb, line 55</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
@@ -443,28 +424,28 @@ Run all specs with text output
       <span class="ruby-ivar">@warning</span>  = <span class="ruby-keyword kw">false</span>
       <span class="ruby-ivar">@command</span>  = <span class="ruby-value str">'spec'</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="validate-method" class="method-detail ">
-        <a name="M000174"></a>
+		
+			<div id="validate-method" class="method-detail ">
+				<a name="M000167"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">validate</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">validate</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
+				<div class="method-description">
+					
+					<p>
 Run all specs with basic output.
 </p>
 <p>
@@ -481,49 +462,49 @@ Options:
   rubyopt   Additional options to pass to the ruby command.
   specopt   Additional commandline options for spec command.
 </pre>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="validate-source">
+					
+					<div class="method-source-code"
+						id="validate-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rspec.rb, line 81</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate</span>
       <span class="ruby-identifier">shellout</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-    </div>
-  
-    <div id="private-instance-method-details" class="method-section section">
-      <h3 class="section-header">Private Instance Methods</h3>
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
 
-    
-      <div id="shellout-method" class="method-detail ">
-        <a name="M000176"></a>
+		
+			<div id="shellout-method" class="method-detail ">
+				<a name="M000169"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">shellout</span><span
-            class="method-args">(format=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">shellout</span><span
+						class="method-args">(format=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p class="missing-docs">(Not documented)</p>
-          
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
 
-          
-          <div class="method-source-code"
-            id="shellout-source">
+					
+					<div class="method-source-code"
+						id="shellout-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rspec.rb, line 93</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">format</span>=<span class="ruby-keyword kw">nil</span>)
@@ -561,25 +542,32 @@ Options:
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-    </div>
-  
+		
+		</div>
+	
 
-  </div>
+	</div>
 
 
-  <div id="rdoc-debugging-section-dump" class="debugging-section">
-  
-    <p>Disabled; run with --debug to generate this.</p>
-  
-  </div>
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
 
 </body>
 </html>
+

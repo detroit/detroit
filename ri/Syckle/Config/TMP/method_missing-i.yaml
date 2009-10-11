@@ -3,7 +3,7 @@ aliases: []
 
 block_params: 
 comment: 
-full_name: Syckle::Application::TMP#method_missing
+full_name: Syckle::Config::TMP#method_missing
 is_singleton: false
 name: method_missing
 params: (s)

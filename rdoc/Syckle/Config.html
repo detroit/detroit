@@ -1,212 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: Syckle::Config</title>
+	<title>Class: Syckle::Config</title>
 
-  
-    <link rel="SHORTCUT ICON" href="../images/class.png">
-  
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
-  <link type="text/css" media="screen" rel="stylesheet" href="../rdoc.css" />
-
-  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
 
 </head>
 <body class="class">
 
-  <div class="head">
-    <h1>
-      
-        <img src="../images/class.png" align="absmiddle">&nbsp;
-      
-      <a href="../index.html">Syckle</a>&nbsp;
-      <a href="/">Syckle::Config</a>
-    </h1>
-  </div>
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/syckle/config_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/syckle/config.rb">lib/syckle/config.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
 
-  <div id="metadata">
-    <div id="project-metadata">
+			
+		</div>
 
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li class="file"><a href="../lib/syckle/config_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/syckle/config.rb">lib/syckle/config.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+		<div id="class-metadata">
 
-      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
 
-      
-    </div>
+			<!-- Namespace Contents -->
+			
+			<div id="namespace-list-section" class="section">
+				<h3 class="section-header">Namespace</h3>
+				<ul class="link-list">
+					
+					<li><span class="type">CLASS</span> <a href="Config/TMP.html">Syckle::Config::TMP</a></li>
+					
+				</ul>
+			</div>
+			
 
-    <div id="class-metadata">
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000000">::new</a></li>
+					
+					<li><a href="#M000001">#load_service_configs</a></li>
+					
+				</ul>
+			</div>
+			
 
-      <!-- Parent Class -->
-      
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        <ul>
-          
-          <li class="class">Object</li>
-          
-        </ul>
-      </div>
-      
+			<!-- Included Modules -->
+			
+		</div>
 
-      <!-- Namespace Contents -->
-      
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="../HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="../NOTES_rdoc.html">NOTES.rdoc</a></li>
+				
+					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../TODO.html">TODO</a></li>
+				
+				</ul>
+			</div>
+			
 
-      <!-- Method Quickref -->
-      
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li class="method"><a href="#M000000">::new</a></li>
-          
-          <li class="method"><a href="#M000002">#automatic</a></li>
-          
-          <li class="method"><a href="#M000003">#automatic?</a></li>
-          
-          <li class="method"><a href="#M000006">#defaults</a></li>
-          
-          <li class="method"><a href="#M000005">#manual</a></li>
-          
-        </ul>
-      </div>
-      
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
 
-      <!-- Included Modules -->
-      
-    </div>
+				<ul class="link-list">
+				
+					<li><a href="../Syckle.html">Syckle</a></li>
+				
+					<li><a href="../Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="../Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="../Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="../Syckle/Config/TMP.html">Syckle::Config::TMP</a></li>
+				
+					<li><a href="../Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="../Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="../Syckle/Plugins.html">Syckle::Plugins</a></li>
+				
+					<li><a href="../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+				
+					<li><a href="../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+				
+					<li><a href="../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+				
+					<li><a href="../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+				
+					<li><a href="../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+				
+					<li><a href="../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+				
+					<li><a href="../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+				
+					<li><a href="../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+				
+					<li><a href="../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+				
+					<li><a href="../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+				
+					<li><a href="../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+				
+					<li><a href="../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+				
+					<li><a href="../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+				
+					<li><a href="../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+				
+					<li><a href="../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+				
+					<li><a href="../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+				
+					<li><a href="../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+				
+					<li><a href="../Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="../Syckle/Service.html">Syckle::Service</a></li>
+				
+					<li><a href="../Syckle/Syckfile.html">Syckle::Syckfile</a></li>
+				
+					<li><a href="../Syckle/Syckfile/Entry.html">Syckle::Syckfile::Entry</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
 
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="../COPYING.html">COPYING</a></li>
-        
-          <li class="file"><a href="../HISTORY.html">HISTORY</a></li>
-        
-          <li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
-        
-          <li class="file"><a href="../TODO.html">TODO</a></li>
-        
-        </ul>
-      </div>
-      
+			
+		</div>
+	</div>
 
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class Index
-          <span class="search-toggle"><img src="../images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
+	<div id="documentation">
+		<h1 class="class">Syckle::Config</h1>
 
-        <!-- classpage.html : classes -->
-        <ul class="link-list">
-        
-          <li class="module"><a href="../Syckle.html">Syckle</a></li>
-        
-          <li class="class"><a href="../Syckle/Application.html">Syckle::Application</a></li>
-        
-          <li class="class"><a href="../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
-        
-          <li class="class"><a href="../Syckle/CLI.html">Syckle::CLI</a></li>
-        
-          <li class="class"><a href="../Syckle/Config.html">Syckle::Config</a></li>
-        
-          <li class="class"><a href="../Syckle/IO.html">Syckle::IO</a></li>
-        
-          <li class="class"><a href="../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
-        
-          <li class="class"><a href="../Syckle/Log.html">Syckle::Log</a></li>
-        
-          <li class="module"><a href="../Syckle/Plugins.html">Syckle::Plugins</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Notes.html">Syckle::Plugins::Notes</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
-        
-          <li class="class"><a href="../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
-        
-          <li class="class"><a href="../Syckle/Script.html">Syckle::Script</a></li>
-        
-          <li class="class"><a href="../Syckle/Service.html">Syckle::Service</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
-
-    <div id="validator-badges">
-      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
-      <a href="http://validator.w3.org/check/referer">[Validate]</a>
-    </div>
-  </div>
-
-  <div id="documentation">
-
-    <div id="description">
-      
-        <h1>Config</h1>
-      
-
-      <p>
+		<div id="description">
+			<p>
 <a href="../Syckle.html">Syckle</a> master configuration. Configuration
 settings load from a YStore located at &#8217;.config/syckle/&#8217;.
 </p>
@@ -217,214 +199,209 @@ TODO: Allow <tt>automatic</tt> to be a list of serive names to active
       automatic mode for.
 </pre>
 
-    </div>
+		</div>
 
-    <!-- Constants -->
-    
+		<!-- Constants -->
+		
 
-    <!-- Attributes -->
-    
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
 
-    <!-- Methods -->
-    
-    <div id="public-class-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
+			
+			<div id="services-attribute-method" class="method-detail">
+				<a name="services"></a>
+				
+				<a name="services="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">services</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-    
-      <div id="new-method" class="method-detail ">
-        <a name="M000000"></a>
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+			<div id="automatic-attribute-method" class="method-detail">
+				<a name="automatic"></a>
+				
+				<a name="automatic="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">automatic</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-heading">
-        
-          <span class="method-name">new</span><span
-            class="method-args">(project)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+			<div id="manual-attribute-method" class="method-detail">
+				<a name="manual"></a>
+				
+				<a name="manual="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">manual</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-        <div class="method-description">
-          
-          
-          
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+			<div id="defaults-attribute-method" class="method-detail">
+				<a name="defaults"></a>
+				
+				<a name="defaults="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">defaults</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
 
-          
-          <div class="method-source-code"
-            id="new-source">
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="M000000"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(project)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 14</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 26</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">project</span>)
-      <span class="ruby-comment cmt">#@project = project</span>
-
-      <span class="ruby-comment cmt">#initialize_defaults</span>
-
-      <span class="ruby-comment cmt"># If YAML file is used.</span>
-      <span class="ruby-comment cmt">#project.config.glob('syckle{,.yml,.yaml}').each do |path|</span>
-      <span class="ruby-comment cmt">#  conf = conf.merge(YAML.load(File.new(path))) if path.file?</span>
-      <span class="ruby-comment cmt">#end</span>
-
-      <span class="ruby-ivar">@store</span> = <span class="ruby-constant">Path</span><span class="ruby-operator">::</span><span class="ruby-constant">Store</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">config</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'syckle'</span>)
+      <span class="ruby-ivar">@services</span>  = <span class="ruby-identifier">load_service_configs</span>(<span class="ruby-identifier">project</span>)
+      <span class="ruby-ivar">@automatic</span> = <span class="ruby-identifier">services</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'automatic'</span>) <span class="ruby-operator">||</span> {}  <span class="ruby-comment cmt">#if @services.key?('automatic')</span>
+      <span class="ruby-ivar">@manual</span>    = <span class="ruby-identifier">services</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'manual'</span>)    <span class="ruby-operator">||</span> {}  <span class="ruby-comment cmt">#if @services.key?('manual')</span>
+      <span class="ruby-ivar">@defaults</span>  = <span class="ruby-identifier">services</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'defaults'</span>)  <span class="ruby-operator">||</span> {}  <span class="ruby-comment cmt">#if @services.key?('defaults')</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-      </div>
+				
+			</div>
 
-    
-    </div>
-  
-    <div id="public-instance-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
 
-    
-      <div id="automatic-method" class="method-detail ">
-        <a name="M000002"></a>
+		
+			<div id="load-service-configs-method" class="method-detail ">
+				<a name="M000001"></a>
 
-        <div class="method-heading">
-        
-          <span class="method-name">automatic</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
+				<div class="method-heading">
+				
+					<span class="method-name">load_service_configs</span><span
+						class="method-args">(project)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
 
-        <div class="method-description">
-          
-          <p>
-Use automatic services feature? If set to <tt>true</tt>, all services with
-autorun modes will run if their autorun criteria is met. Or this can be set
-to a list of service names for which autorub mode will apply.
+				<div class="method-description">
+					
+					<p>
+Load service configs for a select set of syckle scripts/tasks.
 </p>
-          
+					
 
-          
-          <div class="method-source-code"
-            id="automatic-source">
+					
+					<div class="method-source-code"
+						id="load-service-configs-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/syckle/config.rb, line 37</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">automatic</span>
-      <span class="ruby-ivar">@store</span>.<span class="ruby-identifier">automatic</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_service_configs</span>(<span class="ruby-identifier">project</span>)
+      <span class="ruby-identifier">files</span> = []
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'Syckfile'</span>)
+        <span class="ruby-identifier">files</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'Syckfile'</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">files</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">task</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'*.syckle'</span>)
+        <span class="ruby-identifier">files</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">script</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'*.syckle'</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">files</span>  = <span class="ruby-identifier">files</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">f</span>) }
+
+      <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;No syckle services defined.&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">files</span>.<span class="ruby-identifier">empty?</span>
+
+      <span class="ruby-identifier">srvcfg</span> = <span class="ruby-identifier">files</span>.<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cfg</span>, <span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">tmp</span> = <span class="ruby-constant">TMP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">metadata</span>)
+        <span class="ruby-identifier">erb</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>))
+        <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">erb</span>.<span class="ruby-identifier">result</span>(<span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">_binding</span>).<span class="ruby-identifier">strip</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-regexp re">/\A---/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">txt</span>
+          <span class="ruby-identifier">yml</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">txt</span>) <span class="ruby-operator">||</span> {}
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">yml</span> = <span class="ruby-constant">Syckfile</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">txt</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">yml</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">cfg</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">yml</span>)
+      <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
+					</div>
+					
+				</div>
 
-        
-        <div class="aliases">
-          Also aliased as: <a href="Config.html#M000003">automatic?</a>
-        </div>
-        
-      </div>
+				
+			</div>
 
-    
-      <div id="automatic--method" class="method-detail method-alias">
-        <a name="M000003"></a>
+		
+		</div>
+	
 
-        <div class="method-heading">
-        
-          <span class="method-name">automatic?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
-
-        <div class="method-description">
-          
-          <p>
-Alias for <a href="Config.html#M000002">automatic</a>
-</p>
-          
-
-          
-        </div>
-
-        
-      </div>
-
-    
-      <div id="defaults-method" class="method-detail ">
-        <a name="M000006"></a>
-
-        <div class="method-heading">
-        
-          <span class="method-name">defaults</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
-
-        <div class="method-description">
-          
-          <p>
-<a href="Service.html">Service</a> defaults. This is a mapping of service
-names to default settings. Very useful for autorun mode.
-</p>
-          
-
-          
-          <div class="method-source-code"
-            id="defaults-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 54</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">defaults</span>
-      <span class="ruby-ivar">@store</span>.<span class="ruby-identifier">defaults</span> <span class="ruby-operator">||</span> {}
-    <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-      </div>
-
-    
-      <div id="manual-method" class="method-detail ">
-        <a name="M000005"></a>
-
-        <div class="method-heading">
-        
-          <span class="method-name">manual</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
-
-        <div class="method-description">
-          
-          <p>
-Services to omit from automatic execution. If automatic is set to true, the
-manual setting can be used to exclude specify services for autorunning.
-Should be an array of service names (class basenames).
-</p>
-          
-
-          
-          <div class="method-source-code"
-            id="manual-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 48</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">manual</span>
-      <span class="ruby-ivar">@store</span>.<span class="ruby-identifier">manual</span> <span class="ruby-operator">||</span> []
-    <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-      </div>
-
-    
-    </div>
-  
-
-  </div>
+	</div>
 
 
-  <div id="rdoc-debugging-section-dump" class="debugging-section">
-  
-    <p>Disabled; run with --debug to generate this.</p>
-  
-  </div>
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
 
 </body>
 </html>
+
