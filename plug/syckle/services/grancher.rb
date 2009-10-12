@@ -10,15 +10,13 @@ module Syckle::Plugins
   #
   class Grancher < Service
 
-    # TODO: precycle release, may be better placing.
-
-    aftcycle :main, :document do
+    precycle :main, :release do
       transfer
     end
 
     cycle :main, :release
 
-    aftcycle :site, :document do
+    precycle :site, :release do
       transfer
     end
 

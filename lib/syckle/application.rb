@@ -56,7 +56,8 @@ module Syckle
       @cli      = cli_options #Syckle::CLI.new
       @io       = Syckle::IO.new(@cli)
       @script   = Syckle::Script.new(:io=>io, :cli=>cli)
-      @config   = Syckle::Config.new(@script.project)
+
+      @config   = Syckle::Config.new(project)
 
       #@services, @actions = *load_service_configuration
 
