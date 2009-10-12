@@ -61,8 +61,6 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: end_phases
 - !ruby/object:RDoc::RI::MethodSummary 
-  name: inject_environment
-- !ruby/object:RDoc::RI::MethodSummary 
   name: load_plugins
 - !ruby/object:RDoc::RI::MethodSummary 
   name: load_project_plugins

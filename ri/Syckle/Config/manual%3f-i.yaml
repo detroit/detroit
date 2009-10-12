@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Are there any manual entries?
+full_name: Syckle::Config#manual?
+is_singleton: false
+name: manual?
+params: ()
+visibility: public

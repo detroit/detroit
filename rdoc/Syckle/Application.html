@@ -59,41 +59,39 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#M000002">::new</a></li>
+					<li><a href="#M000000">::new</a></li>
 					
-					<li><a href="#M000011">#active_services</a></li>
+					<li><a href="#M000012">#active_services</a></li>
 					
-					<li><a href="#M000007">#config_template</a></li>
+					<li><a href="#M000008">#config_template</a></li>
 					
 					<li><a href="#M000006">#defaults</a></li>
 					
-					<li><a href="#M000030">#end_phases</a></li>
+					<li><a href="#M000034">#end_phases</a></li>
 					
-					<li><a href="#M000013">#inject_environment</a></li>
+					<li><a href="#M000001">#load_plugins</a></li>
 					
-					<li><a href="#M000003">#load_plugins</a></li>
+					<li><a href="#M000033">#load_project_plugins</a></li>
 					
-					<li><a href="#M000029">#load_project_plugins</a></li>
+					<li><a href="#M000003">#multitask?</a></li>
 					
-					<li><a href="#M000004">#multitask?</a></li>
-					
-					<li><a href="#M000034">#overview</a></li>
+					<li><a href="#M000035">#overview</a></li>
 					
 					<li><a href="#M000005">#project</a></li>
 					
-					<li><a href="#M000025">#run</a></li>
+					<li><a href="#M000022">#run</a></li>
 					
-					<li><a href="#M000028">#run_a_service</a></li>
+					<li><a href="#M000031">#run_a_service</a></li>
 					
-					<li><a href="#M000023">#runscript</a></li>
+					<li><a href="#M000019">#runscript</a></li>
 					
-					<li><a href="#M000027">#service_calls</a></li>
+					<li><a href="#M000030">#service_calls</a></li>
 					
-					<li><a href="#M000016">#service_configs</a></li>
+					<li><a href="#M000017">#service_configs</a></li>
 					
-					<li><a href="#M000020">#skip</a></li>
+					<li><a href="#M000018">#skip</a></li>
 					
-					<li><a href="#M000024">#start</a></li>
+					<li><a href="#M000020">#start</a></li>
 					
 				</ul>
 			</div>
@@ -117,6 +115,8 @@
 					<li class="file"><a href="../NOTES_rdoc.html">NOTES.rdoc</a></li>
 				
 					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../Syckfile.html">Syckfile</a></li>
 				
 					<li class="file"><a href="../TODO.html">TODO</a></li>
 				
@@ -146,8 +146,6 @@
 					<li><a href="../Syckle/CLI.html">Syckle::CLI</a></li>
 				
 					<li><a href="../Syckle/Config.html">Syckle::Config</a></li>
-				
-					<li><a href="../Syckle/Config/TMP.html">Syckle::Config::TMP</a></li>
 				
 					<li><a href="../Syckle/IO.html">Syckle::IO</a></li>
 				
@@ -194,10 +192,6 @@
 					<li><a href="../Syckle/Script.html">Syckle::Script</a></li>
 				
 					<li><a href="../Syckle/Service.html">Syckle::Service</a></li>
-				
-					<li><a href="../Syckle/Syckfile.html">Syckle::Syckfile</a></li>
-				
-					<li><a href="../Syckle/Syckfile/Entry.html">Syckle::Syckfile::Entry</a></li>
 				
 				</ul>
 				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
@@ -323,7 +317,7 @@ Actions (extracted from services).
 
 		
 			<div id="new-method" class="method-detail ">
-				<a name="M000002"></a>
+				<a name="M000000"></a>
 
 				<div class="method-heading">
 				
@@ -351,7 +345,9 @@ href="Application.html">Application</a>.
       <span class="ruby-ivar">@io</span>       = <span class="ruby-constant">Syckle</span><span class="ruby-operator">::</span><span class="ruby-constant">IO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@cli</span>)
       <span class="ruby-ivar">@script</span>   = <span class="ruby-constant">Syckle</span><span class="ruby-operator">::</span><span class="ruby-constant">Script</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:io=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">io</span>, <span class="ruby-identifier">:cli=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">cli</span>)
       <span class="ruby-ivar">@config</span>   = <span class="ruby-constant">Syckle</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@script</span>.<span class="ruby-identifier">project</span>)
+
       <span class="ruby-comment cmt">#@services, @actions = *load_service_configuration</span>
+
       <span class="ruby-identifier">load_plugins</span>
     <span class="ruby-keyword kw">end</span></pre>
 					</div>
@@ -369,7 +365,7 @@ href="Application.html">Application</a>.
 
 		
 			<div id="active-services-method" class="method-detail ">
-				<a name="M000011"></a>
+				<a name="M000012"></a>
 
 				<div class="method-heading">
 				
@@ -393,7 +389,7 @@ TODO: Support config.automatic as a list of automated servies.
 					<div class="method-source-code"
 						id="active-services-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 124</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 126</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">active_services</span>
       <span class="ruby-ivar">@active_services</span> <span class="ruby-operator">||=</span> (
         <span class="ruby-identifier">a</span> = []
@@ -424,7 +420,7 @@ TODO: Support config.automatic as a list of automated servies.
 
           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">service_class</span>.<span class="ruby-identifier">available?</span>(<span class="ruby-identifier">project</span>)
             <span class="ruby-identifier">autolist</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">service_class</span>) <span class="ruby-comment cmt"># remove class from autolist</span>
-            <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">inject_environment</span>(<span class="ruby-identifier">opts</span>) <span class="ruby-comment cmt"># TODO: DEPRECATE</span>
+            <span class="ruby-comment cmt">#opts = inject_environment(opts) # TODO: DEPRECATE</span>
             <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">defaults</span>[<span class="ruby-identifier">service_name</span>.<span class="ruby-identifier">downcase</span>].<span class="ruby-identifier">to_h</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>)
             <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">service_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">script</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-comment cmt">#project,</span>
           <span class="ruby-keyword kw">end</span>
@@ -453,7 +449,7 @@ TODO: Support config.automatic as a list of automated servies.
 
 		
 			<div id="config-template-method" class="method-detail ">
-				<a name="M000007"></a>
+				<a name="M000008"></a>
 
 				<div class="method-heading">
 				
@@ -475,7 +471,7 @@ purposes.
 					<div class="method-source-code"
 						id="config-template-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 108</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 110</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">config_template</span>
       <span class="ruby-identifier">cfg</span> = {}
       <span class="ruby-constant">Syckle</span>.<span class="ruby-identifier">services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">srv_name</span>, <span class="ruby-identifier">srv_class</span><span class="ruby-operator">|</span>
@@ -517,7 +513,7 @@ User-defined service defaults.
 					<div class="method-source-code"
 						id="defaults-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 101</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 103</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">defaults</span>
       <span class="ruby-identifier">config</span>.<span class="ruby-identifier">defaults</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -530,7 +526,7 @@ User-defined service defaults.
 
 		
 			<div id="end-phases-method" class="method-detail ">
-				<a name="M000030"></a>
+				<a name="M000034"></a>
 
 				<div class="method-heading">
 				
@@ -552,7 +548,7 @@ FIXME: phase_map is not defined.
 					<div class="method-source-code"
 						id="end-phases-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 423</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 427</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_phases</span>
       (<span class="ruby-identifier">phase_map</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">phase_map</span>.<span class="ruby-identifier">values</span>).<span class="ruby-identifier">compact</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -564,51 +560,8 @@ FIXME: phase_map is not defined.
 			</div>
 
 		
-			<div id="inject-environment-method" class="method-detail ">
-				<a name="M000013"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">inject_environment</span><span
-						class="method-args">(options)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-This substitutes environment vairables in for service options if they are
-given in the form of +ENV[NAME]+.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="inject-environment-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 181</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inject_environment</span>(<span class="ruby-identifier">options</span>)
-      <span class="ruby-identifier">opts</span> = {}
-      <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">md</span> = <span class="ruby-regexp re">/^ENV\[(.*?)\]/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">v</span>)
-          <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-constant">ENV</span>[<span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>]]
-        <span class="ruby-keyword kw">else</span>
-          <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>
-        <span class="ruby-keyword kw">end</span>
-      <span class="ruby-keyword kw">end</span>
-      <span class="ruby-identifier">opts</span>
-    <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-			</div>
-
-		
 			<div id="load-plugins-method" class="method-detail ">
-				<a name="M000003"></a>
+				<a name="M000001"></a>
 
 				<div class="method-heading">
 				
@@ -627,7 +580,7 @@ given in the form of +ENV[NAME]+.
 					<div class="method-source-code"
 						id="load-plugins-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 65</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 67</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_plugins</span>
       <span class="ruby-constant">PluginManager</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">PLUGIN_DIRECTORY</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'/*.rb'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
       <span class="ruby-comment cmt">#Syckle.plugins.each do |file|</span>
@@ -644,7 +597,7 @@ given in the form of +ENV[NAME]+.
 
 		
 			<div id="load-project-plugins-method" class="method-detail ">
-				<a name="M000029"></a>
+				<a name="M000033"></a>
 
 				<div class="method-heading">
 				
@@ -665,7 +618,7 @@ Load custom plugins. FIXME: how to load?
 					<div class="method-source-code"
 						id="load-project-plugins-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 410</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 414</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_project_plugins</span>
       <span class="ruby-comment cmt">#scripts = project.config_syckle.glob('*.rb')</span>
      <span class="ruby-identifier">scripts</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'*.rb'</span>)
@@ -684,7 +637,7 @@ Load custom plugins. FIXME: how to load?
 
 		
 			<div id="multitask--method" class="method-detail ">
-				<a name="M000004"></a>
+				<a name="M000003"></a>
 
 				<div class="method-heading">
 				
@@ -705,7 +658,7 @@ Multitask mode?
 					<div class="method-source-code"
 						id="multitask--source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 75</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 77</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multitask?</span>
       <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">multitask?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">Parallel</span>) <span class="ruby-comment cmt">#parallel?</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -718,7 +671,7 @@ Multitask mode?
 
 		
 			<div id="overview-method" class="method-detail ">
-				<a name="M000034"></a>
+				<a name="M000035"></a>
 
 				<div class="method-heading">
 				
@@ -732,7 +685,7 @@ Multitask mode?
 					
 					<p>
 Give an overview of phases this pipeline supports. FIXME: <a
-href="Application.html#M000030">end_phases</a> blows up.
+href="Application.html#M000034">end_phases</a> blows up.
 </p>
 					
 
@@ -740,7 +693,7 @@ href="Application.html#M000030">end_phases</a> blows up.
 					<div class="method-source-code"
 						id="overview-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 430</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 434</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">overview</span>
       <span class="ruby-identifier">end_phases</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase_name</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">action_plan</span>(<span class="ruby-identifier">phase_name</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">act</span><span class="ruby-operator">|</span>
@@ -779,7 +732,7 @@ Provides access to the Project instance.
 					<div class="method-source-code"
 						id="project-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 95</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 97</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">project</span>
       <span class="ruby-identifier">script</span>.<span class="ruby-identifier">project</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -792,7 +745,7 @@ Provides access to the Project instance.
 
 		
 			<div id="run-method" class="method-detail ">
-				<a name="M000025"></a>
+				<a name="M000022"></a>
 
 				<div class="method-heading">
 				
@@ -813,7 +766,7 @@ Run the cycle upto the specified cycle-phase.
 					<div class="method-source-code"
 						id="run-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 306</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 310</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">job</span>)
       <span class="ruby-comment cmt"># Improve this in the future.</span>
       <span class="ruby-comment cmt">#if cli == '?'</span>
@@ -889,7 +842,7 @@ Run the cycle upto the specified cycle-phase.
 
 		
 			<div id="run-a-service-method" class="method-detail ">
-				<a name="M000028"></a>
+				<a name="M000031"></a>
 
 				<div class="method-heading">
 				
@@ -910,7 +863,7 @@ Run a service given the service, pipe name and phase name.
 					<div class="method-source-code"
 						id="run-a-service-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 395</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 399</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run_a_service</span>(<span class="ruby-identifier">srv</span>, <span class="ruby-identifier">pipe</span>, <span class="ruby-identifier">phase</span>)
       <span class="ruby-comment cmt"># run if the service supports the pipe and phase.</span>
       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{pipe}_#{phase}&quot;</span>)
@@ -931,7 +884,7 @@ Run a service given the service, pipe name and phase name.
 
 		
 			<div id="runscript-method" class="method-detail ">
-				<a name="M000023"></a>
+				<a name="M000019"></a>
 
 				<div class="method-heading">
 				
@@ -952,7 +905,7 @@ Run individual syckle scripts/tasks.
 					<div class="method-source-code"
 						id="runscript-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 275</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 279</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">runscript</span>(<span class="ruby-identifier">script</span>, <span class="ruby-identifier">job</span>)
       <span class="ruby-ivar">@service_configs</span> = <span class="ruby-identifier">load_service_configs</span>(<span class="ruby-identifier">script</span>)
       <span class="ruby-identifier">run</span>(<span class="ruby-identifier">job</span>)
@@ -966,7 +919,7 @@ Run individual syckle scripts/tasks.
 
 		
 			<div id="service-calls-method" class="method-detail ">
-				<a name="M000027"></a>
+				<a name="M000030"></a>
 
 				<div class="method-heading">
 				
@@ -987,7 +940,7 @@ Make service calls.
 					<div class="method-source-code"
 						id="service-calls-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 375</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 379</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">service_calls</span>(<span class="ruby-identifier">pipe</span>, <span class="ruby-identifier">phase</span>)
       <span class="ruby-identifier">prioritized_services</span> = <span class="ruby-identifier">active_services</span>.<span class="ruby-identifier">group_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">srv</span><span class="ruby-operator">|</span> <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">priority</span> }.<span class="ruby-identifier">sort_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> }
       <span class="ruby-identifier">prioritized_services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span>(<span class="ruby-identifier">priority</span>, <span class="ruby-identifier">services</span>)<span class="ruby-operator">|</span>
@@ -1014,7 +967,7 @@ Make service calls.
 
 		
 			<div id="service-configs-method" class="method-detail ">
-				<a name="M000016"></a>
+				<a name="M000017"></a>
 
 				<div class="method-heading">
 				
@@ -1036,7 +989,7 @@ project&#8217;s task/ or script/ folder as YAML files.
 					<div class="method-source-code"
 						id="service-configs-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 207</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 211</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">service_configs</span>
       <span class="ruby-identifier">config</span>.<span class="ruby-identifier">services</span>
       <span class="ruby-comment cmt">#@service_configs ||= (</span>
@@ -1052,7 +1005,7 @@ project&#8217;s task/ or script/ folder as YAML files.
 
 		
 			<div id="skip-method" class="method-detail ">
-				<a name="M000020"></a>
+				<a name="M000018"></a>
 
 				<div class="method-heading">
 				
@@ -1073,7 +1026,7 @@ Returns a list of services to skip as specificed on the commandline.
 					<div class="method-source-code"
 						id="skip-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 269</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 273</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">skip</span>
       <span class="ruby-ivar">@skip</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">skip</span>.<span class="ruby-identifier">to_list</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">downcase</span> }
     <span class="ruby-keyword kw">end</span></pre>
@@ -1086,7 +1039,7 @@ Returns a list of services to skip as specificed on the commandline.
 
 		
 			<div id="start-method" class="method-detail ">
-				<a name="M000024"></a>
+				<a name="M000020"></a>
 
 				<div class="method-heading">
 				
@@ -1107,7 +1060,7 @@ Start the cycle.
 					<div class="method-source-code"
 						id="start-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 282</span>
+<span class="ruby-comment cmt"># File lib/syckle/application.rb, line 286</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>
       <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>)        <span class="ruby-comment cmt"># change into project directory</span>
       <span class="ruby-identifier">load_project_plugins</span>           <span class="ruby-comment cmt"># load any local plugins</span>

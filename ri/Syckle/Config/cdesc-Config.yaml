@@ -2,38 +2,48 @@
 attributes: 
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Use automatic services feature? If set to <tt>true</tt>, all services with autorun modes will run if their autorun criteria is met. Or this can be set to a list of service names for which autorun mode will apply.
   name: automatic
-  rw: RW
+  rw: R
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Service defaults. This is a mapping of service names to default settings. Very useful for autorun mode.
   name: defaults
-  rw: RW
+  rw: R
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Services to omit from automatic execution. If automatic is set to true, the manual setting can be used to exclude specify services for autorunning. Should be an array of service names (class basenames).
   name: manual
-  rw: RW
+  rw: R
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Current POM::Project object.
+  name: project
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Service configurations. This is a hash of parameters.
   name: services
-  rw: RW
+  rw: R
 class_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
   name: new
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle master configuration. Configuration settings load from a YStore located at '.config/syckle/'.
+  body: Syckle master configuration. Configurations loads from master <tt>Syckfile</tt> and.or <tt>.syckle</tt> subordinate files.
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active"
-- !ruby/struct:RDoc::Markup::Flow::VERB 
-  body: "      automatic mode for.\n"
+  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active automatic mode for."
 - !ruby/struct:RDoc::Markup::Flow::RULE 
   width: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle master configuration. Configuration settings load from a YStore located at '.config/syckle/'.
+  body: Syckle master configuration. Configurations loads from master <tt>Syckfile</tt> and.or <tt>.syckle</tt> subordinate files.
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active"
-- !ruby/struct:RDoc::Markup::Flow::VERB 
-  body: "      automatic mode for.\n"
+  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active automatic mode for."
 constants: []
 
 full_name: Syckle::Config
@@ -41,6 +51,22 @@ includes: []
 
 instance_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
-  name: load_service_configs
+  name: automatic=
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: automatic?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: config_files
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: defaults=
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: load_syckle_file
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: manual=
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: manual?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: services=
 name: Config
 superclass: Object

@@ -20,32 +20,203 @@
 		charset="utf-8"></script>
 </head>
 
-<body class="file file-popup">
+<body class="file">
 	<div id="metadata">
-		<dl>
-			<dt class="modified-date">Last Modified</dt>
-			<dd class="modified-date">Sun Oct 11 07:17:27 -0400 2009</dd>
-
+		<div id="project-metadata">
 			
-			<dt class="requires">Requires</dt>
-			<dd class="requires">
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
 				<ul>
 				
+					<li class="file"><a href="./COPYING.html">COPYING</a></li>
+				
+					<li class="file"><a href="./HISTORY.html">HISTORY</a></li>
+				
+					<li class="file"><a href="./NOTES_rdoc.html">NOTES.rdoc</a></li>
+				
+					<li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="./Syckfile.html">Syckfile</a></li>
+				
+					<li class="file"><a href="./TODO.html">TODO</a></li>
+				
 				</ul>
-			</dd>
+			</div>
 			
 
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./Syckle.html">Syckle</a></li>
+				
+					<li><a href="./Syckle/Application.html">Syckle::Application</a></li>
+				
+					<li><a href="./Syckle/CLI.html">Syckle::CLI</a></li>
+				
+					<li><a href="./Syckle/Config.html">Syckle::Config</a></li>
+				
+					<li><a href="./Syckle/IO.html">Syckle::IO</a></li>
+				
+					<li><a href="./Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+				
+					<li><a href="./Syckle/Log.html">Syckle::Log</a></li>
+				
+					<li><a href="./Syckle/Plugins.html">Syckle::Plugins</a></li>
+				
+					<li><a href="./Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+				
+					<li><a href="./Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+				
+					<li><a href="./Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+				
+					<li><a href="./Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+				
+					<li><a href="./Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+				
+					<li><a href="./Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+				
+					<li><a href="./Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+				
+					<li><a href="./Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+				
+					<li><a href="./Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+				
+					<li><a href="./Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+				
+					<li><a href="./Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+				
+					<li><a href="./Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+				
+					<li><a href="./Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+				
+					<li><a href="./Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+				
+					<li><a href="./Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+				
+					<li><a href="./Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+				
+					<li><a href="./Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+				
+					<li><a href="./Syckle/Script.html">Syckle::Script</a></li>
+				
+					<li><a href="./Syckle/Service.html">Syckle::Service</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
 			
-		</dl>
+		</div>
 	</div>
 
 	<div id="documentation">
-		
-		<div class="description">
-			<h2>Description</h2>
-			
-		</div>
-		
+		<hr size="1"></hr><p>
+automatic: true
+</p>
+<p>
+email:
+</p>
+<pre>
+  mailto  : transfire@gmail.com
+  #from    : admin@tigerops.org
+  #server  : mail.tigerops.org
+  #port    : 25
+  #domain  : tigerops.org
+  #account : admin@tigerops.org
+  #secure  : false
+  #login   : login
+</pre>
+<p>
+box:
+</p>
+<pre>
+  types  : [ gem, gz ]
+  include: [ bin, doc, lib, meta, test, &quot;[A-Z]*&quot; ]
+  exclude: [ doc/rdoc, doc/ri ]
+</pre>
+<p>
+notes:
+</p>
+<pre>
+  service : DNote
+  priority: -1
+  active  : true
+</pre>
+<p>
+rdoc:
+</p>
+<pre>
+  include : [&quot;lib&quot;, &quot;plug/syckle/**/*.rb&quot;, &quot;[A-Z]*&quot;]
+  exclude : []
+  extra   : '-d'
+</pre>
+<p>
+ridoc:
+</p>
+<pre>
+  exclude: [plug]
+  active : true
+</pre>
+<p>
+rubyforge:
+</p>
+<pre>
+  sitemap:
+    site: syckle
+  active: false
+</pre>
+<p>
+stats:
+</p>
+<pre>
+  priority: -1
+  active  : true
+</pre>
+<p>
+syntax:
+</p>
+<pre>
+  exclude: [ plug/seeds ]
+  active : false
+</pre>
+<p>
+turn:
+</p>
+<pre>
+  active : false
+</pre>
+<p>
+testrb:
+</p>
+<pre>
+  active : true
+</pre>
+<p>
+yard:
+</p>
+<pre>
+  active : false
+</pre>
+
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
 	</div>
 </body>
 </html>

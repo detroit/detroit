@@ -2,9 +2,10 @@
 aliases: []
 
 block_params: 
-comment: 
-full_name: Syckle::Config::TMP#method_missing
+comment: []
+
+full_name: Syckle::Config#load_syckle_file
 is_singleton: false
-name: method_missing
-params: (s)
+name: load_syckle_file
+params: (file)
 visibility: public

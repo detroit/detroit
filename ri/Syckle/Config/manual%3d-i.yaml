@@ -4,8 +4,8 @@ aliases: []
 block_params: 
 comment: []
 
-full_name: Syckle::Syckfile#method_missing
+full_name: Syckle::Config#manual=
 is_singleton: false
-name: method_missing
-params: (sym, *args, &block)
+name: manual=
+params: (value)
 visibility: public

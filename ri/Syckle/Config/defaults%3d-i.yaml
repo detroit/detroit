@@ -4,8 +4,8 @@ aliases: []
 block_params: 
 comment: []
 
-full_name: Syckle::Syckfile#to_h
+full_name: Syckle::Config#defaults=
 is_singleton: false
-name: to_h
-params: ()
+name: defaults=
+params: (hash)
 visibility: public

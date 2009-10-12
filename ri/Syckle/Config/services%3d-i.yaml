@@ -2,9 +2,10 @@
 aliases: []
 
 block_params: 
-comment: 
-full_name: Syckle::Syckfile::Entry#method_missing
+comment: []
+
+full_name: Syckle::Config#services=
 is_singleton: false
-name: method_missing
-params: (sym, *args, &block)
+name: services=
+params: (hash)
 visibility: public

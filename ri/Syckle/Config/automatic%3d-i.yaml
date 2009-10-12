@@ -2,9 +2,10 @@
 aliases: []
 
 block_params: 
-comment: 
-full_name: Syckle::Syckfile::Entry#to_h
+comment: []
+
+full_name: Syckle::Config#automatic=
 is_singleton: false
-name: to_h
-params: ()
+name: automatic=
+params: (value)
 visibility: public
