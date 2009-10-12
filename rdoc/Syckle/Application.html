@@ -77,31 +77,31 @@
           
           <li class="method"><a href="#M000000">::new</a></li>
           
-          <li class="method"><a href="#M000008">#active_services</a></li>
+          <li class="method"><a href="#M000013">#active_services</a></li>
           
-          <li class="method"><a href="#M000005">#config_template</a></li>
+          <li class="method"><a href="#M000007">#config_template</a></li>
           
-          <li class="method"><a href="#M000004">#defaults</a></li>
+          <li class="method"><a href="#M000006">#defaults</a></li>
           
-          <li class="method"><a href="#M000032">#end_phases</a></li>
+          <li class="method"><a href="#M000033">#end_phases</a></li>
           
           <li class="method"><a href="#M000001">#load_plugins</a></li>
           
           <li class="method"><a href="#M000031">#load_project_plugins</a></li>
           
-          <li class="method"><a href="#M000002">#multitask?</a></li>
+          <li class="method"><a href="#M000003">#multitask?</a></li>
           
-          <li class="method"><a href="#M000033">#overview</a></li>
+          <li class="method"><a href="#M000034">#overview</a></li>
           
-          <li class="method"><a href="#M000003">#project</a></li>
+          <li class="method"><a href="#M000005">#project</a></li>
           
-          <li class="method"><a href="#M000020">#run</a></li>
+          <li class="method"><a href="#M000021">#run</a></li>
           
           <li class="method"><a href="#M000030">#run_a_service</a></li>
           
           <li class="method"><a href="#M000018">#runscript</a></li>
           
-          <li class="method"><a href="#M000027">#service_calls</a></li>
+          <li class="method"><a href="#M000029">#service_calls</a></li>
           
           <li class="method"><a href="#M000016">#service_configs</a></li>
           
@@ -389,7 +389,7 @@ href="Application.html">Application</a>.
 
     
       <div id="active-services-method" class="method-detail ">
-        <a name="M000008"></a>
+        <a name="M000013"></a>
 
         <div class="method-heading">
         
@@ -428,7 +428,7 @@ TODO: Support config.automatic as a list of automated servies.
           <span class="ruby-constant">Syckle</span>.<span class="ruby-identifier">services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">service_name</span>, <span class="ruby-identifier">service_class</span><span class="ruby-operator">|</span>
             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">service_class</span>.<span class="ruby-identifier">available?</span>(<span class="ruby-identifier">project</span>) <span class="ruby-operator">&amp;&amp;</span> 
                  <span class="ruby-identifier">service_class</span>.<span class="ruby-identifier">autorun?</span>(<span class="ruby-identifier">project</span>) <span class="ruby-operator">&amp;&amp;</span> 
-                 <span class="ruby-operator">!</span><span class="ruby-identifier">config</span>.<span class="ruby-identifier">manual</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">service_name</span>)
+                 <span class="ruby-operator">!</span><span class="ruby-identifier">config</span>.<span class="ruby-identifier">standard</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">service_name</span>)
               <span class="ruby-identifier">autolist</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">service_class</span>
             <span class="ruby-keyword kw">end</span>
           <span class="ruby-keyword kw">end</span>
@@ -473,7 +473,7 @@ TODO: Support config.automatic as a list of automated servies.
 
     
       <div id="config-template-method" class="method-detail ">
-        <a name="M000005"></a>
+        <a name="M000007"></a>
 
         <div class="method-heading">
         
@@ -516,7 +516,7 @@ purposes.
 
     
       <div id="defaults-method" class="method-detail ">
-        <a name="M000004"></a>
+        <a name="M000006"></a>
 
         <div class="method-heading">
         
@@ -550,7 +550,7 @@ User-defined service defaults.
 
     
       <div id="end-phases-method" class="method-detail ">
-        <a name="M000032"></a>
+        <a name="M000033"></a>
 
         <div class="method-heading">
         
@@ -661,7 +661,7 @@ Load custom plugins. FIXME: how to load?
 
     
       <div id="multitask--method" class="method-detail ">
-        <a name="M000002"></a>
+        <a name="M000003"></a>
 
         <div class="method-heading">
         
@@ -695,7 +695,7 @@ Multitask mode?
 
     
       <div id="overview-method" class="method-detail ">
-        <a name="M000033"></a>
+        <a name="M000034"></a>
 
         <div class="method-heading">
         
@@ -709,7 +709,7 @@ Multitask mode?
           
           <p>
 Give an overview of phases this pipeline supports. FIXME: <a
-href="Application.html#M000032">end_phases</a> blows up.
+href="Application.html#M000033">end_phases</a> blows up.
 </p>
           
 
@@ -735,7 +735,7 @@ href="Application.html#M000032">end_phases</a> blows up.
 
     
       <div id="project-method" class="method-detail ">
-        <a name="M000003"></a>
+        <a name="M000005"></a>
 
         <div class="method-heading">
         
@@ -769,7 +769,7 @@ Provides access to the Project instance.
 
     
       <div id="run-method" class="method-detail ">
-        <a name="M000020"></a>
+        <a name="M000021"></a>
 
         <div class="method-heading">
         
@@ -943,7 +943,7 @@ Run individual syckle scripts/tasks.
 
     
       <div id="service-calls-method" class="method-detail ">
-        <a name="M000027"></a>
+        <a name="M000029"></a>
 
         <div class="method-heading">
         

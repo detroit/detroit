@@ -77,15 +77,15 @@
           
           <li class="method"><a href="#M000120">#default_sitemap</a></li>
           
-          <li class="method"><a href="#M000116">#grancher</a></li>
+          <li class="method"><a href="#M000114">#grancher</a></li>
           
           <li class="method"><a href="#M000119">#initialize_defaults</a></li>
           
-          <li class="method"><a href="#M000118">#release</a></li>
+          <li class="method"><a href="#M000117">#release</a></li>
           
-          <li class="method"><a href="#M000115">#sitemap=</a></li>
+          <li class="method"><a href="#M000113">#sitemap=</a></li>
           
-          <li class="method"><a href="#M000117">#transfer</a></li>
+          <li class="method"><a href="#M000116">#transfer</a></li>
           
         </ul>
       </div>
@@ -335,7 +335,7 @@ given then the contents of that directory will be transfered.
 
     
       <div id="grancher-method" class="method-detail ">
-        <a name="M000116"></a>
+        <a name="M000114"></a>
 
         <div class="method-heading">
         
@@ -354,7 +354,7 @@ given then the contents of that directory will be transfered.
           <div class="method-source-code"
             id="grancher-source">
 <pre>
-<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 66</span>
+<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 64</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">grancher</span>
       <span class="ruby-ivar">@grancher</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Grancher</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">g</span>.<span class="ruby-identifier">branch</span>  = <span class="ruby-identifier">branch</span>
@@ -386,7 +386,7 @@ given then the contents of that directory will be transfered.
 
     
       <div id="release-method" class="method-detail ">
-        <a name="M000118"></a>
+        <a name="M000117"></a>
 
         <div class="method-heading">
         
@@ -405,7 +405,7 @@ given then the contents of that directory will be transfered.
           <div class="method-source-code"
             id="release-source">
 <pre>
-<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 97</span>
+<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 95</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">release</span>
       <span class="ruby-identifier">require</span> <span class="ruby-value str">'grancher'</span>
       <span class="ruby-identifier">grancher</span>.<span class="ruby-identifier">push</span>
@@ -420,7 +420,7 @@ given then the contents of that directory will be transfered.
 
     
       <div id="sitemap--method" class="method-detail ">
-        <a name="M000115"></a>
+        <a name="M000113"></a>
 
         <div class="method-heading">
         
@@ -439,7 +439,7 @@ given then the contents of that directory will be transfered.
           <div class="method-source-code"
             id="sitemap--source">
 <pre>
-<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 57</span>
+<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 55</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sitemap=</span>(<span class="ruby-identifier">entries</span>)
       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">entries</span>
       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Symbol</span>
@@ -457,7 +457,7 @@ given then the contents of that directory will be transfered.
 
     
       <div id="transfer-method" class="method-detail ">
-        <a name="M000117"></a>
+        <a name="M000116"></a>
 
         <div class="method-heading">
         
@@ -476,7 +476,7 @@ given then the contents of that directory will be transfered.
           <div class="method-source-code"
             id="transfer-source">
 <pre>
-<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 90</span>
+<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 88</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transfer</span>
       <span class="ruby-identifier">require</span> <span class="ruby-value str">'grancher'</span>
       <span class="ruby-identifier">grancher</span>.<span class="ruby-identifier">commit</span>
@@ -526,7 +526,7 @@ Otherwise it includes just the doc/rdoc or doc directory.
           <div class="method-source-code"
             id="default-sitemap-source">
 <pre>
-<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 121</span>
+<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 119</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_sitemap</span>
       <span class="ruby-identifier">sm</span> = []
       <span class="ruby-identifier">site</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-value str">'{site,web,website}'</span>].<span class="ruby-identifier">first</span>
@@ -572,7 +572,7 @@ TODO: Does the POM Project provide the site directory?
           <div class="method-source-code"
             id="initialize-defaults-source">
 <pre>
-<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 106</span>
+<span class="ruby-comment cmt"># File plug/syckle/services/grancher.rb, line 104</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
       <span class="ruby-ivar">@branch</span>   <span class="ruby-operator">||=</span> <span class="ruby-value str">'gh-pages'</span>
       <span class="ruby-ivar">@remote</span>   <span class="ruby-operator">||=</span> <span class="ruby-value str">'origin'</span>

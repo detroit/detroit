@@ -15,12 +15,6 @@ attributes:
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
   - !ruby/struct:RDoc::Markup::Flow::P 
-    body: Services to omit from automatic execution. If automatic is set to true, the manual setting can be used to exclude specify services for autorunning. Should be an array of service names (class basenames).
-  name: manual
-  rw: R
-- !ruby/object:RDoc::RI::Attribute 
-  comment: 
-  - !ruby/struct:RDoc::Markup::Flow::P 
     body: Current POM::Project object.
   name: project
   rw: R
@@ -30,20 +24,22 @@ attributes:
     body: Service configurations. This is a hash of parameters.
   name: services
   rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Services to omit from automatic execution. If automatic is set to true, the <tt>standard</tt> setting can be used to exclude specific services from auto-execution.
+  name: standard
+  rw: R
 class_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
   name: new
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle configuration. Configuration comes from the amin <tt>Syckfile</tt> and/or subordinate <tt>.syckle</tt> files, and configuration options defined in a path store int the project's config directory.
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active automatic mode for."
+  body: Syckle configuration. Configuration comes from a main <tt>Syckfile</tt> and/or <tt>.syckle</tt> task files, and configuration options defined in a path store in the project's config directory (eg. <tt>.config/syckle</tt>).
 - !ruby/struct:RDoc::Markup::Flow::RULE 
   width: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle configuration. Configuration comes from the amin <tt>Syckfile</tt> and/or subordinate <tt>.syckle</tt> files, and configuration options defined in a path store int the project's config directory.
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active automatic mode for."
+  body: Syckle configuration. Configuration comes from a main <tt>Syckfile</tt> and/or <tt>.syckle</tt> task files, and configuration options defined in a path store in the project's config directory (eg. <tt>.config/syckle</tt>).
 constants: []
 
 full_name: Syckle::Config
@@ -59,11 +55,11 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: load_syckle_file
 - !ruby/object:RDoc::RI::MethodSummary 
-  name: manual=
-- !ruby/object:RDoc::RI::MethodSummary 
-  name: manual?
-- !ruby/object:RDoc::RI::MethodSummary 
   name: method_missing
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: standard=
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: standard?
 - !ruby/object:RDoc::RI::MethodSummary 
   name: syckle_files
 name: Config

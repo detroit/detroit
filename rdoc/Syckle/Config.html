@@ -75,23 +75,23 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li class="method"><a href="#M000006">::new</a></li>
+          <li class="method"><a href="#M000002">::new</a></li>
           
-          <li class="method"><a href="#M000010">#automatic=</a></li>
+          <li class="method"><a href="#M000009">#automatic=</a></li>
           
-          <li class="method"><a href="#M000007">#automatic?</a></li>
+          <li class="method"><a href="#M000004">#automatic?</a></li>
           
-          <li class="method"><a href="#M000012">#defaults=</a></li>
+          <li class="method"><a href="#M000011">#defaults=</a></li>
           
           <li class="method"><a href="#M000014">#load_syckle_file</a></li>
           
-          <li class="method"><a href="#M000011">#manual=</a></li>
-          
-          <li class="method"><a href="#M000009">#manual?</a></li>
-          
           <li class="method"><a href="#M000015">#method_missing</a></li>
           
-          <li class="method"><a href="#M000013">#syckle_files</a></li>
+          <li class="method"><a href="#M000010">#standard=</a></li>
+          
+          <li class="method"><a href="#M000008">#standard?</a></li>
+          
+          <li class="method"><a href="#M000012">#syckle_files</a></li>
           
         </ul>
       </div>
@@ -216,13 +216,9 @@
 
       <p>
 <a href="../Syckle.html">Syckle</a> configuration. Configuration comes from
-the amin <tt>Syckfile</tt> and/or subordinate <tt>.syckle</tt> files, and
-configuration options defined in a path store int the project&#8217;s
-config directory.
-</p>
-<p>
-TODO: Allow <tt>automatic</tt> to be a list of serive names to active
-automatic mode for.
+a main <tt>Syckfile</tt> and/or <tt>.syckle</tt> task files, and
+configuration options defined in a path store in the project&#8217;s config
+directory (eg. <tt>.config/syckle</tt>).
 </p>
 
     </div>
@@ -290,11 +286,11 @@ to a list of service names for which autorun mode will apply.
         </div>
       </div>
       
-      <div id="manual-attribute-method" class="method-detail">
-        <a name="manual"></a>
+      <div id="standard-attribute-method" class="method-detail">
+        <a name="standard"></a>
         
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">manual</span><span
+          <span class="method-name">standard</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
@@ -302,8 +298,8 @@ to a list of service names for which autorun mode will apply.
         
         <p>
 Services to omit from automatic execution. If automatic is set to true, the
-manual setting can be used to exclude specify services for autorunning.
-Should be an array of service names (class basenames).
+<tt>standard</tt> setting can be used to exclude specific services from
+auto-execution.
 </p>
         
         </div>
@@ -337,7 +333,7 @@ names to default settings. Very useful for autorun mode.
 
     
       <div id="new-method" class="method-detail ">
-        <a name="M000006"></a>
+        <a name="M000002"></a>
 
         <div class="method-heading">
         
@@ -356,15 +352,15 @@ names to default settings. Very useful for autorun mode.
           <div class="method-source-code"
             id="new-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 46</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 47</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">project</span>) <span class="ruby-comment cmt">#, *files)</span>
       <span class="ruby-ivar">@project</span> = <span class="ruby-identifier">project</span>
 
       <span class="ruby-identifier">store</span> = <span class="ruby-constant">Path</span><span class="ruby-operator">::</span><span class="ruby-constant">Store</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">config</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'syckle'</span>).<span class="ruby-identifier">to_h</span>
 
       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">automatic</span> = <span class="ruby-identifier">store</span>[<span class="ruby-value str">'automatic'</span>]
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">manual</span>    = <span class="ruby-identifier">store</span>[<span class="ruby-value str">'manual'</span>]
-      <span class="ruby-ivar">@defaults</span>      = <span class="ruby-identifier">store</span>[<span class="ruby-value str">'defaults'</span>].<span class="ruby-identifier">to_h</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">standard</span>  = <span class="ruby-identifier">store</span>[<span class="ruby-value str">'standard'</span>] <span class="ruby-operator">||</span> []
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">defaults</span>  = <span class="ruby-identifier">store</span>[<span class="ruby-value str">'defaults'</span>].<span class="ruby-identifier">to_h</span>
 
       <span class="ruby-ivar">@services</span> = {}
 
@@ -387,7 +383,7 @@ names to default settings. Very useful for autorun mode.
 
     
       <div id="automatic--method" class="method-detail ">
-        <a name="M000010"></a>
+        <a name="M000009"></a>
 
         <div class="method-heading">
         
@@ -406,7 +402,7 @@ names to default settings. Very useful for autorun mode.
           <div class="method-source-code"
             id="automatic--source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 74</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 75</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">automatic=</span>(<span class="ruby-identifier">value</span>)
       <span class="ruby-ivar">@automatic</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_b</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -419,7 +415,7 @@ names to default settings. Very useful for autorun mode.
 
     
       <div id="automatic--method" class="method-detail ">
-        <a name="M000007"></a>
+        <a name="M000004"></a>
 
         <div class="method-heading">
         
@@ -440,7 +436,7 @@ Alias for <a href="Config.html#automatic">automatic</a>.
           <div class="method-source-code"
             id="automatic--source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 64</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 65</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">automatic?</span> ; <span class="ruby-ivar">@automatic</span> ; <span class="ruby-keyword kw">end</span></pre>
           </div>
           
@@ -451,7 +447,7 @@ Alias for <a href="Config.html#automatic">automatic</a>.
 
     
       <div id="defaults--method" class="method-detail ">
-        <a name="M000012"></a>
+        <a name="M000011"></a>
 
         <div class="method-heading">
         
@@ -470,7 +466,7 @@ Alias for <a href="Config.html#automatic">automatic</a>.
           <div class="method-source-code"
             id="defaults--source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 86</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 87</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">defaults=</span>(<span class="ruby-identifier">hash</span>)
       <span class="ruby-ivar">@defaults</span> = <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">to_h</span> <span class="ruby-comment cmt">#OpenStruct.new(hash) # need two layer OpenStruct.. OpenCascade?</span>
     <span class="ruby-keyword kw">end</span></pre>
@@ -502,7 +498,7 @@ Alias for <a href="Config.html#automatic">automatic</a>.
           <div class="method-source-code"
             id="load-syckle-file-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 107</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 108</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_syckle_file</span>(<span class="ruby-identifier">file</span>)
       <span class="ruby-identifier">text</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>)
 
@@ -514,11 +510,9 @@ Alias for <a href="Config.html#automatic">automatic</a>.
       <span class="ruby-comment cmt">#  data = RAMLParser.load(text, :project =&gt; @project)</span>
       <span class="ruby-comment cmt">#end</span>
 
+      <span class="ruby-comment cmt"># automatics can be defined in the syckle files (TODO: Is this prudent?)</span>
       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">automatic</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'automatic'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'automatic'</span>)
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">manual</span>    = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'manual'</span>)    <span class="ruby-operator">||</span> []
-
-      <span class="ruby-comment cmt"># TODO: Need to use deep_merge / weave.</span>
-      <span class="ruby-comment cmt">#self.defaults  = data.delete('defaults')  || {}</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">standard</span>  = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'standard'</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'standard'</span>)
 
       <span class="ruby-comment cmt"># We import other files. This most useful when using a Syckfile.</span>
       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">import</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'import'</span>)
@@ -530,72 +524,6 @@ Alias for <a href="Config.html#automatic">automatic</a>.
       <span class="ruby-keyword kw">end</span>
 
       <span class="ruby-ivar">@services</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">data</span>)
-    <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-      </div>
-
-    
-      <div id="manual--method" class="method-detail ">
-        <a name="M000011"></a>
-
-        <div class="method-heading">
-        
-          <span class="method-name">manual=</span><span
-            class="method-args">(value)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code"
-            id="manual--source">
-<pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 80</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">manual=</span>(<span class="ruby-identifier">value</span>)
-      <span class="ruby-ivar">@manual</span> = [<span class="ruby-identifier">value</span>].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>
-    <span class="ruby-keyword kw">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-      </div>
-
-    
-      <div id="manual--method" class="method-detail ">
-        <a name="M000009"></a>
-
-        <div class="method-heading">
-        
-          <span class="method-name">manual?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        
-        </div>
-
-        <div class="method-description">
-          
-          <p>
-Are there any manual entries?
-</p>
-          
-
-          
-          <div class="method-source-code"
-            id="manual--source">
-<pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 68</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">manual?</span>
-      <span class="ruby-operator">!</span><span class="ruby-ivar">@manual</span>.<span class="ruby-identifier">empty?</span>
     <span class="ruby-keyword kw">end</span></pre>
           </div>
           
@@ -625,7 +553,7 @@ Are there any manual entries?
           <div class="method-source-code"
             id="method-missing-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 137</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 136</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
       <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span>
       <span class="ruby-identifier">project</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-comment cmt">#if project.metadata.respond_to?(sym)</span>
@@ -638,8 +566,74 @@ Are there any manual entries?
       </div>
 
     
+      <div id="standard--method" class="method-detail ">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">standard=</span><span
+            class="method-args">(value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="standard--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 81</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">standard=</span>(<span class="ruby-identifier">value</span>)
+      <span class="ruby-ivar">@standard</span> = [<span class="ruby-identifier">value</span>].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="standard--method" class="method-detail ">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">standard?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Are there any manual entries?
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="standard--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 69</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">standard?</span>
+      <span class="ruby-operator">!</span><span class="ruby-identifier">standard</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
       <div id="syckle-files-method" class="method-detail ">
-        <a name="M000013"></a>
+        <a name="M000012"></a>
 
         <div class="method-heading">
         
@@ -658,7 +652,7 @@ Are there any manual entries?
           <div class="method-source-code"
             id="syckle-files-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 92</span>
+<span class="ruby-comment cmt"># File lib/syckle/config.rb, line 93</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">syckle_files</span>
       <span class="ruby-ivar">@confg_files</span> <span class="ruby-operator">||=</span> (
         <span class="ruby-identifier">files</span> = []

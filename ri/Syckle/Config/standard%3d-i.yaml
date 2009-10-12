@@ -4,8 +4,8 @@ aliases: []
 block_params: 
 comment: []
 
-full_name: Syckle::Config#manual=
+full_name: Syckle::Config#standard=
 is_singleton: false
-name: manual=
+name: standard=
 params: (value)
 visibility: public
