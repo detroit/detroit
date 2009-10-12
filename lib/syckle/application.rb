@@ -138,7 +138,7 @@ module Syckle
           Syckle.services.each do |service_name, service_class|
             if service_class.available?(project) && 
                  service_class.autorun?(project) && 
-                 !config.manual.include?(service_name)
+                 !config.standard.include?(service_name)
               autolist << service_class
             end
           end
