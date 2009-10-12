@@ -1,0 +1,62 @@
+
+automatic true
+
+defaults do
+  rdoc do
+    template 'redfish'
+  end
+end
+
+email do
+  mailto  "transfire@gmail.com"
+  #from    "admin@tigerops.org"
+  #server  "mail.tigerops.org"
+  #port    "25"
+  #domain  "tigerops.org"
+  #account "admin@tigerops.org"
+  #secure  false
+  #login   "login"
+end
+
+box do
+  types   %w{ gem gz }
+  include %w{ bin doc lib meta test [A-Z]* }
+  exclude %w{ doc/rdoc doc/ri }
+end
+
+dnote :notes do
+  priority -1
+end
+
+rdoc do
+  include ["lib", "plug/syckle/**/*.rb", "[A-Z]*"]
+  exclude []
+  extra   '-d'
+end
+
+ridoc do
+  exclude ['plug']
+  active  true
+end
+
+rubyforge false do
+  sitemap(:site => 'syckle')
+end
+
+stats do
+  priority -1
+end
+
+syntax false do
+  exclude ['plug/sow']
+  active false
+end
+
+testrb
+
+turn false
+
+yard false
+
+=end
+

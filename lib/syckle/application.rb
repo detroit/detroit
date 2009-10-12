@@ -6,6 +6,7 @@ rescue LoadError
 end
 
 require 'facets/plugin_manager'
+require 'facets/hashbuilder'
 
 require 'syckle/core_ext'
 
@@ -56,7 +57,9 @@ module Syckle
       @io       = Syckle::IO.new(@cli)
       @script   = Syckle::Script.new(:io=>io, :cli=>cli)
       @config   = Syckle::Config.new(@script.project)
+
       #@services, @actions = *load_service_configuration
+
       load_plugins
     end
 
@@ -150,7 +153,7 @@ module Syckle
 
           if service_class.available?(project)
             autolist.delete(service_class) # remove class from autolist
-            opts = inject_environment(opts) # TODO: DEPRECATE
+            #opts = inject_environment(opts) # TODO: DEPRECATE
             opts = defaults[service_name.downcase].to_h.merge(opts)
             a << service_class.new(script, key, opts) #project,
           end
@@ -173,6 +176,7 @@ module Syckle
 
     #alias_method :services, :active_services
 
+=begin
     # This substitutes environment vairables in for
     # service options if they are given in the form
     # of +ENV[NAME]+.
@@ -188,6 +192,7 @@ module Syckle
       end
       opts
     end
+=end
 
     #
     #def service_configuration
@@ -204,27 +209,44 @@ module Syckle
     # project's task/ or script/ folder as YAML files.
 
     def service_configs
-      @service_configs ||= (
-        files = []
-        files += project.task.glob('*.syckle')
-        files += project.script.glob('*.syckle')
-        files = files.select{ |f| File.file?(f) }
-        load_service_configs(files)
-      )
+      config.services
+      #@service_configs ||= (
+      #  load_service_configs(files)
+      #)
     end
 
+=begin
     # Load service configs for a select set of syckle scripts/tasks.
 
     def load_service_configs(files)
+      files = []
+      if project.root.glob('Syckfile')
+        files += project.root.glob('Syckfile')
+      else
+        files += project.task.glob('*.syckle')
+        files += project.script.glob('*.syckle')
+      end
+      files  = files.select{ |f| File.file?(f) }
+
       abort "No syckle services defined." if files.empty?
-      files.inject({}) do |cfg, file|
+
+      srvcfg = files.inject({}) do |cfg, file|
         tmp = TMP.new(project.metadata)
         erb = ERB.new(File.read(file))
-        txt = erb.result(tmp._binding)
-        yml = YAML.load(txt) || {}
+        txt = erb.result(tmp._binding).strip
+        if /\A---/ =~ txt
+          yml = YAML.load(txt) || {}
+        else
+          yml = HashBuilder.load(txt)
+        end
         cfg.update(yml)
       end
+
+      @config = Config.new(srvcfg)
+
+      return srvcfg
     end
+=end
 
     # setup cli
     #def cli
@@ -415,25 +437,6 @@ module Syckle
           io.display_action(act)
         end
         puts
-      end
-    end
-
-    # = Configuration Template Binding
-    #
-    # This class provide a clean scope in which to render
-    # service congifs via erb.
-
-    class TMP
-      instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
-      attr :metadata
-      def initialize(metadata)
-        @metadata = metadata
-      end
-      def _binding
-        binding
-      end
-      def method_missing(s)
-        metadata.send(s)
       end
     end
 

@@ -1,0 +1,55 @@
+---
+
+automatic: true
+
+email:
+  mailto  : transfire@gmail.com
+  #from    : admin@tigerops.org
+  #server  : mail.tigerops.org
+  #port    : 25
+  #domain  : tigerops.org
+  #account : admin@tigerops.org
+  #secure  : false
+  #login   : login
+
+box:
+  types  : [ gem, gz ]
+  include: [ bin, doc, lib, meta, test, "[A-Z]*" ]
+  exclude: [ doc/rdoc, doc/ri ]
+
+notes:
+  service : DNote
+  priority: -1
+  active  : true
+
+rdoc:
+  include : ["lib", "plug/syckle/**/*.rb", "[A-Z]*"]
+  exclude : []
+  extra   : '-d'
+
+ridoc:
+  exclude: [plug]
+  active : true
+
+rubyforge:
+  sitemap:
+    site: syckle
+  active: false
+
+stats:
+  priority: -1
+  active  : true
+
+syntax:
+  exclude: [ plug/seeds ]
+  active : false
+
+turn:
+  active : false
+
+testrb:
+  active : true
+
+yard:
+  active : false
+

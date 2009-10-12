@@ -1,0 +1,18 @@
+
+Using one YAML file, update an attribute.
+
+  > yml = YAML.load(File.new('store.yaml'))
+  > yml['rdoc'] ||= {}
+  > yml['rdoc'].update('active' => true)
+  > File.open(file, 'w'){ |f| f < yml.to_yaml }
+
+Using a Path::Store, update an attribute.
+
+  $ store/rdoc/active < 'true'
+
+In Ruby:
+
+  > FileUtils.mkdir_p('store/rdoc')
+  > File.open('store/rdoc/active', 'w'){ |f| f << 'true' }
+
+
