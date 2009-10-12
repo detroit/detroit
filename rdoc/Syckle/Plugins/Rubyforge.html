@@ -1,193 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Syckle::Plugins::Rubyforge</title>
+  <title>Class: Syckle::Plugins::Rubyforge</title>
 
-	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+  
+    <link rel="SHORTCUT ICON" href="../../images/class.png">
+  
 
-	<script src="../../js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../../js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../../js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../../js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
+  <link type="text/css" media="screen" rel="stylesheet" href="../../rdoc.css" />
+
+  <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 <body class="class">
 
-	<div id="metadata">
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="../../plug/syckle/services/rubyforge_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="plug/syckle/services/rubyforge.rb">plug/syckle/services/rubyforge.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
+  <div class="head">
+    <h1>
+      
+        <img src="../../images/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::Plugins::Rubyforge</a>
+    </h1>
+  </div>
 
-			
-		</div>
+  <div id="metadata">
+    <div id="project-metadata">
 
-		<div id="class-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../plug/syckle/services/rubyforge_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="plug/syckle/services/rubyforge.rb">plug/syckle/services/rubyforge.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
 
-			<!-- Parent Class -->
-			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link">Service</p>
-				
-			</div>
-			
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
 
-			<!-- Namespace Contents -->
-			
+      
+    </div>
 
-			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#M000123">#announce</a></li>
-					
-					<li><a href="#M000126">#announcement</a></li>
-					
-					<li><a href="#M000125">#confirm?</a></li>
-					
-					<li><a href="#M000113">#initialize_defaults</a></li>
-					
-					<li><a href="#M000122">#publish</a></li>
-					
-					<li><a href="#M000117">#release</a></li>
-					
-					<li><a href="#M000116">#rubyforge</a></li>
-					
-					<li><a href="#M000124">#touch</a></li>
-					
-				</ul>
-			</div>
-			
+    <div id="class-metadata">
 
-			<!-- Included Modules -->
-			
-		</div>
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
 
-		<div id="project-metadata">
-			
-			
-			<div id="fileindex-section" class="section project-section">
-				<h3 class="section-header">Files</h3>
-				<ul>
-				
-					<li class="file"><a href="../../COPYING.html">COPYING</a></li>
-				
-					<li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
-				
-					<li class="file"><a href="../../NOTES_rdoc.html">NOTES.rdoc</a></li>
-				
-					<li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
-				
-					<li class="file"><a href="../../Syckfile.html">Syckfile</a></li>
-				
-					<li class="file"><a href="../../TODO.html">TODO</a></li>
-				
-				</ul>
-			</div>
-			
+      <!-- Namespace Contents -->
+      
 
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="../../images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li class="method"><a href="#M000122">#announce</a></li>
+          
+          <li class="method"><a href="#M000125">#announcement</a></li>
+          
+          <li class="method"><a href="#M000124">#confirm?</a></li>
+          
+          <li class="method"><a href="#M000112">#initialize_defaults</a></li>
+          
+          <li class="method"><a href="#M000121">#publish</a></li>
+          
+          <li class="method"><a href="#M000114">#release</a></li>
+          
+          <li class="method"><a href="#M000113">#rubyforge</a></li>
+          
+          <li class="method"><a href="#M000123">#touch</a></li>
+          
+        </ul>
+      </div>
+      
 
-				<ul class="link-list">
-				
-					<li><a href="../../Syckle.html">Syckle</a></li>
-				
-					<li><a href="../../Syckle/Application.html">Syckle::Application</a></li>
-				
-					<li><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
-				
-					<li><a href="../../Syckle/Config.html">Syckle::Config</a></li>
-				
-					<li><a href="../../Syckle/IO.html">Syckle::IO</a></li>
-				
-					<li><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
-				
-					<li><a href="../../Syckle/Log.html">Syckle::Log</a></li>
-				
-					<li><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
-				
-					<li><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
-				
-					<li><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
-				
-					<li><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
-				
-					<li><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
-				
-					<li><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
-				
-					<li><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
-				
-					<li><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
-				
-					<li><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
-				
-					<li><a href="../../Syckle/Script.html">Syckle::Script</a></li>
-				
-					<li><a href="../../Syckle/Service.html">Syckle::Service</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
+      <!-- Included Modules -->
+      
+    </div>
 
-			
-		</div>
-	</div>
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../../COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../NOTES_rdoc.html">NOTES.rdoc</a></li>
+        
+          <li class="file"><a href="../../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../Syckfile.html">Syckfile</a></li>
+        
+          <li class="file"><a href="../../TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
 
-	<div id="documentation">
-		<h1 class="class">Syckle::Plugins::Rubyforge</h1>
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
 
-		<div id="description">
-			<h1><a href="Rubyforge.html">Rubyforge</a> Plugin</h1>
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Rubyforge.html">Syckle::Plugins::Rubyforge</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Till.html">Syckle::Plugins::Till</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/VClog.html">Syckle::Plugins::VClog</a></li>
+        
+          <li class="class"><a href="../../Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../Syckle/Service.html">Syckle::Service</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+
+    <div id="validator-badges">
+      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
+      <a href="http://validator.w3.org/check/referer">[Validate]</a>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="Rubyforge.html">Rubyforge</a> Plugin</h1>
 <p>
 Interface with the RubyForge project hosting services. This plugin will
 upload release packages, publish your website via rsync, and make new
@@ -209,206 +232,206 @@ href="Rubyforge.html">Rubyforge</a> services are being used and adjust
 actions for this plugin accordingly.
 </p>
 
-		</div>
+    </div>
 
-		<!-- Constants -->
-		
-		<div id="constants-list" class="section">
-			<h3 class="section-header">Constants</h3>
-			<dl>
-			
-				<dt><a name="HOME">HOME</a></dt>
-				
-				<dd class="description missing-docs">(Not documented)</dd>
-				
-			
-				<dt><a name="REPORT">REPORT</a></dt>
-				
-				<dd class="description missing-docs">(Not documented)</dd>
-				
-			
-				<dt><a name="DEFAULT_SITE">DEFAULT_SITE</a></dt>
-				
-				<dd class="description missing-docs">(Not documented)</dd>
-				
-			
-			</dl>
-		</div>
-		
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="HOME">HOME</a></dt>
+        
+        <dd class="description missing-docs">(Not documented)</dd>
+        
+      
+        <dt><a name="REPORT">REPORT</a></dt>
+        
+        <dd class="description missing-docs">(Not documented)</dd>
+        
+      
+        <dt><a name="DEFAULT_SITE">DEFAULT_SITE</a></dt>
+        
+        <dd class="description missing-docs">(Not documented)</dd>
+        
+      
+      </dl>
+    </div>
+    
 
-		<!-- Attributes -->
-		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
 
-			
-			<div id="unixname-attribute-method" class="method-detail">
-				<a name="unixname"></a>
-				
-				<a name="unixname="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">unixname</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+      
+      <div id="unixname-attribute-method" class="method-detail">
+        <a name="unixname"></a>
+        
+        <a name="unixname="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">unixname</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Project unixname.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="group-attribute-method" class="method-detail">
-				<a name="group"></a>
-				
-				<a name="group="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">group</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="group-attribute-method" class="method-detail">
+        <a name="group"></a>
+        
+        <a name="group="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">group</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Project&#8217;s group id number.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="username-attribute-method" class="method-detail">
-				<a name="username"></a>
-				
-				<a name="username="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">username</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="username-attribute-method" class="method-detail">
+        <a name="username"></a>
+        
+        <a name="username="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">username</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Username for project account.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="password-attribute-method" class="method-detail">
-				<a name="password"></a>
-				
-				<a name="password="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">password</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="password-attribute-method" class="method-detail">
+        <a name="password"></a>
+        
+        <a name="password="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">password</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Password for project account.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="package-attribute-method" class="method-detail">
-				<a name="package"></a>
-				
-				<a name="package="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">package</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="package-attribute-method" class="method-detail">
+        <a name="package"></a>
+        
+        <a name="package="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">package</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Package name.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="version-attribute-method" class="method-detail">
-				<a name="version"></a>
-				
-				<a name="version="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">version</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="version-attribute-method" class="method-detail">
+        <a name="version"></a>
+        
+        <a name="version="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">version</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Package version.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="notelog-attribute-method" class="method-detail">
-				<a name="notelog"></a>
-				
-				<a name="notelog="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">notelog</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="notelog-attribute-method" class="method-detail">
+        <a name="notelog"></a>
+        
+        <a name="notelog="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">notelog</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 File that holds the current release notes.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="changelog-attribute-method" class="method-detail">
-				<a name="changelog"></a>
-				
-				<a name="changelog="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">changelog</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="changelog-attribute-method" class="method-detail">
+        <a name="changelog"></a>
+        
+        <a name="changelog="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">changelog</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 File that hold the current change log. If not provided then the changelog
 will taken from the bottom of the notelog split on a &#8217;&#8212;&#8217;
 or &#8217;####&#8217; marker.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="release-template-attribute-method" class="method-detail">
-				<a name="release_template"></a>
-				
-				<a name="release_template="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">release_template</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="release-template-attribute-method" class="method-detail">
+        <a name="release_template"></a>
+        
+        <a name="release_template="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">release_template</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Release name. Use %s for inserting the version number.
 </p>
 <pre>
@@ -423,42 +446,42 @@ becomes
 <p>
 By default this is just &#8220;%s&#8221;.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="private-release-attribute-method" class="method-detail">
-				<a name="private_release"></a>
-				
-				<a name="private_release="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">private_release</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="private-release-attribute-method" class="method-detail">
+        <a name="private_release"></a>
+        
+        <a name="private_release="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">private_release</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Is this a private release?
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="site-map-attribute-method" class="method-detail">
-				<a name="site_map"></a>
-				
-				<a name="site_map="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">site_map</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="site-map-attribute-method" class="method-detail">
+        <a name="site_map"></a>
+        
+        <a name="site_map="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">site_map</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Directory to publish. Leave empty for for defaults (web, site, website, doc
 or doc/rdoc). Or use a Hash to create a publishing map. Eg.
 </p>
@@ -468,81 +491,81 @@ or doc/rdoc). Or use a Hash to create a publishing map. Eg.
     site    : .
     doc/rdoc: rdoc
 </pre>
-				
-				</div>
-			</div>
-			
-			<div id="site-delete-attribute-method" class="method-detail">
-				<a name="site_delete"></a>
-				
-				<a name="site_delete="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">site_delete</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="site-delete-attribute-method" class="method-detail">
+        <a name="site_delete"></a>
+        
+        <a name="site_delete="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">site_delete</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Should the site be published wholesale, removing any other content present
 at the upload destination? Note, this is the same as setting <tt><a
 href="Rubyforge.html#site_rsync">site_rsync</a></tt> to
 &#8217;&#8212;del-after&#8217;.
 </p>
-				
-				</div>
-			</div>
-			
-			<div id="site-rsync-attribute-method" class="method-detail">
-				<a name="site_rsync"></a>
-				
-				<a name="site_rsync="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">site_rsync</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
+        
+        </div>
+      </div>
+      
+      <div id="site-rsync-attribute-method" class="method-detail">
+        <a name="site_rsync"></a>
+        
+        <a name="site_rsync="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">site_rsync</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
 
-				<div class="method-description">
-				
-				<p>
+        <div class="method-description">
+        
+        <p>
 Used to specify any additional rsync options.
 </p>
-				
-				</div>
-			</div>
-			
-		</div>
-		
+        
+        </div>
+      </div>
+      
+    </div>
+    
 
-		<!-- Methods -->
-		
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
 
-		
-			<div id="announce-method" class="method-detail ">
-				<a name="M000123"></a>
+    
+      <div id="announce-method" class="method-detail ">
+        <a name="M000122"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">announce</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">announce</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					<p>
+        <div class="method-description">
+          
+          <p>
 Make an announcement to <a href="Rubyforge.html">Rubyforge</a>.
 </p>
-					
+          
 
-					
-					<div class="method-source-code"
-						id="announce-source">
+          
+          <div class="method-source-code"
+            id="announce-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 312</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">announce</span>
@@ -556,67 +579,67 @@ Make an announcement to <a href="Rubyforge.html">Rubyforge</a>.
         <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">announce</span>(<span class="ruby-identifier">options</span>)
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-			<div id="announcement-method" class="method-detail ">
-				<a name="M000126"></a>
+    
+      <div id="announcement-method" class="method-detail ">
+        <a name="M000125"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">announcement</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">announcement</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					
-					
+        <div class="method-description">
+          
+          
+          
 
-					
-					<div class="method-source-code"
-						id="announcement-source">
+          
+          <div class="method-source-code"
+            id="announcement-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 344</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">announcement</span>
       <span class="ruby-identifier">project</span>.<span class="ruby-identifier">announcement</span>
     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-			<div id="confirm--method" class="method-detail ">
-				<a name="M000125"></a>
+    
+      <div id="confirm--method" class="method-detail ">
+        <a name="M000124"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">confirm?</span><span
-						class="method-args">(action, options={})</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">confirm?</span><span
+            class="method-args">(action, options={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					<p>
+        <div class="method-description">
+          
+          <p>
 Generic confirmation.
 </p>
-					
+          
 
-					
-					<div class="method-source-code"
-						id="confirm--source">
+          
+          <div class="method-source-code"
+            id="confirm--source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 332</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">confirm?</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">options</span>={})
@@ -629,28 +652,28 @@ Generic confirmation.
         <span class="ruby-keyword kw">false</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-			<div id="publish-method" class="method-detail ">
-				<a name="M000122"></a>
+    
+      <div id="publish-method" class="method-detail ">
+        <a name="M000121"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">publish</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">publish</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					<p>
+        <div class="method-description">
+          
+          <p>
 Publish website to <a href="Rubyforge.html">Rubyforge</a>.
 </p>
 <p>
@@ -664,11 +687,11 @@ source directory, which is used to omit certain files from publishing
 and/or protect files from removal at the remote end. (see &#8216;man
 rsync&#8217;).
 </p>
-					
+          
 
-					
-					<div class="method-source-code"
-						id="publish-source">
+          
+          <div class="method-source-code"
+            id="publish-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 265</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">publish</span>
@@ -715,35 +738,35 @@ rsync&#8217;).
         <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">publish</span>(<span class="ruby-identifier">options</span>)
       <span class="ruby-comment cmt">#end</span>
     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-			<div id="release-method" class="method-detail ">
-				<a name="M000117"></a>
+    
+      <div id="release-method" class="method-detail ">
+        <a name="M000114"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">release</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">release</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					<p>
+        <div class="method-description">
+          
+          <p>
 Release packages to <a href="Rubyforge.html">Rubyforge</a>.
 </p>
-					
+          
 
-					
-					<div class="method-source-code"
-						id="release-source">
+          
+          <div class="method-source-code"
+            id="release-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 189</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">release</span>
@@ -808,71 +831,71 @@ Release packages to <a href="Rubyforge.html">Rubyforge</a>.
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-			<div id="touch-method" class="method-detail ">
-				<a name="M000124"></a>
+    
+      <div id="touch-method" class="method-detail ">
+        <a name="M000123"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">touch</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">touch</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					
-					
+        <div class="method-description">
+          
+          
+          
 
-					
-					<div class="method-source-code"
-						id="touch-source">
+          
+          <div class="method-source-code"
+            id="touch-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 326</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">touch</span>
       <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">touch</span>
     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-		</div>
-	
-		<div id="private-instance-method-details" class="method-section section">
-			<h3 class="section-header">Private Instance Methods</h3>
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
 
-		
-			<div id="initialize-defaults-method" class="method-detail ">
-				<a name="M000113"></a>
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000112"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">initialize_defaults</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					<p class="missing-docs">(Not documented)</p>
-					
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
 
-					
-					<div class="method-source-code"
-						id="initialize-defaults-source">
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 127</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
@@ -904,33 +927,33 @@ Release packages to <a href="Rubyforge.html">Rubyforge</a>.
 
         <span class="ruby-comment cmt">#@rubyforge = Support::Rubyforge.new(metadata.name, options)</span>
       <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-			<div id="rubyforge-method" class="method-detail ">
-				<a name="M000116"></a>
+    
+      <div id="rubyforge-method" class="method-detail ">
+        <a name="M000113"></a>
 
-				<div class="method-heading">
-				
-					<span class="method-name">rubyforge</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+        <div class="method-heading">
+        
+          <span class="method-name">rubyforge</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-				<div class="method-description">
-					
-					
-					
+        <div class="method-description">
+          
+          
+          
 
-					
-					<div class="method-source-code"
-						id="rubyforge-source">
+          
+          <div class="method-source-code"
+            id="rubyforge-source">
 <pre>
 <span class="ruby-comment cmt"># File plug/syckle/services/rubyforge.rb, line 158</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rubyforge</span>
@@ -953,32 +976,25 @@ Release packages to <a href="Rubyforge.html">Rubyforge</a>.
           <span class="ruby-constant">ForgeRubyforge</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>)
         )
       <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          </div>
+          
+        </div>
 
-				
-			</div>
+        
+      </div>
 
-		
-		</div>
-	
+    
+    </div>
+  
 
-	</div>
+  </div>
 
 
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
-
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
 
 </body>
 </html>
-

@@ -4,8 +4,8 @@ aliases: []
 block_params: 
 comment: []
 
-full_name: Syckle::Config#services=
+full_name: Syckle::Config#syckle_files
 is_singleton: false
-name: services=
-params: (hash)
+name: syckle_files
+params: ()
 visibility: public

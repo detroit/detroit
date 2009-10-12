@@ -35,13 +35,13 @@ class_methods:
   name: new
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle master configuration. Configurations loads from master <tt>Syckfile</tt> and.or <tt>.syckle</tt> subordinate files.
+  body: Syckle configuration. Configuration comes from the amin <tt>Syckfile</tt> and/or subordinate <tt>.syckle</tt> files, and configuration options defined in a path store int the project's config directory.
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active automatic mode for."
 - !ruby/struct:RDoc::Markup::Flow::RULE 
   width: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle master configuration. Configurations loads from master <tt>Syckfile</tt> and.or <tt>.syckle</tt> subordinate files.
+  body: Syckle configuration. Configuration comes from the amin <tt>Syckfile</tt> and/or subordinate <tt>.syckle</tt> files, and configuration options defined in a path store int the project's config directory.
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active automatic mode for."
 constants: []
@@ -55,8 +55,6 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: automatic?
 - !ruby/object:RDoc::RI::MethodSummary 
-  name: config_files
-- !ruby/object:RDoc::RI::MethodSummary 
   name: defaults=
 - !ruby/object:RDoc::RI::MethodSummary 
   name: load_syckle_file
@@ -67,6 +65,6 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: method_missing
 - !ruby/object:RDoc::RI::MethodSummary 
-  name: services=
+  name: syckle_files
 name: Config
 superclass: Object
