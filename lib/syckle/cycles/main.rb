@@ -6,9 +6,9 @@ module Syckle
 
     cycle :prepare,    # prepare services / ensure service requirements
           :generate,   # code generation
-          :analyize,   # code analysis
           :compile,    # compile source code
           :test,       # run tests and/or specifications
+          :analyize,   # run code analysis
           :document,   # generate documentation
           :package,    # create packages
           :verify,     # post package verification (eg. integration tests)
