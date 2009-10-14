@@ -1,7 +1,21 @@
 = Task List
 
+== PRIORITY
+
 * When generating docs from a subdirectory, it doesn not appear to be moving up to
 the root directory before executing tasks. Check ridoc in particular.
+
+* Use flag for isolating syckle files. Also provide -o --only option to complement -s --skip.
+
+* Parallel execution needs alternate io class so that output can look okay no matter what order
+it is in.
+
+* Remove RATCH dependency (again)
+
+* Support YAML cofig file in additions to Path::Store.
+
+
+== CONSDIER
 
 * Use CLIO?
 
@@ -9,7 +23,10 @@ the root directory before executing tasks. Check ridoc in particular.
 
 * Should minimize use of environament variables. This makes for a more repeatable build process.
 
-* [DONE] Parallel Execution. Within a phase, any service instances that have the same priority can be run
+
+== COMPLETED
+
+* Parallel Execution. Within a phase, any service instances that have the same priority can be run
 in parallel. I do not know how this would effect output, but it would be nice to have
 since some services can take some time to complete, such as rcov.
 
