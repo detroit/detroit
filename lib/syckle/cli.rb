@@ -7,9 +7,13 @@ module Syckle
   #
   class CLI
 
+    #
     attr :usage
+
+    #
     attr :options
 
+    #
     def initialize
       @usage   = OptionParser.new
 
@@ -33,6 +37,10 @@ module Syckle
         options[:noop] = true
       end
 
+      usage.on('--verbose', "Provided extra output.") do
+        options[:verbose] = true
+      end
+
       usage.on('--dryrun', "No disk writes and verbose.") do  # dryrun
         options[:noop] = true
         options[:verbose] = true
@@ -40,10 +48,6 @@ module Syckle
 
       usage.on('-q', '--quiet', "Run silently.") do
         options[:quiet] = true
-      end
-
-      usage.on('--verbose', "Provided extra output.") do
-        options[:verbose] = true
       end
 
       usage.on('--force', "Force operations.") do
@@ -73,13 +77,19 @@ module Syckle
     #  usage.help.to_s(:bold=>true)
     #end
 
+    #
     def application
       @application ||= Syckle::Application.new(self)
     end
 
-    #
+    # parse! ?
     def parse
-      usage.parse!(ARGV)
+      @argv ||= ARGV.dup
+      @usage.parse!(@argv)
+    end
+
+    def arguments
+      @argv
     end
 
     #

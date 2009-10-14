@@ -1,268 +1,99 @@
+require 'yaml'
+require 'rbconfig'  # replace with facets/rbsystem?
 #require 'ostruct'
 #require 'tmpdir'
-#require 'yaml'
-#require 'rbconfig'  # replace with facets/rbsystem?
-#require 'fileutils'
 
-#require 'folio'
+require 'facets/platform'
 
-#require 'facets/platform'
-#require 'pom/project'
+require 'pom/project'
 
 #require 'syckle/core_ext'
 #require 'syckle/log'
 
-#require 'syckle/support/emailer'
+require 'syckle/cli'
+require 'syckle/io'
+require 'syckle/shell'
 
-#require 'ratch/io'
-#require 'ratch/commandline'
-
-#require 'ratch/task'
-
-#require 'facets/openhash'
-#require 'facets/argvector'
-
-require 'ratch/script'
 
 module Syckle
 
-  class Script < ::Ratch::Script
-  end
-
-end
-
-=begin
-  # = Syckle DSL Domain
+  # = Syckle Script Domain
   #
   # The DSL class is the heart of Syckle, it provides all the convenece methods
   # that make Syckle services so convenient to write.
   #
-  # TODO: Rename to DSL ?
+  # TODO: Better name?
   #
-  class Domain < Module
+  class Script < Module
 
     #
-    def project
+    def initialize(options={})
+      extend self
+
       @project ||= POM::Project.new
+
+      options.each do |k, v|
+        send("#{k}=", v) if respond_to?("#{k}=")
+      end
+
+      @cli ||= CLI.new
+      @io  ||= IO.new(@cli)
+
+      path = @project.root || Dir.pwd   # TODO: error or pwd ?
+
+      mode = {
+        :noop    => @cli.noop?,
+        :verbose => @cli.verbose?,
+        :quiet   => @cli.quiet?
+      }
+
+      @shell = Shell.new(path, mode)
     end
 
-    #
+    def force?   ; cli.force?   ; end
+    def debug?   ; cli.debug?   ; end
+    def quiet?   ; cli.quiet?   ; end
+    def noop?    ; cli.noop?    ; end
+    def verbose? ; cli.verbose? ; end
+
+    def trace?   ; cli.debug && cli.verbose? ; end
+    def dryrun?  ; cli.noop? && cli.verbose? ; end
+
+    # The #cli method provides delagated access to commandline
+    # arguments and options via the CLI interface.
+    attr_accessor :cli
+
+    # Delagate input/output routines to IO object.
+    attr_accessor :io
+
+    # Delagate file operations to Shell.
+    attr_accessor :shell
+
+    # POM::Project object.
+    attr_reader :project
+
+    # POM::Metadata object, derived from Project.
     def metadata
       project.metadata
     end
-
-    # Access a log by name.
-    def logfile(name)
-      @logfile ||= {}
-      @logfile[name.to_s] ||= (
-        Log.new(self, project.log + name.to_s)
-      )
-    end
-
-    # to be deprecated
-    alias_method :log, :logfile
-
-    #
-    def status(message)
-      #puts message unless quiet?
-      io.status(message)
-    end
-
-    #
-    def report(message)
-      #puts message unless quiet?
-      io.report(message)
-    end
-
-    #
-    def initialize(ioc={})
-      #include Taskable
-      #include Taskable::Dsl
-
-      extend self
-
-      @cli = ioc[:cli] #|| Commandline.new
-      @io  = ioc[:io]  || IO.new(@cli)
-
-      mode = {
-        :dryrun  => @cli.dryrun?,
-        :verbose => @cli.verbose?
-        #:noop => ?
-      }
-
-      @fio = ioc[:fio] || Folio::Shell.new(mode)
-    end
-
-    # Delagate input/output routines to Ratch::IO object.
-    attr :io
-
-    # Delagate file operations to Folio::Shell.
-    attr :fio
-
-    # Delagate commandline settings to CLI object.
-    attr :cli
-
-    alias_method :commandline, :cli
-
-    # DEPRECATE!
-    alias_method :command, :cli
-
-    #
-    #def commandline
-    #  #@commandline ||= ArgVector.new(ARGV)
-    #  @commandline
-    #end
-
-    def force?   ; cli.force?   ; end
-    def trace?   ; cli.trace?   ; end
-    def debug?   ; cli.debug?   ; end
-    def pretend? ; cli.pretend? ; end
-    def dryrun?  ; cli.pretend? ; end
-    def quiet?   ; cli.quiet?   ; end
-    def verbose? ; cli.verbose? ; end
 
     # Current platform.
     def current_platform
       Platform.local.to_s
     end
 
---
-    # Shell runner.
-    def shell(cmd)
-      if dryrun?
-        puts cmd
-        true
+    # Delegate to Shell.
+    def method_missing(s, *a, &b)
+      if @shell.respond_to?(s)
+        @shell.__send__(s, *a, &b)
       else
-        puts "--> system call: #{cmd}" if trace?
-        if quiet?
-          silently{ system(cmd) }
+        if @io.respond_to?(s)
+          @io.__send__(s, *a, &b)
         else
-          system(cmd)
+          super
         end
       end
     end
-
-    # TODO: DEPRECATE #sh in favor of #shell (?)
-    alias_method :sh, :shell
---
-
-    # Delegate to Filio::Shell.
-    def method_missing(s, *a, &b)
-      if @fio.respond_to?(s)
-        @fio.__send__(s, *a, &b)
-      else
-        super
-      end
-    end
-
-    # Provides convenient starting points in the file system.
-    #
-    #   root   #=> #<Pathname:/>
-    #   home   #=> #<Pathname:/home/jimmy>
-    #   work   #=> #<Pathname:/home/jimmy/Documents>
-    #
-    # TODO: Replace these with Folio when Folio's is as capable.
-
-    # Current root path.
-    def root(*args)
-      Pathname['/', *args]
-    end
-
-    # Current home path.
-    def home(*args)
-      Pathname['~', *args].expand_path
-    end
-
-    # Current working path.
-    def work(*args)
-      Pathname['.', *args]
-    end
-
-    alias_method :pwd, :work
-
-    # Bonus FileUtils features.
-    #def cd(*a,&b)
-    #  puts "cd #{a}" if dryrun? or trace?
-    #  fileutils.chdir(*a,&b)
-    #end
-
-    # Read file.
-    def file_read(path)
-      File.read(path)
-    end
-
-    # Write file.
-    def file_write(path, text)
-      if dryrun?
-        puts "write #{path}"
-      else
-        File.open(path, 'w'){ |f| f << text }
-      end
-    end
-
-    # Assert that a path exists.
-    def exists?(path)
-      paths = Dir.glob(path)
-      paths.not_empty?
-    end
-    alias_method :exist?, :exists? #; module_function :exist?
-    alias_method :path?,  :exists? #; module_function :path?
-
-    # Is a given path a regular file? If +path+ is a glob
-    # then checks to see if all matches are refular files.
-    def file?(path)
-      paths = Dir.glob(path)
-      paths.not_empty? && paths.all?{ |f| FileTest.file?(f) }
-    end
-
-    # Is a given path a directory? If +path+ is a glob
-    # checks to see if all matches are directories.
-    def dir?(path)
-      paths = Dir.glob(path)
-      paths.not_empty? && paths.all?{ |f| FileTest.directory?(f) }
-    end
-    alias_method :directory?, :dir? #; module_function :directory?
-
-
-    # TODO: Deprecate these?
-
-    # Assert that a path exists.
-    def exists!(*paths)
-      abort "path not found #{path}" unless paths.any?{|path| exists?(path)}
-    end
-    alias_method :exist!, :exists! #; module_function :exist!
-    alias_method :path!,  :exists! #; module_function :path!
-
-    # Assert that a given path is a file.
-    def file!(*paths)
-      abort "file not found #{path}" unless paths.any?{|path| file?(path)}
-    end
-
-    # Assert that a given path is a directory.
-    def dir!(*paths)
-      paths.each do |path|
-        abort "Directory not found: '#{path}'." unless  dir?(path)
-      end
-    end
-    alias_method :directory!, :dir! #; module_function :directory!
-
-
-    # Internal status report.
-    # Only output if dryrun or trace mode.
-    def status(message)
-      io.status(message)
-    end
-
-    # Convenient method to get simple console reply.
-    def ask(question, answers=nil)
-      io.ask(question, answers)
-    end
-
-    # Ask for a password. (FIXME: only for unix so far)
-    def password(prompt=nil)
-      io.password(prompt)
-    end
-
 
     # Load configuration data from a file.
     # Results are cached and and empty Hash is
@@ -360,88 +191,164 @@ end
 
 end
 
-=end
 
 
 
 
-
-
-
-
-    # Delegate file system routines to FileUtils or FileUtils::DryRun,
-    # depending on dryrun mode.
-    #def fileutils
-    #  dryrun? ? ::FileUtils::DryRun : ::FileUtils
-    #end
-
-    # Add FileUtils Features
-    #::FileUtils.private_instance_methods(false).each do |meth|
-    #  next if meth =~ /^fu_/
-    #  module_eval %{
-    #    def #{meth}(*a,&b)
-    #      fileutils.#{meth}(*a,&b)
-    #    end
-    #  }
-    #end
-
-    # Add FileTest Features
-    #::FileTest.private_instance_methods(false).each do |meth|
-    #  next if meth =~ /^fu_/
-    #  module_eval %{
-    #    def #{meth}(*a,&b)
-    #      FileTest.#{meth}(*a,&b)
-    #    end
-    #  }
-    #end
-
-
-#    # Compress directory.
-#    #
-#    def compress(format, folder, file=nil, options={})
-#      case format.to_s.downcase
-#      when 'zip'
-#        ziputils.zip(folder, file, options)
-#      when 'tgz'
-#        ziputils.tgz(folder, file, options)
-#      when 'tbz', 'bzip'
-#        ziputils.tar_bzip(folder, file, options)
-#      else
-#        raise ArguementError, "unsupported compression format -- #{format}"
-#      end
-#    end
-
-    # Glob files.
-    #def glob(*args, &blk)
-    #  Dir.glob(*args, &blk)
-    #end
-
-    # Multiglob files.
-    #def multiglob(*args, &blk)
-    #  Dir.multiglob(*args, &blk)
-    #end
-
-    # Multiglob recursive.
-    #def multiglob_r(*args, &blk)
-    #  Dir.multiglob_r(*args, &blk)
-    #end
 
 =begin
-    # Does a path need updating, based on given +sources+?
-    # This compares mtimes of give paths. Returns false
-    # if the path needs to be updated.
+    # Shell runner.
+    def shell(cmd)
+      if dryrun?
+        puts cmd
+        true
+      else
+        puts "--> system call: #{cmd}" if trace?
+        if quiet?
+          silently{ system(cmd) }
+        else
+          system(cmd)
+        end
+      end
+    end
+
+    # TODO: DEPRECATE #sh in favor of #shell (?)
+    alias_method :sh, :shell
+
     #
-    # TODO: Put this in FileTest instead?
+    def status(message)
+      #puts message unless quiet?
+      io.status(message)
+    end
 
-    def out_of_date?(path, *sources)
-      return true unless File.exist?(path)
-
-      sources = sources.collect{ |source| Dir.glob(source) }.flatten
-      mtimes  = sources.collect{ |file| File.mtime(file) }
-
-      return true if mtimes.empty?  # TODO: This the way to go here?
-
-      File.mtime(path) < mtimes.max
+    #
+    def report(message)
+      #puts message unless quiet?
+      io.report(message)
     end
 =end
 
+
+=begin
+    # Provides convenient starting points in the file system.
+    #
+    #   root   #=> #<Pathname:/>
+    #   home   #=> #<Pathname:/home/jimmy>
+    #   work   #=> #<Pathname:/home/jimmy/Documents>
+    #
+    # TODO: Replace these with Folio when Folio's is as capable.
+
+    # Current root path.
+    def root(*args)
+      Pathname['/', *args]
+    end
+
+    # Current home path.
+    def home(*args)
+      Pathname['~', *args].expand_path
+    end
+
+    # Current working path.
+    def work(*args)
+      Pathname['.', *args]
+    end
+
+    alias_method :pwd, :work
+
+    # Bonus FileUtils features.
+    #def cd(*a,&b)
+    #  puts "cd #{a}" if dryrun? or trace?
+    #  fileutils.chdir(*a,&b)
+    #end
+
+    # Read file.
+    def file_read(path)
+      File.read(path)
+    end
+
+    # Write file.
+    def file_write(path, text)
+      if dryrun?
+        puts "write #{path}"
+      else
+        File.open(path, 'w'){ |f| f << text }
+      end
+    end
+
+    # Assert that a path exists.
+    def exists?(path)
+      paths = Dir.glob(path)
+      paths.not_empty?
+    end
+    alias_method :exist?, :exists? #; module_function :exist?
+    alias_method :path?,  :exists? #; module_function :path?
+
+    # Is a given path a regular file? If +path+ is a glob
+    # then checks to see if all matches are refular files.
+    def file?(path)
+      paths = Dir.glob(path)
+      paths.not_empty? && paths.all?{ |f| FileTest.file?(f) }
+    end
+
+    # Is a given path a directory? If +path+ is a glob
+    # checks to see if all matches are directories.
+    def dir?(path)
+      paths = Dir.glob(path)
+      paths.not_empty? && paths.all?{ |f| FileTest.directory?(f) }
+    end
+    alias_method :directory?, :dir? #; module_function :directory?
+
+
+    # TODO: Deprecate these?
+
+    # Assert that a path exists.
+    def exists!(*paths)
+      abort "path not found #{path}" unless paths.any?{|path| exists?(path)}
+    end
+    alias_method :exist!, :exists! #; module_function :exist!
+    alias_method :path!,  :exists! #; module_function :path!
+
+    # Assert that a given path is a file.
+    def file!(*paths)
+      abort "file not found #{path}" unless paths.any?{|path| file?(path)}
+    end
+
+    # Assert that a given path is a directory.
+    def dir!(*paths)
+      paths.each do |path|
+        abort "Directory not found: '#{path}'." unless  dir?(path)
+      end
+    end
+    alias_method :directory!, :dir! #; module_function :directory!
+=end
+
+=begin
+    # Internal status report.
+    # Only output if dryrun or trace mode.
+    def status(message)
+      io.status(message)
+    end
+
+    # Convenient method to get simple console reply.
+    def ask(question, answers=nil)
+      io.ask(question, answers)
+    end
+
+    # Ask for a password. (FIXME: only for unix so far)
+    def password(prompt=nil)
+      io.password(prompt)
+    end
+=end
+
+=begin
+    # Access a log by name.
+    #def logfile(name)
+    #  @logfile ||= {}
+    #  @logfile[name.to_s] ||= (
+    #    Log.new(self, project.log + name.to_s)
+    #  )
+    #end
+
+    # to be deprecated
+    #alias_method :log, :logfile
+=end
