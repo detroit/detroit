@@ -2,20 +2,20 @@ module Syckle::Plugins
 
   # = Test::Unit Plugin via testrb
   #
-  # This Reap service plugin runs your test/unit (or minitest)
+  # This service plugin runs your test/unit (or minitest)
   # tests based unit tests using the +testrb+ commandline tool.
   #
-  # TODO: How to abort if fail?
+  # TODO: How to abort lifecycle if fail?
   #
   class Testrb < Service
 
-    cycle :main, :validate do
+    cycle :main, :test do
       runtests
     end
 
-    available do |project|
-      !Dir['test/**/*.rb'].empty?
-    end
+    #available do |project|
+    #  !Dir['test/**/*.rb'].empty?
+    #end
 
     # Default test file patterns.
     DEFAULT_TESTS = ["test/**/test_*.rb", "test/**/*_test.rb" ]

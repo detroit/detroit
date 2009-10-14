@@ -2,7 +2,7 @@ module Syckle::Plugins
 
   # = RubyProf Profiling Plugin
   #
-  # This is a service plugin for ruby-proof command line tool.
+  # This is a service plugin for ruby-prof command line tool.
   #
   class RubyProf < Service
 

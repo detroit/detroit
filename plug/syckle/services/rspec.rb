@@ -6,7 +6,10 @@ module Syckle::Plugins
   # 
   class RSpec < Service
 
-    cycle :main, :validate
+    cycle :main, :test do
+      runspecs
+    end
+
     cycle :main, :document
 
     #
@@ -78,7 +81,7 @@ module Syckle::Plugins
     #   ruby [ruby_opts] -Ilib -S rcov [rcov_opts] bin/spec -- examples [spec_opts]
     #++
 
-    def validate
+    def runspecs
       shellout
     end
 

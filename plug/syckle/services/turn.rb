@@ -7,13 +7,13 @@ module Syckle::Plugins
   #
   class Turn < Service
 
-    cycle :main, :validate do
+    cycle :main, :test do
       runtests
     end
 
-    available do |project|
-      !Dir['test/**/*.rb'].empty?
-    end
+    #available do |project|
+    #  !Dir['test/**/*.rb'].empty?
+    #end
 
     # Default test file patterns.
     DEFAULT_TESTS = ["test/**/test_*.rb", "test/**/*_test.rb" ]
