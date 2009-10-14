@@ -3,8 +3,16 @@ module Syckle
   # = Website Life Cycles
   #
   lifecycle :site do
-    cycle :configure, :generate, :document, :release
-    cycle :reset, :clean
+
+    cycle :prepare,
+          :generate,
+          :analyize,
+          :document,
+          :release
+
+    cycle :reset,
+          :clean
+
   end
 
 end
