@@ -124,6 +124,9 @@ module Syckle
     attr_accessor :priority
 
     #
+    attr_accessor :active
+
+    #
 
     private
 
@@ -140,14 +143,16 @@ module Syckle
       @options  = options || {}
 
       @priority = 0
+      @active   = true
 
       raise TypeError, "context must be a subclass of Syckle::Script" unless context.is_a?(Syckle::Script) # Syckle::DSL
 
       initialize_defaults
 
       options ||= {}
+
       options.each do |k, v|
-        send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
+        send("#{k}=", v) unless v.nil? #if respond_to?("#{k}=") && !v.nil?
       end
     end
 

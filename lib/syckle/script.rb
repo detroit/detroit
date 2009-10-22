@@ -30,7 +30,7 @@ module Syckle
     def initialize(options={})
       extend self
 
-      @project ||= POM::Project.new
+      @project = POM::Project.new(:lookup=>true, :load=>true)
 
       options.each do |k, v|
         send("#{k}=", v) if respond_to?("#{k}=")
