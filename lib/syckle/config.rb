@@ -1,15 +1,13 @@
 require 'facets/boolean'
-require 'path/store'
+#require 'path/store'
 
 module Syckle
 
   # Syckle configuration. Configuration comes from a main +Syckfile+
   # and/or +.syckle+ task files, and configuration options defined
-  # in a path store in the project's config directory (eg. +.config/syckle+).
+  # in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
   #
-  #--
-  # TODO: Allow +automatic+ to be a list of serive names to active automatic mode for.
-  #++
+  # TODO: Allow +automatic+ to accept a list of serives to limit automatic mode.
 
   class Config
 
@@ -28,12 +26,14 @@ module Syckle
     # autorun criteria is met. Or this can be set to a
     # list of service names for which autorun mode will
     # apply.
+    #
+    # Default is +true+. Use +false+ to deactivate.
 
     attr :automatic
 
     # Services to omit from automatic execution. If automatic
-    # is set to true, the +standard+ setting can be used to
-    # exclude specific services from auto-execution. 
+    # is set to +true+ (the default), the +standard+ setting can
+    # be used to exclude specific services from auto-execution. 
 
     attr :standard
 
@@ -47,11 +47,25 @@ module Syckle
     def initialize(project) #, *files)
       @project = project
 
-      store = Path::Store.new(project.config + 'syckle').to_h
+      if file = project.config.glob('syckle/config.{yml,yaml}').first
+        conf = YAML.load(File.new(file))
+      else
+        conf = {}
+      end
 
-      self.automatic = store['automatic']
-      self.standard  = store['standard'] || []
-      self.defaults  = store['defaults'].to_h
+      if conf['automatic'].nil?
+        self.automatic = true
+      else
+        self.automatic = conf['automatic']
+      end
+
+      self.standard  = conf['standard'] || []
+
+      if file = project.config.glob('syckle/defaults.{yml,yaml}').first
+        self.defaults = YAML.load(File.new(file))
+      else
+        self.defaults = {}
+      end
 
       @services = {}
 
