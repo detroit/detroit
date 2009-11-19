@@ -1,0 +1,27 @@
+= DESIGN
+
+== POM Path Store
+
+Path stores have certain advantages that flat-files can't provide.
+For instance, script access to a flat-file is generally more complicated
+as can be seen in comparing the procedure of changing a property
+in a YAML file vs. a path store.
+
+  > yml = YAML.load(File.new('store.yaml'))
+  > yml['rdoc'] ||= {}
+  > yml['rdoc']['active'] = true
+  > File.open(file, 'w'){ |f| f < yml.to_yaml }
+
+Using a Path::Store to update an attribute by contrast is fairly simple.
+
+  > FileUtils.mkdir_p('store/rdoc')
+  > File.open('store/rdoc/active', 'w'){ |f| f << 'true' }
+
+And it is even easier from a bash prompt.
+
+  $ store/rdoc/active < 'true'
+
+Of course, there are usecases where this capability serves little
+purpose, in which case a flat-file is advantegeous because numerous
+properties can be easily edited as once via a standard text editor.
+
