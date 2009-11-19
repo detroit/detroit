@@ -27,25 +27,24 @@ module Syckle
 
     def force?   ; cli.force?   ; end
     def quiet?   ; cli.quiet?   ; end
-    def debug?   ; cli.debug?   ; end
-    def noop?    ; cli.noop?    ; end
     def verbose? ; cli.verbose? ; end
 
-    def trace?  ; cli.verbose? && cli.debug? ; end
-    def dryrun? ; cli.verbose? && cli.noop?  ; end
+    def trace?   ; cli.trace?   ; end
+    def trial?   ; cli.trial?   ; end
+    def debug?   ; cli.debug?   ; end
 
-    #
+    # TODO: just rename to #puts ?
     def report(message)
       stdout.puts message unless quiet?
     end
 
-    #
+    # TODO: deprecate in favor of #report (or #puts ?)
     def status(message)
       stderr.puts message unless quiet?
     end
 
     # Internal status report.
-    # Only output if verbose mode.
+    # Only output if in TRACE mode.
     #
     def trace(message)
       stderr.puts message if verbose?
@@ -60,26 +59,26 @@ module Syckle
       inp.strip
     end
 
-    # Ask for a password. (FIXME: only for unix so far)
-    def password(prompt=nil)
-      prompt ||= "Enter Password: "
-      inp = ''
-      stdout << "#{prompt} "
-      stdout.flush
-      begin
-        #system "stty -echo"
-        #inp = gets.chomp
-        until inp = $stdin.gets
-          sleep 1
-        end
-      ensure
-        #system "stty echo"
-      end
-      return inp.chomp
-    end
+    ## Ask for a password. (FIXME: only for unix so far)
+    #def password(prompt=nil)
+    #  prompt ||= "Enter Password: "
+    #  inp = ''
+    #  stdout << "#{prompt} "
+    #  stdout.flush
+    #  begin
+    #    #system "stty -echo"
+    #    #inp = gets.chomp
+    #    until inp = $stdin.gets
+    #      sleep 1
+    #    end
+    #  ensure
+    #    #system "stty echo"
+    #  end
+    #  return inp.strip
+    #end
 
-    # TODO: Until we have better support for getting input acorss platforms
-    # we are using #ask only.
+    # TODO: Until we have better support for getting input acorss
+    # platforms we are using #ask only.
     def password(prompt=nil)
       prompt ||= "Enter Password: "
       ask(prompt)

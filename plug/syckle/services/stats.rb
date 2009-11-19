@@ -82,7 +82,7 @@ module Syckle::Plugins
     #
     def save_stats(file, text)
       log_file = output + file
-      if dryrun?
+      if trial?
         report "write #{log_file}"
       else
         mkdir_p(log_file.parent)

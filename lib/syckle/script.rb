@@ -30,7 +30,7 @@ module Syckle
     def initialize(options={})
       extend self
 
-      @project = POM::Project.new(:lookup=>true, :load=>true)
+      @project = POM::Project.new(:lookup=>true) #, :load=>true)
 
       options.each do |k, v|
         send("#{k}=", v) if respond_to?("#{k}=")
@@ -42,8 +42,8 @@ module Syckle
       path = @project.root || Dir.pwd   # TODO: error or pwd ?
 
       mode = {
-        :noop    => @cli.noop?,
-        :verbose => @cli.verbose?,
+        :noop    => @cli.trial?,
+        :verbose => @cli.trace? || (@cli.trial? && !@cli.quiet?),
         :quiet   => @cli.quiet?
       }
 
@@ -51,13 +51,12 @@ module Syckle
     end
 
     def force?   ; cli.force?   ; end
-    def debug?   ; cli.debug?   ; end
     def quiet?   ; cli.quiet?   ; end
-    def noop?    ; cli.noop?    ; end
     def verbose? ; cli.verbose? ; end
 
-    def trace?   ; cli.debug && cli.verbose? ; end
-    def dryrun?  ; cli.noop? && cli.verbose? ; end
+    def trace?   ; cli.trace?   ; end
+    def trial?   ; cli.trial?   ; end
+    def debug?   ; cli.debug?   ; end
 
     # The #cli method provides delagated access to commandline
     # arguments and options via the CLI interface.
@@ -197,24 +196,6 @@ end
 
 
 =begin
-    # Shell runner.
-    def shell(cmd)
-      if dryrun?
-        puts cmd
-        true
-      else
-        puts "--> system call: #{cmd}" if trace?
-        if quiet?
-          silently{ system(cmd) }
-        else
-          system(cmd)
-        end
-      end
-    end
-
-    # TODO: DEPRECATE #sh in favor of #shell (?)
-    alias_method :sh, :shell
-
     #
     def status(message)
       #puts message unless quiet?
@@ -225,6 +206,17 @@ end
     def report(message)
       #puts message unless quiet?
       io.report(message)
+    end
+
+    # Internal status report.
+    # Only output if trial or trace mode.
+    def status(message)
+      io.status(message)
+    end
+
+    # Convenient method to get simple console reply.
+    def ask(question, answers=nil)
+      io.ask(question, answers)
     end
 =end
 
@@ -257,7 +249,7 @@ end
 
     # Bonus FileUtils features.
     #def cd(*a,&b)
-    #  puts "cd #{a}" if dryrun? or trace?
+    #  puts "cd #{a}" if trial? or trace?
     #  fileutils.chdir(*a,&b)
     #end
 
@@ -268,7 +260,7 @@ end
 
     # Write file.
     def file_write(path, text)
-      if dryrun?
+      if trial?
         puts "write #{path}"
       else
         File.open(path, 'w'){ |f| f << text }
@@ -297,48 +289,8 @@ end
       paths.not_empty? && paths.all?{ |f| FileTest.directory?(f) }
     end
     alias_method :directory?, :dir? #; module_function :directory?
-
-
-    # TODO: Deprecate these?
-
-    # Assert that a path exists.
-    def exists!(*paths)
-      abort "path not found #{path}" unless paths.any?{|path| exists?(path)}
-    end
-    alias_method :exist!, :exists! #; module_function :exist!
-    alias_method :path!,  :exists! #; module_function :path!
-
-    # Assert that a given path is a file.
-    def file!(*paths)
-      abort "file not found #{path}" unless paths.any?{|path| file?(path)}
-    end
-
-    # Assert that a given path is a directory.
-    def dir!(*paths)
-      paths.each do |path|
-        abort "Directory not found: '#{path}'." unless  dir?(path)
-      end
-    end
-    alias_method :directory!, :dir! #; module_function :directory!
 =end
 
-=begin
-    # Internal status report.
-    # Only output if dryrun or trace mode.
-    def status(message)
-      io.status(message)
-    end
-
-    # Convenient method to get simple console reply.
-    def ask(question, answers=nil)
-      io.ask(question, answers)
-    end
-
-    # Ask for a password. (FIXME: only for unix so far)
-    def password(prompt=nil)
-      io.password(prompt)
-    end
-=end
 
 =begin
     # Access a log by name.

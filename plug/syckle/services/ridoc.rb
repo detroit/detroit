@@ -112,7 +112,7 @@ module Syckle::Plugins
     def clean
       if File.directory?(output)
         rm_r(output)
-        status "Removed #{output}" #unless dryrun?
+        status "Removed #{output}" #unless trial?
       end
     end
 
@@ -129,7 +129,7 @@ module Syckle::Plugins
 
       cmd = "rdoc --ri -a #{extra} " + [input, rdocopt].to_console
 
-      if verbose? or dryrun?
+      if verbose? or trial?
         sh(cmd)
       else
         silently do

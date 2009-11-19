@@ -59,7 +59,7 @@ module Syckle::Plugins
     def reset
       if File.directory?(output)
         File.utime(0,0,output)
-        report "reset #{output}" #unless dryrun?
+        report "reset #{output}" #unless trial?
       end
     end
 
@@ -67,7 +67,7 @@ module Syckle::Plugins
     def clean
       if File.directory?(output)
         rm_r(output)
-        status "removed #{output}" #unless dryrun?
+        status "removed #{output}" #unless trial?
       end
     end
 

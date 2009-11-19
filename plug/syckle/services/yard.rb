@@ -176,7 +176,7 @@ module Syckle::Plugins
 
       if File.directory?(output)
         rm_r(output)
-        status "Removed #{output}" unless dryrun?
+        status "Removed #{output}" unless trial?
       end
     end
 
@@ -194,7 +194,7 @@ module Syckle::Plugins
 
         cmd = "yardoc #{extra} " + [input, options].to_console
 
-        if verbose? or dryrun?
+        if verbose? or trial?
           shell(cmd)
         else
           silently do

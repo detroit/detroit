@@ -72,7 +72,7 @@ module Syckle::Plugins
       if mailto.empty?
 
       else
-        if dryrun?
+        if trial?
           subject = mailopts['subject']
           mailto  = mailopts['to'].flatten.join(", ")
           puts "email '#{subject}' to #{mailto}"

@@ -43,7 +43,7 @@ module Syckle::Plugins
     # List of any files/directory to not overwrite in branch.
     attr_accessor :keep
 
-    # Do not overwrite anything. Defaults to +noop+ setting.
+    # Do not overwrite anything. Defaults to +trial+ setting.
     attr_accessor :keep_all
 
     # List of directories and files to transfer.
@@ -74,7 +74,8 @@ module Syckle::Plugins
         #g.message = (quiet? ? '' : 'Tranferred site files to #{branch}.')
 
         sitemap.each do |(src, dest)|
-          #trace "transfer: #{src} => #{dest}"
+          trace "transfer: #{src} => #{dest}"
+          dest = nil if dest == '.'
           if directory?(src)
             dest ? g.directory(src, dest) : g.directory(src)
           else
@@ -105,7 +106,7 @@ module Syckle::Plugins
       @branch   ||= 'gh-pages'
       @remote   ||= 'origin'
       @sitemap  ||= default_sitemap
-      #@keep_all ||= noop?
+      #@keep_all ||= trial?
     end
 
     # Default sitemap includes the website directoy, if it exists

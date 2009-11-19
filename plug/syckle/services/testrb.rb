@@ -140,7 +140,7 @@ module Syckle::Plugins
 
       abort "Tests failed." unless success
 
-      #if log && !dryrun?
+      #if log && !trial?
       #  command = %[testrb -I#{loadpath} #{filelist} > #{logfile} 2>&1]  # /dev/null 2>&1
       #  system command
       #  puts "Updated #{logfile}"

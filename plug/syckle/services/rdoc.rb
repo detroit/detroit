@@ -183,7 +183,7 @@ module Syckle::Plugins
     def reset
       if File.directory?(output)
         File.utime(0,0,output)
-        report "reset #{output}" #unless dryrun?
+        report "reset #{output}" #unless trial?
       end
     end
 
@@ -191,7 +191,7 @@ module Syckle::Plugins
     def clean
       if File.directory?(output)
         rm_r(output)
-        status "removed #{output}" #unless dryrun?
+        report "removed #{output}" #unless trial?
       end
     end
 
@@ -215,7 +215,7 @@ module Syckle::Plugins
 
         #argv = ("#{extra}" + [input, rdocopt].to_console).split(/\s+/)
 
-        if verbose? or dryrun?
+        if verbose? or trial?
           puts "rdoc " + argv.join(" ")
           #sh(cmd) #shell(cmd)
         else
@@ -237,7 +237,7 @@ module Syckle::Plugins
     # was designed to work with an old version of RDoc.
     #
     def rdoc_insert_ads(site, adfile)
-      return if dryrun?
+      return if trial?
       return unless adfile && File.file?(adfile)
       adtext = File.read(adfile)
       #puts
@@ -249,7 +249,7 @@ module Syckle::Plugins
           bodi = html.index('<body>')
           next unless bodi
           html[bodi + 7] = "\n" + adtext
-          File.write(file, html) unless dryrun?
+          File.write(file, html) unless trial?
         end
       end
     end

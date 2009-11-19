@@ -15,61 +15,69 @@ module Syckle
 
     #
     def initialize
-      @usage   = OptionParser.new
+      initialize_options
+      initialize_usage
+    end
 
+    #
+    def initialize_options
       @options = {
-        :noop=>nil,:debug=>nil,:quiet=>nil,:verbose=>nil,
-        :force=>nil,:multitask=>nil,:skip=>[]
+        :trace=>nil, :trial=>nil, :debug=>nil,
+        :quiet=>nil, :verbose=>nil,
+        :force=>nil, :multitask=>nil, :skip=>[]
       }
+    end
 
-      usage.banner = "Usage: syckle [<cycle>:]<phase> [options]"
+    #
+    def initialize_usage
+      @usage  = OptionParser.new do |usage|
+        usage.banner = "Usage: syckle [<cycle>:]<phase> [options]"
 
-      usage.on('--trace', "Trace execution") do
-        options[:debug]   = true
-        options[:verbose] = true
-      end
+        usage.on('--trace', "Run in TRACE mode.") do
+          #$TRACE = true
+          options[:trace] = true
+        end
 
-      usage.on('--debug', "Run in DEBUG mode.") do
-        options[:debug] = true
-      end
+        usage.on('--trial', "Run in TRIAL mode (no disk writes).") do
+          #$TRIAL = true
+          options[:trial] =true
+        end
 
-      usage.on('-n', '--noop', "No disk writes.") do  # dryrun
-        options[:noop] = true
-      end
+        usage.on('--debug', "Run in DEBUG mode.") do
+          $DEBUG   = true
+          $VERBOSE = true  # wish this were called $WARN
+          options[:debug] = true  # DEPRECATE
+        end
 
-      usage.on('--verbose', "Provided extra output.") do
-        options[:verbose] = true
-      end
+        usage.on('--verbose', "Provided extra output.") do
+          options[:verbose] = true
+        end
 
-      usage.on('--dryrun', "No disk writes and verbose.") do  # dryrun
-        options[:noop] = true
-        options[:verbose] = true
-      end
+        usage.on('-q', '--quiet', "Run silently.") do
+          options[:quiet] = true
+        end
 
-      usage.on('-q', '--quiet', "Run silently.") do
-        options[:quiet] = true
-      end
+        usage.on('--force', "Force operations.") do
+          options[:force] = true
+        end
 
-      usage.on('--force', "Force operations.") do
-        options[:force] = true
-      end
+        usage.on('-m', '--multitask', "Run in parallel.") do
+          options[:multitask] = true
+        end
 
-      usage.on('-m', '--multitask', "Run in parallel.") do
-        options[:multitask] = true
-      end
+        usage.on('-s', '--skip [SERVICE]', 'Skip service.') do |s|
+          options[:skip] << s
+        end
 
-      usage.on('-s', '--skip [SERVICE]', 'Skip service.') do |s|
-        options[:skip] << s
-      end
+        usage.on_tail('--help', "Display this help message.") do
+          puts usage
+          exit
+        end
 
-      usage.on_tail('--help', "Display this help message.") do
-        puts usage
-        exit
-      end
-
-      usage.on_tail('--config', "Produce a configuration template.") do
-        puts application.config_template.to_yaml
-        exit
+        usage.on_tail('--config', "Produce a configuration template.") do
+          puts application.config_template.to_yaml
+          exit
+        end
       end
     end
 
