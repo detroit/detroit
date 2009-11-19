@@ -54,6 +54,11 @@ module Syckle::Plugins
       @pipeline  = DEFAULT_PIPELINE
     end
 
+    #
+    def method_missing(s, *a, &b)
+      super(s, *a, &b) if @context.respond_to?(s)
+    end
+
   end
 
 end
