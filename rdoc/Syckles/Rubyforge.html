@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckles::Rubyforge</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../images/class.png">
+  
+
+  <link type="text/css" media="screen" rel="stylesheet" href="../rdoc.css" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../images/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckles::Rubyforge</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../plug/syckles/rubyforge_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="plug/syckles/rubyforge.rb">plug/syckles/rubyforge.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li class="method"><a href="#M000130">#announce</a></li>
+          
+          <li class="method"><a href="#M000133">#announcement</a></li>
+          
+          <li class="method"><a href="#M000132">#confirm?</a></li>
+          
+          <li class="method"><a href="#M000120">#initialize_defaults</a></li>
+          
+          <li class="method"><a href="#M000129">#publish</a></li>
+          
+          <li class="method"><a href="#M000124">#release</a></li>
+          
+          <li class="method"><a href="#M000121">#rubyforge</a></li>
+          
+          <li class="method"><a href="#M000131">#touch</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../Syckles.html">Syckles</a></li>
+        
+          <li class="class"><a href="../Syckles/Autotools.html">Syckles::Autotools</a></li>
+        
+          <li class="class"><a href="../Syckles/Custom.html">Syckles::Custom</a></li>
+        
+          <li class="class"><a href="../Syckles/EMail.html">Syckles::EMail</a></li>
+        
+          <li class="class"><a href="../Syckles/Grancher.html">Syckles::Grancher</a></li>
+        
+          <li class="class"><a href="../Syckles/Notes.html">Syckles::Notes</a></li>
+        
+          <li class="class"><a href="../Syckles/RCov.html">Syckles::RCov</a></li>
+        
+          <li class="class"><a href="../Syckles/RDoc.html">Syckles::RDoc</a></li>
+        
+          <li class="class"><a href="../Syckles/RIDoc.html">Syckles::RIDoc</a></li>
+        
+          <li class="class"><a href="../Syckles/RSpec.html">Syckles::RSpec</a></li>
+        
+          <li class="class"><a href="../Syckles/RubyProf.html">Syckles::RubyProf</a></li>
+        
+          <li class="class"><a href="../Syckles/Rubyforge.html">Syckles::Rubyforge</a></li>
+        
+          <li class="class"><a href="../Syckles/Stats.html">Syckles::Stats</a></li>
+        
+          <li class="class"><a href="../Syckles/Syntax.html">Syckles::Syntax</a></li>
+        
+          <li class="class"><a href="../Syckles/Testrb.html">Syckles::Testrb</a></li>
+        
+          <li class="class"><a href="../Syckles/Till.html">Syckles::Till</a></li>
+        
+          <li class="class"><a href="../Syckles/Turn.html">Syckles::Turn</a></li>
+        
+          <li class="class"><a href="../Syckles/VClog.html">Syckles::VClog</a></li>
+        
+          <li class="class"><a href="../Syckles/Yard.html">Syckles::Yard</a></li>
+        
+          <li class="module"><a href="../Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../Syckle/Application/TMP.html">Syckle::Application::TMP</a></li>
+        
+          <li class="class"><a href="../Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../Syckle/Defaults.html">Syckle::Defaults</a></li>
+        
+          <li class="class"><a href="../Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="class"><a href="../Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../Syckle/Service.html">Syckle::Service</a></li>
+        
+          <li class="module"><a href="../Reap.html">Reap</a></li>
+        
+          <li class="module"><a href="../Reap/Plugins.html">Reap::Plugins</a></li>
+        
+          <li class="class"><a href="../Reap/Plugins/ReleaseLog.html">Reap::Plugins::ReleaseLog</a></li>
+        
+          <li class="class"><a href="../Reap/Plugins/Txt2Man.html">Reap::Plugins::Txt2Man</a></li>
+        
+          <li class="class"><a href="../Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+
+    <div id="validator-badges">
+      Generated with <a href="http://github.com/proutils/rdazzle">Razzle Dazzle Redfish</a><br/><br/>
+      <a href="http://validator.w3.org/check/referer">[Validate]</a>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="Rubyforge.html">Rubyforge</a> Plugin</h1>
+<p>
+Interface with the RubyForge project hosting services. This plugin will
+upload release packages, publish your website via rsync, and make new
+announcements.
+</p>
+<p>
+This plugin can run automatically if the POM repository entry references
+&#8216;rubyforge.org&#8217;.
+</p>
+<p>
+Pleae note that making news announcements is currently not functional.
+</p>
+<p>
+TODO: Use new REST API.
+</p>
+<p>
+TODO: Check <a href="Rubyforge.html">Rubyforge</a> admin config to see
+which <a href="Rubyforge.html">Rubyforge</a> services are being used and
+adjust actions for this plugin accordingly.
+</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="HOME">HOME</a></dt>
+        
+        <dd class="description"><p>
+available do |project|
+</p>
+<pre>
+  begin
+    require 'forge/rubyforge'
+    true
+  #rescue LoadError
+  #  false
+  end
+</pre>
+<p>
+end
+</p></dd>
+        
+      
+        <dt><a name="REPORT">REPORT</a></dt>
+        
+        <dd class="description missing-docs">(Not documented)</dd>
+        
+      
+        <dt><a name="DEFAULT_SITE">DEFAULT_SITE</a></dt>
+        
+        <dd class="description missing-docs">(Not documented)</dd>
+        
+      
+      </dl>
+    </div>
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="unixname-attribute-method" class="method-detail">
+        <a name="unixname"></a>
+        
+        <a name="unixname="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">unixname</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Project unixname.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="group-attribute-method" class="method-detail">
+        <a name="group"></a>
+        
+        <a name="group="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">group</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Project&#8217;s group id number.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="username-attribute-method" class="method-detail">
+        <a name="username"></a>
+        
+        <a name="username="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">username</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Username for project account.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="password-attribute-method" class="method-detail">
+        <a name="password"></a>
+        
+        <a name="password="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">password</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Password for project account.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="package-attribute-method" class="method-detail">
+        <a name="package"></a>
+        
+        <a name="package="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">package</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Package name.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="version-attribute-method" class="method-detail">
+        <a name="version"></a>
+        
+        <a name="version="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">version</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Package version.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="notelog-attribute-method" class="method-detail">
+        <a name="notelog"></a>
+        
+        <a name="notelog="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">notelog</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+File that holds the current release notes.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="changelog-attribute-method" class="method-detail">
+        <a name="changelog"></a>
+        
+        <a name="changelog="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">changelog</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+File that hold the current change log. If not provided then the changelog
+will taken from the bottom of the notelog split on a &#8217;&#8212;&#8217;
+or &#8217;####&#8217; marker.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="release-template-attribute-method" class="method-detail">
+        <a name="release_template"></a>
+        
+        <a name="release_template="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">release_template</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Release name. Use %s for inserting the version number.
+</p>
+<pre>
+  Eg. foo-%s
+</pre>
+<p>
+becomes
+</p>
+<pre>
+  foo-1.0.0
+</pre>
+<p>
+By default this is just &#8220;%s&#8221;.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="private-release-attribute-method" class="method-detail">
+        <a name="private_release"></a>
+        
+        <a name="private_release="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">private_release</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Is this a private release?
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="site-map-attribute-method" class="method-detail">
+        <a name="site_map"></a>
+        
+        <a name="site_map="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">site_map</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Directory to publish. Leave empty for for defaults (web, site, website, doc
+or doc/rdoc). Or use a Hash to create a publishing map. Eg.
+</p>
+<pre>
+  service: Rubyforge
+  site_map:
+    site    : .
+    doc/rdoc: rdoc
+</pre>
+        
+        </div>
+      </div>
+      
+      <div id="site-delete-attribute-method" class="method-detail">
+        <a name="site_delete"></a>
+        
+        <a name="site_delete="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">site_delete</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Should the site be published wholesale, removing any other content present
+at the upload destination? Note, this is the same as setting <tt><a
+href="Rubyforge.html#site_rsync">site_rsync</a></tt> to
+&#8217;&#8212;del-after&#8217;.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="site-rsync-attribute-method" class="method-detail">
+        <a name="site_rsync"></a>
+        
+        <a name="site_rsync="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">site_rsync</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Used to specify any additional rsync options.
+</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="announce-method" class="method-detail ">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">announce</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Make an announcement to <a href="Rubyforge.html">Rubyforge</a>.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="announce-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 317</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">announce</span>
+      <span class="ruby-identifier">options</span> = {}
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:subject</span>] = <span class="ruby-node">&quot;#{metadata.title} v#{version}&quot;</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:message</span>] = <span class="ruby-identifier">announcement</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dryrun?</span>
+        <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;rubyforge announce '#{options[:subject]}'&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt">#status &quot;rubyforge announce #{options.to_console}&quot;</span>
+        <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">announce</span>(<span class="ruby-identifier">options</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="announcement-method" class="method-detail ">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">announcement</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="announcement-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 349</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">announcement</span>
+      <span class="ruby-identifier">project</span>.<span class="ruby-identifier">announcement</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="confirm--method" class="method-detail ">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">confirm?</span><span
+            class="method-args">(action, options={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Generic confirmation.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="confirm--source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 337</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">confirm?</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">options</span>={})
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">force?</span>
+      <span class="ruby-identifier">ans</span> = <span class="ruby-identifier">ask</span>(<span class="ruby-node">&quot;#{action.to_s.capitalize} to #{self.class.basename.downcase}?&quot;</span>, <span class="ruby-value str">&quot;yN&quot;</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">ans</span>.<span class="ruby-identifier">downcase</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'y'</span>, <span class="ruby-value str">'yes'</span>
+        <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="publish-method" class="method-detail ">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">publish</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Publish website to <a href="Rubyforge.html">Rubyforge</a>.
+</p>
+<p>
+By deafult plublish looks in site/, web/, website/, doc/ and doc/rdoc, in
+that order, for an index.* file, and uses that diretory as the publishing
+source.
+</p>
+<p>
+If not already present, it will create a default .rsync-filter file in the
+source directory, which is used to omit certain files from publishing
+and/or protect files from removal at the remote end. (see &#8216;man
+rsync&#8217;).
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="publish-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 270</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">publish</span>
+      <span class="ruby-identifier">options</span> = {}
+
+      <span class="ruby-identifier">sitemap</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sitemap</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">sitemap</span>
+        <span class="ruby-identifier">index</span>  = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">glob_first</span>(<span class="ruby-constant">DEFAULT_SITE</span>)
+        <span class="ruby-identifier">source</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">index</span>)
+        <span class="ruby-comment cmt">#unless src</span>
+        <span class="ruby-comment cmt">#  if src = project.root.glob_first('doc')</span>
+        <span class="ruby-comment cmt">#    unless src.glob_first('index.{html,xml,rhtml}')</span>
+        <span class="ruby-comment cmt">#      src = project.root.glob_first('doc/rdoc')</span>
+        <span class="ruby-comment cmt">#    end</span>
+        <span class="ruby-comment cmt">#  end</span>
+        <span class="ruby-comment cmt">#end</span>
+        <span class="ruby-identifier">sitemap</span> = { <span class="ruby-identifier">source</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'.'</span> }
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">sitemap</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">src</span>, <span class="ruby-identifier">dest</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">src</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">src</span>)
+          <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;Can't publish. Not a directory to publish (#{src}).&quot;</span>
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">filter</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">glob_first</span>(<span class="ruby-value str">'.rsync-filter'</span>)
+
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'filter'</span>]  = <span class="ruby-identifier">filter</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'sitemap'</span>] = <span class="ruby-identifier">sitemap</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'quiet'</span>]   = <span class="ruby-identifier">quiet?</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'verbose'</span>] = <span class="ruby-identifier">verbose?</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'delete'</span>]  = <span class="ruby-identifier">site_delete</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'argv'</span>]    = <span class="ruby-identifier">site_rsync</span>
+
+      <span class="ruby-identifier">report</span> <span class="ruby-value str">&quot;Uploading website:\n&quot;</span> <span class="ruby-operator">+</span>
+             <span class="ruby-identifier">sitemap</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span>,<span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;  #{f.sub(Dir.pwd+'/','')} =&gt; #{t}&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+
+      <span class="ruby-comment cmt">#if dryrun?</span>
+      <span class="ruby-comment cmt">#  report &quot;rubyforge publish #{options.to_console}&quot;</span>
+      <span class="ruby-comment cmt">#else</span>
+        <span class="ruby-comment cmt">#report &quot;rubyforge announce #{options.to_console}&quot;</span>
+        <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">publish</span>(<span class="ruby-identifier">options</span>)
+      <span class="ruby-comment cmt">#end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="release-method" class="method-detail ">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">release</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Release packages to <a href="Rubyforge.html">Rubyforge</a>.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="release-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 194</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">release</span>
+      <span class="ruby-identifier">options</span> = {}
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:release</span>]   = <span class="ruby-identifier">release_template</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">version</span>]
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:is_public</span>] = <span class="ruby-operator">!</span><span class="ruby-identifier">private_release</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">notelog</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">test</span>(<span class="ruby-value">?f</span>, <span class="ruby-identifier">notelog</span>)
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:notes</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">notelog</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:notes</span>] = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">history</span>.<span class="ruby-identifier">release</span>.<span class="ruby-identifier">notes</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">changelog</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">test</span>(<span class="ruby-value">?f</span>, <span class="ruby-identifier">changelog</span>)
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:changes</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">changelog</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:changes</span>] = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">history</span>.<span class="ruby-identifier">release</span>.<span class="ruby-identifier">changes</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt">#else</span>
+      <span class="ruby-comment cmt">#  if notelog</span>
+      <span class="ruby-comment cmt">#    notes = File.read(notelog)</span>
+      <span class="ruby-comment cmt">#    index = notes.index(/^(###|===|---)/m)</span>
+      <span class="ruby-comment cmt">#    if index</span>
+      <span class="ruby-comment cmt">#      changes = notes[index..-1]</span>
+      <span class="ruby-comment cmt">#      notes   = notes[0...index]</span>
+      <span class="ruby-comment cmt">#    else</span>
+      <span class="ruby-comment cmt">#      changes = ''</span>
+      <span class="ruby-comment cmt">#    end</span>
+      <span class="ruby-comment cmt">#    options[:notes]   = notes</span>
+      <span class="ruby-comment cmt">#    options[:changes] = changes</span>
+      <span class="ruby-comment cmt">#  end</span>
+      <span class="ruby-comment cmt">#end</span>
+
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:date</span>] = <span class="ruby-constant">Time</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">'%Y-%m-%d %H:%M'</span>)
+
+      <span class="ruby-comment cmt"># collect package files</span>
+      <span class="ruby-identifier">files</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">pack</span> <span class="ruby-operator">/</span> <span class="ruby-node">&quot;*-#{version}.*&quot;</span>)
+
+      <span class="ruby-identifier">packages</span> = {}
+
+      <span class="ruby-identifier">files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">name</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">chomp</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">file</span>))
+        <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">chomp</span>(<span class="ruby-value str">'.tar'</span>) <span class="ruby-comment cmt"># in case of 'tar.gz' or 'tar.bz2'</span>
+        <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-node">/-#{version}$/</span>,<span class="ruby-value str">''</span>)
+        <span class="ruby-identifier">name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">name</span>)
+        <span class="ruby-identifier">packages</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||=</span> []
+        <span class="ruby-identifier">packages</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">file</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">packages</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">files</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:package</span>]   = <span class="ruby-identifier">name</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:files</span>]     = <span class="ruby-identifier">files</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:processor</span>] = <span class="ruby-value str">'Any'</span> <span class="ruby-comment cmt"># TODO: Correlate processor to platform</span>
+
+        <span class="ruby-identifier">rfiles</span> = <span class="ruby-identifier">files</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f</span>).<span class="ruby-identifier">relative_path_from</span>(<span class="ruby-identifier">project</span>.<span class="ruby-identifier">root</span>) }
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dryrun?</span>
+          <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;rubyforge release --processor=#{options[:processor]} #{rfiles.join(' ')}&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt">#status &quot;rubyforge announce #{options.to_console}&quot;</span>
+          <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">release</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="touch-method" class="method-detail ">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">touch</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="touch-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 331</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">touch</span>
+      <span class="ruby-identifier">rubyforge</span>.<span class="ruby-identifier">touch</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 132</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+        <span class="ruby-ivar">@unixname</span> = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">project</span>
+        <span class="ruby-ivar">@username</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'RUBYFORGE_USERNAME'</span>]
+        <span class="ruby-ivar">@password</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'RUBYFORGE_PASSWORD'</span>]
+
+        <span class="ruby-ivar">@package</span>  = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">package</span>
+        <span class="ruby-ivar">@version</span>  = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">version</span>
+
+        <span class="ruby-ivar">@release_template</span> = <span class="ruby-value str">&quot;%s&quot;</span>
+
+        <span class="ruby-comment cmt">#@changelog = Dir.glob('{history,changelog,changes}{,.txt}', File::FNM_CASEFOLD).first</span>
+
+        <span class="ruby-ivar">@notelog</span>   = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'{release,news,notes,notice}{,.txt}'</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">FNM_CASEFOLD</span>).<span class="ruby-identifier">first</span>
+        <span class="ruby-ivar">@changelog</span> = <span class="ruby-keyword kw">nil</span>
+
+        <span class="ruby-ivar">@site_map</span>  = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">sitemap</span>
+
+        <span class="ruby-comment cmt">#options = {}</span>
+        <span class="ruby-comment cmt">#options[:unixname] = metadata.project</span>
+        <span class="ruby-comment cmt">#options[:version]  = metadata.version</span>
+        <span class="ruby-comment cmt">#options[:username] = ENV['RUBYFORGE_USERNAME']</span>
+        <span class="ruby-comment cmt">#options[:password] = ENV['RUBYFORGE_PASSWORD']</span>
+
+        <span class="ruby-comment cmt">#options[:dryrun]   = dryrun?</span>
+        <span class="ruby-comment cmt">#options[:quiet]    = quiet?</span>
+        <span class="ruby-comment cmt">#options[:verbose]  = verbose?</span>
+
+        <span class="ruby-comment cmt">#@rubyforge = Support::Rubyforge.new(metadata.name, options)</span>
+      <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="rubyforge-method" class="method-detail ">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">rubyforge</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="rubyforge-source">
+<pre>
+<span class="ruby-comment cmt"># File plug/syckles/rubyforge.rb, line 163</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rubyforge</span>
+        <span class="ruby-ivar">@rubyforge</span> <span class="ruby-operator">||=</span> (
+          <span class="ruby-identifier">options</span> = {}
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:unixname</span>] = <span class="ruby-identifier">unixname</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:username</span>] = <span class="ruby-identifier">username</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:password</span>] = <span class="ruby-identifier">password</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:group_id</span>] = <span class="ruby-identifier">group_id</span>
+
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:package</span>]  = <span class="ruby-identifier">package</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:version</span>]  = <span class="ruby-identifier">version</span>
+
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:dryrun</span>]   = <span class="ruby-identifier">dryrun?</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:quiet</span>]    = <span class="ruby-identifier">quiet?</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:verbose</span>]  = <span class="ruby-identifier">verbose?</span>
+
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:metadata</span>] = <span class="ruby-identifier">metadata</span>
+
+          <span class="ruby-constant">RubyforgeREST</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>)
+        )
+      <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</body>
+</html>

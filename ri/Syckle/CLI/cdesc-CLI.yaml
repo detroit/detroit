@@ -1,6 +1,7 @@
 --- !ruby/object:RDoc::RI::ClassDescription 
 attributes: 
 - !ruby/object:RDoc::RI::Attribute 
+<<<<<<< HEAD:ri/Syckle/CLI/cdesc-CLI.yaml
   comment: []
 
   name: options
@@ -8,6 +9,13 @@ attributes:
 - !ruby/object:RDoc::RI::Attribute 
   comment: []
 
+=======
+  comment: 
+  name: options
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+>>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/CLI/cdesc-CLI.yaml
   name: usage
   rw: R
 class_methods: 
@@ -31,12 +39,15 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: application
 - !ruby/object:RDoc::RI::MethodSummary 
+<<<<<<< HEAD:ri/Syckle/CLI/cdesc-CLI.yaml
   name: arguments
 - !ruby/object:RDoc::RI::MethodSummary 
   name: initialize_options
 - !ruby/object:RDoc::RI::MethodSummary 
   name: initialize_usage
 - !ruby/object:RDoc::RI::MethodSummary 
+=======
+>>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/CLI/cdesc-CLI.yaml
   name: method_missing
 - !ruby/object:RDoc::RI::MethodSummary 
   name: parse

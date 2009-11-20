@@ -1,0 +1,11 @@
+h1. Getting Started with Reap and Sow
+
+  2008-07-18
+
+h2. Initialize
+
+Initialization is handled by the sow command. This is generally a one-time start-up step,
+although at times one may come back to this setep to create aditiona project parts.
+
+--
+(c) 2008 Tiger Ops

@@ -3,8 +3,11 @@ aliases: []
 
 block_params: 
 comment: 
+<<<<<<< HEAD:ri/Syckle/Application/multitask%3f-i.yaml
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: Multitask mode?
+=======
+>>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Application/multitask%3f-i.yaml
 full_name: Syckle::Application#multitask?
 is_singleton: false
 name: multitask?

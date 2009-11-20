@@ -1,0 +1,10 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Syckle::Application::TMP::new
+is_singleton: true
+name: new
+params: (metadata)
+visibility: public

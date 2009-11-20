@@ -1,4 +1,5 @@
 --- !ruby/object:RDoc::RI::ClassDescription 
+<<<<<<< HEAD:ri/Syckle/IO/cdesc-IO.yaml
 attributes: 
 - !ruby/object:RDoc::RI::Attribute 
   comment: []
@@ -20,6 +21,12 @@ attributes:
 class_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
   name: new
+=======
+attributes: []
+
+class_methods: []
+
+>>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/IO/cdesc-IO.yaml
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::H 
   level: 1
@@ -42,6 +49,7 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: ansize
 - !ruby/object:RDoc::RI::MethodSummary 
+<<<<<<< HEAD:ri/Syckle/IO/cdesc-IO.yaml
   name: ask
 - !ruby/object:RDoc::RI::MethodSummary 
   name: debug?
@@ -54,12 +62,17 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: print
 - !ruby/object:RDoc::RI::MethodSummary 
+=======
+  name: display_action
+- !ruby/object:RDoc::RI::MethodSummary 
+>>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/IO/cdesc-IO.yaml
   name: print_header
 - !ruby/object:RDoc::RI::MethodSummary 
   name: print_phase
 - !ruby/object:RDoc::RI::MethodSummary 
   name: printline
 - !ruby/object:RDoc::RI::MethodSummary 
+<<<<<<< HEAD:ri/Syckle/IO/cdesc-IO.yaml
   name: puts
 - !ruby/object:RDoc::RI::MethodSummary 
   name: quiet?
@@ -83,3 +96,12 @@ instance_methods:
   name: verbose?
 name: IO
 superclass: Object
+=======
+  name: screen_width
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: status_header
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: status_line
+name: IO
+superclass: "::Ratch::IO"
+>>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/IO/cdesc-IO.yaml
