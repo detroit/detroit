@@ -1,5 +1,4 @@
 --- !ruby/object:RDoc::RI::ClassDescription 
-<<<<<<< HEAD:ri/Syckle/Script/cdesc-Script.yaml
 attributes: 
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
@@ -45,19 +44,11 @@ comment:
   body: The DSL class is the heart of Syckle, it provides all the convenece methods that make Syckle services so convenient to write.
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: "TODO: Better name?"
-=======
-attributes: []
-
-class_methods: []
-
-comment: 
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Script/cdesc-Script.yaml
 constants: []
 
 full_name: Syckle::Script
 includes: []
 
-<<<<<<< HEAD:ri/Syckle/Script/cdesc-Script.yaml
 instance_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
   name: apply_naming_policy
@@ -89,9 +80,3 @@ instance_methods:
   name: verbose?
 name: Script
 superclass: Module
-=======
-instance_methods: []
-
-name: Script
-superclass: "::Ratch::Script"
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Script/cdesc-Script.yaml

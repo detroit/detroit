@@ -7,9 +7,5 @@ comment: []
 full_name: Syckle::Service::new
 is_singleton: true
 name: new
-<<<<<<< HEAD:ri/Syckle/Service/new-c.yaml
 params: (context, key, options={})
-=======
-params: (context, key, options=nil)
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Service/new-c.yaml
 visibility: public

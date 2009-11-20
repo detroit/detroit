@@ -3,7 +3,6 @@ attributes:
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
   - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/Config/cdesc-Config.yaml
     body: Use automatic services feature? If set to <tt>true</tt>, all services with autorun modes will run if their autorun criteria is met. Or this can be set to a list of service names for which autorun mode will apply.
   - !ruby/struct:RDoc::Markup::Flow::P 
     body: Default is <tt>true</tt>. Use <tt>false</tt> to deactivate.
@@ -33,23 +32,11 @@ attributes:
     body: Services to omit from automatic execution. If automatic is set to <tt>true</tt> (the default), the <tt>standard</tt> setting can be used to exclude specific services from auto-execution.
   name: standard
   rw: R
-=======
-    body: Services to omit from automatic execution. Should be an array of service names (class basenames).
-  name: auto_omit
-  rw: RW
-- !ruby/object:RDoc::RI::Attribute 
-  comment: 
-  - !ruby/struct:RDoc::Markup::Flow::P 
-    body: Use automatic services feature?
-  name: automatic
-  rw: RW
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Config/cdesc-Config.yaml
 class_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
   name: new
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/Config/cdesc-Config.yaml
   body: Syckle configuration. Configuration comes from a main <tt>Syckfile</tt> and/or <tt>.syckle</tt> task files, and configuration options defined in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: "TODO: Allow <tt>automatic</tt> to accept a list of serives to limit automatic mode."
@@ -59,25 +46,6 @@ comment:
   body: Syckle configuration. Configuration comes from a main <tt>Syckfile</tt> and/or <tt>.syckle</tt> task files, and configuration options defined in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: "TODO: Allow <tt>automatic</tt> to accept a list of serives to limit automatic mode."
-=======
-  body: Syckle master configuration. Configuration settings load load from a YAML project file saved as '.config/syckle.yml'.
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active"
-- !ruby/struct:RDoc::Markup::Flow::VERB 
-  body: "      automatic mode for.\n"
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Better name for auto_omit."
-- !ruby/struct:RDoc::Markup::Flow::RULE 
-  width: 
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: Syckle master configuration. Configuration settings load load from a YAML project file saved as '.config/syckle.yml'.
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Allow <tt>automatic</tt> to be a list of serive names to active"
-- !ruby/struct:RDoc::Markup::Flow::VERB 
-  body: "      automatic mode for.\n"
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: "TODO: Better name for auto_omit."
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Config/cdesc-Config.yaml
 constants: []
 
 full_name: Syckle::Config
@@ -85,7 +53,6 @@ includes: []
 
 instance_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
-<<<<<<< HEAD:ri/Syckle/Config/cdesc-Config.yaml
   name: automatic=
 - !ruby/object:RDoc::RI::MethodSummary 
   name: automatic?
@@ -101,10 +68,5 @@ instance_methods:
   name: standard?
 - !ruby/object:RDoc::RI::MethodSummary 
   name: syckle_files
-=======
-  name: auto_omit=
-- !ruby/object:RDoc::RI::MethodSummary 
-  name: automatic?
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Config/cdesc-Config.yaml
 name: Config
 superclass: Object

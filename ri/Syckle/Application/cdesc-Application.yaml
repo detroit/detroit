@@ -3,11 +3,7 @@ attributes:
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
   - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/Application/cdesc-Application.yaml
     body: Actions (extracted from services).
-=======
-    body: Actions (from services).
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Application/cdesc-Application.yaml
   name: actions
   rw: R
 - !ruby/object:RDoc::RI::Attribute 
@@ -25,27 +21,13 @@ attributes:
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
   - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/Application/cdesc-Application.yaml
     body: Input/Ouput controller.
-=======
-    body: User definable service defaults.
-  name: defaults
-  rw: R
-- !ruby/object:RDoc::RI::Attribute 
-  comment: 
-  - !ruby/struct:RDoc::Markup::Flow::P 
-    body: Input/Ouput controller
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Application/cdesc-Application.yaml
   name: io
   rw: R
 - !ruby/object:RDoc::RI::Attribute 
   comment: 
   - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/Application/cdesc-Application.yaml
     body: Run context.
-=======
-    body: Run context
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Application/cdesc-Application.yaml
   name: script
   rw: R
 class_methods: 
@@ -75,26 +57,14 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: config_template
 - !ruby/object:RDoc::RI::MethodSummary 
-<<<<<<< HEAD:ri/Syckle/Application/cdesc-Application.yaml
   name: defaults
 - !ruby/object:RDoc::RI::MethodSummary 
   name: end_phases
 - !ruby/object:RDoc::RI::MethodSummary 
-=======
-  name: end_phases
-- !ruby/object:RDoc::RI::MethodSummary 
-  name: inject_environment
-- !ruby/object:RDoc::RI::MethodSummary 
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Application/cdesc-Application.yaml
   name: load_plugins
 - !ruby/object:RDoc::RI::MethodSummary 
   name: load_project_plugins
 - !ruby/object:RDoc::RI::MethodSummary 
-<<<<<<< HEAD:ri/Syckle/Application/cdesc-Application.yaml
-=======
-  name: load_service_configs
-- !ruby/object:RDoc::RI::MethodSummary 
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Application/cdesc-Application.yaml
   name: multitask?
 - !ruby/object:RDoc::RI::MethodSummary 
   name: overview

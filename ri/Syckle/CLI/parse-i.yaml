@@ -2,14 +2,9 @@
 aliases: []
 
 block_params: 
-<<<<<<< HEAD:ri/Syckle/CLI/parse-i.yaml
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
   body: parse! ?
-=======
-comment: []
-
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/CLI/parse-i.yaml
 full_name: Syckle::CLI#parse
 is_singleton: false
 name: parse

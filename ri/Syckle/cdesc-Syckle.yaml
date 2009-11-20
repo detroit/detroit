@@ -10,17 +10,9 @@ class_methods:
   name: services
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/cdesc-Syckle.yaml
   body: require 'path/store'
 - !ruby/struct:RDoc::Markup::Flow::VERB 
   body: " ---\n FIXME: Not all io output is running through the io object.\n ---\n = Service Loader\n"
-=======
-  body: "FIXME: Not all io output is running through the io object."
-- !ruby/struct:RDoc::Markup::Flow::RULE 
-  width: 1
-- !ruby/struct:RDoc::Markup::Flow::VERB 
-  body: "   end\n"
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/cdesc-Syckle.yaml
 constants: 
 - !ruby/object:RDoc::RI::Constant 
   comment: 

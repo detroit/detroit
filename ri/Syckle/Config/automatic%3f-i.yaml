@@ -4,11 +4,7 @@ aliases: []
 block_params: 
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-<<<<<<< HEAD:ri/Syckle/Config/automatic%3f-i.yaml
   body: "Alias for #automatic."
-=======
-  body: Use automatic services?
->>>>>>> 5decbf1bc6cee8b7cedf216152e8021212909f00:ri/Syckle/Config/automatic%3f-i.yaml
 full_name: Syckle::Config#automatic?
 is_singleton: false
 name: automatic?
