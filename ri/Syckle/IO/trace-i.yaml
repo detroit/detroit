@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Internal status report. Only output if in TRACE mode.
+full_name: Syckle::IO#trace
+is_singleton: false
+name: trace
+params: (message)
+visibility: public

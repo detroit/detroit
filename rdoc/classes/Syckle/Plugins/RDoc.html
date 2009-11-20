@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckle::Plugins::RDoc</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../../../assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../../../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../../../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../../../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../../../assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::Plugins::RDoc</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../../files/lib/plugin/syckle/rdoc_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/plugin/syckle/rdoc.rb">lib/plugin/syckle/rdoc.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="method">
+              <a href="#M000021">#clean</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000013">#document</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000012">#initialize_defaults</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000011">#main_document</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000023">#rdoc_insert_ads</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000022">#rdoc_target</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000020">#reset</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/homepage.html">homepage</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/ruby.html">ruby</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/license.html">license</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/email_reap.html">email.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/repository.html">repository</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rubyforge_reap.html">rubyforge.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/title.html">title</a></li>
+        
+          <li class="file"><a href="../../../files/Syckfile.html">Syckfile</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/project.html">project</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/syntax_reap.html">syntax.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/authors.html">authors</a></li>
+        
+          <li class="file"><a href="../../../files/TODO.html">TODO</a></li>
+        
+          <li class="file"><a href="../../../files/README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/ridoc_reap.html">ridoc.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rdoc_reap.html">rdoc.reap</a></li>
+        
+          <li class="file"><a href="../../../files/COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/created.html">created</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rubygems_reap.html">rubygems.reap</a></li>
+        
+          <li class="file"><a href="../../../files/DESIGN.html">DESIGN</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/box_reap.html">box.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/description.html">description</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/version.html">version</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/notes_reap.html">notes.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/contact.html">contact</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/testunit_reap.html">testunit.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/released.html">released</a></li>
+        
+          <li class="file"><a href="../../../files/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/vclog_reap.html">vclog.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/package.html">package</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/autotools_reap.html">autotools.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/stats_reap.html">stats.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/README_till.html">README.till</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../../classes/Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Emailer.html">Syckle::Emailer</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../../classes/Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/GemCutter.html">Syckle::Plugins::GemCutter</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Service.html">Syckle::Service</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Shell.html">Syckle::Shell</a></li>
+        
+          <li class="module"><a href="../../../classes/<.html"><</a></li>
+        
+          <li class="class"><a href="../../../classes/Hash.html">Hash</a></li>
+        
+          <li class="class"><a href="../../../classes/NilClass.html">NilClass</a></li>
+        
+          <li class="class"><a href="../../../classes/String.html">String</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../../../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://github.com/proutils/webri">WebRI Redfish</a> 1.0.0
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+        <h1>RDoc</h1>
+      
+
+      <p>
+<a href="RDoc.html">RDoc</a> documentation plugin generates RDocs for your
+project.
+</p>
+<p>
+By default it generates the rdoc documentaiton at doc/rdoc, unless an
+&#8216;rdoc&#8217; directory exists in the project&#8217;s root directory,
+in which case the rdoc documentation will be stored there.
+</p>
+<p>
+This plugin provides the following cycle-phases:
+</p>
+<pre>
+  main:document  - generate rdocs
+  main:reset     - mark rdocs out-of-date
+  main:clean     - remove rdocs
+
+  site:document  - generate rdocs
+  site:reset     - mark rdocs out-of-date
+  site:clean     - remove rdocs
+</pre>
+<p>
+<a href="RDoc.html">RDoc</a> service will be available automatically if the
+project has a <tt>doc/rdoc</tt> directory.
+</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="DEFAULT_OUTPUT">DEFAULT_OUTPUT</a></dt>
+        
+        <dd class="description"><p>
+Default location to store rdoc documentation files.
+</p></dd>
+        
+      
+        <dt><a name="DEFAULT_OUTPUT_MATCH">DEFAULT_OUTPUT_MATCH</a></dt>
+        
+        <dd class="description"><p>
+Locations to check for existance in deciding where to store rdoc
+documentation.
+</p></dd>
+        
+      
+        <dt><a name="DEFAULT_MAIN">DEFAULT_MAIN</a></dt>
+        
+        <dd class="description"><p>
+Default main file.
+</p></dd>
+        
+      
+        <dt><a name="DEFAULT_TEMPLATE">DEFAULT_TEMPLATE</a></dt>
+        
+        <dd class="description"><p>
+Default rdoc template to use.
+</p></dd>
+        
+      
+        <dt><a name="DEFAULT_EXTRA">DEFAULT_EXTRA</a></dt>
+        
+        <dd class="description"><p>
+Deafult extra options to add to rdoc call.
+</p></dd>
+        
+      
+      </dl>
+    </div>
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="title-attribute-method" class="method-detail">
+        <a name="title"></a>
+        
+        <a name="title="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">title</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Title of documents. Defaults to general metadata title field.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="output-attribute-method" class="method-detail">
+        <a name="output"></a>
+        
+        <a name="output="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">output</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Where to save rdoc files (doc/rdoc).
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="template-attribute-method" class="method-detail">
+        <a name="template"></a>
+        
+        <a name="template="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">template</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Template to use (defaults to ENV[&#8216;RDOC_TEMPLATE&#8217;] or
+&#8216;darkfish&#8217;)
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="main-attribute-method" class="method-detail">
+        <a name="main"></a>
+        
+        <a name="main="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">main</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Main file. This can be a file pattern. (README{,.*})
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="files-attribute-method" class="method-detail">
+        <a name="files"></a>
+        
+        <a name="files="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">files</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Which files to document.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="exclude-attribute-method" class="method-detail">
+        <a name="exclude"></a>
+        
+        <a name="exclude="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">exclude</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Paths to specifically exclude.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="adfile-attribute-method" class="method-detail">
+        <a name="adfile"></a>
+        
+        <a name="adfile="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">adfile</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Ad file html snippet to add to html rdocs.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="extra-attribute-method" class="method-detail">
+        <a name="extra"></a>
+        
+        <a name="extra="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">extra</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Additional options passed to the rdoc command.
+</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="clean-method" class="method-detail ">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">clean</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Remove rdocs products.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="clean-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 191</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clean</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">output</span>)
+        <span class="ruby-identifier">rm_r</span>(<span class="ruby-identifier">output</span>)
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;removed #{output}&quot;</span> <span class="ruby-comment cmt">#unless trial?</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="document-method" class="method-detail ">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">document</span><span
+            class="method-args">(options=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Generate Rdoc documentation. Settings are the same as the rdoc
+command&#8217;s option, with two exceptions: <tt>inline</tt> for
+<tt>inline-source</tt> and <tt>output</tt> for <tt>op</tt>.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="document-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 113</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">document</span>(<span class="ruby-identifier">options</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">options</span> <span class="ruby-operator">||=</span> {}
+
+      <span class="ruby-identifier">title</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'title'</span>]    <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">title</span>
+      <span class="ruby-identifier">output</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'output'</span>]   <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">output</span>
+      <span class="ruby-identifier">main</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'main'</span>]     <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>
+      <span class="ruby-identifier">template</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'template'</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">template</span>
+      <span class="ruby-identifier">files</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'files'</span>]    <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">files</span>
+      <span class="ruby-identifier">exclude</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'exclude'</span>]  <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">exclude</span>
+      <span class="ruby-identifier">adfile</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'adfile'</span>]   <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">adfile</span>
+      <span class="ruby-identifier">extra</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'extra'</span>]    <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extra</span>
+
+      <span class="ruby-comment cmt"># NOTE: Due to a bug in RDOC this needs to be done so that</span>
+      <span class="ruby-comment cmt"># alternate templates can be used.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">gem</span>(<span class="ruby-value str">'rdoc'</span>)
+        <span class="ruby-comment cmt">#gem(templib || template)</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'rdoc/rdoc'</span>
+
+      <span class="ruby-comment cmt"># you can specify more than one possibility, first match wins</span>
+      <span class="ruby-identifier">adfile</span> = [<span class="ruby-identifier">adfile</span>].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">f</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">main</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-identifier">main</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">FNM_CASEFOLD</span>).<span class="ruby-identifier">first</span>
+
+      <span class="ruby-identifier">include_files</span> = <span class="ruby-identifier">files</span>.<span class="ruby-identifier">to_list</span>.<span class="ruby-identifier">uniq</span>
+      <span class="ruby-identifier">exclude_files</span> = <span class="ruby-identifier">exclude</span>.<span class="ruby-identifier">to_list</span>.<span class="ruby-identifier">uniq</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mfile</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">manifest_file</span>
+        <span class="ruby-identifier">exclude_files</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">mfile</span>.<span class="ruby-identifier">basename</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-comment cmt"># TODO: I think base name should retun a string?</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">filelist</span> = <span class="ruby-identifier">amass</span>(<span class="ruby-identifier">include_files</span>, <span class="ruby-identifier">exclude_files</span>)
+      <span class="ruby-identifier">filelist</span> = <span class="ruby-identifier">filelist</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">fname</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">fname</span>) }
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">outofdate?</span>(<span class="ruby-identifier">output</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">filelist</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">force?</span>
+        <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;Generating #{output}&quot;</span>
+
+        <span class="ruby-comment cmt">#target_main = Dir.glob(target['main'].to_s, File::FNM_CASEFOLD).first</span>
+        <span class="ruby-comment cmt">#target_main   = File.expand_path(target_main) if target_main</span>
+        <span class="ruby-comment cmt">#target_output = File.expand_path(File.join(output, subdir))</span>
+        <span class="ruby-comment cmt">#target_output = File.join(output, subdir)</span>
+
+        <span class="ruby-identifier">argv</span> = []
+        <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">extra</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\s+/</span>))
+        <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">concat</span> [<span class="ruby-value str">'--op'</span>, <span class="ruby-identifier">output</span>]
+        <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">concat</span> [<span class="ruby-value str">'--main'</span>, <span class="ruby-identifier">main</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">main</span>
+        <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">concat</span> [<span class="ruby-value str">'--template'</span>, <span class="ruby-identifier">template</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>
+        <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">concat</span> [<span class="ruby-value str">'--title'</span>, <span class="ruby-identifier">title</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">title</span>
+
+        <span class="ruby-identifier">exclude_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">concat</span> [<span class="ruby-value str">'--exclude'</span>, <span class="ruby-identifier">file</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">argv</span> = <span class="ruby-identifier">argv</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">filelist</span> <span class="ruby-comment cmt">#include_files</span>
+
+        <span class="ruby-identifier">rdoc_target</span>(<span class="ruby-identifier">output</span>, <span class="ruby-identifier">include_files</span>, <span class="ruby-identifier">argv</span>)
+        <span class="ruby-identifier">rdoc_insert_ads</span>(<span class="ruby-identifier">output</span>, <span class="ruby-identifier">adfile</span>)
+
+        <span class="ruby-identifier">touch</span>(<span class="ruby-identifier">output</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">status</span> <span class="ruby-node">&quot;RDocs are current (#{output}).&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="main-document-method" class="method-detail ">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">main_document</span><span
+            class="method-args"></span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Generate rdocs in main cycle.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="main-document-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 28</span>
+    <span class="ruby-identifier">cycle</span> <span class="ruby-identifier">:main</span>, <span class="ruby-identifier">:document</span>
+</pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="reset-method" class="method-detail ">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">reset</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Reset output directory, marking it as out-of-date.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="reset-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 183</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">output</span>)
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">utime</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-identifier">output</span>)
+        <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;reset #{output}&quot;</span> <span class="ruby-comment cmt">#unless trial?</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Setup default attribute values.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 67</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+      <span class="ruby-ivar">@title</span>    = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">title</span>
+      <span class="ruby-ivar">@files</span>    = <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">loadpath</span> <span class="ruby-operator">+</span> [<span class="ruby-value str">'[A-Z]*'</span>, <span class="ruby-value str">'bin'</span>] <span class="ruby-comment cmt"># DEFAULT_FILES</span>
+      <span class="ruby-ivar">@output</span>   = <span class="ruby-constant">Dir</span>[<span class="ruby-constant">DEFAULT_OUTPUT_MATCH</span>].<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_OUTPUT</span>
+      <span class="ruby-ivar">@extra</span>    = <span class="ruby-constant">DEFAULT_EXTRA</span>
+      <span class="ruby-ivar">@main</span>     = <span class="ruby-constant">Dir</span>[<span class="ruby-constant">DEFAULT_MAIN</span>].<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@template</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'RDOC_TEMPLATE'</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_TEMPLATE</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="rdoc-insert-ads-method" class="method-detail ">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">rdoc_insert_ads</span><span
+            class="method-args">(site, adfile)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Insert an ad into rdocs, if exists.
+</p>
+<p>
+Note that this code is needs work, as is it was designed to work with an
+old version of <a href="RDoc.html">RDoc</a>.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="rdoc-insert-ads-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 239</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rdoc_insert_ads</span>(<span class="ruby-identifier">site</span>, <span class="ruby-identifier">adfile</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">trial?</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">adfile</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">adfile</span>)
+      <span class="ruby-identifier">adtext</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">adfile</span>)
+      <span class="ruby-comment cmt">#puts</span>
+      <span class="ruby-identifier">dirs</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">site</span>,<span class="ruby-value str">'*/'</span>))
+      <span class="ruby-identifier">dirs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">files</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-value str">'**/*.html'</span>))
+        <span class="ruby-identifier">files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">html</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>)
+          <span class="ruby-identifier">bodi</span> = <span class="ruby-identifier">html</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value str">'&lt;body&gt;'</span>)
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bodi</span>
+          <span class="ruby-identifier">html</span>[<span class="ruby-identifier">bodi</span> <span class="ruby-operator">+</span> <span class="ruby-value">7</span>] = <span class="ruby-value str">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">adtext</span>
+          <span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">html</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">trial?</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="rdoc-target-method" class="method-detail ">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">rdoc_target</span><span
+            class="method-args">(output, input, argv=[])</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Generate rdocs for input targets.
+</p>
+<p>
+TODO: Use <a href="RDoc.html">RDoc</a> programmatically rather than via
+shell.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="rdoc-target-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/rdoc.rb, line 204</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rdoc_target</span>(<span class="ruby-identifier">output</span>, <span class="ruby-identifier">input</span>, <span class="ruby-identifier">argv</span>=[])
+      <span class="ruby-comment cmt">#if outofdate?(output, *input) or force?</span>
+        <span class="ruby-identifier">rm_r</span>(<span class="ruby-identifier">output</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">output</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">safe?</span>(<span class="ruby-identifier">output</span>)  <span class="ruby-comment cmt"># remove old rdocs</span>
+
+        <span class="ruby-comment cmt">#rdocopt['op'] = output</span>
+
+        <span class="ruby-comment cmt">#if template == 'hanna'</span>
+        <span class="ruby-comment cmt">#  cmd = &quot;hanna #{extra} &quot; + [input, rdocopt].to_console</span>
+        <span class="ruby-comment cmt">#else</span>
+        <span class="ruby-comment cmt">#  cmd = &quot;rdoc #{extra} &quot; + [input, rdocopt].to_console</span>
+        <span class="ruby-comment cmt">#end</span>
+
+        <span class="ruby-comment cmt">#argv = (&quot;#{extra}&quot; + [input, rdocopt].to_console).split(/\s+/)</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">verbose?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">trial?</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;rdoc &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)
+          <span class="ruby-comment cmt">#sh(cmd) #shell(cmd)</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;rdoc &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">trace?</span>
+          <span class="ruby-identifier">rdoc</span> = <span class="ruby-operator">::</span><span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">RDoc</span>.<span class="ruby-identifier">new</span>
+          <span class="ruby-identifier">rdoc</span>.<span class="ruby-identifier">document</span>(<span class="ruby-identifier">argv</span>)
+          <span class="ruby-comment cmt">#silently do</span>
+          <span class="ruby-comment cmt">#  sh(cmd) #shell(cmd)</span>
+          <span class="ruby-comment cmt">#end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt">#else</span>
+      <span class="ruby-comment cmt">#  puts &quot;RDocs are current -- #{output}&quot;</span>
+      <span class="ruby-comment cmt">#end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

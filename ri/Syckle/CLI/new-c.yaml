@@ -2,7 +2,8 @@
 aliases: []
 
 block_params: 
-comment: 
+comment: []
+
 full_name: Syckle::CLI::new
 is_singleton: true
 name: new

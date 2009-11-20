@@ -1,0 +1,26 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Shell is a subclass of Path::Shell (see rubyworks/path project). It extends the Path::Shell with commands generally associated with working with Ruby projects and other Ruby-oriented shell activies.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Wherever possible a command should call on the underlying tool programmatically rather than shelling out.
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Shell is a subclass of Path::Shell (see rubyworks/path project). It extends the Path::Shell with commands generally associated with working with Ruby projects and other Ruby-oriented shell activies.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Wherever possible a command should call on the underlying tool programmatically rather than shelling out.
+constants: []
+
+full_name: Syckle::Shell
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: email
+name: Shell
+superclass: Path::Shell

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckle::Plugins::Custom</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../../../assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../../../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../../../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../../../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../../../assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::Plugins::Custom</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../../files/lib/plugin/syckle/custom_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/plugin/syckle/custom.rb">lib/plugin/syckle/custom.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="singleton">
+              <a href="#M000044">::new</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000045">#initialize_defaults</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000046">#method_missing</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000043">#pipeline=</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/homepage.html">homepage</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/ruby.html">ruby</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/license.html">license</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/email_reap.html">email.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/repository.html">repository</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rubyforge_reap.html">rubyforge.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/title.html">title</a></li>
+        
+          <li class="file"><a href="../../../files/Syckfile.html">Syckfile</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/project.html">project</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/syntax_reap.html">syntax.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/authors.html">authors</a></li>
+        
+          <li class="file"><a href="../../../files/TODO.html">TODO</a></li>
+        
+          <li class="file"><a href="../../../files/README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/ridoc_reap.html">ridoc.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rdoc_reap.html">rdoc.reap</a></li>
+        
+          <li class="file"><a href="../../../files/COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/created.html">created</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rubygems_reap.html">rubygems.reap</a></li>
+        
+          <li class="file"><a href="../../../files/DESIGN.html">DESIGN</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/box_reap.html">box.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/description.html">description</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/version.html">version</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/notes_reap.html">notes.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/contact.html">contact</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/testunit_reap.html">testunit.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/released.html">released</a></li>
+        
+          <li class="file"><a href="../../../files/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/vclog_reap.html">vclog.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/package.html">package</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/autotools_reap.html">autotools.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/stats_reap.html">stats.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/README_till.html">README.till</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../../classes/Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Emailer.html">Syckle::Emailer</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../../classes/Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/GemCutter.html">Syckle::Plugins::GemCutter</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Service.html">Syckle::Service</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Shell.html">Syckle::Shell</a></li>
+        
+          <li class="module"><a href="../../../classes/<.html"><</a></li>
+        
+          <li class="class"><a href="../../../classes/Hash.html">Hash</a></li>
+        
+          <li class="class"><a href="../../../classes/NilClass.html">NilClass</a></li>
+        
+          <li class="class"><a href="../../../classes/String.html">String</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../../../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://github.com/proutils/webri">WebRI Redfish</a> 1.0.0
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="Custom.html">Custom</a> Plugin</h1>
+<p>
+Use this plugin to create your own &#8220;quicky&#8221; Reap service.
+</p>
+<p>
+This is a useful alternative to writing a full-blown plugin class when the
+need is simple.
+</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="DEFAULT_PIPELINE">DEFAULT_PIPELINE</a></dt>
+        
+        <dd class="description"><p>
+Default pipeline(s) in which this plugin operates.
+</p></dd>
+        
+      
+      </dl>
+    </div>
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="pipeline-attribute-method" class="method-detail">
+        <a name="pipeline"></a>
+        
+        <a name="pipeline="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pipeline</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Which pipeline(s) to run this custom plugin.
+</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="new-method" class="method-detail ">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">new</span><span
+            class="method-args">(context, key, options)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Instantiate new custom plugin.
+</p>
+<p>
+FIXME: Custom#initialize seems to be running twice at startup. Why?
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="new-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/custom.rb, line 32</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">context</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-keyword kw">super</span>
+      <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase</span>, <span class="ruby-identifier">script</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment cmt"># skip reap specific config options</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">phase</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'service'</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">phase</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'pipeline'</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'pipelines'</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">phase</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'active'</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">phase</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'priority'</span>
+        <span class="ruby-comment cmt"># remaining options are names of pipeline phases</span>
+        <span class="ruby-identifier">pipelines</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pipe</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">src</span> = <span class="ruby-node">%{
+            def #{pipe}_#{phase}
+              #{script}
+            end
+          }</span>
+          (<span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>; <span class="ruby-keyword kw">self</span>; <span class="ruby-keyword kw">end</span>).<span class="ruby-identifier">module_eval</span>(<span class="ruby-identifier">src</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="pipeline--method" class="method-detail ">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">pipeline=</span><span
+            class="method-args">(val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Special writer to allow single pipeline or a list of pipelines.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="pipeline--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/custom.rb, line 22</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pipeline=</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-ivar">@pipeline</span> = [<span class="ruby-identifier">val</span>].<span class="ruby-identifier">flatten</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Set initial attribute defaults.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/custom.rb, line 53</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+      <span class="ruby-ivar">@pipeline</span>  = <span class="ruby-constant">DEFAULT_PIPELINE</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="method-missing-method" class="method-detail ">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">method_missing</span><span
+            class="method-args">(s, *a, &b)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="method-missing-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/custom.rb, line 58</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">s</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">s</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@context</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">s</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

@@ -1,8 +1,25 @@
 --- !ruby/object:RDoc::RI::ClassDescription 
-attributes: []
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: []
 
-class_methods: []
-
+  name: cli
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  name: stderr
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  name: stdin
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  name: stdout
+  rw: R
+class_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: new
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::H 
   level: 1
@@ -25,7 +42,17 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: ansize
 - !ruby/object:RDoc::RI::MethodSummary 
+  name: ask
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: debug?
+- !ruby/object:RDoc::RI::MethodSummary 
   name: display_action
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: force?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: password
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: print
 - !ruby/object:RDoc::RI::MethodSummary 
   name: print_header
 - !ruby/object:RDoc::RI::MethodSummary 
@@ -33,10 +60,26 @@ instance_methods:
 - !ruby/object:RDoc::RI::MethodSummary 
   name: printline
 - !ruby/object:RDoc::RI::MethodSummary 
+  name: puts
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: quiet?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: report
+- !ruby/object:RDoc::RI::MethodSummary 
   name: screen_width
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: status
 - !ruby/object:RDoc::RI::MethodSummary 
   name: status_header
 - !ruby/object:RDoc::RI::MethodSummary 
   name: status_line
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: trace
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: trace?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: trial?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: verbose?
 name: IO
-superclass: "::Ratch::IO"
+superclass: Object

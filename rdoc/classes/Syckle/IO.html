@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckle::IO</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../../assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../../assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::IO</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../files/lib/syckle/io_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/syckle/io.rb">lib/syckle/io.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Object</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="singleton">
+              <a href="#M000153">::new</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000178">#ansize</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000163">#ask</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000159">#debug?</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000171">#display_action</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000154">#force?</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000164">#password</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000165">#print</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000175">#print_header</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000177">#print_phase</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000168">#printline</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000166">#puts</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000155">#quiet?</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000160">#report</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000179">#screen_width</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000161">#status</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000172">#status_header</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000174">#status_line</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000162">#trace</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000157">#trace?</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000158">#trial?</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000156">#verbose?</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/homepage.html">homepage</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/ruby.html">ruby</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/license.html">license</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/email_reap.html">email.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/repository.html">repository</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/rubyforge_reap.html">rubyforge.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/title.html">title</a></li>
+        
+          <li class="file"><a href="../../files/Syckfile.html">Syckfile</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/project.html">project</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/syntax_reap.html">syntax.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/authors.html">authors</a></li>
+        
+          <li class="file"><a href="../../files/TODO.html">TODO</a></li>
+        
+          <li class="file"><a href="../../files/README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/ridoc_reap.html">ridoc.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/rdoc_reap.html">rdoc.reap</a></li>
+        
+          <li class="file"><a href="../../files/COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/created.html">created</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/rubygems_reap.html">rubygems.reap</a></li>
+        
+          <li class="file"><a href="../../files/DESIGN.html">DESIGN</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/box_reap.html">box.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/description.html">description</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/version.html">version</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/notes_reap.html">notes.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/contact.html">contact</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/testunit_reap.html">testunit.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/released.html">released</a></li>
+        
+          <li class="file"><a href="../../files/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/vclog_reap.html">vclog.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/meta/package.html">package</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/autotools_reap.html">autotools.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/task/stats_reap.html">stats.reap</a></li>
+        
+          <li class="file"><a href="../../files/lib/plugin/sow/seeds/syckle/README_till.html">README.till</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../classes/Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Emailer.html">Syckle::Emailer</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../classes/Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/GemCutter.html">Syckle::Plugins::GemCutter</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Service.html">Syckle::Service</a></li>
+        
+          <li class="class"><a href="../../classes/Syckle/Shell.html">Syckle::Shell</a></li>
+        
+          <li class="module"><a href="../../classes/<.html"><</a></li>
+        
+          <li class="class"><a href="../../classes/Hash.html">Hash</a></li>
+        
+          <li class="class"><a href="../../classes/NilClass.html">NilClass</a></li>
+        
+          <li class="class"><a href="../../classes/String.html">String</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://github.com/proutils/webri">WebRI Redfish</a> 1.0.0
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="../Syckle.html">Syckle</a> <a href="IO.html">IO</a></h1>
+<p>
+The <a href="IO.html">IO</a> class is used to cleanly separate out the
+basic input/output &#8220;dialog&#8221; between user and script.
+</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="cli-attribute-method" class="method-detail">
+        <a name="cli"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cli</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="stdout-attribute-method" class="method-detail">
+        <a name="stdout"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stdout</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p class="missing-docs">(Not documented)</p>
+        
+        </div>
+      </div>
+      
+      <div id="stderr-attribute-method" class="method-detail">
+        <a name="stderr"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stderr</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p class="missing-docs">(Not documented)</p>
+        
+        </div>
+      </div>
+      
+      <div id="stdin-attribute-method" class="method-detail">
+        <a name="stdin"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stdin</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p class="missing-docs">(Not documented)</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="new-method" class="method-detail ">
+        <a name="M000153"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">new</span><span
+            class="method-args">(cli, stdout=nil, stderr=nil, stdin=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="new-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 21</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">cli</span>, <span class="ruby-identifier">stdout</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">stderr</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">stdin</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-ivar">@cli</span> = <span class="ruby-identifier">cli</span>
+      <span class="ruby-ivar">@stdout</span> = <span class="ruby-identifier">stdout</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$stdout</span>
+      <span class="ruby-ivar">@stderr</span> = <span class="ruby-identifier">stderr</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$stderr</span>
+      <span class="ruby-ivar">@stdin</span>  = <span class="ruby-identifier">stdin</span>  <span class="ruby-operator">||</span> <span class="ruby-identifier">$stdin</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="ask-method" class="method-detail ">
+        <a name="M000163"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">ask</span><span
+            class="method-args">(question, answers=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Convenient method to get simple console reply.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="ask-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 54</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ask</span>(<span class="ruby-identifier">question</span>, <span class="ruby-identifier">answers</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{question}&quot;</span>
+      <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot; [#{answers}] &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answers</span>
+      <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">flush</span>
+      <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">inp</span> = <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">gets</span> ; <span class="ruby-identifier">sleep</span> <span class="ruby-value">1</span> ; <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">inp</span>.<span class="ruby-identifier">strip</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="debug--method" class="method-detail ">
+        <a name="M000159"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">debug?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="debug--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 34</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">debug?</span>   ; <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">debug?</span>   ; <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="display-action-method" class="method-detail ">
+        <a name="M000171"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">display_action</span><span
+            class="method-args">(action_item)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="display-action-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 133</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display_action</span>(<span class="ruby-identifier">action_item</span>)
+      <span class="ruby-identifier">phase</span>, <span class="ruby-identifier">service</span>, <span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">action_item</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  %-10s %-10s %-10s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">phase</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">capitalize</span>, <span class="ruby-identifier">service</span>.<span class="ruby-identifier">service_title</span>, <span class="ruby-identifier">action</span>]
+      <span class="ruby-comment cmt">#status_line(service.service_title, phase.to_s.capitalize)</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="force--method" class="method-detail ">
+        <a name="M000154"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">force?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="force--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 28</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">force?</span>   ; <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">force?</span>   ; <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="password-method" class="method-detail ">
+        <a name="M000164"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">password</span><span
+            class="method-args">(prompt=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+TODO: Until we have better support for getting input acorss platforms we
+are using <a href="IO.html#M000163">ask</a> only.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="password-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 82</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password</span>(<span class="ruby-identifier">prompt</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">prompt</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;Enter Password: &quot;</span>
+      <span class="ruby-identifier">ask</span>(<span class="ruby-identifier">prompt</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="print-method" class="method-detail ">
+        <a name="M000165"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">print</span><span
+            class="method-args">(str=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="print-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 88</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print</span>(<span class="ruby-identifier">str</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="print-header-method" class="method-detail ">
+        <a name="M000175"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">print_header</span><span
+            class="method-args">(left, right)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="print-header-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 168</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_header</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ANSI</span><span class="ruby-operator">::</span><span class="ruby-constant">SUPPORTED</span>
+        <span class="ruby-identifier">printline</span>(<span class="ruby-value str">''</span>, <span class="ruby-value str">''</span>, <span class="ruby-identifier">:pad=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>, <span class="ruby-identifier">:sep=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">' '</span>, <span class="ruby-identifier">:style=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:negative</span>, <span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:left=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:right=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>])
+        <span class="ruby-identifier">printline</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>, <span class="ruby-identifier">:pad=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>, <span class="ruby-identifier">:sep=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">' '</span>, <span class="ruby-identifier">:style=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:negative</span>, <span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:left=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:right=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>])
+        <span class="ruby-identifier">printline</span>(<span class="ruby-value str">''</span>, <span class="ruby-value str">''</span>, <span class="ruby-identifier">:pad=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>, <span class="ruby-identifier">:sep=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">' '</span>, <span class="ruby-identifier">:style=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:negative</span>, <span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:left=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:right=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>])
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">printline</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>, <span class="ruby-identifier">:pad=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>, <span class="ruby-identifier">:sep=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'='</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="print-phase-method" class="method-detail ">
+        <a name="M000177"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">print_phase</span><span
+            class="method-args">(left, right)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="print-phase-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 179</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_phase</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ANSI</span><span class="ruby-operator">::</span><span class="ruby-constant">SUPPORTED</span>
+        <span class="ruby-identifier">printline</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>, <span class="ruby-identifier">:pad=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>, <span class="ruby-identifier">:sep=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">' '</span>, <span class="ruby-identifier">:style=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:on_white</span>, <span class="ruby-identifier">:black</span>, <span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:left=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>], <span class="ruby-identifier">:right=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">:bold</span>])
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">printline</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>, <span class="ruby-identifier">:pad=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>, <span class="ruby-identifier">:sep=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'-'</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="printline-method" class="method-detail ">
+        <a name="M000168"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">printline</span><span
+            class="method-args">(left, right='', options={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="printline-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 98</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">printline</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>=<span class="ruby-value str">''</span>, <span class="ruby-identifier">options</span>={})
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">quiet?</span>
+
+      <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:seperator</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:sep</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">' '</span>
+      <span class="ruby-identifier">padding</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>]   <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:pad</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+
+      <span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span> = <span class="ruby-identifier">left</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">right</span>.<span class="ruby-identifier">to_s</span>
+
+      <span class="ruby-identifier">left_size</span>  = <span class="ruby-identifier">left</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">right_size</span> = <span class="ruby-identifier">right</span>.<span class="ruby-identifier">size</span>
+
+      <span class="ruby-comment cmt">#left  = colorize(left)</span>
+      <span class="ruby-comment cmt">#right = colorize(right)</span>
+
+      <span class="ruby-identifier">l</span> = <span class="ruby-identifier">padding</span>
+      <span class="ruby-identifier">r</span> = <span class="ruby-operator">-</span>(<span class="ruby-identifier">right_size</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">padding</span>)
+
+      <span class="ruby-identifier">style</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:style</span>] <span class="ruby-operator">||</span> []
+      <span class="ruby-identifier">lstyle</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:left</span>]  <span class="ruby-operator">||</span> []
+      <span class="ruby-identifier">rstyle</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:right</span>] <span class="ruby-operator">||</span> []
+
+      <span class="ruby-identifier">left</span>  = <span class="ruby-identifier">lstyle</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">left</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ansize</span>(<span class="ruby-identifier">s</span>, <span class="ruby-identifier">c</span>) }
+      <span class="ruby-identifier">right</span> = <span class="ruby-identifier">rstyle</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">right</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ansize</span>(<span class="ruby-identifier">s</span>, <span class="ruby-identifier">c</span>) }
+
+      <span class="ruby-identifier">line</span> = <span class="ruby-identifier">separator</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">screen_width</span>
+      <span class="ruby-identifier">line</span>[<span class="ruby-identifier">l</span>, <span class="ruby-identifier">left_size</span>]  = <span class="ruby-identifier">left</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">left_size</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">line</span>[<span class="ruby-identifier">r</span>, <span class="ruby-identifier">right_size</span>] = <span class="ruby-identifier">right</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">right_size</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+
+      <span class="ruby-identifier">line</span> = <span class="ruby-identifier">style</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">line</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ansize</span>(<span class="ruby-identifier">s</span>, <span class="ruby-identifier">c</span>) }
+
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ansize</span>(<span class="ruby-value str">''</span>, <span class="ruby-identifier">:clear</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="puts-method" class="method-detail ">
+        <a name="M000166"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">puts</span><span
+            class="method-args">(str=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="puts-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 93</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">puts</span>(<span class="ruby-identifier">str</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="quiet--method" class="method-detail ">
+        <a name="M000155"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">quiet?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="quiet--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 29</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quiet?</span>   ; <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">quiet?</span>   ; <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="report-method" class="method-detail ">
+        <a name="M000160"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">report</span><span
+            class="method-args">(message)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+TODO: just rename to <a href="IO.html#M000166">puts</a> ?
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="report-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 37</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">report</span>(<span class="ruby-identifier">message</span>)
+      <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">message</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="status-method" class="method-detail ">
+        <a name="M000161"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">status</span><span
+            class="method-args">(message)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+TODO: deprecate in favor of <a href="IO.html#M000160">report</a> (or <a
+href="IO.html#M000166">puts</a> ?)
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="status-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 42</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status</span>(<span class="ruby-identifier">message</span>)
+      <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">message</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="status-header-method" class="method-detail ">
+        <a name="M000172"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">status_header</span><span
+            class="method-args">(left, right='')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="status-header-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 141</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status_header</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>=<span class="ruby-value str">''</span>)
+      <span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span> = <span class="ruby-identifier">left</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">right</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-comment cmt">#left.color  = 'blue'</span>
+      <span class="ruby-comment cmt">#right.color = 'magenta'</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet?</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">print_header</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>)
+        <span class="ruby-comment cmt">#puts &quot;=&quot; * io.screen_width</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="status-line-method" class="method-detail ">
+        <a name="M000174"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">status_line</span><span
+            class="method-args">(left, right='')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="status-line-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 154</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status_line</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>=<span class="ruby-value str">''</span>)
+      <span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span> = <span class="ruby-identifier">left</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">right</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-comment cmt">#left.color  = 'blue'</span>
+      <span class="ruby-comment cmt">#right.color = 'magenta'</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet?</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-comment cmt">#puts &quot;-&quot; * io.screen_width</span>
+        <span class="ruby-identifier">print_phase</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>)
+        <span class="ruby-comment cmt">#puts &quot;-&quot; * io.screen_width</span>
+        <span class="ruby-comment cmt">#puts</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="trace-method" class="method-detail ">
+        <a name="M000162"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">trace</span><span
+            class="method-args">(message)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Internal status report. Only output if in TRACE mode.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="trace-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 49</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">trace</span>(<span class="ruby-identifier">message</span>)
+      <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">message</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">verbose?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="trace--method" class="method-detail ">
+        <a name="M000157"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">trace?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="trace--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 32</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">trace?</span>   ; <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">trace?</span>   ; <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="trial--method" class="method-detail ">
+        <a name="M000158"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">trial?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="trial--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 33</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">trial?</span>   ; <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">trial?</span>   ; <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="verbose--method" class="method-detail ">
+        <a name="M000156"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">verbose?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="verbose--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 30</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verbose?</span> ; <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">verbose?</span> ; <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="ansize-method" class="method-detail ">
+        <a name="M000178"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">ansize</span><span
+            class="method-args">(text, code)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="ansize-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 190</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ansize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">code</span>)
+      <span class="ruby-comment cmt">#return text unless text.color</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">PLATFORM</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/win/</span>
+        <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">ANSI</span><span class="ruby-operator">::</span><span class="ruby-constant">Code</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_sym</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">text</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="screen-width-method" class="method-detail ">
+        <a name="M000179"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">screen_width</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="screen-width-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/syckle/io.rb, line 200</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">screen_width</span>
+      <span class="ruby-comment cmt">#Clio::ConsoleUtils.screen_width</span>
+      <span class="ruby-constant">ANSI</span><span class="ruby-operator">::</span><span class="ruby-constant">Terminal</span>.<span class="ruby-identifier">terminal_width</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

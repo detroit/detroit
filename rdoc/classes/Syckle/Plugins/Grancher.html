@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Syckle::Plugins::Grancher</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../../../assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../../../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../../../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../../../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../../../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../../../assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../../../index.html">Syckle</a>&nbsp;
+      <a href="/">Syckle::Plugins::Grancher</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../../../files/lib/plugin/syckle/grancher_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/plugin/syckle/grancher.rb">lib/plugin/syckle/grancher.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Service</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="method">
+              <a href="#M000037">#default_sitemap</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000033">#grancher</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000036">#initialize_defaults</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000035">#release</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000032">#sitemap=</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#M000034">#transfer</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/homepage.html">homepage</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/ruby.html">ruby</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/license.html">license</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/email_reap.html">email.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/repository.html">repository</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rubyforge_reap.html">rubyforge.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/title.html">title</a></li>
+        
+          <li class="file"><a href="../../../files/Syckfile.html">Syckfile</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/project.html">project</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/syntax_reap.html">syntax.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/authors.html">authors</a></li>
+        
+          <li class="file"><a href="../../../files/TODO.html">TODO</a></li>
+        
+          <li class="file"><a href="../../../files/README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/ridoc_reap.html">ridoc.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rdoc_reap.html">rdoc.reap</a></li>
+        
+          <li class="file"><a href="../../../files/COPYING.html">COPYING</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/created.html">created</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/rubygems_reap.html">rubygems.reap</a></li>
+        
+          <li class="file"><a href="../../../files/DESIGN.html">DESIGN</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/box_reap.html">box.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/description.html">description</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/version.html">version</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/notes_reap.html">notes.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/contact.html">contact</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/testunit_reap.html">testunit.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/released.html">released</a></li>
+        
+          <li class="file"><a href="../../../files/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/vclog_reap.html">vclog.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/meta/package.html">package</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/autotools_reap.html">autotools.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/HISTORY.html">HISTORY</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/task/stats_reap.html">stats.reap</a></li>
+        
+          <li class="file"><a href="../../../files/lib/plugin/sow/seeds/syckle/README_till.html">README.till</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../../../classes/Syckle.html">Syckle</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Application.html">Syckle::Application</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/CLI.html">Syckle::CLI</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Config.html">Syckle::Config</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Emailer.html">Syckle::Emailer</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/IO.html">Syckle::IO</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/LifeCycle.html">Syckle::LifeCycle</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Log.html">Syckle::Log</a></li>
+        
+          <li class="module"><a href="../../../classes/Syckle/Plugins.html">Syckle::Plugins</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Autotools.html">Syckle::Plugins::Autotools</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Custom.html">Syckle::Plugins::Custom</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/EMail.html">Syckle::Plugins::EMail</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/GemCutter.html">Syckle::Plugins::GemCutter</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Grancher.html">Syckle::Plugins::Grancher</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RCov.html">Syckle::Plugins::RCov</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RDoc.html">Syckle::Plugins::RDoc</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RIDoc.html">Syckle::Plugins::RIDoc</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RSpec.html">Syckle::Plugins::RSpec</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/RubyProf.html">Syckle::Plugins::RubyProf</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Stats.html">Syckle::Plugins::Stats</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Syntax.html">Syckle::Plugins::Syntax</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Testrb.html">Syckle::Plugins::Testrb</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Turn.html">Syckle::Plugins::Turn</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Plugins/Yard.html">Syckle::Plugins::Yard</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Script.html">Syckle::Script</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Service.html">Syckle::Service</a></li>
+        
+          <li class="class"><a href="../../../classes/Syckle/Shell.html">Syckle::Shell</a></li>
+        
+          <li class="module"><a href="../../../classes/<.html"><</a></li>
+        
+          <li class="class"><a href="../../../classes/Hash.html">Hash</a></li>
+        
+          <li class="class"><a href="../../../classes/NilClass.html">NilClass</a></li>
+        
+          <li class="class"><a href="../../../classes/String.html">String</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../../../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://github.com/proutils/webri">WebRI Redfish</a> 1.0.0
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="Grancher.html">Grancher</a> Plugin</h1>
+<p>
+This plugin copies designated files to a git branch. This is useful for
+dealing with situations like GitHub&#8217;s gh-pages branch for hosting
+project websites.[1]
+</p>
+<dl>
+<dt>1</dt><dd>A poor design copied from the Git project itself.
+
+</dd>
+</dl>
+
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="branch-attribute-method" class="method-detail">
+        <a name="branch"></a>
+        
+        <a name="branch="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">branch</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+The brach into which to save the files.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="remote-attribute-method" class="method-detail">
+        <a name="remote"></a>
+        
+        <a name="remote="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">remote</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+The remote to use (defaults to &#8216;origin&#8217;).
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="keep-attribute-method" class="method-detail">
+        <a name="keep"></a>
+        
+        <a name="keep="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">keep</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+List of any files/directory to not overwrite in branch.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="keep-all-attribute-method" class="method-detail">
+        <a name="keep_all"></a>
+        
+        <a name="keep_all="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">keep_all</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+Do not overwrite anything. Defaults to <tt>trial</tt> setting.
+</p>
+        
+        </div>
+      </div>
+      
+      <div id="sitemap-attribute-method" class="method-detail">
+        <a name="sitemap"></a>
+        
+        <a name="sitemap="></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">sitemap</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>
+List of directories and files to transfer. If a single directory entry is
+given then the contents of that directory will be transfered.
+</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="grancher-method" class="method-detail ">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">grancher</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p class="missing-docs">(Not documented)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="grancher-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/grancher.rb, line 64</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">grancher</span>
+      <span class="ruby-ivar">@grancher</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Grancher</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">g</span>.<span class="ruby-identifier">branch</span>  = <span class="ruby-identifier">branch</span>
+        <span class="ruby-identifier">g</span>.<span class="ruby-identifier">push_to</span> = <span class="ruby-identifier">remote</span>
+
+        <span class="ruby-comment cmt">#g.repo   = repo if repo  # defaults to '.'</span>
+
+        <span class="ruby-identifier">g</span>.<span class="ruby-identifier">keep</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">keep</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">keep</span>
+        <span class="ruby-identifier">g</span>.<span class="ruby-identifier">keep_all</span>    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">keep_all</span>
+
+        <span class="ruby-comment cmt">#g.message = (quiet? ? '' : 'Tranferred site files to #{branch}.')</span>
+
+        <span class="ruby-identifier">sitemap</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dest</span>)<span class="ruby-operator">|</span>
+          <span class="ruby-identifier">trace</span> <span class="ruby-node">&quot;transfer: #{src} =&gt; #{dest}&quot;</span>
+          <span class="ruby-identifier">dest</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dest</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'.'</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">src</span>)
+            <span class="ruby-identifier">dest</span> <span class="ruby-value">? </span><span class="ruby-identifier">g</span>.<span class="ruby-identifier">directory</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dest</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">directory</span>(<span class="ruby-identifier">src</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">dest</span> <span class="ruby-value">? </span><span class="ruby-identifier">g</span>.<span class="ruby-identifier">file</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dest</span>)      <span class="ruby-operator">:</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">file</span>(<span class="ruby-identifier">src</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="release-method" class="method-detail ">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">release</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="release-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/grancher.rb, line 96</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">release</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'grancher'</span>
+      <span class="ruby-identifier">grancher</span>.<span class="ruby-identifier">push</span>
+      <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;Pushed site files to #{remote}.&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="sitemap--method" class="method-detail ">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">sitemap=</span><span
+            class="method-args">(entries)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="sitemap--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/grancher.rb, line 55</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sitemap=</span>(<span class="ruby-identifier">entries</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">entries</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Symbol</span>
+        <span class="ruby-ivar">@sitemap</span> = [<span class="ruby-identifier">entries</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@sitemap</span> = <span class="ruby-identifier">entries</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="transfer-method" class="method-detail ">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">transfer</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="transfer-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/grancher.rb, line 89</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transfer</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'grancher'</span>
+      <span class="ruby-identifier">grancher</span>.<span class="ruby-identifier">commit</span>
+      <span class="ruby-identifier">report</span> <span class="ruby-node">&quot;Tranferred site files to #{branch}.&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="private-instance-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="default-sitemap-method" class="method-detail ">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">default_sitemap</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Default sitemap includes the website directoy, if it exists and doc if it
+exists. Eg.
+</p>
+<pre>
+   - site
+   - doc
+</pre>
+<p>
+Otherwise it includes just the doc/rdoc or doc directory.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="default-sitemap-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/grancher.rb, line 120</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_sitemap</span>
+      <span class="ruby-identifier">sm</span> = []
+      <span class="ruby-identifier">site</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-value str">'{site,web,website}'</span>].<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">site</span>
+        <span class="ruby-identifier">sm</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">site</span>
+        <span class="ruby-identifier">sm</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'doc'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-value str">'doc'</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-value str">'doc/rdoc'</span>]
+          <span class="ruby-identifier">sm</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'doc/rdoc'</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">sm</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'doc'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-value str">'doc'</span>]
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">sm</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="initialize-defaults-method" class="method-detail ">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">initialize_defaults</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+TODO: Does the POM Project provide the site directory?
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="initialize-defaults-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/plugin/syckle/grancher.rb, line 105</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_defaults</span>
+      <span class="ruby-ivar">@branch</span>   <span class="ruby-operator">||=</span> <span class="ruby-value str">'gh-pages'</span>
+      <span class="ruby-ivar">@remote</span>   <span class="ruby-operator">||=</span> <span class="ruby-value str">'origin'</span>
+      <span class="ruby-ivar">@sitemap</span>  <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_sitemap</span>
+      <span class="ruby-comment cmt">#@keep_all ||= trial?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

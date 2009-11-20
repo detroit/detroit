@@ -10,18 +10,10 @@ class_methods:
   name: services
 comment: 
 - !ruby/struct:RDoc::Markup::Flow::P 
-  body: "FIXME: Not all io output is running through the io object."
-- !ruby/struct:RDoc::Markup::Flow::RULE 
-  width: 1
-- !ruby/struct:RDoc::Markup::Flow::H 
-  level: 1
-  text: Service Loader
+  body: require 'path/store'
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: " ---\n FIXME: Not all io output is running through the io object.\n ---\n = Service Loader\n"
 constants: 
-- !ruby/object:RDoc::RI::Constant 
-  comment: []
-
-  name: PLUGIN_DIRECTORY
-  value: "\"syckle/services\""
 - !ruby/object:RDoc::RI::Constant 
   comment: 
   name: VERSION

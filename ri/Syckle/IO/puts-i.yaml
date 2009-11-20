@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::IO#puts
+is_singleton: false
+name: puts
+params: (str=nil)
+visibility: public

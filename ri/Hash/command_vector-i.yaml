@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "Alias for #argumentize"
+full_name: Hash#command_vector
+is_singleton: false
+name: command_vector
+params: (args_field=nil)
+visibility: public

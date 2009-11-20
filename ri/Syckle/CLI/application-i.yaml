@@ -2,13 +2,8 @@
 aliases: []
 
 block_params: 
-comment: 
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: def help
-- !ruby/struct:RDoc::Markup::Flow::VERB 
-  body: "  usage.help.to_s(:bold=&gt;true)\n"
-- !ruby/struct:RDoc::Markup::Flow::P 
-  body: end
+comment: []
+
 full_name: Syckle::CLI#application
 is_singleton: false
 name: application

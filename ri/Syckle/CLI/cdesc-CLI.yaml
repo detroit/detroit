@@ -1,11 +1,13 @@
 --- !ruby/object:RDoc::RI::ClassDescription 
 attributes: 
 - !ruby/object:RDoc::RI::Attribute 
-  comment: 
+  comment: []
+
   name: options
   rw: R
 - !ruby/object:RDoc::RI::Attribute 
-  comment: 
+  comment: []
+
   name: usage
   rw: R
 class_methods: 
@@ -28,6 +30,12 @@ includes: []
 instance_methods: 
 - !ruby/object:RDoc::RI::MethodSummary 
   name: application
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: arguments
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: initialize_options
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: initialize_usage
 - !ruby/object:RDoc::RI::MethodSummary 
   name: method_missing
 - !ruby/object:RDoc::RI::MethodSummary 

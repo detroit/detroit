@@ -1,15 +1,82 @@
 --- !ruby/object:RDoc::RI::ClassDescription 
-attributes: []
-
-class_methods: []
-
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: "The #cli method provides delagated access to commandline arguments and options via the CLI interface."
+  name: cli
+  rw: RW
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Delagate input/output routines to IO object.
+  name: io
+  rw: RW
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: POM::Project object.
+  name: project
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Delagate file operations to Shell.
+  name: shell
+  rw: RW
+class_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: new
 comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Syckle Script Domain
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The DSL class is the heart of Syckle, it provides all the convenece methods that make Syckle services so convenient to write.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Better name?"
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Syckle Script Domain
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The DSL class is the heart of Syckle, it provides all the convenece methods that make Syckle services so convenient to write.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Better name?"
 constants: []
 
 full_name: Syckle::Script
 includes: []
 
-instance_methods: []
-
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: apply_naming_policy
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: configuration
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: configuration!
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: current_platform
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: debug?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: email
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: force?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: metadata
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: naming_policy
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: quiet?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: trace?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: trial?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: verbose?
 name: Script
-superclass: "::Ratch::Script"
+superclass: Module

@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::Emailer#require_smtp
+is_singleton: false
+name: require_smtp
+params: ()
+visibility: public

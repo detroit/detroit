@@ -1,0 +1,16 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Email function to easily send out an email.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "Settings:"
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: "    subject      Subject of email message.\n    from         Message FROM address [email].\n    to           Email address to send announcemnt.\n    server       Email server to route message.\n    port         Email server's port.\n    domain       Email server's domain name.\n    account      Email account name if needed.\n    password     Password for login..\n    login        Login type: plain, cram_md5 or login [plain].\n    secure       Uses TLS security, true or false? [false]\n    message      Mesage to send -or-\n    file         File that contains message.\n"
+full_name: Syckle::Shell#email
+is_singleton: false
+name: email
+params: (options)
+visibility: public
