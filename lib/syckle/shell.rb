@@ -1,4 +1,5 @@
 require 'path/shell'
+require 'plugin'
 
 module Syckle
 
@@ -12,8 +13,8 @@ module Syckle
   class Shell < Path::Shell
 
     # load shell add-ons
-    PluginManager.find('syckle/shell/*') do |file|
-      require file
+    ::Plugin.find('syckle/shell/*.rb') do |file|
+      require(file)
     end
 
   end

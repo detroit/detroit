@@ -1,4 +1,4 @@
-module Ratch
+module Syckle
 
   class Shell
 

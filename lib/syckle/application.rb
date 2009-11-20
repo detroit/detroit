@@ -5,8 +5,7 @@ begin
 rescue LoadError
 end
 
-require 'facets/plugin_manager'
-require 'facets/hashbuilder'
+require 'plugin'
 
 require 'syckle/core_ext'
 
@@ -27,7 +26,7 @@ require 'syckle/service'
 module Syckle
 
   #
-  PLUGIN_DIRECTORY = "syckle/services"
+  #PLUGIN_DIRECTORY = "plugin{,s}/syckle"
 
   # = Application
   #
@@ -66,7 +65,7 @@ module Syckle
 
     #
     def load_plugins
-      PluginManager.find(PLUGIN_DIRECTORY + '/*.rb').each do |file|
+      ::Plugin.find("syckle/*.rb").each do |file|
       #Syckle.plugins.each do |file|
         require(file)
         #Syckle.module_eval(File.read(file))
@@ -177,24 +176,6 @@ module Syckle
 
     #alias_method :services, :active_services
 
-=begin
-    # This substitutes environment vairables in for
-    # service options if they are given in the form
-    # of +ENV[NAME]+.
-
-    def inject_environment(options)
-      opts = {}
-      options.each do |k,v|
-        if String === v && md = /^ENV\[(.*?)\]/.match(v)
-          opts[k] = ENV[md[1]]
-        else
-          opts[k] = v
-        end
-      end
-      opts
-    end
-=end
-
     #
     #def service_configuration
     #  @service_configuration ||= (
@@ -217,6 +198,8 @@ module Syckle
     end
 
 =begin
+    #require 'facets/hashbuilder'
+
     # Load service configs for a select set of syckle scripts/tasks.
 
     def load_service_configs(files)
@@ -309,7 +292,7 @@ module Syckle
     # Run the cycle upto the specified cycle-phase.
 
     def run(job)
-      # Improve this in the future.
+      # tab completion -- improve this in the future.
       #if cli == '?'
       #  m, l = [], []
       #  Syckle.pipelines.each do |key, pipe|
@@ -444,72 +427,4 @@ module Syckle
   end
 
 end #module Syckle
-
-
-
-
-
-
-=begin
-#      phase_actions = {}
-#      pipeline.each{ |phase| phase_actions[phase] = [] }
-
-#      services.each do |label, service|
-#        phases = service.class.service_actions[chosen_pipeline]
-#        phases.each do |phase, actions|
-#          actions.each do |action|
-#            phase_actions[phase] ||= []
-#            phase_actions[phase] << [label, service, action]
-#          end
-#        end
-#      end
-
-      if choosen_phase
-        phases = pipeline[0..pipeline.index(choosen_phase.to_sym)]
-        #max = phases.collect{ |phase| phase_actions.keys.collect{ |k| phase.to_s.size + k.to_s.size }}.flatten.max
-
-        phases.each do |phase|
-          #project.current_phase = phase.to_s.capitalize
-          #project.status_line('', phase.to_s.capitalize, ' ') unless phase_actions[phase].empty?
-          #puts "\n= #{phase.to_s.capitalize}\n"
-          if phase == :document or phase == :analyize
-            phase_actions[phase].each do |label, service, action|
-              #project.current_service = label.to_s.capitalize
-              if fork?
-                status_line(label.capitalize, phase.to_s.capitalize, '-')
-                pid = fork do  # FIXME: This won't work on windows.
-                  silently{ service.send(action) }
-                end
-                status("Process Forked -> #{pid}")
-              else
-                #pid = Process.pid
-                status_line(label.capitalize, phase.to_s.capitalize, '-')
-                service.send(action)
-              end
-              #Process.detach(pid)
-              #sleep 1
-            end
-          else
-            phase_actions[phase].each do |label, service, action|
-              #project.current_service = label.to_s.capitalize
-              status_line(label.capitalize, phase.to_s.capitalize, '-')
-              service.send(action)
-            end
-          end
-        end
-
-        stop_time = Time.now
-
-        puts "\nFinished in #{stop_time - start_time} seconds." unless project.quiet?
-      else
-        phases = service.class.service_actions[chosen_pipeline]
-
-        phases.each do |phase, actions|
-          puts "\n[#{phase}]"
-          actions.each do |label, service, action|
-            puts "syckle #{phase} #{label} #{action}"
-          end
-        end
-      end
-=end
 
