@@ -1,6 +1,5 @@
 .cache
-MANIFEST
-doc/qed
+doc/qedoc
 doc/rdoc
 doc/ri
 doc/yard
