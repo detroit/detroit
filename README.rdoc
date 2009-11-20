@@ -4,6 +4,7 @@
 * Development: http://github.com/proutils/syckle
 * Mailing List: http://googlegroups.com/group/proutils
 
+
 == DESCRIPTION
 
 Syckle is a life-cycle based Ruby project mangement tool. Syckle
@@ -14,22 +15,23 @@ and release Ruby projects.
 == SYNOPSIS
 
 Using Syckle is not diffcult, but it does take a few minutes to understand
-how it operates. If you are familiar with Maven form Java ecosystem, then
-you have as fair notion about Sykle as well. In short, Syckle defines lifecyles
-within which all Syckle services run. You define serivce instances as YAML
-configuration files in you projects +task+ or +script+ directory with a
-.syckle extension, eg. +box.syckle+. For example, Sycle's own Rubyforge
-service config looks like this:
+how it operates. If you are familiar with Maven from the Java ecosystem then
+you have as fair notion of Syckle. In short, Syckle defines life-cycles
+within which all Syckle services run. You define serivce instances, or
+tasks, as YAML configuration files in you projects +task+ directory with
+a .syckle extension, eg. +box.syckle+, or in a central +Syckfile+. For example,
+Sycle's RubyForge service config looks like this:
 
-  ---
   rubyforge:
     service: Rubyforge
     sitemap:
-      site: <%= package %>
+      site: <%= name %>
     active: true
 
-Service configs often draw on metadata about your project, as in the above
-example's use of <tt><%= package %></tt>. Metadata is defined using POM
+Actually, this is not longer used becuase Syckle moved to GitHub, but this
+example is good one becuase it exemplifies how tasks are defined. These
+service configs often draw on metadata about your project, as in the above
+example's use of <tt><%= name %></tt>. Metadata is defined using POM
 (see http://proutils.rubyforge.org/pom). Essentially, you add files to your
 project's +meta+ directory, and the information becomes available via Erb
 embedded tags.
@@ -41,40 +43,43 @@ a matter of specifying the cycle and phase you wish to complete.
 
 The cycle name and its phase are separated by a colon. This command
 would run every phase in the +main+ cycle, in order, until it completes
-the +document+ phase. Since +main+ is the default cycle, we could have
-more easily executed the above without specifying it.
+the +document+ phase. Since +main+ is the default cycle, we can acheive
+the same effect without specifying it.
 
   $ syckle document
 
-The use of a cycle may seem constrictive to users of tools like Rake,
-but it helps ensure your project is always up-to-date and in-sync. Syckle
+The use of cycles may seem constrictive to users of tools like Rake,
+but it helps ensure a project is always up-to-date and in-sync. Syckle
 includes three life-cycles out of the box. The most significant of
 which is +main+ which entails a subcycle with ordred phases:
 
-  configure -> generate -> analyize -> compile ->
-      validate -> document -> package -> release ->
-          promote -> archive
+  prepare     # prepare services / ensure service requirements
+  generate    # code generation
+  compile     # compile source code
+  test        # run tests and/or specifications
+  analyize    # run code analysis
+  document    # generate documentation
+  package     # create packages
+  verify      # post package verification (eg. integration tests)
+  release     # release packages / deploy to servers?
+  promote     # tell the world about you awesome work
 
-It also has a clean subcycle, which is common to many life-cycles. it consits
-of two phases:
+It also has a clean subcycle, which is common to many life-cycles. It consits
+of just two phases:
 
-  reset -> clean
+  reset       # mark build files as out-of-date
+  clean       # remove build files
 
 Where reset marks generated files out-of-date, and clean actually removes them.
 
 In additon to +main+, Syckle includes +site+ and +attn+ life-cycles which are used
 to generate and publish a project website, and make project announcements
-respectively.
+respectively. They are simply useful subsets of the +main+ cycle.
 
 Please see http://proutils.rubyforge.org/syckle for more details on how to
 use Syckle, including the creation of custom cycles, phases, and service plugins.
 Also try the <tt>--help</tt> option to see the syckle command's help
 information.
-
-
-== RELEASE NOTES
-
-Please see the HISTORY file.
 
 
 == INSTALLATION
@@ -95,21 +100,20 @@ Ruby Setup is stand-alone version of the original setup.rb script.
 
 == ISSUES
 
-All in all, Syckle works very well. However, there are still some
-rough edges with regards to the built-in service plugins. So from time
-to time you might run into an odd error. Ususally it mean a service
-confirguraiton needs to adjusted.
+All in all, Syckle works well. There are some rough edges with regards
+to the built-in service plugins, so from time to time you might run into
+an odd error. Ususally it just mean a service confirguraiton needs 
+adjustment.
 
-Please note, Windows support has not been considered at all.
-While I do not see any specific reason it should not work,
-there may well be issues I have not considered since I do
-not use Windows. If you are Windows user and give Syckle
-a try please let us know of any issues you encounter.
+Please note, Windows support has not been considered at all. While I do
+not see any specific reason it should not work, there may well be issues
+I have not considered since I do not use Windows. If you are Windows user
+and give Syckle a try please let us know of any issues you encounter.
 
 
-== HISTORY:
+== HISTORY
 
-Syckle is actaully the offspring of Reap 10, and represents
+Syckle is actaully the offspring of Reap v10, and represents
 about four years worth of design consideration and reconsideration,
 that brought Reap from a simple Rake extension to the life-cycle
 system Syckle is today.
