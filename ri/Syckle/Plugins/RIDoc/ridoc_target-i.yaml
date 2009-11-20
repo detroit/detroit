@@ -1,0 +1,14 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Generate ri docs for input targets.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Use RDoc programmatically rather than via shell."
+full_name: Syckle::Plugins::RIDoc#ridoc_target
+is_singleton: false
+name: ridoc_target
+params: (output, input, rdocopt={})
+visibility: private

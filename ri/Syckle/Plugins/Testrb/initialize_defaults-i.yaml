@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Setup default attribute values.
+full_name: Syckle::Plugins::Testrb#initialize_defaults
+is_singleton: false
+name: initialize_defaults
+params: ()
+visibility: private

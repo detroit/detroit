@@ -1,0 +1,48 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Location of packages. This defaults to Project#pack.
+  name: pkgdir
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Version to release. Defaults to current version.
+  name: version
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: GemCutter Service
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: This plugin is used to release gems via gemcutter.org.
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: GemCutter Service
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: This plugin is used to release gems via gemcutter.org.
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: GemCutter Service
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: This plugin is used to release gems via gemcutter.org.
+constants: []
+
+full_name: Syckle::Plugins::GemCutter
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: initialize_defaults
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: release
+name: GemCutter
+superclass: Service

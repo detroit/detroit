@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Email announcement message.
+full_name: Syckle::Plugins::EMail#announce
+is_singleton: false
+name: announce
+params: ()
+visibility: public

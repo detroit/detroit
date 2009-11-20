@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Special writer to allow single pipeline or a list of pipelines.
+full_name: Syckle::Plugins::Custom#pipeline=
+is_singleton: false
+name: pipeline=
+params: (val)
+visibility: public

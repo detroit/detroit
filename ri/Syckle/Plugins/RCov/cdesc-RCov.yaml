@@ -1,0 +1,63 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Additional commandline options string passed to rcov.
+  name: options
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Output directory. This defaults to an rcov/ folder in the the project's log directory.
+  name: output
+  rw: R
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Pattern of script files to run for coverage check. Usually these are your test files, but they can be any ruby scripts. By default this is includes .rb file in the test/ directory whose name begins with test_ or ends with _test.
+  name: scripts
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: RCov Service
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: RCov code coverage utility.
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: RCov Service
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: RCov code coverage utility.
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: RCov Service
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: RCov code coverage utility.
+constants: 
+- !ruby/object:RDoc::RI::Constant 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Default script files to run via rcov.
+  name: DEFAULT_SCRIPTS
+  value: "['test/**/test_*.rb', 'test/**/*_test.rb']"
+full_name: Syckle::Plugins::RCov
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: analyize
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: clean
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: initialize_defaults
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: reset
+name: RCov
+superclass: Service

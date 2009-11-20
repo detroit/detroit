@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Builds the text-based layout.
+full_name: Syckle::Plugins::Stats#gen_text
+is_singleton: false
+name: gen_text
+params: (head, prod, test, totl, rat, c, r, s, t, l)
+visibility: private

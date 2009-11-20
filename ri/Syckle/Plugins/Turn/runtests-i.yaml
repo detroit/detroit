@@ -1,0 +1,16 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Run unit tests. Unlike test-solo and test-cross this loads all tests and runs them together in a single process.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Note that this shells out to the testrb program.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Generate a test log entry?"
+full_name: Syckle::Plugins::Turn#runtests
+is_singleton: false
+name: runtests
+params: ()
+visibility: public

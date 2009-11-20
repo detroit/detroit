@@ -1,0 +1,14 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Shell out to ruby-prof.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Need to create an index.html file to link to all the others."
+full_name: Syckle::Plugins::RubyProf#analyize
+is_singleton: false
+name: analyize
+params: ()
+visibility: public

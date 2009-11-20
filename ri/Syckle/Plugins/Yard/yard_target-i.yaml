@@ -1,0 +1,14 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Generate yardocs for input targets.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Use Yard programmatically rather than via shell."
+full_name: Syckle::Plugins::Yard#yard_target
+is_singleton: false
+name: yard_target
+params: (output, input, options={})
+visibility: private

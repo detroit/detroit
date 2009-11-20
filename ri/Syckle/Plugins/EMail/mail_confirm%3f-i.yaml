@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Confirm announcement
+full_name: Syckle::Plugins::EMail#mail_confirm?
+is_singleton: false
+name: mail_confirm?
+params: ()
+visibility: public

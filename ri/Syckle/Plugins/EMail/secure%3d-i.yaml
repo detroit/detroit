@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Set if email service is using TLS/SSL security.
+full_name: Syckle::Plugins::EMail#secure=
+is_singleton: false
+name: secure=
+params: (s)
+visibility: public

@@ -1,0 +1,14 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Builds the HTML-based layout.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: Need to improve the microformat-ness of stats output."
+full_name: Syckle::Plugins::Stats#gen_html
+is_singleton: false
+name: gen_html
+params: (head, prod, test, totl, rat, c, r, s, t, l)
+visibility: private

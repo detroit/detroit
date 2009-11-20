@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::Plugins::Syntax#syntax_check_file
+is_singleton: false
+name: syntax_check_file
+params: (file, max=nil)
+visibility: public

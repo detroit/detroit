@@ -1,0 +1,66 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Compile statically? Applies only to compile method. (false)
+  name: static
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Autotools Compile Plugin
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The Autotools plugin utilizes extconf.rb and standard Makefile(s) to compile extensions.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: win32 cross-compile ?"
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Autotools Compile Plugin
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The Autotools plugin utilizes extconf.rb and standard Makefile(s) to compile extensions.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: win32 cross-compile ?"
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: Autotools Compile Plugin
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The Autotools plugin utilizes extconf.rb and standard Makefile(s) to compile extensions.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "TODO: win32 cross-compile ?"
+constants: 
+- !ruby/object:RDoc::RI::Constant 
+  comment: []
+
+  name: MAKE_COMMAND
+  value: "ENV['make'] || (RUBY_PLATFORM =~ /(win|w)32$/ ? 'nmake' : 'make')"
+full_name: Syckle::Plugins::Autotools
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: clean
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: clobber
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: compile
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: compiles?
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: configure
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: distclean
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: extensions
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: initialize_defaults
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: make
+name: Autotools
+superclass: Service

@@ -1,0 +1,13 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: 
+- !ruby/object:RDoc::RI::AliasName 
+  name: require=
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Special writer to ensure the value is a list.
+full_name: Syckle::Plugins::Testrb#requires=
+is_singleton: false
+name: requires=
+params: (val)
+visibility: public

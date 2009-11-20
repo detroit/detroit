@@ -1,0 +1,14 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Verify syntax of ruby scripts.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: This takes one option <tt>:scripts</tt> which is a glob or list of globs of the scripts to check. By default this is all scripts in the libpath(s).
+full_name: Syckle::Plugins::Syntax#analyize
+is_singleton: false
+name: analyize
+params: ()
+visibility: public

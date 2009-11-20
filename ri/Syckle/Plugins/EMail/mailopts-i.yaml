@@ -1,0 +1,11 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: []
+
+full_name: Syckle::Plugins::EMail#mailopts
+is_singleton: false
+name: mailopts
+params: ()
+visibility: public

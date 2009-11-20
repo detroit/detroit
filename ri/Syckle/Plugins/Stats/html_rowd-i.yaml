@@ -1,0 +1,10 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Syckle::Plugins::Stats#html_rowd
+is_singleton: false
+name: html_rowd
+params: ()
+visibility: private

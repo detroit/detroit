@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Shell out to rcov.
+full_name: Syckle::Plugins::RCov#analyize
+is_singleton: false
+name: analyize
+params: ()
+visibility: public

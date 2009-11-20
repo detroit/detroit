@@ -1,0 +1,16 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Default sitemap includes the website directoy, if it exists and doc if it exists. Eg.
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: "   - site\n   - doc\n"
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Otherwise it includes just the doc/rdoc or doc directory.
+full_name: Syckle::Plugins::Grancher#default_sitemap
+is_singleton: false
+name: default_sitemap
+params: ()
+visibility: private

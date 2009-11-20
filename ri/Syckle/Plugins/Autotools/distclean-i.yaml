@@ -1,0 +1,13 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: 
+- !ruby/object:RDoc::RI::AliasName 
+  name: clobber
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Remove all compile products.
+full_name: Syckle::Plugins::Autotools#distclean
+is_singleton: false
+name: distclean
+params: ()
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RDoc::RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: Generate rdocs in main cycle.
+full_name: Syckle::Plugins::RDoc#main_document
+is_singleton: false
+name: main_document
+params: ()
+visibility: public

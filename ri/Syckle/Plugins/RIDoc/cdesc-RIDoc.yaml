@@ -1,0 +1,101 @@
+--- !ruby/object:RDoc::RI::ClassDescription 
+attributes: 
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Paths to specifically exclude.
+  name: exclude
+  rw: RW
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Additional options passed to the rdoc command.
+  name: extra
+  rw: RW
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Which files to include.
+  name: files
+  rw: RW
+- !ruby/object:RDoc::RI::Attribute 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Where to save rdoc files (doc/rdoc).
+  name: output
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: RI Documentation Plugin
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The ri documentation plugin provides services for generating ri documentation.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: By default it generates the ri documentaiton at doc/ri, unless an 'ri' directory exists in the project's root directory, in which case the ri documentation will be stored there.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "This plugin provides the following cycle-phases:"
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: "  main:document  - generate ri docs\n  main:reset     - mark ri docs out-of-date\n  main:clean     - remove ri docs\n\n  site:document  - generate ri docs\n  site:reset     - mark ri docs out-of-date\n  site:clean     - remove ri docs\n"
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: RI Documentation Plugin
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The ri documentation plugin provides services for generating ri documentation.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: By default it generates the ri documentaiton at doc/ri, unless an 'ri' directory exists in the project's root directory, in which case the ri documentation will be stored there.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "This plugin provides the following cycle-phases:"
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: "  main:document  - generate ri docs\n  main:reset     - mark ri docs out-of-date\n  main:clean     - remove ri docs\n\n  site:document  - generate ri docs\n  site:reset     - mark ri docs out-of-date\n  site:clean     - remove ri docs\n"
+- !ruby/struct:RDoc::Markup::Flow::RULE 
+  width: 
+- !ruby/struct:RDoc::Markup::Flow::H 
+  level: 1
+  text: RI Documentation Plugin
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: The ri documentation plugin provides services for generating ri documentation.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: By default it generates the ri documentaiton at doc/ri, unless an 'ri' directory exists in the project's root directory, in which case the ri documentation will be stored there.
+- !ruby/struct:RDoc::Markup::Flow::P 
+  body: "This plugin provides the following cycle-phases:"
+- !ruby/struct:RDoc::Markup::Flow::VERB 
+  body: "  main:document  - generate ri docs\n  main:reset     - mark ri docs out-of-date\n  main:clean     - remove ri docs\n\n  site:document  - generate ri docs\n  site:reset     - mark ri docs out-of-date\n  site:clean     - remove ri docs\n"
+constants: 
+- !ruby/object:RDoc::RI::Constant 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Deafult extra options to add to rdoc call.
+  name: DEFAULT_EXTRA
+  value: "''"
+- !ruby/object:RDoc::RI::Constant 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Default location to store ri documentation files.
+  name: DEFAULT_OUTPUT
+  value: "\"doc/ri\""
+- !ruby/object:RDoc::RI::Constant 
+  comment: 
+  - !ruby/struct:RDoc::Markup::Flow::P 
+    body: Locations to check for existance in deciding where to store ri documentation.
+  name: DEFAULT_OUTPUT_MATCH
+  value: "\"{doc/ri,ri}\""
+full_name: Syckle::Plugins::RIDoc
+includes: []
+
+instance_methods: 
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: clean
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: document
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: initialize_defaults
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: reset
+- !ruby/object:RDoc::RI::MethodSummary 
+  name: ridoc_target
+name: RIDoc
+superclass: Service
