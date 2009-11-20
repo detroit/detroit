@@ -1,16 +1,9 @@
 ---
-
 automatic: true
 
 email:
-  mailto  : transfire@gmail.com
-  #from    : admin@tigerops.org
-  #server  : mail.tigerops.org
-  #port    : 25
-  #domain  : tigerops.org
-  #account : admin@tigerops.org
-  #secure  : false
-  #login   : login
+  mailto : transfire@gmail.com
+  active : true
 
 box:
   types  : [ gem, gz ]
@@ -18,8 +11,7 @@ box:
   exclude: [ doc/rdoc, doc/ri ]
   spec   : true
 
-notes:
-  service : DNote
+dnote:
   priority: -1
   active  : true
 
@@ -32,17 +24,12 @@ ridoc:
   exclude: [plug]
   active : true
 
-rubyforge:
-  sitemap:
-    site: syckle
-  active: false
-
 stats:
   priority: -1
   active  : true
 
 syntax:
-  exclude: [ plug/seeds ]
+  exclude: [plug/sow/seeds]
   active : false
 
 turn:
@@ -53,4 +40,10 @@ testrb:
 
 yard:
   active : false
+
+#rubyforge:
+#  service: forge
+#  sitemap:
+#    site: syckle
+#  active: false
 

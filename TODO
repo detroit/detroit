@@ -10,16 +10,10 @@ the root directory before executing tasks. Check ridoc in particular.
 * Parallel execution needs alternate io class so that output can look okay no matter what order
 it is in.
 
-* Remove RATCH dependency (again)
-
-* Support YAML cofig file in additions to Path::Store.
-
 
 == CONSDIER
 
 * Use CLIO?
-
-* platform builds (part of BOX).
 
 * Should minimize use of environament variables. This makes for a more repeatable build process.
 

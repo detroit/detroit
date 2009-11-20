@@ -1,11 +1,11 @@
-= Release History
+= RELEASE HISTORY
 
-== 1.0.0 / 2009-09-14
+== 0.9 / 2009-11-19
 
-Syckle is the culmination of development on Reap 10,
-a life-cycle based build system for Ruby.
+Syckle is life-cycle based build system for Ruby.
+This is it's initial public release.
 
 Changes:
 
-  * Happy Birthday!
+  * Happy Release Day!
 
