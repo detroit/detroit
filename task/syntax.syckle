@@ -1,6 +1,0 @@
----
-syntax:
-  service: syntax
-  exclude: [ plug/seeds ]
-  active : false
-

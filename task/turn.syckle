@@ -1,5 +1,0 @@
----
-turn:
-  service: turn
-  active : false
-

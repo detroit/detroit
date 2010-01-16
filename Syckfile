@@ -16,12 +16,12 @@ dnote:
   active  : true
 
 rdoc:
-  include : ["lib", "plug/syckle/**/*.rb", "[A-Z]*"]
-  exclude : []
-  extra   : '-d'
+  include : [ lib, "[A-Z]*" ]
+  exclude : [ Syckfile, lib/plugin/sow ]
+  extra   : ~
 
 ridoc:
-  exclude: [plug]
+  exclude: []
   active : true
 
 stats:
