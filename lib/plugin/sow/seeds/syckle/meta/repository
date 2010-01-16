@@ -1,1 +1,1 @@
-guest: http://<%= package %>.rubyforge.org/svn
+http://<%= suite %>.github.org/<%= name %>

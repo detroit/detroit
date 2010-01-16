@@ -1,6 +1,6 @@
 = <%%= title %>
 
-* http://<%%= package %>.rubyforge.org
+* http://<%%= name %>.rubyforge.org
 
 
 == DESCRIPTION
@@ -27,13 +27,13 @@ Describe how to use your library or application here...__FIX__
 
 To install with RubyGems simply open a console and type:
 
-  gem install <%%= package %>
+  gem install <%%= name %>
 
 Local installation requires Setup.rb (gem install setup),
 then download the tarball package and type:
 
-  tar -xvzf <%%= package %>-<%%= version %>.tgz
-  cd <%%= package %>-<%%= version %>.tgz
+  tar -xvzf <%%= name %>-<%%= version %>.tgz
+  cd <%%= name %>-<%%= version %>.tgz
   sudo setup.rb all
 
 Windows users use 'ruby setup.rb all'.

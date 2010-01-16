@@ -8,7 +8,7 @@ argument(:package) do |val|
   val = val || pathname
   raise ArgumentError, "Package name required." unless val
   raise ArgumentError, "Package name must be a single word." unless /^\w+$/ =~ val
-  metadata.package = val
+  metadata.name = val
 end
 
 scaffold do
