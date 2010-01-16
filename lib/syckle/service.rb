@@ -22,6 +22,10 @@ module Syckle
   #
   # The context must be a subclass of Syckle::Script.
   #
+  #--
+  # TODO: Perhaps use a secondary class to delegate the class level.
+  #++
+
   class Service #< Ratch::Plugin
 
     def self.registry
@@ -91,24 +95,24 @@ module Syckle
     #
     def self.available(&block)
       @available = block if block
-      @available
+      @available ||= nil
     end
 
     #
     def self.available?(project)
-      return true unless @available
+      return true unless available
       @available.call(project)
     end
 
     #
     def self.autorun(&block)
       @autorun = block if block
-      @autorun
+      @autorun ||= nil
     end
 
     #
     def self.autorun?(project)
-      return false unless @autorun
+      return false unless autorun
       @autorun.call(project)
     end
 

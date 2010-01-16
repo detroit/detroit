@@ -10,7 +10,7 @@ module Syckle
   # Wherever possible a command should call on the underlying tool
   # programmatically rather than shelling out.
   #
-  class Shell < Path::Shell
+  class Shell < ::Path::Shell
 
     # load shell add-ons
     ::Plugin.find('syckle/shell/*.rb') do |file|

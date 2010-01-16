@@ -55,7 +55,6 @@ module Syckle
       @cli      = cli_options #Syckle::CLI.new
       @io       = Syckle::IO.new(@cli)
       @script   = Syckle::Script.new(:io=>io, :cli=>cli)
-
       @config   = Syckle::Config.new(project)
 
       #@services, @actions = *load_service_configuration
@@ -267,11 +266,11 @@ module Syckle
 
     # Start the cycle.
 
-    def start
+    def start(argv=ARGV)
       Dir.chdir(project.root)        # change into project directory
       load_project_plugins           # load any local plugins
       cli.parse                      # parse the cli
-      job = ARGV.shift #cli.command  # what cycle-phase has been requested
+      job = argv.shift #cli.command  # what cycle-phase has been requested
       #help(job) if !job             # if none then show help and exit
       #help(cli,job) if cli.help?    # display help message if requested
       #help(job) if cli.options[:help]
@@ -326,6 +325,7 @@ module Syckle
 
       if phase
         system = lifecycle.cycle_with_phase(phase)
+        raise "Unknown phase -- #{phase}" unless system
       else
         #overview
         $stderr.puts "Unknown name:phase given."

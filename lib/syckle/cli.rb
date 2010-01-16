@@ -30,7 +30,7 @@ module Syckle
 
     #
     def initialize_usage
-      @usage  = OptionParser.new do |usage|
+      @usage = OptionParser.new do |usage|
         usage.banner = "Usage: syckle [<cycle>:]<phase> [options]"
 
         usage.on('--trace', "Run in TRACE mode.") do
@@ -102,11 +102,12 @@ module Syckle
 
     #
     def run
-      if /\.syckle$/ =~ ARGV[0]
-        job = ARGV[1]
-        application.runscript(ARGV[0], job)
+      parse
+      if /\.syckle$/ =~ arguments[0]
+        job = arguments[1]
+        application.runscript(arguments[0], job)
       else
-        application.start
+        application.start(arguments)
       end
     end
 

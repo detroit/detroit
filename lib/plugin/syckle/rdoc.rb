@@ -122,11 +122,11 @@ module Syckle::Plugins
       adfile   = options['adfile']   || self.adfile
       extra    = options['extra']    || self.extra
 
-      # NOTE: Due to a bug in RDOC this needs to be done so that
-      # alternate templates can be used.
+      # NOTE: Due to a bug in RDoc this needs to be done for now
+      # so that alternate templates can be used.
       begin
+        require 'rubygems'
         gem('rdoc')
-        #gem(templib || template)
       rescue LoadError
       end
 

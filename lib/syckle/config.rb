@@ -122,19 +122,20 @@ module Syckle
     def load_syckle_file(file)
       text = File.read(file)
 
-      #if /\A---/ =~ text
+      begin
         edit = ERB.new(text).result(binding).strip
-        data = YAML.load(edit) || {}
-        #data = YAMLParser.load(text, :project => @project, nil => @project.metadata)
-      #else
-      #  data = RAMLParser.load(text, :project => @project)
-      #end
+      rescue => err
+        raise err if $DEBUG
+        abort "#{File.basename(file)}: #{err}"
+      end
+
+      data = YAML.load(edit) || {}
 
       # automatics can be defined in the syckle files (TODO: Is this prudent?)
       self.automatic = data.delete('automatic') if data.key?('automatic')
       self.standard  = data.delete('standard')  if data.key?('standard')
 
-      # We import other files. This most useful when using a Syckfile.
+      # We import other files. This is most useful when using a Syckfile.
       if import = data.delete('import')
         [import].flatten.each do |glob|
           Dir[glob].each do |f|
@@ -142,6 +143,7 @@ module Syckle
           end
         end
       end
+
 
       @services.update(data)
     end
