@@ -1,4 +1,4 @@
 module Syckle
-  VERSION="1.0.0"  #:till: VERSION="<%= verison %>"
+  VERSION = "0.9.1"
 end
 
