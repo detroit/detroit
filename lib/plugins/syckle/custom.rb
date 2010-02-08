@@ -2,7 +2,7 @@ module Syckle::Plugins
 
   # = Custom Plugin
   #
-  # Use this plugin to create your own "quicky" Reap service.
+  # Use this plugin to create your own "quicky" service.
   #
   # This is a useful alternative to writing a full-blown plugin
   # class when the need is simple.
@@ -29,10 +29,13 @@ module Syckle::Plugins
     #
     # FIXME: Custom#initialize seems to be running twice at startup. Why?
     #
+    # This works by interpreting the service configuration as a hash of
+    # phase names => ruby code.
+    #
     def initialize(context, key, options)
       super
       options.each do |phase, script|
-        # skip reap specific config options
+        # skip specific names used for configuration
         next if phase == 'service'
         next if phase == 'pipeline' or key == 'pipelines'
         next if phase == 'active'
