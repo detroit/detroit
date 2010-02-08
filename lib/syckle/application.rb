@@ -348,14 +348,31 @@ module Syckle
 
       system.each do |run_phase|
         next if skip.include?("#{run_phase}")  # TODO: Should we really allow skipping phases?
+        service_hooks(name, ('pre_' + run_phase.to_s).to_sym)
         service_calls(name, ('pre_' + run_phase.to_s).to_sym)
         service_calls(name, run_phase)
         service_calls(name, ('aft_' + run_phase.to_s).to_sym)
+        service_hooks(name, ('aft_' + run_phase.to_s).to_sym)
         break if phase == run_phase
       end
 
       stop_time = Time.now
       puts "\nFinished in #{stop_time - start_time} seconds." unless script.quiet?
+    end
+
+    # Execute service hook for given pipe and phase.
+    #--
+    # TODO: Currently only phase counts, maybe add pipe subdirs.
+    #++
+    def service_hooks(pipe, phase)
+       dir  = project.config + "syckle/hooks"
+       #hook = dir + ("#{pipe}/#{phase}.rb".gsub('_', '-'))
+       name = phase.to_s.gsub('_', '-')
+       hook = dir + "#{name}.rb"
+       if hook.exist?
+         io.status_line("hook", name.capitalize)
+         script.instance_eval(hook.read)
+       end
     end
 
     # Make service calls.
@@ -384,9 +401,9 @@ module Syckle
       # run if the service supports the pipe and phase.
       if srv.respond_to?("#{pipe}_#{phase}")
         if script.verbose?
-          io.status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.capitalize)
+          io.status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.gsub('_', '-').capitalize)
         else
-          io.status_line("#{srv.key.to_s}", phase.to_s.capitalize)
+          io.status_line("#{srv.key.to_s}", phase.to_s.gsub('_', '-').capitalize)
         end
         srv.__send__("#{pipe}_#{phase}")
       end
@@ -397,7 +414,7 @@ module Syckle
 
     def load_project_plugins
       #scripts = project.config_syckle.glob('*.rb')
-     scripts = project.plugin.glob('*.rb')
+      scripts = project.plugin.glob('*.rb')
       scripts.each do |script|
         load(script.to_s)
         #  self.class.class_eval(File.read(script))

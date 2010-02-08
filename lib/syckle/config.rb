@@ -107,11 +107,11 @@ module Syckle
     def syckle_files
       @confg_files ||= (
         files = []
-        if project.root.glob('Syckfile').first
-          files += project.root.glob('Syckfile')
+        if project.root.glob('{Syckfile,.syckle}').first
+          files += project.root.glob('{Syckfile,.syckle}')
         else
           files += project.task.glob('*.syckle')
-          files += project.script.glob('*.syckle')
+          #files += project.script.glob('*.syckle')
         end
         files = files.select{ |f| File.file?(f) }
       )
