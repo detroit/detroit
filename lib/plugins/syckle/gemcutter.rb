@@ -8,7 +8,7 @@ module Syckle::Plugins
 
     cycle :main, :release
 
-    # TODO: How to autorun gemcutter?
+    ## How to autorun gemcutter?
     #autorun do |project|
     #  /gemcutter.org/i =~ project.metadata.download
     #end

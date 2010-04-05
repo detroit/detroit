@@ -22,11 +22,11 @@ module Syckle::Plugins
 
     cycle :site, :release
 
-    # Gancher will be available automatically if the POM repository
-    # entry indicates the use of GitHub.
-    autorun do |project|
-      /github.com/ =~ project.metadata.repository
-    end
+    ## Gancher will be available automatically if the POM repository
+    ## entry indicates the use of GitHub.
+    #autorun do |project|
+    #  /github.com/ =~ project.metadata.repository
+    #end
 
     # The brach into which to save the files.
     attr_accessor :branch
@@ -87,6 +87,7 @@ module Syckle::Plugins
 
     #
     def transfer
+      sleep 1  # FIXME: had to pause so grancher will not bomb!
       require 'grancher'
       grancher.commit
       report "Tranferred site files to #{branch}."

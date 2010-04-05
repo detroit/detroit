@@ -104,17 +104,17 @@ module Syckle
       @available.call(project)
     end
 
-    #
-    def self.autorun(&block)
-      @autorun = block if block
-      @autorun ||= nil
-    end
+    ##
+    #def self.autorun(&block)
+    #  @autorun = block if block
+    #  @autorun ||= nil
+    #end
 
-    #
-    def self.autorun?(project)
-      return false unless autorun
-      @autorun.call(project)
-    end
+    ##
+    #def self.autorun?(project)
+    #  return false unless autorun
+    #  @autorun.call(project)
+    #end
 
 
     # The batch context.

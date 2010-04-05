@@ -40,11 +40,11 @@ module Syckle::Plugins
       end
     end
 
-    # RDoc can run automatically if the project has
-    # a +doc/rdoc+ directory.
-    autorun do |project|
-      project.root.glob('doc/yard').first
-    end
+    ## RDoc can run automatically if the project has
+    ## a +doc/yard+ directory.
+    #autorun do |project|
+    #  project.root.glob('doc/yard').first
+    #end
 
     # Default location to store yard documentation files.
     DEFAULT_OUTPUT       = "doc/yard"

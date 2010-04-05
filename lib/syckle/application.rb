@@ -119,28 +119,21 @@ module Syckle
     end
 
     # Returns an array of actived services.
-    #
-    # TODO: Support config.automatic as a list of automated servies.
 
     def active_services
       @active_services ||= (
-        a = []
+        activelist = []
+        #autolist = []
 
-        #configs = service_configs #uration
-        # only services configs that have options and are active
-        #s = s.select{ |key, opts| opts && opts['active'] != false }
-
-        autolist = []
-
-        if config.automatic?
-          Syckle.services.each do |service_name, service_class|
-            if service_class.available?(project) &&
-                 service_class.autorun?(project) &&
-                 !config.standard.include?(service_name)
-              autolist << service_class
-            end
-          end
-        end
+        #if config.automatic?
+        #  Syckle.services.each do |service_name, service_class|
+        #    if service_class.available?(project) &&
+        #         service_class.autorun?(project) &&
+        #         !config.standard.include?(service_name)
+        #      autolist << service_class
+        #    end
+        #  end
+        #end
 
         service_configs.each do |key, opts|
           next unless opts && opts['active'] != false
@@ -151,25 +144,25 @@ module Syckle
           abort "Unkown service #{service_name}." unless service_class
 
           if service_class.available?(project)
-            autolist.delete(service_class) # remove class from autolist
+            #autolist.delete(service_class) # remove class from autolist
             #opts = inject_environment(opts) # TODO: DEPRECATE
             opts = defaults[service_name.downcase].to_h.merge(opts)
-            a << service_class.new(script, key, opts) #project,
+            activelist << service_class.new(script, key, opts) #project,
           end
         end
 
-        # If any autorunning services are not accounted for then add to active list.
-        autolist.each do |service_class|
-          service_name = service_class.basename.downcase
-          service_opts = defaults[service_name.downcase].to_h
-          a << service_class.new(script, service_name, service_opts)
-        end
+        ## If any autorunning services are not accounted for then add to active list.
+        #autolist.each do |service_class|
+        #  service_name = service_class.basename.downcase
+        #  service_opts = defaults[service_name.downcase].to_h
+        #  activelist << service_class.new(script, service_name, service_opts)
+        #end
 
         # sorting here trickles down to processing
-        a = a.sort_by{ |s| s.priority || 0 }
+        activelist = activelist.sort_by{ |s| s.priority || 0 }
+        #activelist = activelist.sort_by{ |sc, cn, key, opts| opts['priority'] || 0 }
 
-        #a = a.sort_by{ |sc, cn, key, opts| opts['priority'] || 0 }
-        a
+        activelist
       )
     end
 

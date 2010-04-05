@@ -40,11 +40,11 @@ module Syckle::Plugins
     #  !project.metadata.loadpath.empty?
     #end
 
-    # RDoc can run automatically if the project has
-    # a +doc/rdoc+ directory.
-    autorun do |project|
-      project.root.glob('doc/rdoc').first
-    end
+    ## RDoc can run automatically if the project has
+    ## a +doc/rdoc+ directory.
+    #autorun do |project|
+    #  project.root.glob('doc/rdoc').first
+    #end
 
     # Default location to store rdoc documentation files.
     DEFAULT_OUTPUT       = "doc/rdoc"
@@ -164,9 +164,9 @@ module Syckle::Plugins
         argv.concat ['--template', template] if template
         argv.concat ['--title', title] if title
 
-        exclude_files.each do |file|
-          argv.concat ['--exclude', file]
-        end
+        #exclude_files.each do |file|
+        #  argv.concat ['--exclude', file]
+        #end
 
         argv = argv + filelist #include_files
 

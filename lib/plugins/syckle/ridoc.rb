@@ -34,11 +34,11 @@ module Syckle::Plugins
     #  !project.metadata.loadpath.empty?
     #end
 
-    # RIDoc can run automatically if the project has
-    # a +doc/ri+ directory.
-    autorun do |project|
-      project.root.glob('doc/ri').first
-    end
+    ## RIDoc can run automatically if the project has
+    ## a +doc/ri+ directory.
+    #autorun do |project|
+    #  project.root.glob('doc/ri').first
+    #end
 
     # Default location to store ri documentation files.
     DEFAULT_OUTPUT       = "doc/ri"

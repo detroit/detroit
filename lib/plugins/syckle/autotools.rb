@@ -17,9 +17,9 @@ module Syckle::Plugins
     #  # check for make tools
     #end
 
-    #autorun do |project|
-    #  project.compiles?
-    #end
+    ##autorun do |project|
+    ##  project.compiles?
+    ##end
 
     #
     MAKE_COMMAND = ENV['make'] || (RUBY_PLATFORM =~ /(win|w)32$/ ? 'nmake' : 'make')

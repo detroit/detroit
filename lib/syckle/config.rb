@@ -6,10 +6,9 @@ module Syckle
   # Syckle configuration. Configuration comes from a main +Syckfile+
   # and/or +.syckle+ task files, and configuration options defined
   # in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
-  #
-  # TODO: Allow +automatic+ to accept a list of serives to limit automatic mode.
-
+  
   class Config
+    # NOT TO DO Allow +automatic+ to accept a list of serives to limit automatic mode.
 
     instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
@@ -17,25 +16,26 @@ module Syckle
 
     attr :project
 
-    # Service configurations. This is a hash of parameters.
+    # Service configurations from Syckfile or task/*.syckle files.
+    # This is a hash of parameters.
 
     attr :services
 
-    # Use automatic services feature? If set to +true+,
-    # all services with autorun modes will run if their
-    # autorun criteria is met. Or this can be set to a
-    # list of service names for which autorun mode will
-    # apply.
+    ## Use automatic services feature? If set to +true+,
+    ## all services with autorun modes will run if their
+    ## autorun criteria is met. Or this can be set to a
+    ## list of service names for which autorun mode will
+    ## apply.
+    ##
+    ## Default is +true+. Use +false+ to deactivate.
     #
-    # Default is +true+. Use +false+ to deactivate.
+    #attr :automatic
 
-    attr :automatic
-
-    # Services to omit from automatic execution. If automatic
-    # is set to +true+ (the default), the +standard+ setting can
-    # be used to exclude specific services from auto-execution. 
-
-    attr :standard
+    ## Services to omit from automatic execution. If automatic
+    ## is set to +true+ (the default), the +standard+ setting can
+    ## be used to exclude specific services from auto-execution. 
+    #
+    #attr :standard
 
     # Service defaults. This is a mapping of service names to
     # default settings. Very useful for autorun mode.
@@ -53,13 +53,13 @@ module Syckle
         conf = {}
       end
 
-      if conf['automatic'].nil?
-        self.automatic = true
-      else
-        self.automatic = conf['automatic']
-      end
+      #if conf['automatic'].nil?
+      #  self.automatic = true
+      #else
+      #  self.automatic = conf['automatic']
+      #end
 
-      self.standard  = conf['standard'] || []
+      #self.standard  = conf['standard'] || []
 
       if file = project.config.glob('syckle/defaults.{yml,yaml}').first
         self.defaults = YAML.load(File.new(file))
@@ -74,27 +74,27 @@ module Syckle
       end
     end
 
-    # Alias for #automatic.
-
-    def automatic? ; @automatic ; end
-
-    # Are there any manual entries?
-
-    def standard?
-      !standard.empty?
-    end
-
+    ## Alias for #automatic.
     #
+    #def automatic? ; @automatic ; end
 
-    def automatic=(value)
-      @automatic = value.to_b
-    end
-
+    ## Are there any manual entries?
     #
+    #def standard?
+    #  !standard.empty?
+    #end
 
-    def standard=(value)
-      @standard = [value].flatten.compact.uniq
-    end
+    ##
+    #
+    #def automatic=(value)
+    #  @automatic = value.to_b
+    #end
+
+    ##
+    #
+    #def standard=(value)
+    #  @standard = [value].flatten.compact.uniq
+    #end
 
     #
 
@@ -132,7 +132,7 @@ module Syckle
       data = YAML.load(edit) || {}
 
       # automatics can be defined in the syckle files (TODO: Is this prudent?)
-      self.automatic = data.delete('automatic') if data.key?('automatic')
+      #self.automatic = data.delete('automatic') if data.key?('automatic')
       self.standard  = data.delete('standard')  if data.key?('standard')
 
       # We import other files. This is most useful when using a Syckfile.
@@ -143,7 +143,6 @@ module Syckle
           end
         end
       end
-
 
       @services.update(data)
     end

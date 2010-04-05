@@ -22,10 +22,10 @@ module Syckle::Plugins
       end
     end
 
-    #
-    autorun do |project|
-      project.root.glob('spec').first
-    end
+    ##
+    #autorun do |project|
+    #  project.root.glob('spec').first
+    #end
 
     # File glob(s) of spec files. Defaults to ['spec/**/*_spec.rb', 'spec/**/spec_*.rb'].
     attr_accessor :specs
