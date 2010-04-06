@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-file  = "lib/#{project.name}.rb"
+file  = "lib/#{project.metadata.name}.rb"
 text1 = read(file)
 text2 = text1.sub(/VERSION\s*\=\s*\S+/, %{VERSION = "#{project.metadata.version}"})
 if text1 != text2
