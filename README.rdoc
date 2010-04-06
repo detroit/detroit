@@ -76,7 +76,7 @@ In additon to +main+, Syckle includes +site+ and +attn+ life-cycles which are us
 to generate and publish a project website, and make project announcements
 respectively. They are simply useful subsets of the +main+ cycle.
 
-Please see http://proutils.rubyforge.org/syckle for more details on how to
+Please see http://proutils.github.com/syckle for more details on how to
 use Syckle, including the creation of custom cycles, phases, and service plugins.
 Also try the <tt>--help</tt> option to see the syckle command's help
 information.
@@ -88,8 +88,9 @@ Syckle can, of course, be installed via RubyGems:
 
   $ sudo gem install syckle
 
-Syckle can also be installed the old-fashion way by downloading the
-.tar.gz package and using Ruby Setup (See http://setup.rubyforge.org).
+We no longer recommend it, byt Syckle can also be installed the
+old-fashion way by downloading the .tar.gz package and using
+Ruby Setup (See http://setup.rubyforge.org).
 
   $ tar -xvzf syckle-1.0.0.tar.gz
   $ cd syckle-1.0.0
@@ -123,7 +124,7 @@ system Syckle is today.
 
 Syckle
 
-Copyright (c) 2007,2009 Thomas Sawyer
+Copyright (c) 2007 Thomas Sawyer
 
 Unless otherwise permited by the author, Syckle is distributed
 under the terms of the GPL version 3 or above. See COPYING
