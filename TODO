@@ -2,6 +2,8 @@
 
 == PRIORITY
 
+* Deprecate lib/plugins/syckle/script.rb
+
 * When generating docs from a subdirectory, it doesn not appear to be moving up to
 the root directory before executing tasks. Check ridoc in particular.
 

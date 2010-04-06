@@ -95,7 +95,7 @@ module Syckle::Plugins
 
         touch(output)
       else
-        status "ri docs are current (#{output})"
+        status "RI docs are current (#{output})"
       end
     end
 

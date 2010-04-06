@@ -148,6 +148,8 @@ module Syckle
             #opts = inject_environment(opts) # TODO: DEPRECATE
             opts = defaults[service_name.downcase].to_h.merge(opts)
             activelist << service_class.new(script, key, opts) #project,
+          #else
+          #  warn "Service #{service_class} is not available."
           end
         end
 

@@ -175,7 +175,7 @@ module Syckle::Plugins
 
         touch(output)
       else
-        status "RDocs are current (#{output})."
+        status "RDocs are current (#{output})"
       end
     end
 
