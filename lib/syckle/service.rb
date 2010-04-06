@@ -104,11 +104,11 @@ module Syckle
       @available.call(project)
     end
 
-    ##
-    #def self.autorun(&block)
+    # DEPRECATE: temporarily, this is a no-op to prevent old plugins from breaking.
+    def self.autorun(&block)
     #  @autorun = block if block
     #  @autorun ||= nil
-    #end
+    end
 
     ##
     #def self.autorun?(project)
