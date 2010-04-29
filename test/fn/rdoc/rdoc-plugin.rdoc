@@ -1,0 +1,22 @@
+= RDoc Plugin
+
+The RDoc plugin should generate rdoc doumentation according
+to the parameters provided.
+
+Given a suitable project.
+
+  Dir.chdir 'sample'
+
+Now if we run 'syckle document' on the sample project.
+
+  `syckle document`
+
+The documentation should be generated as expected.
+
+  File.assert.directory?('doc/rdoc')
+
+Lets clean up after ourselves.
+
+  FileUtils.rm_r 'doc'
+  Dir.chdir '..'
+

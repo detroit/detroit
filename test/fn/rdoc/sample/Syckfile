@@ -1,0 +1,6 @@
+---
+rdoc:
+  service: RDoc
+  exclude: [lib/xxx]
+  ignore : []
+

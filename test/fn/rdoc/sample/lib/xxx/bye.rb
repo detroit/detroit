@@ -1,0 +1,4 @@
+# Bye
+module Bye
+
+end
