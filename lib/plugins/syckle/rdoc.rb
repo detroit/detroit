@@ -40,12 +40,6 @@ module Syckle::Plugins
     #  !project.metadata.loadpath.empty?
     #end
 
-    ## RDoc can run automatically if the project has
-    ## a +doc/rdoc+ directory.
-    #autorun do |project|
-    #  project.root.glob('doc/rdoc').first
-    #end
-
     # Default location to store rdoc documentation files.
     DEFAULT_OUTPUT       = "doc/rdoc"
 
@@ -69,7 +63,7 @@ module Syckle::Plugins
       @files    = metadata.loadpath + ['[A-Z]*', 'bin'] # DEFAULT_FILES
       @output   = Dir[DEFAULT_OUTPUT_MATCH].first || DEFAULT_OUTPUT
       @extra    = DEFAULT_EXTRA
-      @main     = Dir[DEFAULT_MAIN].first
+      @main     = Dir[DEFAULT_MAIN].first || 'README'
       @template = ENV['RDOC_TEMPLATE'] || DEFAULT_TEMPLATE
     end
 
@@ -97,7 +91,7 @@ module Syckle::Plugins
     attr_accessor :exclude
 
     # File patterns to ignore.
-    #attr_accessor :ignore
+    attr_accessor :ignore
 
     # Ad file html snippet to add to html rdocs.
     attr_accessor :adfile
@@ -139,18 +133,22 @@ module Syckle::Plugins
 
       main = Dir.glob(main, File::FNM_CASEFOLD).first
 
-      include_files = files.to_list.uniq
-      exclude_files = exclude.to_list.uniq
+      include_files  = files.to_list.uniq
+      exclude_files  = exclude.to_list.uniq
+      ignore_matches = ignore.to_list.uniq
 
       if mfile = project.manifest_file
         exclude_files << mfile.basename.to_s # TODO: I think base name should retun a string?
       end
 
-      filelist = amass(include_files, exclude_files)
+      filelist = amass(include_files, exclude_files, ignore_matches)
       filelist = filelist.select{ |fname| File.file?(fname) }
 
       if outofdate?(output, *filelist) or force?
         status "Generating #{output}"
+
+        pdir = File.dirname(output)
+        mkdir_p(pdir) unless directory?(pdir)
 
         #target_main = Dir.glob(target['main'].to_s, File::FNM_CASEFOLD).first
         #target_main   = File.expand_path(target_main) if target_main
