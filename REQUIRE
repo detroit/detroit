@@ -1,0 +1,9 @@
+runtime:
+- facets
+- path
+- pom
+- plugin
+
+development/test:
+- qed
+
