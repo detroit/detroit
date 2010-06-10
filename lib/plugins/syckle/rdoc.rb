@@ -137,7 +137,7 @@ module Syckle::Plugins
       exclude_files  = exclude.to_list.uniq
       ignore_matches = ignore.to_list.uniq
 
-      if mfile = project.manifest_file
+      if mfile = project.manifest.file
         exclude_files << mfile.basename.to_s # TODO: I think base name should retun a string?
       end
 

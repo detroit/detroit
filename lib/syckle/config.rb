@@ -8,25 +8,23 @@ module Syckle
   # in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
   
   class Config
-    instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
+    #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
+
+    FILE = 'Syckfile'
 
     # Current POM::Project object.
-
     attr :project
 
     # Service configurations from Syckfile or task/*.syckle files.
     # This is a hash of parameters.
-
     attr :services
 
     # Service defaults. This is a mapping of service names to
     # default settings. Very useful for when using the same
     # service more than once.
-
     attr :defaults
 
     #
-
     def initialize(project) #, *files)
       @project = project
 
@@ -58,22 +56,17 @@ module Syckle
     end
 
     #
-
     def defaults=(hash)
       @defaults = hash.to_h #OpenStruct.new(hash) # need two layer OpenStruct.. OpenCascade?
     end
 
     # If Syckfile or .syckfile exist, then it is returned.
     # Otherwise all task/*.syckle files.
-
     def syckle_files
       @confg_files ||= (
-        files = []
-        if project.root.glob('{Syckfile,.syckle}').first
-          files += project.root.glob('{Syckfile,.syckle}')
-        else
+        files = project.root.glob('{,.}#{FILE}{,.yml,.yaml}', :casefold)       
+        if files.empty?
           files += project.task.glob('*.syckle')
-          #files += project.script.glob('*.syckle')
         end
         files = files.select{ |f| File.file?(f) }
       )
@@ -81,38 +74,38 @@ module Syckle
 
     # If using Sycjkfile and want to import task/*.syckle
     # files then use +import:+ entry. 
-
     def load_syckle_file(file)
+      dir  = File.dirname(file)
       text = File.read(file).strip
 
-      if /\A---/ =~ text
-        begin
-          edit = ERB.new(text).result(scope.binding).strip
-        rescue => err
-          raise err if $DEBUG
-          abort "#{File.basename(file)}: #{err}"
-        end
-        data = YAML.load(edit) || {}
+      # if yaml vs. ruby file
+      data = if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
+        parse_syckle_file_yaml(text, file)
       else
-        parser = Parser.new
-        parser.instance_eval(text, file)
-        data = parser.__services__
+        parse_syckle_file_ruby(text, file)
       end
 
-      ## automatics can be defined in the syckle files (TODO: Is this prudent?)
-      ##self.automatic = data.delete('automatic') if data.key?('automatic')
-      #self.standard  = data.delete('standard')  if data.key?('standard')
-
-      # We import other files. This is most useful when using a Syckfile.
+      # Import other files. This is useful when using the Syckfile.
       if import = data.delete('import')
         [import].flatten.each do |glob|
-          Dir[glob].each do |f|
-            load_syckle_file(f)
-          end
+          pattern = File.join(dir,glob)
+          Dir[pattern].each{ |f| load_syckle_file(f) }
         end
       end
 
       @services.update(data)
+    end
+
+    #
+    def parse_syckle_file_yaml(text, file)
+      edit = ERB.new(text).result(scope.binding).strip
+      YAML.load(edit) || {}
+    end
+
+    #
+    def parse_syckle_file_ruby(text, file)
+      parser = Parser.new(file, text)
+      parser.__services__
     end
 
     #
@@ -136,8 +129,10 @@ module Syckle
 
       attr :__services__
 
-      def initialize()
+      def initialize(file=nil, text=nil)
         @__services__ = {}
+        text = File.read(file) if file unless text
+        instance_eval(text) if text
       end
 
       def method_missing(service, name=nil, *args, &block)
