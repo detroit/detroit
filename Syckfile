@@ -4,10 +4,9 @@ email:
   active : true
 
 box:
-  types  : [ gem, gz ]
-  include: [ bin, doc, lib, meta, test, "[A-Z]*" ]
-  exclude: [ doc/rdoc, doc/ri ]
-  spec   : true
+  types  : [gem]
+  spec   : false
+  active : true
 
 dnote:
   priority: -1
