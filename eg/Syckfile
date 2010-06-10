@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+email do
+  mailto "transfire@gmail.com"
+  active true
+end
+
+box do
+  types  ['gem']
+  spec   false
+  active true
+end
+
+dnote do
+  priority -1
+  active   true
+end
+
+rdoc do
+  include [ 'lib', '[A-Z]*' ]
+  exclude [ 'Syckfile', 'lib/plugin/sow' ]
+  extra   nil
+end
+
+ridoc do
+  exclude []
+  active  true
+end
+
+stats do
+  priority -1
+  active   true
+end
+
+syntax do
+  exclude ['plug/sow/seeds']
+  active  false
+end
+
+turn do
+  active false
+end
+
+testrb do
+  active true
+end
+
+yard do
+  active false
+end
+
+#rubyforge do
+#  service: forge
+#  sitemap:
+#    site: syckle
+#  active: false
+#end
+
