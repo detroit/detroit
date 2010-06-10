@@ -7,16 +7,14 @@ module Syckle::Plugins
   # The Email plugin supports the @promote@ action
   # to send out an annoucement to a set of email addresses.
   #
-  # By default it generates an release announcement based
+  # By default it generates a release announcement based
   # on your README.* file.
-  #
-  # TODO: Use Ratch's email command.
   #
   class EMail < Service
 
-    cycle :main, :promote
+    cycle :main, :announce
 
-    cycle :attn, :promote
+    cycle :attn, :announce
 
     #available do |project|
     #  true # when ?
@@ -55,6 +53,9 @@ module Syckle::Plugins
     # Use TLS/SSL true or false?
     attr_accessor :secure
 
+    # Components of announcment.
+    attr_accessor :parts
+
     # Set if email service is using TLS/SSL security.
     def secure=(s)
       @secure = s.to_b
@@ -62,7 +63,15 @@ module Syckle::Plugins
 
     # Message to send. Defaults to a generated release announcement.
     def message
-      @message ||= project.announcement(file)
+      @message ||= (
+        path = Dir[file].first if file
+        if path
+          project.announcement(File.new(file))
+        else
+          parts.map{ |part| /^file:\/\// =~ part.to_s ? $' : part }
+          project.announcement(*parts)
+        end
+      )
     end
 
     # Email announcement message.
@@ -70,12 +79,12 @@ module Syckle::Plugins
       mailopts = self.mailopts
 
       if mailto.empty?
-
+        report "No recipents given."
       else
         if trial?
           subject = mailopts['subject']
           mailto  = mailopts['to'].flatten.join(", ")
-          puts "email '#{subject}' to #{mailto}"
+          report "email '#{subject}' to #{mailto}"
         else
           #emailer = Emailer.new(mailopts)
           #emailer.email
@@ -91,7 +100,7 @@ module Syckle::Plugins
       if mailto
         return true if force?
         to  = [mailto].flatten.join(", ")
-        ans = ask("Announce to #{to}?", "(v)iew|(y)es|(N)o")
+        ans = ask("Announce to #{to} [(v)iew (y)es (N)o]? ")
         case ans.downcase
         when 'y', 'yes'
           true
@@ -124,7 +133,8 @@ module Syckle::Plugins
     def initialize_defaults
       @mailto   = ['rubytalk@ruby-lang.org']
       @subject  = "%s v%s released" % [metadata.title, metadata.version]
-      @file     = 'doc/ANN{,OUNCE}{,.txt,.rdoc}'
+      @file     = nil #'doc/ANN{,OUNCE}{,.txt,.rdoc}' TODO: default announcment file?
+      @parts    = [:message, :description, :resources, :notes, :changes]
 
       #mailopts = Ratch::Emailer.environment_options.rekey(&:to_s)  # FIXME
       #@port    = mailopts['port']

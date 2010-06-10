@@ -6,7 +6,7 @@ module Syckle
 
     cycle :prepare,
           :generate,
-          :promote
+          :announce
 
     cycle :reset,
           :clean
