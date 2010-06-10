@@ -33,30 +33,23 @@ module Syckle
     def trial?   ; cli.trial?   ; end
     def debug?   ; cli.debug?   ; end
 
-    # TODO: just rename to #puts ?
-    def report(message)
-      stdout.puts message unless quiet?
-    end
-
-    # TODO: deprecate in favor of #report (or #puts ?)
+    # TODO: deprecate in favor of #report ?
     def status(message)
       stderr.puts message unless quiet?
     end
 
-    # Internal status report.
-    # Only output if in TRACE mode.
-    #
+    # Internal report. Only output if in TRACE mode.
+    # TODO: rename to #warn ?
     def trace(message)
       stderr.puts message if verbose?
     end
 
     # Convenient method to get simple console reply.
-    def ask(question, answers=nil)
-      stdout.print "#{question}"
-      stdout.print " [#{answers}] " if answers
+    def ask(question)
+      stdout.print "#{question} "
       stdout.flush
-      until inp = stdin.gets ; sleep 1 ; end
-      inp.strip
+      input = stdin.gets #until inp = stdin.gets ; sleep 1 ; end
+      input.strip
     end
 
     ## Ask for a password. (FIXME: only for unix so far)
@@ -77,8 +70,8 @@ module Syckle
     #  return inp.strip
     #end
 
-    # TODO: Until we have better support for getting input acorss
-    # platforms we are using #ask only.
+    # TODO: Until we have better support for getting input across
+    # platforms, we are using #ask for passwords too.
     def password(prompt=nil)
       prompt ||= "Enter Password: "
       ask(prompt)
@@ -92,6 +85,11 @@ module Syckle
     #
     def puts(str=nil)
       stdout.puts(str.to_s) unless quiet?
+    end
+
+    # DEPRECATE: just use #puts
+    def report(message)
+      stdout.puts message unless quiet?
     end
 
     #
@@ -189,7 +187,7 @@ module Syckle
     #
     def ansize(text, code)
       #return text unless text.color
-      if PLATFORM =~ /win/
+      if RUBY_PLATFORM =~ /win/
         text.to_s
       else
         ANSI::Code.send(code.to_sym) + text
