@@ -8,8 +8,6 @@ module Syckle
   # in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
   
   class Config
-    # NOT TO DO Allow +automatic+ to accept a list of serives to limit automatic mode.
-
     instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
     # Current POM::Project object.
@@ -21,24 +19,9 @@ module Syckle
 
     attr :services
 
-    ## Use automatic services feature? If set to +true+,
-    ## all services with autorun modes will run if their
-    ## autorun criteria is met. Or this can be set to a
-    ## list of service names for which autorun mode will
-    ## apply.
-    ##
-    ## Default is +true+. Use +false+ to deactivate.
-    #
-    #attr :automatic
-
-    ## Services to omit from automatic execution. If automatic
-    ## is set to +true+ (the default), the +standard+ setting can
-    ## be used to exclude specific services from auto-execution. 
-    #
-    #attr :standard
-
     # Service defaults. This is a mapping of service names to
-    # default settings. Very useful for autorun mode.
+    # default settings. Very useful for when using the same
+    # service more than once.
 
     attr :defaults
 
@@ -74,35 +57,14 @@ module Syckle
       end
     end
 
-    ## Alias for #automatic.
-    #
-    #def automatic? ; @automatic ; end
-
-    ## Are there any manual entries?
-    #
-    #def standard?
-    #  !standard.empty?
-    #end
-
-    ##
-    #
-    #def automatic=(value)
-    #  @automatic = value.to_b
-    #end
-
-    ##
-    #
-    #def standard=(value)
-    #  @standard = [value].flatten.compact.uniq
-    #end
-
     #
 
     def defaults=(hash)
       @defaults = hash.to_h #OpenStruct.new(hash) # need two layer OpenStruct.. OpenCascade?
     end
 
-    #
+    # If Syckfile or .syckfile exist, then it is returned.
+    # Otherwise all task/*.syckle files.
 
     def syckle_files
       @confg_files ||= (
@@ -117,23 +79,29 @@ module Syckle
       )
     end
 
-    #
+    # If using Sycjkfile and want to import task/*.syckle
+    # files then use +import:+ entry. 
 
     def load_syckle_file(file)
-      text = File.read(file)
+      text = File.read(file).strip
 
-      begin
-        edit = ERB.new(text).result(binding).strip
-      rescue => err
-        raise err if $DEBUG
-        abort "#{File.basename(file)}: #{err}"
+      if /\A---/ =~ text
+        begin
+          edit = ERB.new(text).result(scope.binding).strip
+        rescue => err
+          raise err if $DEBUG
+          abort "#{File.basename(file)}: #{err}"
+        end
+        data = YAML.load(edit) || {}
+      else
+        parser = Parser.new
+        parser.instance_eval(text, file)
+        data = parser.__services__
       end
 
-      data = YAML.load(edit) || {}
-
-      # automatics can be defined in the syckle files (TODO: Is this prudent?)
-      #self.automatic = data.delete('automatic') if data.key?('automatic')
-      self.standard  = data.delete('standard')  if data.key?('standard')
+      ## automatics can be defined in the syckle files (TODO: Is this prudent?)
+      ##self.automatic = data.delete('automatic') if data.key?('automatic')
+      #self.standard  = data.delete('standard')  if data.key?('standard')
 
       # We import other files. This is most useful when using a Syckfile.
       if import = data.delete('import')
@@ -148,9 +116,79 @@ module Syckle
     end
 
     #
-    def method_missing(sym, *args)
-      super unless args.empty?
-      project.metadata.__send__(sym) #if project.metadata.respond_to?(sym)
+    def scope
+      @scope ||= Scope.new(project)
+    end
+
+    #
+    #def method_missing(sym, *args)
+    #  super unless args.empty?
+    #  project.metadata.__send__(sym) #if project.metadata.respond_to?(sym)
+    #end
+
+    #
+    class Parser
+      public_instance_methods.each{ |m| private m unless /^(__|instance_)/ =~ m.to_s }
+
+      def self.parse(&block)
+        new(&block).__services__
+      end
+
+      attr :__services__
+
+      def initialize()
+        @__services__ = {}
+      end
+
+      def method_missing(service, name=nil, *args, &block)
+        name = (name || service).to_s
+        @__services__[name] = SettingsParser.parse(&block)
+        @__services__[name]['service'] = service.to_s
+        @__services__[name]
+      end
+    end
+
+    #
+    class SettingsParser
+      public_instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
+
+      def self.parse(&block)
+        new(&block).__settings__
+      end
+
+      attr :__settings__
+
+      def initialize(&block)
+        @__settings__ = {}
+        instance_eval(&block) if block
+      end
+
+      def method_missing(name, value, *args, &block)
+        if block_given?
+          @__settings__[name.to_s] = SettingsParser.parse(&block)
+        else
+          @__settings__[name.to_s] = value
+        end
+      end
+    end
+
+    #
+    class Scope
+      #
+      attr :project
+
+      #
+      def initialize(project)
+        @project = project
+      end
+
+      #
+      def method_missing(sym, *args)
+        super(sym, *args) unless args.empty?
+        @project.metadata.__send__(sym) #if project.metadata.respond_to?(sym)
+      end
+
+      public :binding
     end
 
   end
