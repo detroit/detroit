@@ -35,7 +35,7 @@ class String
   # And it will make sure there are no nil elements.
 
   def to_list
-    split(/[:;,\n]/)
+    split(/[:;,\n]/).map{ |s| s.strip }
   end
 
 end
