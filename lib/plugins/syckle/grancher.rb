@@ -118,17 +118,27 @@ module Syckle::Plugins
     #
     # Otherwise it includes just the doc/rdoc or doc directory.
     #
+    #--
+    # We have loop over the contents of the site directory in order
+    # to pick up symlinks b/c Grancher doesn't support them.
+    #++
     def default_sitemap
       sm = []
-      site = Dir['{site,web,website}'].first
+      site = Dir['{site,web,website,www}'].first
       if site
-        sm << site
-        sm << 'doc' if Dir['doc']
+        #sm << site
+        paths = Dir.entries(site)
+        paths.each do |path|
+          next if path == '.' or path == '..'
+          sm << [File.join(site, path), path]
+        end
       else
-        if Dir['doc/rdoc']
-          sm << 'doc/rdoc'
-        else
-          sm << 'doc' if Dir['doc']
+        if path = Dir["#{name}/doc/rdoc"].first
+          sm << path
+        elsif path = Dir['doc/rdoc'].first
+          sm << path
+        elsif path = Dir['doc'].first
+          sm << path 
         end
       end
       sm
