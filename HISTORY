@@ -1,11 +1,11 @@
 = RELEASE HISTORY
 
-== 0.9 / 2009-11-19
+== 1.0.0 / 2010-06-10
 
 Syckle is life-cycle based build system for Ruby.
 This is it's initial public release.
 
 Changes:
 
-  * Happy Release Day!
+* Happy Release Day!
 
