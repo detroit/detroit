@@ -1,0 +1,4 @@
+Create a Syckfile for using the Syckle life-cycle build tool
+with your project. This seed will also create the standard 
+POM files (PROFILE, VERSION, REQUIRE) if they are not present.
+Be sure to edit them to match your project's specifications.

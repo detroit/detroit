@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+setup do
+end
+
+scaffold do
+  copy "Syckfile"
+  unless destination.exist?("PROFILE")
+    copy "PROFILE"
+  end
+  unless destination.exist?("VERSION")
+    copy "VERSION"
+  end
+  unless destination.exist?("REQUIRE")
+    copy "REQUIRE" #, :verbatim=>true
+  end
+end
+
