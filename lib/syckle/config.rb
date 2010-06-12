@@ -64,7 +64,7 @@ module Syckle
     # Otherwise all task/*.syckle files.
     def syckle_files
       @confg_files ||= (
-        files = project.root.glob('{,.}#{FILE}{,.yml,.yaml}', :casefold)       
+        files = project.root.glob("{,.}#{FILE}{,.yml,.yaml}", :casefold)
         if files.empty?
           files += project.task.glob('*.syckle')
         end
@@ -79,10 +79,10 @@ module Syckle
       text = File.read(file).strip
 
       # if yaml vs. ruby file
-      data = if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
-        parse_syckle_file_yaml(text, file)
+      if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
+        data = parse_syckle_file_yaml(text, file)
       else
-        parse_syckle_file_ruby(text, file)
+        data = parse_syckle_file_ruby(text, file)
       end
 
       # Import other files. This is useful when using the Syckfile.

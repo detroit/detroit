@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Syckle
   DIRECTORY = File.dirname(__FILE__) + '/syckle'
 
