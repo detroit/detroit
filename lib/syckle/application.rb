@@ -255,7 +255,9 @@ module Syckle
     # Run individual syckle scripts/tasks.
 
     def runscript(script, job)
-      @service_configs = load_service_configs(script)
+      @config.services.clear
+      @config.load_syckle_file(script)
+      #@service_configs = load_service_configs(script)
       run(job)
     end
 
@@ -302,6 +304,8 @@ module Syckle
       #  puts m.sort.join(" ") + l.sort.join(" ")
       #  exit
       #end
+
+      raise "Malformed life-cycle -- #{job}" unless /^\w+\:{0,1}\w+$/ =~ job
 
       if job
         name, phase = job.split(':')

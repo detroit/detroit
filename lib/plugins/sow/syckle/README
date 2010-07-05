@@ -2,3 +2,7 @@ Create a Syckfile for using the Syckle life-cycle build tool
 with your project. This seed will also create the standard 
 POM files (PROFILE, VERSION, REQUIRE) if they are not present.
 Be sure to edit them to match your project's specifications.
+
+This seeds take a single argument, the project's name. If it
+is not given then it will be assumed to be the basename of the 
+destination directory.

@@ -56,6 +56,9 @@ module Syckle::Plugins
     # Components of announcment.
     attr_accessor :parts
 
+    # Do not use environment variables for email defaults.
+    attr_accessor :noenv
+
     # Set if email service is using TLS/SSL security.
     def secure=(s)
       @secure = s.to_b
@@ -76,6 +79,8 @@ module Syckle::Plugins
 
     # Email announcement message.
     def announce
+      apply_environment
+
       mailopts = self.mailopts
 
       if mailto.empty?
@@ -105,6 +110,10 @@ module Syckle::Plugins
         when 'y', 'yes'
           true
         when 'v', 'view'
+          puts "From: #{from}"
+          puts "To: #{to}"
+          puts "Subject: #{subject}"
+          puts
           puts message
           mail_confirm?
         else
@@ -115,7 +124,8 @@ module Syckle::Plugins
 
     #
     def mailopts
-      { 'message' => self.message,
+      options = {
+        'message' => self.message,
         'to'      => self.to,
         'from'    => self.from,
         'subject' => self.subject,
@@ -126,13 +136,28 @@ module Syckle::Plugins
         'login'   => self.login,
         'secure'  => self.secure
       }
+      options.delete_if{|k,v| v.nil?}
+      options
+    end
+
+    # Apply environment settings.
+    def apply_environment
+      return if noenv
+      @server   ||= ENV['EMAIL_SERVER']
+      @from     ||= ENV['EMAIL_FROM']
+      @account  ||= ENV['EMAIL_ACCOUNT'] || ENV['EMAIL_FROM']
+      @password ||= ENV['EMAIL_PASSWORD']
+      @port     ||= ENV['EMAIL_PORT']
+      @domain   ||= ENV['EMAIL_DOMAIN']
+      @login    ||= ENV['EMAIL_LOGIN']
+      @secure   ||= ENV['EMAIL_SECURE']
     end
 
   private
 
     def initialize_defaults
       @mailto   = ['rubytalk@ruby-lang.org']
-      @subject  = "%s v%s released" % [metadata.title, metadata.version]
+      @subject  = "[ANN] %s v%s released" % [metadata.title, metadata.version]
       @file     = nil #'doc/ANN{,OUNCE}{,.txt,.rdoc}' TODO: default announcment file?
       @parts    = [:message, :description, :resources, :notes, :changes]
 

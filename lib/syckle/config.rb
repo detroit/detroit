@@ -72,7 +72,7 @@ module Syckle
       )
     end
 
-    # If using Sycjkfile and want to import task/*.syckle
+    # If using Syckfile and want to import task/*.syckle
     # files then use +import:+ entry. 
     def load_syckle_file(file)
       dir  = File.dirname(file)

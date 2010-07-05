@@ -159,6 +159,7 @@ module Syckle
       name
     end
 
+=begin
     # Email function to easily send out an email.
     #
     # Settings:
@@ -185,6 +186,7 @@ module Syckle
         puts "Email sent successfully to #{success.join(';')}."
       end
     end
+=end
 
   end
 

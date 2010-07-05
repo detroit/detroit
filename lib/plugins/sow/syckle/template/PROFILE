@@ -1,0 +1,18 @@
+title  : <%= name.capitalize %>
+summary: <%= summary %>   # one-line description
+contact: <%= contact %>   # name <email>
+created: <%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %>
+
+authors:
+  - <%= author %>
+
+description:
+  __'description'__
+
+resources:
+  homepage  : <%= homepage %>
+  repository: <%= repository %>
+
+copyright:
+  Copyright (c) <%= Time.now.strftime('%Y') %> <%= author %>
+

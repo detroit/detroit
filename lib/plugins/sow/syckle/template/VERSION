@@ -1,0 +1,5 @@
+name : <%= name %>
+major: 0
+minor: 0
+patch: 1
+date : <%= Time.now.strftime('%Y-%m-%d') %>

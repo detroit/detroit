@@ -4,20 +4,14 @@ module Syckle
   DIRECTORY = File.dirname(__FILE__) + '/syckle'
 
   PROFILE = YAML.load(File.new(DIRECTORY + '/profile.yml'))
-  verfile = YAML.load(File.new(DIRECTORY + '/version.yml'))
+  VERFILE = YAML.load(File.new(DIRECTORY + '/version.yml'))
 
-  VERSION = verfile.values_at('major','minor','patch','state','build').compact.join('.')
+  VERSION = VERFILE.values_at(*%w{major minor patch build}).join('.')
 
   #
   def self.const_missing(name)
     key = name.to_s.downcase
-    if verfile.key?(key)
-      verfile[key]
-    elsif profile.key?(key)
-      PROFILE[key]
-    else
-      super(name)
-    end
+    VERFILE[key] || PROFILE[key] || super(name)
   end
 end
 

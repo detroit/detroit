@@ -1,17 +1,35 @@
 #!/usr/bin/env ruby
 
-setup do
+# TODO: how to include another seed? Syckle needs pom seed.
+# We are replicating it here for now.
+
+utilize 'pom'
+
+setup do |*args|
+  name = args.first || metadata['name'] || destination.basename.to_s
+
+  abort "Name is required."         unless name
+  abort "Name must be single word." unless name =~ /\w+/
+
+  metadata.name    = name
+  metadata.title   = metadata['title'] || name.capitalize
+  metadata.contact = metadata['EMAIL']
 end
 
 scaffold do
   copy "Syckfile"
-  unless destination.exist?("PROFILE")
+
+  unless (destination + "PROFILE").exist?
     copy "PROFILE"
   end
-  unless destination.exist?("VERSION")
+
+  unless (destination + "VERSION").exist? or
+         (destination + "PACKAGE").exist?
     copy "VERSION"
   end
-  unless destination.exist?("REQUIRE")
+
+  unless (destination + "REQUIRE").exist? or
+         (destination + "Gemfile").exist? or
     copy "REQUIRE" #, :verbatim=>true
   end
 end

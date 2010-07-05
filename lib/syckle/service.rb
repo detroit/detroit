@@ -120,8 +120,10 @@ module Syckle
     # The batch context.
     attr :context
 
+    #
     attr :key
 
+    #
     attr :options
 
     #
