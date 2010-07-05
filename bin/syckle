@@ -1,13 +1,9 @@
 #!/usr/bin/env ruby
-
 require 'syckle/cli'
-
-Syckle::CLI.new.run
-
-#if /\.reap$/ =~ ARGV[0]
-#  job = ARGV[1]
-#  Syckle::Application.new.runscript(ARGV[0], job)
-#else
-#  Syckle::Application.new.start
-#end
+begin
+  Syckle::CLI.new.run
+rescue => err
+  raise err if $DEBUG
+  $stderr.puts err
+end
 
