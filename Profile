@@ -1,16 +1,28 @@
 ---
 title  : Syckle
-license: GPLv3
-suite  : proutils
 summary: Advanced life-cycle build tool
-authors: Thomas Sawyer
-created: 2007-10-10
-contact: proutils@googlegroups.com
+contact: Trans <transfire@gmail.com>
 
 description:
   Syckle is an advanced life-cycle based build system.
+
+requires:
+- facets
+- path
+- gemdo
+- plugin
+- qed (test)
 
 resources:
   homepage: http://proutils.github.com/syckle
   repository: http://github.com/proutils/syckle.git
 
+authors:
+  - Thomas Sawyer
+
+license: Apache 2.0
+created: 2007-10-10
+company: RubyWorks
+
+copyright: 
+  Copyright (c) 2007 Thomas Sawyer
