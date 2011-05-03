@@ -1,5 +1,9 @@
 = Redline
 
+Author:: Thomas Sawyer
+Licence:: Apache 2.0
+
+
 == DESCRIPTION
 
 Redline is a life-cycle based Ruby project mangement tool. Redline
@@ -9,9 +13,9 @@ and release Ruby projects.
 
 == RESOURCES
 
-* Home Page: http://proutils.github.com/redline
-* Development: http://github.com/proutils/redline
-* Mailing List: http://googlegroups.com/group/proutils
+* Home Page: http://rubyworks.github.com/redline
+* Development: http://github.com/rubyworks/redline
+* Mailing List: http://googlegroups.com/group/rubyworks-mailinglist
 
 
 == SYNOPSIS
@@ -21,7 +25,7 @@ how it operates. If you are familiar with Maven from the Java ecosystem then
 you have as fair notion of Redline. In short, Redline defines life-cycles
 within which all Redline services run. You define serivce instances, or
 tasks, as YAML configuration files in you projects +task+ directory with
-a .red extension, eg. +box.red+, or in a central +Syckfile+. For example,
+a .red extension, eg. +box.red+, or in a central +Redfile+. For example,
 Sycle's RubyForge service config looks like this:
 
   rubyforge:
@@ -34,9 +38,9 @@ Actually, this is not longer used becuase Redline moved to GitHub, but this
 example is good one becuase it exemplifies how tasks are defined. These
 service configs often draw on metadata about your project, as in the above
 example's use of <tt><%= name %></tt>. Metadata is defined using POM
-(see http://proutils.rubyforge.org/pom). Essentially, you add files to your
-project's +meta+ directory, and the information becomes available via Erb
-embedded tags.
+(see http://rubyworks.rubyforge.org/pom). Essentially, you add files to your
+project's +meta+ directory or +Profile+ file, and the information becomes
+available via Erb embedded tags.
 
 With service configuration and metadata in place, using redline is simply
 a matter of specifying the cycle and phase you wish to complete.
@@ -78,7 +82,7 @@ In additon to +main+, Redline includes +site+ and +attn+ life-cycles which are u
 to generate and publish a project website, and make project announcements
 respectively. They are simply useful subsets of the +main+ cycle.
 
-Please see http://proutils.github.com/redline for more details on how to
+Please see http://rubyworks.github.com/redline for more details on how to
 use Redline, including the creation of custom cycles, phases, and service plugins.
 Also try the <tt>--help</tt> option to see the redline command's help
 information.
