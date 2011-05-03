@@ -15,6 +15,6 @@ module Syckle
   end
 
   # TODO: Only here b/c of bug in Ruby 1.8.x
-  VERSION = metadata['version']
+  VERSION = "1.0.0"
 end
 
