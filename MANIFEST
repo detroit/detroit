@@ -1,6 +1,6 @@
 #!mast -x [A-Z][a-z]* .ruby bin lib man spec test [A-Z]*
 .ruby
-bin/syckle
+bin/redline
 lib/plugins/redline/autotools.rb
 lib/plugins/redline/custom.rb
 lib/plugins/redline/email.rb

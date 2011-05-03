@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require 'syckle/cli'
+require 'redline/cli'
 begin
-  Syckle::CLI.new.run
+  Redline::CLI.new.run
 rescue => err
   raise err if $DEBUG
   $stderr.puts err
