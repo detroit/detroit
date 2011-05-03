@@ -1,0 +1,7 @@
+IDEAS / TODO
+
+* IO output API for greater consistancy between services.
+  Possibly an IO class and log all operations.
+  Log could also be used to chaeck to see if service needs
+  to be run the next cycle or not.
+
