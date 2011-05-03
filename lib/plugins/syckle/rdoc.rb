@@ -49,13 +49,28 @@ module Syckle::Plugins
     # Default main file.
     DEFAULT_MAIN         = "README{,.*}"
 
-    # Default rdoc template to use.
-    DEFAULT_TEMPLATE     = "darkfish"
+    # Default rdoc format to use.
+    DEFAULT_FORMAT       = "darkfish"
 
     # Deafult extra options to add to rdoc call.
     DEFAULT_EXTRA        = ''
 
   private
+
+=begin
+    #
+    def initialize_requires
+      # NOTE: Due to a bug in RDoc this needs to be done for now
+      # so that alternate templates can be used.
+      begin
+        require 'rubygems'
+        gem('rdoc')
+      rescue LoadError
+        $stderr.puts "Oh no! No modern rdoc!"
+      end
+      require 'rdoc/rdoc'
+    end
+=end
 
     # Setup default attribute values.
     def initialize_defaults
@@ -64,7 +79,8 @@ module Syckle::Plugins
       @output   = Dir[DEFAULT_OUTPUT_MATCH].first || DEFAULT_OUTPUT
       @extra    = DEFAULT_EXTRA
       @main     = Dir[DEFAULT_MAIN].first || 'README'
-      @template = ENV['RDOC_TEMPLATE'] || DEFAULT_TEMPLATE
+      @format   = ENV['RDOC_FORMAT'] || DEFAULT_FORMAT
+      @template = ENV['RDOC_TEMPLATE']
     end
 
   public
@@ -75,7 +91,10 @@ module Syckle::Plugins
     # Where to save rdoc files (doc/rdoc).
     attr_accessor :output
 
-    # Template to use (defaults to ENV['RDOC_TEMPLATE'] or 'darkfish')
+    # Format to use (defaults to ENV['RDOC_FORMAT'] or 'darkfish')
+    attr_accessor :format
+
+    # Template to use (defaults to ENV['RDOC_TEMPLATE'])
     attr_accessor :template
 
     # Main file.  This can be a file pattern. (README{,.*})
@@ -107,24 +126,17 @@ module Syckle::Plugins
     def document(options=nil)
       options ||= {}
 
+      require_rdoc
+
       title    = options['title']    || self.title
       output   = options['output']   || self.output
       main     = options['main']     || self.main
+      format   = options['format']   || self.format
       template = options['template'] || self.template
       files    = options['files']    || self.files
       exclude  = options['exclude']  || self.exclude
       adfile   = options['adfile']   || self.adfile
       extra    = options['extra']    || self.extra
-
-      # NOTE: Due to a bug in RDoc this needs to be done for now
-      # so that alternate templates can be used.
-      begin
-        require 'rubygems'
-        gem('rdoc')
-      rescue LoadError
-      end
-
-      require 'rdoc/rdoc'
 
       # you can specify more than one possibility, first match wins
       adfile = [adfile].flatten.compact.find do |f|
@@ -159,8 +171,9 @@ module Syckle::Plugins
         argv.concat(extra.split(/\s+/))
         argv.concat ['--op', output]
         argv.concat ['--main', main] if main
+        argv.concat ['--format', format] if format
         argv.concat ['--template', template] if template
-        argv.concat ['--title', title] if title
+        argv.concat ['--title', "\"#{title}\""] if title
 
         #exclude_files.each do |file|
         #  argv.concat ['--exclude', file]
@@ -213,11 +226,11 @@ module Syckle::Plugins
 
         #argv = ("#{extra}" + [input, rdocopt].to_console).split(/\s+/)
 
-        if verbose? or trial?
+        if trial?
           puts "rdoc " + argv.join(" ")
           #sh(cmd) #shell(cmd)
         else
-          puts "rdoc " + argv.join(" ") if trace?
+          puts "rdoc " + argv.join(" ") if trace? or verbose?
           rdoc = ::RDoc::RDoc.new
           rdoc.document(argv)
           #silently do
@@ -250,6 +263,20 @@ module Syckle::Plugins
           File.write(file, html) unless trial?
         end
       end
+    end
+
+    #
+    def require_rdoc
+      # NOTE: Due to a bug in RDoc this needs to be done for now
+      # so that alternate templates can be used.
+      begin
+        require 'rubygems'
+        gem('rdoc')
+      rescue LoadError
+        $stderr.puts "Oh no! No modern rdoc!"
+      end
+      #require 'rdoc'
+      require 'rdoc/rdoc'
     end
 
   end
