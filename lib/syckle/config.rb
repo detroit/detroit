@@ -119,9 +119,12 @@ module Syckle
     #  project.metadata.__send__(sym) #if project.metadata.respond_to?(sym)
     #end
 
-    #
+    # TODO: This needs to be a subclass of BasicObject or it needs to use 
+    # setter notation, instead of instance_eval. The later is the most robust,
+    # but the later can work if we are very explict about methods in the context.
     class Parser
-      public_instance_methods.each{ |m| private m unless /^(__|instance_)/ =~ m.to_s }
+      public_instance_methods.each{ |m| undef_method m unless /^(__|instance_)/ =~ m.to_s }
+      #private_instance_methods.each{ |m| undef_method m unless /^(__|initialize)/ =~ m.to_s }
 
       def self.parse(&block)
         new(&block).__services__
@@ -143,9 +146,13 @@ module Syckle
       end
     end
 
-    #
+    # TODO: This needs to be a subclass of BasicObject or it needs to use 
+    # setter notation, instead of instance_eval. The later is the most robust,
+    # but the later can work if we are very explict about methods in the context.
     class SettingsParser
-      public_instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
+      #public_instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
+      public_instance_methods.each{ |m| undef_method m unless /^(__|instance_|p$)/ =~ m.to_s }
+      #private_instance_methods.each{ |m| p m; undef_method m unless /^(__|initialize$|p$|puts$)/ =~ m.to_s }
 
       def self.parse(&block)
         new(&block).__settings__
@@ -158,7 +165,8 @@ module Syckle
         instance_eval(&block) if block
       end
 
-      def method_missing(name, value, *args, &block)
+      def method_missing(name, *args, &block)
+        value = args.first
         if block_given?
           @__settings__[name.to_s] = SettingsParser.parse(&block)
         else
