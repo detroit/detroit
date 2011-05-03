@@ -15,10 +15,14 @@ module Syckle::Plugins
     #end
 
     # Add these folders to the $LOAD_PATH.
-    attr_accessor :loadpath
+    def loadpath
+      @loadpath
+    end
 
     # Lib files to exclude.
-    attr_accessor :exclude
+    def exclude
+      @exclude
+    end
 
     #
     def loadpath=(x)
