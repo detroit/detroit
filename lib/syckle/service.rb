@@ -45,7 +45,7 @@ module Syckle
       Class.new(self, &block)
     end
 
-    # NOTE: How is this being used?
+    # TODO: Err.. Is this being used?
     def self.init(&block)
       define_method(:init, &block)
     end
@@ -153,6 +153,7 @@ module Syckle
 
       raise TypeError, "context must be a subclass of Syckle::Script" unless context.is_a?(Syckle::Script) # Syckle::DSL
 
+      initialize_requires
       initialize_defaults
 
       options ||= {}
@@ -160,6 +161,15 @@ module Syckle
       options.each do |k, v|
         send("#{k}=", v) unless v.nil? #if respond_to?("#{k}=") && !v.nil?
       end
+    end
+
+    # Require support libraries needed by this service.
+    #
+    #   def initialize_requires
+    #     require 'ostruct'
+    #   end
+    #
+    def initialize_requires
     end
 
     # When subclassing, put default instance variable settngs here.
