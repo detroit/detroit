@@ -1,4 +1,4 @@
-module Syckle
+module Redline
 
   # = Website Life Cycles
   #

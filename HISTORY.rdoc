@@ -2,7 +2,7 @@
 
 == 1.0.0 / 2010-06-10
 
-Syckle is life-cycle based build system for Ruby.
+redline is life-cycle based build system for Ruby.
 This is it's initial public release.
 
 Changes:

@@ -1,4 +1,4 @@
-module Syckle
+module Redline
 
   class Shell
 

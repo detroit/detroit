@@ -1,9 +1,9 @@
 require 'ansi/terminal'
 require 'ansi/code'
 
-module Syckle
+module Redline
 
-  # = Syckle IO
+  # = Redline IO
   #
   # The IO class is used to cleanly separate out the
   # basic input/output "dialog" between user and script.

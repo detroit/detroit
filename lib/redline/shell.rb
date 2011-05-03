@@ -1,7 +1,7 @@
 require 'ratch/shell'
 #require 'plugin'
 
-module Syckle
+module Redline
 
   # Shell is a subclass of Ratch::Shell (see rubyworks/ratch project).
   # It extends the Ratch::Shell with commands generally associated with
@@ -14,11 +14,11 @@ module Syckle
   class Shell < Ratch::Shell
 
     # load shell add-ons
-    #::Plugin.find('syckle/shell/*.rb') do |file|
+    #::Plugin.find('redline/shell/*.rb') do |file|
     #  require(file)
     #end
 
-    require 'syckle/shell/email.rb'
+    require 'redline/shell/email.rb'
   end
 
 end

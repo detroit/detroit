@@ -1,11 +1,11 @@
 require 'facets/boolean'
 #require 'path/store'
 
-module Syckle
+module Redline
 
-  # Syckle configuration. Configuration comes from a main +Syckfile+
-  # and/or +.syckle+ task files, and configuration options defined
-  # in a path store in the project's config directory (eg. <tt>.config/syckle/</tt>).
+  # Redline configuration. Configuration comes from a main +Syckfile+
+  # and/or +.red+ task files, and configuration options defined
+  # in a path store in the project's config directory (eg. <tt>.config/red/</tt>).
   
   class Config
     #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
@@ -15,7 +15,7 @@ module Syckle
     # Current POM::Project object.
     attr :project
 
-    # Service configurations from Syckfile or task/*.syckle files.
+    # Service configurations from Syckfile or task/*.red files.
     # This is a hash of parameters.
     attr :services
 
@@ -28,7 +28,7 @@ module Syckle
     def initialize(project) #, *files)
       @project = project
 
-      if file = project.config.glob('syckle/config.{yml,yaml}').first
+      if file = project.config.glob('redline/config.{yml,yaml}').first
         conf = YAML.load(File.new(file))
       else
         conf = {}
@@ -42,7 +42,7 @@ module Syckle
 
       #self.standard  = conf['standard'] || []
 
-      if file = project.config.glob('syckle/defaults.{yml,yaml}').first
+      if file = project.config.glob('redline/defaults.{yml,yaml}').first
         self.defaults = YAML.load(File.new(file))
       else
         self.defaults = {}
@@ -50,8 +50,8 @@ module Syckle
 
       @services = {}
 
-      syckle_files.each do |file|
-        load_syckle_file(file)
+      redline_files.each do |file|
+        load_redline_file(file)
       end
     end
 
@@ -61,35 +61,35 @@ module Syckle
     end
 
     # If Syckfile or .syckfile exist, then it is returned.
-    # Otherwise all task/*.syckle files.
-    def syckle_files
+    # Otherwise all task/*.red files.
+    def redline_files
       @confg_files ||= (
         files = project.root.glob("{,.}#{FILE}{,.yml,.yaml}", :casefold)
         if files.empty?
-          files += project.task.glob('*.syckle')
+          files += project.task.glob('*.red')
         end
         files = files.select{ |f| File.file?(f) }
       )
     end
 
-    # If using Syckfile and want to import task/*.syckle
+    # If using Syckfile and want to import task/*.red
     # files then use +import:+ entry. 
-    def load_syckle_file(file)
+    def load_redline_file(file)
       dir  = File.dirname(file)
       text = File.read(file).strip
 
       # if yaml vs. ruby file
       if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
-        data = parse_syckle_file_yaml(text, file)
+        data = parse_redline_file_yaml(text, file)
       else
-        data = parse_syckle_file_ruby(text, file)
+        data = parse_redline_file_ruby(text, file)
       end
 
       # Import other files. This is useful when using the Syckfile.
       if import = data.delete('import')
         [import].flatten.each do |glob|
           pattern = File.join(dir,glob)
-          Dir[pattern].each{ |f| load_syckle_file(f) }
+          Dir[pattern].each{ |f| load_redline_file(f) }
         end
       end
 
@@ -97,13 +97,13 @@ module Syckle
     end
 
     #
-    def parse_syckle_file_yaml(text, file)
+    def parse_redline_file_yaml(text, file)
       edit = ERB.new(text).result(scope.binding).strip
       YAML.load(edit) || {}
     end
 
     #
-    def parse_syckle_file_ruby(text, file)
+    def parse_redline_file_ruby(text, file)
       parser = Parser.new(file, text)
       parser.__services__
     end

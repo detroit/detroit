@@ -1,4 +1,4 @@
-module Syckle::Plugins
+module Redline::Plugins
 
   # = RI Documentation Plugin
   #
@@ -20,7 +20,7 @@ module Syckle::Plugins
   #   site:reset     - mark ri docs out-of-date
   #   site:clean     - remove ri docs
   #
-  class RIDoc < Service
+  class RI < Service
 
     cycle :main, :document
     cycle :main, :reset
@@ -138,7 +138,6 @@ module Syckle::Plugins
       end
     end
 
-  end#RIDoc
+  end
 
-end#Syckles
-
+end

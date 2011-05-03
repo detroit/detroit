@@ -1,7 +1,7 @@
-require 'syckle/application'
+require 'redline/application'
 require 'optparse'
 
-module Syckle
+module Redline
 
   # = Commandline Interface
   #
@@ -31,7 +31,7 @@ module Syckle
     #
     def initialize_usage
       @usage = OptionParser.new do |usage|
-        usage.banner = "Usage: syckle [<cycle>:]<phase> [options]"
+        usage.banner = "Usage: redline [<cycle>:]<phase> [options]"
 
         usage.on('--trace', "Run in TRACE mode.") do
           #$TRACE = true
@@ -87,7 +87,7 @@ module Syckle
 
     #
     def application
-      @application ||= Syckle::Application.new(self)
+      @application ||= Redline::Application.new(self)
     end
 
     # parse! ?
@@ -103,7 +103,7 @@ module Syckle
     #
     def run
       parse
-      if /\.syckle$/ =~ arguments[0]
+      if /\.redline$/ =~ arguments[0]
         job = arguments[1]
         application.runscript(arguments[0], job)
       else

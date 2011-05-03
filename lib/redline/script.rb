@@ -7,19 +7,19 @@ require 'facets/platform'
 
 require 'pom'
 
-#require 'syckle/core_ext'
-#require 'syckle/log'
+#require 'redline/core_ext'
+#require 'redline/log'
 
-require 'syckle/cli'
-require 'syckle/io'
-require 'syckle/shell'
+require 'redline/cli'
+require 'redline/io'
+require 'redline/shell'
 
-module Syckle
+module Redline
 
-  # = Syckle Script Domain
+  # = Redline Script Domain
   #
-  # The DSL class is the heart of Syckle, it provides all the convenece methods
-  # that make Syckle services so convenient to write.
+  # The DSL class is the heart of Redline, it provides all the convenece methods
+  # that make Redline services so convenient to write.
   #
   # TODO: Better name?
   #

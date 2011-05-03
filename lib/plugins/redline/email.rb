@@ -1,6 +1,6 @@
 require 'facets/boolean'
 
-module Syckle::Plugins
+module Redline::Plugins
 
   # = Email Plugin
   #

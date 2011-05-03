@@ -1,4 +1,4 @@
-module Syckle::Plugins
+module Redline::Plugins
 
   # Yard documentation plugin generates docs for your project.
   #

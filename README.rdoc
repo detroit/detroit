@@ -1,25 +1,27 @@
-= Syckle
-
-* Home Page: http://proutils.github.com/syckle
-* Development: http://github.com/proutils/syckle
-* Mailing List: http://googlegroups.com/group/proutils
-
+= Redline
 
 == DESCRIPTION
 
-Syckle is a life-cycle based Ruby project mangement tool. Syckle
+Redline is a life-cycle based Ruby project mangement tool. Redline
 provides a systematic methodology to help developers prepare
 and release Ruby projects.
 
 
+== RESOURCES
+
+* Home Page: http://proutils.github.com/redline
+* Development: http://github.com/proutils/redline
+* Mailing List: http://googlegroups.com/group/proutils
+
+
 == SYNOPSIS
 
-Using Syckle is not diffcult, but it does take a few minutes to understand
+Using Redline is not diffcult, but it does take a few minutes to understand
 how it operates. If you are familiar with Maven from the Java ecosystem then
-you have as fair notion of Syckle. In short, Syckle defines life-cycles
-within which all Syckle services run. You define serivce instances, or
+you have as fair notion of Redline. In short, Redline defines life-cycles
+within which all Redline services run. You define serivce instances, or
 tasks, as YAML configuration files in you projects +task+ directory with
-a .syckle extension, eg. +box.syckle+, or in a central +Syckfile+. For example,
+a .red extension, eg. +box.red+, or in a central +Syckfile+. For example,
 Sycle's RubyForge service config looks like this:
 
   rubyforge:
@@ -28,7 +30,7 @@ Sycle's RubyForge service config looks like this:
       site: <%= name %>
     active: true
 
-Actually, this is not longer used becuase Syckle moved to GitHub, but this
+Actually, this is not longer used becuase Redline moved to GitHub, but this
 example is good one becuase it exemplifies how tasks are defined. These
 service configs often draw on metadata about your project, as in the above
 example's use of <tt><%= name %></tt>. Metadata is defined using POM
@@ -36,20 +38,20 @@ example's use of <tt><%= name %></tt>. Metadata is defined using POM
 project's +meta+ directory, and the information becomes available via Erb
 embedded tags.
 
-With service configuration and metadata in place, using syckle is simply
+With service configuration and metadata in place, using redline is simply
 a matter of specifying the cycle and phase you wish to complete.
 
-  $ syckle main:document
+  $ redline main:document
 
 The cycle name and its phase are separated by a colon. This command
 would run every phase in the +main+ cycle, in order, until it completes
 the +document+ phase. Since +main+ is the default cycle, we can acheive
 the same effect without specifying it.
 
-  $ syckle document
+  $ redline document
 
 The use of cycles may seem constrictive to users of tools like Rake,
-but it helps ensure a project is always up-to-date and in-sync. Syckle
+but it helps ensure a project is always up-to-date and in-sync. Redline
 includes three life-cycles out of the box. The most significant of
 which is +main+ which entails a subcycle with ordred phases:
 
@@ -72,28 +74,28 @@ of just two phases:
 
 Where reset marks generated files out-of-date, and clean actually removes them.
 
-In additon to +main+, Syckle includes +site+ and +attn+ life-cycles which are used
+In additon to +main+, Redline includes +site+ and +attn+ life-cycles which are used
 to generate and publish a project website, and make project announcements
 respectively. They are simply useful subsets of the +main+ cycle.
 
-Please see http://proutils.github.com/syckle for more details on how to
-use Syckle, including the creation of custom cycles, phases, and service plugins.
-Also try the <tt>--help</tt> option to see the syckle command's help
+Please see http://proutils.github.com/redline for more details on how to
+use Redline, including the creation of custom cycles, phases, and service plugins.
+Also try the <tt>--help</tt> option to see the redline command's help
 information.
 
 
 == INSTALLATION
 
-Syckle can, of course, be installed via RubyGems:
+Redline can, of course, be installed via RubyGems:
 
-  $ sudo gem install syckle
+  $ sudo gem install redline
 
-We no longer recommend it, byt Syckle can also be installed the
+We no longer recommend it, byt Redline can also be installed the
 old-fashion way by downloading the .tar.gz package and using
 Ruby Setup (See http://setup.rubyforge.org).
 
-  $ tar -xvzf syckle-1.0.0.tar.gz
-  $ cd syckle-1.0.0
+  $ tar -xvzf redline-1.0.0.tar.gz
+  $ cd redline-1.0.0
   $ sudo setup.rb
 
 Ruby Setup is stand-alone version of the original setup.rb script.
@@ -101,7 +103,7 @@ Ruby Setup is stand-alone version of the original setup.rb script.
 
 == ISSUES
 
-All in all, Syckle works well. There are some rough edges with regards
+All in all, Redline works well. There are some rough edges with regards
 to the built-in service plugins, so from time to time you might run into
 an odd error. Ususally it just mean a service confirguraiton needs 
 adjustment.
@@ -109,24 +111,22 @@ adjustment.
 Please note, Windows support has not been considered at all. While I do
 not see any specific reason it should not work, there may well be issues
 I have not considered since I do not use Windows. If you are Windows user
-and give Syckle a try please let us know of any issues you encounter.
+and give Redline a try please let us know of any issues you encounter.
 
 
 == HISTORY
 
-Syckle is actaully the offspring of Reap v10, and represents
+Redline is actaully the offspring of Reap v10, and represents
 about four years worth of design consideration and reconsideration,
 that brought Reap from a simple Rake extension to the life-cycle
-system Syckle is today.
+system Redline is today.
 
 
 == COPYRIGHT & LICENSE
 
-Syckle
-
 Copyright (c) 2007 Thomas Sawyer
 
-Unless otherwise permited by the author, Syckle is distributed
+Unless otherwise permited by the author, Redline is distributed
 under the terms of the GPL version 3 or above. See COPYING
 for full license.
 

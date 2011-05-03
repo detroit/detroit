@@ -7,26 +7,26 @@ end
 
 require 'plugin'
 
-require 'syckle/core_ext'
+require 'redline/core_ext'
 
-require 'syckle/script'
-require 'syckle/cli'
-require 'syckle/io'
-require 'syckle/config'
+require 'redline/script'
+require 'redline/cli'
+require 'redline/io'
+require 'redline/config'
 
-require 'syckle/cycles'
-require 'syckle/cycles/main'
-require 'syckle/cycles/site'
-require 'syckle/cycles/attn'
+require 'redline/cycles'
+require 'redline/cycles/main'
+require 'redline/cycles/site'
+require 'redline/cycles/attn'
 
-require 'syckle/service'
+require 'redline/service'
 
 # FIXME: Not all io output is running through the io object.
 
-module Syckle
+module Redline
 
   #
-  #PLUGIN_DIRECTORY = "plugin{,s}/syckle"
+  #PLUGIN_DIRECTORY = "plugin{,s}/redline"
 
   # = Application
   #
@@ -41,7 +41,7 @@ module Syckle
     # Input/Ouput controller.
     attr :io
 
-    # Syckle mater configuration.
+    # Redline mater configuration.
     attr :config
 
     # Run context.
@@ -50,12 +50,12 @@ module Syckle
     # Actions (extracted from services).
     attr :actions
 
-    # New Syckle Application.
+    # New Redline Application.
     def initialize(cli_options)
-      @cli      = cli_options #Syckle::CLI.new
-      @io       = Syckle::IO.new(@cli)
-      @script   = Syckle::Script.new(:io=>io, :cli=>cli)
-      @config   = Syckle::Config.new(project)
+      @cli      = cli_options #Redline::CLI.new
+      @io       = Redline::IO.new(@cli)
+      @script   = Redline::Script.new(:io=>io, :cli=>cli)
+      @config   = Redline::Config.new(project)
 
       #@services, @actions = *load_service_configuration
 
@@ -64,10 +64,10 @@ module Syckle
 
     #
     def load_plugins
-      ::Plugin.find("syckle/*.rb").each do |file|
-      #Syckle.plugins.each do |file|
+      ::Plugin.find("redline/*.rb").each do |file|
+      #Redline.plugins.each do |file|
         require(file)
-        #Syckle.module_eval(File.read(file))
+        #Redline.module_eval(File.read(file))
       end
     end
 
@@ -108,7 +108,7 @@ module Syckle
 
     def config_template
       cfg = {}
-      Syckle.services.each do |srv_name, srv_class|
+      Redline.services.each do |srv_name, srv_class|
         attrs = srv_class.instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
         atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
         atcfg['service'] = srv_class.basename.downcase
@@ -126,7 +126,7 @@ module Syckle
         #autolist = []
 
         #if config.automatic?
-        #  Syckle.services.each do |service_name, service_class|
+        #  Redline.services.each do |service_name, service_class|
         #    if service_class.available?(project) &&
         #         service_class.autorun?(project) &&
         #         !config.standard.include?(service_name)
@@ -139,7 +139,7 @@ module Syckle
           next unless opts && opts['active'] != false
 
           service_name  = opts.delete('service') || key
-          service_class = Syckle.services[service_name.downcase]
+          service_class = Redline.services[service_name.downcase]
 
           abort "Unkown service #{service_name}." unless service_class
 
@@ -194,19 +194,19 @@ module Syckle
 =begin
     #require 'facets/hashbuilder'
 
-    # Load service configs for a select set of syckle scripts/tasks.
+    # Load service configs for a select set of redline scripts/tasks.
 
     def load_service_configs(files)
       files = []
       if project.root.glob('Syckfile')
         files += project.root.glob('Syckfile')
       else
-        files += project.task.glob('*.syckle')
-        files += project.script.glob('*.syckle')
+        files += project.task.glob('*.red')
+        files += project.script.glob('*.red')
       end
       files  = files.select{ |f| File.file?(f) }
 
-      abort "No syckle services defined." if files.empty?
+      abort "No redline services defined." if files.empty?
 
       srvcfg = files.inject({}) do |cfg, file|
         tmp = TMP.new(project.metadata)
@@ -230,7 +230,7 @@ module Syckle
     #def cli
     #  @cli ||= (
     #    cli = script.cli
-    #    Syckle.lifecycles.each do |key, lifecycle|
+    #    Redline.lifecycles.each do |key, lifecycle|
     #      lifecycle.cycles.each do |phases|
     #        phases.each do |phase|
     #          if key.to_sym == :main
@@ -252,11 +252,11 @@ module Syckle
       @skip ||= cli.skip.to_list.map{ |s| s.downcase }
     end
 
-    # Run individual syckle scripts/tasks.
+    # Run individual redline scripts/tasks.
 
     def runscript(script, job)
       @config.services.clear
-      @config.load_syckle_file(script)
+      @config.load_redline_file(script)
       #@service_configs = load_service_configs(script)
       run(job)
     end
@@ -291,7 +291,7 @@ module Syckle
       # tab completion -- improve this in the future.
       #if cli == '?'
       #  m, l = [], []
-      #  Syckle.pipelines.each do |key, pipe|
+      #  Redline.pipelines.each do |key, pipe|
       #     pipe.phasemap.keys.each do |phase|
       #       if key == :main
       #         m << "#{phase}"
@@ -318,7 +318,7 @@ module Syckle
       name  = name.to_sym
       phase = phase.to_sym if phase
 
-      lifecycle = Syckle.lifecycles[name]
+      lifecycle = Redline.lifecycles[name]
 
       raise "Unknown life-cycle -- #{name}" unless lifecycle
 
@@ -364,7 +364,7 @@ module Syckle
     # TODO: Currently only phase counts, maybe add pipe subdirs.
     #++
     def service_hooks(pipe, phase)
-       dir  = project.config + "syckle/hooks"
+       dir  = project.config + "redline/hooks"
        #hook = dir + ("#{pipe}/#{phase}.rb".gsub('_', '-'))
        name = phase.to_s.gsub('_', '-')
        hook = dir + "#{name}.rb"
@@ -412,7 +412,7 @@ module Syckle
     # FIXME: how to load?
 
     def load_project_plugins
-      #scripts = project.config_syckle.glob('*.rb')
+      #scripts = project.config_redline.glob('*.rb')
       scripts = project.plugin.glob('*.rb')
       scripts.each do |script|
         load(script.to_s)
@@ -442,5 +442,5 @@ module Syckle
 
   end
 
-end #module Syckle
+end #module Redline
 

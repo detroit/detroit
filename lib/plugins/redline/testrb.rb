@@ -1,4 +1,4 @@
-module Syckle::Plugins
+module Redline::Plugins
 
   # = Test::Unit Plugin via testrb
   #

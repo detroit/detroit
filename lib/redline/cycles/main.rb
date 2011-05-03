@@ -1,4 +1,4 @@
-module Syckle
+module Redline
 
   # = Main Life Cycles
   #

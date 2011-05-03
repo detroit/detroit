@@ -1,4 +1,4 @@
-module Syckle::Plugins
+module Redline::Plugins
 
   # = GemCutter Service
   #

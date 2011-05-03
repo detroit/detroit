@@ -1,4 +1,4 @@
-module Syckle::Plugins
+module Redline::Plugins
 
   # RDoc documentation plugin generates RDocs for your project.
   #

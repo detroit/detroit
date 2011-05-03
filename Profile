@@ -1,28 +1,32 @@
 ---
-title  : Syckle
+title  : Redline
 summary: Advanced life-cycle build tool
 contact: Trans <transfire@gmail.com>
 
 description:
-  Syckle is an advanced life-cycle based build system.
+  Redline is an advanced life-cycle based build system.
 
 requires:
 - facets
-- path
-- gemdo
+- ratch
+- pom
 - plugin
 - qed (test)
 
 resources:
-  homepage: http://proutils.github.com/syckle
-  repository: http://github.com/proutils/syckle.git
+  home: http://proutils.github.com/syckle
+
+repositories:
+  public: http://github.com/proutils/syckle.git
 
 authors:
   - Thomas Sawyer
 
 license: Apache 2.0
 created: 2007-10-10
-company: RubyWorks
+
+organization: Rubyworks
 
 copyright: 
   Copyright (c) 2007 Thomas Sawyer
+

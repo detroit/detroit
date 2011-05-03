@@ -1,4 +1,4 @@
-module Syckle
+module Redline
 
   #
   def self.lifecycles

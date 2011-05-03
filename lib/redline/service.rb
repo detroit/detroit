@@ -1,6 +1,6 @@
 # = Service Loader
 #
-module Syckle
+module Redline
 
   #
   def self.services
@@ -20,7 +20,7 @@ module Syckle
   # can cause effects in plugin behvior that can be harder
   # to track down and fix if a bug arises.
   #
-  # The context must be a subclass of Syckle::Script.
+  # The context must be a subclass of Redline::Script.
   #
   #--
   # TODO: Perhaps use a secondary class to delegate the class level.
@@ -151,7 +151,7 @@ module Syckle
       @priority = 0
       @active   = true
 
-      raise TypeError, "context must be a subclass of Syckle::Script" unless context.is_a?(Syckle::Script) # Syckle::DSL
+      raise TypeError, "context must be a subclass of Redline::Script" unless context.is_a?(Redline::Script) # Redline::DSL
 
       initialize_requires
       initialize_defaults
@@ -231,15 +231,15 @@ module Syckle
 
   end #class Service
 
-end #module Syckle
+end #module Redline
 
-module Syckle::Plugins
-  Service = Syckle::Service
+module Redline::Plugins
+  Service = Redline::Service
 end
 
 # TOPLEVEL DSL?
 #def service(name, &block)
-#  #Syckle.services[name] = Service.factory(&block)
-#  Syckle::Service.registry[name.to_s] = Syckle::Service.factory(&block)
+#  #Redline.services[name] = Service.factory(&block)
+#  Redline::Service.registry[name.to_s] = Redline::Service.factory(&block)
 #end
 

@@ -1,11 +1,11 @@
 require 'yaml'
 
-module Syckle
+module Redline
   # Access to project metadata.
   def self.metadata
     @metadata ||= (
       require 'yaml'
-      YAML.load(File.new(File.dirname(__FILE__) + '/syckle.yml'))
+      YAML.load(File.new(File.dirname(__FILE__) + '/redline.yml'))
     )
   end
 
@@ -15,6 +15,6 @@ module Syckle
   end
 
   # TODO: Only here b/c of bug in Ruby 1.8.x
-  VERSION = "1.0.0"
+  #VERSION = "1.0.0"
 end
 

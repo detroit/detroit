@@ -1,12 +1,12 @@
 if RUBY_VERSION >= '1.9'
 
-  module Syckle
+  module Redline
     BasicObject = ::BasicObject
   end
 
 else
 
-  module Syckle
+  module Redline
 
     # BasicObject provides an abstract base class with no predefined
     # methods (except for <tt>\_\_send__</tt> and <tt>\_\_id__</tt>).
