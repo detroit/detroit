@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# TODO: how to include another seed? Syckle needs pom seed.
+# TODO: How to include another seed? Syckle needs the 'pom' seed.
 # We are replicating it here for now.
 
 utilize 'pom'
@@ -23,14 +23,8 @@ scaffold do
     copy "PROFILE"
   end
 
-  unless (destination + "VERSION").exist? or
-         (destination + "PACKAGE").exist?
-    copy "VERSION"
-  end
-
-  unless (destination + "REQUIRE").exist? or
-         (destination + "Gemfile").exist? or
-    copy "REQUIRE" #, :verbatim=>true
+  unless (destination + "PACKAGE").exist?
+    copy "PACKAGE"
   end
 end
 
