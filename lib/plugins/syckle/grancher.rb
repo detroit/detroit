@@ -49,7 +49,7 @@ module Syckle::Plugins
     # List of directories and files to transfer.
     # If a single directory entry is given then the contents
     # of that directory will be transfered.
-    attr_accessor :sitemap
+    attr_reader :sitemap
 
     #
     def sitemap=(entries)

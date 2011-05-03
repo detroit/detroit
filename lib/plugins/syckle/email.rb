@@ -51,7 +51,7 @@ module Syckle::Plugins
     attr_accessor :login
 
     # Use TLS/SSL true or false?
-    attr_accessor :secure
+    attr_reader :secure
 
     # Components of announcment.
     attr_accessor :parts
