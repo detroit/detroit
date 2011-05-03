@@ -22,13 +22,13 @@ module Syckle::Plugins
     attr_accessor :tests
 
     # Test file patterns to specially exclude.
-    attr_accessor :exclude
+    attr_reader :exclude
 
     # Add these folders to the $LOAD_PATH.
-    attr_accessor :loadpath
+    attr_reader :loadpath
 
     # Libs to require when running tests.
-    attr_accessor :requires
+    attr_reader :requires
 
     # Test against live install (i.e. Don't use loadpath option).
     attr_accessor :live
