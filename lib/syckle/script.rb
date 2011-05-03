@@ -5,7 +5,7 @@ require 'rbconfig'  # replace with facets/rbsystem?
 
 require 'facets/platform'
 
-require 'pom/project'
+require 'pom'
 
 #require 'syckle/core_ext'
 #require 'syckle/log'
@@ -13,7 +13,6 @@ require 'pom/project'
 require 'syckle/cli'
 require 'syckle/io'
 require 'syckle/shell'
-
 
 module Syckle
 
@@ -24,13 +23,15 @@ module Syckle
   #
   # TODO: Better name?
   #
+  # TODO: Subclass Ratch::Script instead?
+  #
   class Script < Module
 
     #
     def initialize(options={})
       extend self
 
-      @project = POM::Project.new(:lookup=>true) #, :load=>true)
+      @project = POM::Project.find
 
       options.each do |k, v|
         send("#{k}=", v) if respond_to?("#{k}=")
