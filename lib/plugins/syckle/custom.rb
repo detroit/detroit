@@ -23,6 +23,9 @@ module Syckle::Plugins
       @pipeline = [val].flatten
     end
 
+    alias_accessor :cycle,  :pipeline
+    alias_accessor :cycles, :pipeline
+
   private
 
     # Instantiate new custom plugin.
