@@ -10,17 +10,17 @@ module Redline::Plugins
   #
   class Grancher < Service
 
-    precycle :main, :release do
+    pre_stop :main, :release do
       transfer
     end
 
-    cycle :main, :release
+    stop :main, :release
 
-    precycle :site, :release do
+    pre_stop :site, :release do
       transfer
     end
 
-    cycle :site, :release
+    stop :site, :release
 
     ## Gancher will be available automatically if the POM repository
     ## entry indicates the use of GitHub.

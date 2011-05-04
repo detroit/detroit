@@ -6,11 +6,11 @@ module Redline::Plugins
   #
   class Gem < Service
 
-    precycle :main, :package do
+    pre_stop :main, :package do
       prepackage
     end
 
-    cycle :main, :package
+    stop :main, :package
 
     # The .gemspec filename (default looks up .gemspec file or {name}.gemspec).
     attr_accessor :gemspec

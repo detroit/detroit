@@ -1,41 +1,38 @@
 module Redline
 
   #
-  def self.lifecycles
-    @lifecycles ||= {}
+  def self.tracks
+    @tracks ||= {}
   end
 
-  # Define a new lifecycle.
-  #
-  def self.lifecycle(name, &block)
-    lifecycles[name.to_sym] = LifeCycle.new(name, &block)
+  # Define a new track.
+  def self.track(name, &block)
+    tracks[name.to_sym] = Track.new(name, &block)
   end
 
-  # = LifeCycle
   #
-  class LifeCycle
-
+  class Track
     #
-    attr :cycles
+    attr :routes
 
     #
     def initialize(name, &block)
       @name     = name.to_sym
-      @cycles   = []
+      @routes   = []
       instance_eval(&block) if block
     end
 
     #
-    def cycle(*phases)
-      @cycles << phases.map{ |s| s.to_sym }
+    def route(*stops)
+      @routes << stops.map{ |s| s.to_sym }
     end
 
     #
-    def cycle_with_phase(phase)
-      cycles.find{ |c| c.include?(phase.to_sym) }
+    def route_with_stop(stop)
+      routes.find{ |c| c.include?(stop.to_sym) }
     end
 
-  end#class LifeCycle
+  end
 
 end
 

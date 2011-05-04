@@ -6,9 +6,9 @@ module Redline::Plugins
   #
   class RubyProf < Service
 
-    cycle :main, :analyize
-    cycle :main, :reset
-    cycle :main, :clean
+    stop :main, :analyize
+    stop :main, :reset
+    stop :main, :clean
 
     # Default script files to run via ruby-prof.
     DEFAULT_SCRIPTS = ['test/**/test_*.rb', 'test/**/*_test.rb']

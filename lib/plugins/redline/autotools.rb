@@ -1,17 +1,15 @@
 module Redline::Plugins
 
-  # = Autotools Compile Plugin
-  #
   # The Autotools plugin utilizes extconf.rb and
-  # standard Makefile(s) to compile extensions.
+  # standard Makefile(s) to compile native extensions.
   #
   # TODO: win32 cross-compile ?
   #
   class Autotools < Service
 
-    cycle :main, :compile
-    cycle :main, :reset
-    cycle :main, :clean
+    stop :main, :compile
+    stop :main, :reset
+    stop :main, :clean
 
     #available do |project|
     #  # check for make tools

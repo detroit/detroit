@@ -8,7 +8,7 @@ module Redline::Plugins
   #
   class Syntax < Service
 
-    cycle :main, :analyize
+    stop :main, :analyize
 
     #available do |project|
     #  !project.metadata.loadpath.empty?

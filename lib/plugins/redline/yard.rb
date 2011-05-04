@@ -6,7 +6,7 @@ module Redline::Plugins
   # unless an 'yard' directory exists in the project's root
   # directory, in which case the documentation will be stored there.
   #
-  # This plugin provides the following cycle-phases:
+  # This plugin provides the following track-stops:
   #
   #   main:document  - generate yardocs
   #   main:reset     - mark yardocs out-of-date
@@ -21,13 +21,13 @@ module Redline::Plugins
   #
   class Yard < Service
 
-    cycle :main, :document
-    cycle :main, :reset
-    cycle :main, :clean
+    stop :main, :document
+    stop :main, :reset
+    stop :main, :clean
 
-    cycle :site, :document
-    cycle :site, :reset
-    cycle :site, :clean
+    stop :site, :document
+    stop :site, :reset
+    stop :site, :clean
 
     # Make sure YARD is available.
     available do |project|

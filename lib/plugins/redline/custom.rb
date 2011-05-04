@@ -9,22 +9,19 @@ module Redline::Plugins
   #
   class Custom < Service
 
-    # Default pipeline(s) in which this plugin operates.
-    DEFAULT_PIPELINE = "main"
+    # Default track(s) in which this plugin operates.
+    DEFAULT_TRACK = "main"
 
-    # Which pipeline(s) to run this custom plugin.
-    attr_accessor :pipeline
+    # Which track(s) to run this custom plugin.
+    attr_accessor :track
 
-    # Plural alias for #pipeline.
-    alias_accessor :pipelines, :pipeline
+    # Plural alias for #track.
+    alias_accessor :tracks, :track
 
-    # Special writer to allow single pipeline or a list of pipelines.
-    def pipeline=(val)
-      @pipeline = [val].flatten
+    # Special writer to allow single track or a list of tracks.
+    def track=(val)
+      @track = [val].flatten
     end
-
-    alias_accessor :cycle,  :pipeline
-    alias_accessor :cycles, :pipeline
 
   private
 
@@ -33,20 +30,20 @@ module Redline::Plugins
     # FIXME: Custom#initialize seems to be running twice at startup. Why?
     #
     # This works by interpreting the service configuration as a hash of
-    # phase names => ruby code.
+    # stop names => ruby code.
     #
     def initialize(context, key, options)
       super
-      options.each do |phase, script|
+      options.each do |stop, script|
         # skip specific names used for configuration
-        next if phase == 'service'
-        next if phase == 'pipeline' or key == 'pipelines'
-        next if phase == 'active'
-        next if phase == 'priority'
-        # remaining options are names of pipeline phases
-        pipelines.each do |pipe|
+        next if stop == 'service'
+        next if stop == 'track' or key == 'tracks'
+        next if stop == 'active'
+        next if stop == 'priority'
+        # remaining options are names of track stops
+        tracks.each do |t|
           src = %{
-            def #{pipe}_#{phase}
+            def #{t}_#{stop}
               #{script}
             end
           }
@@ -57,7 +54,7 @@ module Redline::Plugins
 
     # Set initial attribute defaults.
     def initialize_defaults
-      @pipeline  = DEFAULT_PIPELINE
+      @track = DEFAULT_TRACK
     end
 
     #

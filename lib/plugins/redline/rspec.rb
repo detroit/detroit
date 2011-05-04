@@ -6,11 +6,11 @@ module Redline::Plugins
   # 
   class RSpec < Service
 
-    cycle :main, :test do
+    stop :main, :test do
       runspecs
     end
 
-    cycle :main, :document
+    stop :main, :document
 
     #
     available do |project|

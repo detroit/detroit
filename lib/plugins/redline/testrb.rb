@@ -5,11 +5,11 @@ module Redline::Plugins
   # This service plugin runs your test/unit (or minitest)
   # tests based unit tests using the +testrb+ commandline tool.
   #
-  # TODO: How to abort lifecycle if fail?
+  # TODO: How to abort track if fail?
   #
   class Testrb < Service
 
-    cycle :main, :test do
+    stop :main, :test do
       runtests
     end
 

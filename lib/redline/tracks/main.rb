@@ -1,10 +1,9 @@
 module Redline
 
-  # = Main Life Cycles
-  #
-  lifecycle :main do
+  # Main track.
+  track :main do
 
-    cycle :prepare,    # prepare services / ensure service requirements
+    route :prepare,    # prepare services / ensure service requirements
           :generate,   # code generation
           :compile,    # compile source code
           :test,       # run tests and/or specifications
@@ -15,7 +14,7 @@ module Redline
           :release,    # release packages / deploy to servers?
           :promote     # tell the world about you awesome work
 
-    cycle :reset,
+    route :reset,
           :clean
 
   end

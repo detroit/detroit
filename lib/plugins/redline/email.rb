@@ -12,9 +12,9 @@ module Redline::Plugins
   #
   class EMail < Service
 
-    cycle :main, :announce
+    stop :main, :announce
 
-    cycle :attn, :announce
+    stop :attn, :announce
 
     #available do |project|
     #  true # when ?

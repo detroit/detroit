@@ -9,13 +9,13 @@ module Redline::Plugins
   #
   class Stats < Service
 
-    cycle :main, :analyize
-    cycle :main, :reset
-    cycle :main, :clean
+    stop :main, :analyize
+    stop :main, :reset
+    stop :main, :clean
 
-    cycle :site, :analyize
-    cycle :site, :reset
-    cycle :site, :clean
+    stop :site, :analyize
+    stop :site, :reset
+    stop :site, :clean
 
     # Default folder to store generated files under log/.
     DEFAULT_FOLDER = 'stats'

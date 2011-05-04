@@ -32,11 +32,11 @@ module Redline
       #  conf = {}
       #end
 
-      #if file = project.config.glob('redline/defaults.{yml,yaml}').first
-      #  self.defaults = YAML.load(File.new(file))
-      #else
-      #  self.defaults = {}
-      #end
+      if file = project.config.glob('redline/defaults.{yml,yaml}').first
+        self.defaults = YAML.load(File.new(file))
+      else
+        self.defaults = {}
+      end
 
       @services = {}
       @defaults = {}

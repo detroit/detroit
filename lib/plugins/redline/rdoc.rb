@@ -25,15 +25,15 @@ module Redline::Plugins
     ##
     # Generate rdocs in main cycle.
     # :method: main_document
-    cycle :main, :document
+    stop :main, :document
 
-    cycle :main, :reset
+    stop :main, :reset
 
-    cycle :main, :clean
+    stop :main, :clean
 
-    cycle :site, :document
-    cycle :site, :reset
-    cycle :site, :clean
+    stop :site, :document
+    stop :site, :reset
+    stop :site, :clean
 
     # TODO: IMPROVE
     #available do |project|

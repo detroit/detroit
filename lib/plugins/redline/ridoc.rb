@@ -22,13 +22,13 @@ module Redline::Plugins
   #
   class RI < Service
 
-    cycle :main, :document
-    cycle :main, :reset
-    cycle :main, :clean
+    stop :main, :document
+    stop :main, :reset
+    stop :main, :clean
 
-    cycle :site, :document
-    cycle :site, :reset
-    cycle :site, :clean
+    stop :site, :document
+    stop :site, :reset
+    stop :site, :clean
 
     #available do |project|
     #  !project.metadata.loadpath.empty?

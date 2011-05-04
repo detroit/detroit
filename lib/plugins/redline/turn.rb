@@ -7,7 +7,7 @@ module Redline::Plugins
   #
   class Turn < Service
 
-    cycle :main, :test do
+    stop :main, :test do
       runtests
     end
 

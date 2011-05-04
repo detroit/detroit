@@ -3,9 +3,9 @@ email:
   mailto : transfire@gmail.com
   active : true
 
-box:
-  types  : [gem]
-  spec   : false
+gem:
+  service: Gem
+  pom    : true
   active : true
 
 dnote:
@@ -13,11 +13,12 @@ dnote:
   active  : true
 
 rdoc:
+  format  : newfish
   include : [ lib, "[A-Z]*" ]
-  exclude : [ Syckfile, lib/plugin/sow ]
+  exclude : [ Redfile, lib/plugins/sow ]
   extra   : ~
 
-ridoc:
+ri:
   exclude: []
   active : true
 

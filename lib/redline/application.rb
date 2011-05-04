@@ -14,10 +14,10 @@ require 'redline/cli'
 require 'redline/io'
 require 'redline/config'
 
-require 'redline/cycles'
-require 'redline/cycles/main'
-require 'redline/cycles/site'
-require 'redline/cycles/attn'
+require 'redline/track'
+require 'redline/tracks/main'
+require 'redline/tracks/site'
+require 'redline/tracks/attn'
 
 require 'redline/service'
 
@@ -66,7 +66,11 @@ module Redline
     def load_plugins
       ::Plugin.find("redline/*.rb").each do |file|
       #Redline.plugins.each do |file|
-        require(file)
+        begin
+          require(file)
+        rescue => err
+          $stderr.puts err if $DEBUG
+        end
         #Redline.module_eval(File.read(file))
       end
     end
@@ -118,7 +122,7 @@ module Redline
       cfg
     end
 
-    # Returns an array of actived services.
+    # Returns an Array of actived services.
 
     def active_services
       @active_services ||= (
@@ -230,14 +234,14 @@ module Redline
     #def cli
     #  @cli ||= (
     #    cli = script.cli
-    #    Redline.lifecycles.each do |key, lifecycle|
-    #      lifecycle.cycles.each do |phases|
-    #        phases.each do |phase|
+    #    Redline.tracks.each do |key, track|
+    #      track.routes.each do |stops|
+    #        stops.each do |stop|
     #          if key.to_sym == :main
-    #            cli.usage.subcommand("#{phase}") #.desc("no help")
-    #            cli.usage.subcommand("#{key}:#{phase}")
+    #            cli.usage.subcommand("#{stop}") #.desc("no help")
+    #            cli.usage.subcommand("#{key}:#{stop}")
     #          else
-    #            cli.usage.subcommand("#{key}:#{phase}")
+    #            cli.usage.subcommand("#{key}:#{stop}")
     #          end
     #        end
     #      end
@@ -254,50 +258,49 @@ module Redline
 
     # Run individual redline scripts/tasks.
 
-    def runscript(script, job)
+    def runscript(script, stop)
       @config.services.clear
       @config.load_redline_file(script)
       #@service_configs = load_service_configs(script)
-      run(job)
+      run(stop)
     end
 
-    # Start the cycle.
+    # Start the run.
 
     def start(argv=ARGV)
       Dir.chdir(project.root)        # change into project directory
       load_project_plugins           # load any local plugins
       cli.parse                      # parse the cli
-      job = argv.shift #cli.command  # what cycle-phase has been requested
-      #help(job) if !job             # if none then show help and exit
-      #help(cli,job) if cli.help?    # display help message if requested
-      #help(job) if cli.options[:help]
-      run(job)
+      stop = argv.shift #cli.command  # what stop has been requested
+      #help(stop) if !stop             # if none then show help and exit
+      #help(cli,stop) if cli.help?    # display help message if requested
+      #help(stop) if cli.options[:help]
+      run(stop)
     end
 
     # Show commndline help and exit.
-    #def help(job)
-    #  case job
+    #def help(stop)
+    #  case stop
     #  when nil
     #    puts cli.usage.help #_text
     #  else
-    #    puts cli.usage.subcommand(job).help_text
+    #    puts cli.usage.subcommand(stop).help_text
     #  end
     #  exit
     #end
 
-    # Run the cycle upto the specified cycle-phase.
-
-    def run(job)
+    # Run up to the specified +track_and_stop+.
+    def run(track_and_stop)
       # tab completion -- improve this in the future.
       #if cli == '?'
       #  m, l = [], []
       #  Redline.tracks.each do |key, track|
-      #     track.phasemap.keys.each do |phase|
+      #     track.stop_map.keys.each do |stop|
       #       if key == :main
-      #         m << "#{phase}"
-      #         l << "#{key}:#{phase}"
+      #         m << "#{stop}"
+      #         l << "#{key}:#{stop}"
       #       else
-      #         l << "#{key}:#{phase}"
+      #         l << "#{key}:#{stop}"
       #       end
       #     end
       #  end
@@ -305,29 +308,29 @@ module Redline
       #  exit
       #end
 
-      raise "Malformed life-cycle -- #{job}" unless /^\w+\:{0,1}\w+$/ =~ job
+      raise "Malformed destination -- #{track_and_stop}" unless /^\w+\:{0,1}\w+$/ =~ track_and_stop
 
-      if job
-        name, phase = job.split(':')
-        name, phase = 'main', name unless phase
+      if track_and_stop
+        name, stop = track_and_stop.split(':')
+        name, stop = 'main', name unless stop
       else
         name  = 'main'
-        phase = nil
+        stop = nil
       end
 
       name  = name.to_sym
-      phase = phase.to_sym if phase
+      stop = stop.to_sym if stop
 
-      lifecycle = Redline.lifecycles[name]
+      track = Redline.tracks[name]
 
-      raise "Unknown life-cycle -- #{name}" unless lifecycle
+      raise "Unknown track -- #{name}" unless track
 
-      if phase
-        system = lifecycle.cycle_with_phase(phase)
-        raise "Unknown phase -- #{phase}" unless system
+      if stop
+        system = track.route_with_stop(stop)
+        raise "Unknown stop -- #{stop}" unless system
       else
         #overview
-        $stderr.puts "Unknown name:phase given."
+        $stderr.puts "Unknown track:stop given."
         exit 0
       end
 
@@ -345,28 +348,28 @@ module Redline
 
       start_time = Time.now
 
-      system.each do |run_phase|
-        next if skip.include?("#{run_phase}")  # TODO: Should we really allow skipping phases?
-        service_hooks(name, ('pre_' + run_phase.to_s).to_sym)
-        service_calls(name, ('pre_' + run_phase.to_s).to_sym)
-        service_calls(name, run_phase)
-        service_calls(name, ('aft_' + run_phase.to_s).to_sym)
-        service_hooks(name, ('aft_' + run_phase.to_s).to_sym)
-        break if phase == run_phase
+      system.each do |run_stop|
+        next if skip.include?("#{run_stop}")  # TODO: Should we really allow skipping stops?
+        service_hooks(name, ('pre_' + run_stop.to_s).to_sym)
+        service_calls(name, ('pre_' + run_stop.to_s).to_sym)
+        service_calls(name, run_stop)
+        service_calls(name, ('aft_' + run_stop.to_s).to_sym)
+        service_hooks(name, ('aft_' + run_stop.to_s).to_sym)
+        break if stop == run_stop
       end
 
       stop_time = Time.now
       puts "\nFinished in #{stop_time - start_time} seconds." unless script.quiet?
     end
 
-    # Execute service hook for given track and phase.
+    # Execute service hook for given track and destination.
     #--
-    # TODO: Currently only phase counts, maybe add track subdirs.
+    # TODO: Currently only stop counts, maybe add track subdirs.
     #++
-    def service_hooks(track, phase)
+    def service_hooks(track, stop)
        dir  = project.config + "redline/hooks"
-       #hook = dir + ("#{track}/#{phase}.rb".gsub('_', '-'))
-       name = phase.to_s.gsub('_', '-')
+       #hook = dir + ("#{track}/#{stop}.rb".gsub('_', '-'))
+       name = stop.to_s.gsub('_', '-')
        hook = dir + "#{name}.rb"
        if hook.exist?
          io.status_line("hook", name.capitalize)
@@ -376,12 +379,12 @@ module Redline
 
     # Make service calls.
 
-    def service_calls(track, phase)
+    def service_calls(track, stop)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
         # remove any services specified by the -s option on the comamndline.
         services = services.reject{ |srv| skip.include?(srv.key.to_s) }
-        tasklist = services.map{ |srv| [srv, track, phase] }
+        tasklist = services.map{ |srv| [srv, track, stop] }
         if multitask?
           results = Parallel.in_processes(tasklist.size) do |i|
             run_a_service(*tasklist[i])
@@ -394,17 +397,17 @@ module Redline
       end
     end
 
-    # Run a service given the service, track name and phase name.
+    # Run a service given the service, track name and stop name.
 
-    def run_a_service(srv, track, phase)
-      # run if the service supports the track and phase.
-      if srv.respond_to?("#{track}_#{phase}")
+    def run_a_service(srv, track, stop)
+      # run if the service supports the track and stop.
+      if srv.respond_to?("#{track}_#{stop}")
         if script.verbose?
-          io.status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{phase})", phase.to_s.gsub('_', '-').capitalize)
+          io.status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
         else
-          io.status_line("#{srv.key.to_s}", phase.to_s.gsub('_', '-').capitalize)
+          io.status_line("#{srv.key.to_s}", stop.to_s.gsub('_', '-').capitalize)
         end
-        srv.__send__("#{track}_#{phase}")
+        srv.__send__("#{track}_#{stop}")
       end
     end
 
@@ -421,19 +424,19 @@ module Redline
       end
     end
 
-    # Returns a list of all the phases that terminate a pipleline execution.
-    # FIXME: phase_map is not defined.
+    # Returns a list of all terminal stops, i.e. stops at a tracks end.
+    # FIXME: stop_map is not defined.
 
-    def end_phases
-      (phase_map.keys - phase_map.values).compact
+    def end_stops
+      (stop_map.keys - stop_map.values).compact
     end
 
-    # Give an overview of phases this track supports.
-    # FIXME: end_phases blows up.
+    # Give an overview of stops this track supports.
+    # FIXME: end_stops blows up.
 
     def overview
-      end_phases.each do |phase_name|
-        action_plan(phase_name).each do |act|
+      end_stops.each do |stop_name|
+        action_plan(stop_name).each do |act|
           io.display_action(act)
         end
         puts

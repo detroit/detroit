@@ -6,7 +6,7 @@ module Redline::Plugins
   #
   class GemCutter < Service
 
-    cycle :main, :release
+    stop :main, :release
 
     ## How to autorun gemcutter?
     #autorun do |project|
