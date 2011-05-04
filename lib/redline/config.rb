@@ -1,21 +1,19 @@
 require 'facets/boolean'
-#require 'path/store'
 
 module Redline
 
-  # Redline configuration. Configuration comes from a main +Syckfile+
-  # and/or +.red+ task files, and configuration options defined
-  # in a path store in the project's config directory (eg. <tt>.config/red/</tt>).
-  
+  # Redline configuration. Configuration comes from a main +Redfile+
+  # and/or +.redfile+ task files.
   class Config
     #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
-    FILE = 'Syckfile'
+    # File identifier used to find a project's Redfile(s).
+    FILE_ID = "redfile"
 
     # Current POM::Project object.
     attr :project
 
-    # Service configurations from Syckfile or task/*.red files.
+    # Service configurations from Redfile or task/*.redfile files.
     # This is a hash of parameters.
     attr :services
 
@@ -28,27 +26,20 @@ module Redline
     def initialize(project) #, *files)
       @project = project
 
-      if file = project.config.glob('redline/config.{yml,yaml}').first
-        conf = YAML.load(File.new(file))
-      else
-        conf = {}
-      end
-
-      #if conf['automatic'].nil?
-      #  self.automatic = true
+      #if file = project.config.glob('redline/config.{yml,yaml}').first
+      #  conf = YAML.load(File.new(file))
       #else
-      #  self.automatic = conf['automatic']
+      #  conf = {}
       #end
 
-      #self.standard  = conf['standard'] || []
-
-      if file = project.config.glob('redline/defaults.{yml,yaml}').first
-        self.defaults = YAML.load(File.new(file))
-      else
-        self.defaults = {}
-      end
+      #if file = project.config.glob('redline/defaults.{yml,yaml}').first
+      #  self.defaults = YAML.load(File.new(file))
+      #else
+      #  self.defaults = {}
+      #end
 
       @services = {}
+      @defaults = {}
 
       redline_files.each do |file|
         load_redline_file(file)
@@ -60,32 +51,40 @@ module Redline
       @defaults = hash.to_h #OpenStruct.new(hash) # need two layer OpenStruct.. OpenCascade?
     end
 
-    # If Syckfile or .syckfile exist, then it is returned.
-    # Otherwise all task/*.red files.
+    # If Redfile or .redfile exist, then it is returned.
+    # Otherwise all task/*.redfile files.
     def redline_files
       @confg_files ||= (
-        files = project.root.glob("{,.}#{FILE}{,.yml,.yaml}", :casefold)
+        files = project.root.glob("{,.}#{FILE_ID}{,.yml,.yaml}", :casefold)
         if files.empty?
-          files += project.task.glob('*.red')
+          files += project.task.glob("*.#{FILE_ID}")
         end
         files = files.select{ |f| File.file?(f) }
       )
     end
 
-    # If using Syckfile and want to import task/*.red
-    # files then use +import:+ entry. 
+    # If using a Redfile and want to import antoher file then use
+    # +import:+ entry.
+    #
+    # Use the :defaults: entry to add service defaults. Note that these
+    # are presently NOT per-file, but are merged together for all redfiles.
     def load_redline_file(file)
       dir  = File.dirname(file)
       text = File.read(file).strip
 
-      # if yaml vs. ruby file
+      ## if yaml vs. ruby file
       if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
         data = parse_redline_file_yaml(text, file)
       else
         data = parse_redline_file_ruby(text, file)
+      end    
+
+      ## extract defaults
+      if defaults = data.delete('defaults')
+        @defaults.merge!(defaults)
       end
 
-      # Import other files. This is useful when using the Syckfile.
+      ## import other files
       if import = data.delete('import')
         [import].flatten.each do |glob|
           pattern = File.join(dir,glob)
@@ -120,7 +119,7 @@ module Redline
     #end
 
     # TODO: This needs to be a subclass of BasicObject or it needs to use 
-    # setter notation, instead of instance_eval. The later is the most robust,
+    # setter notation, instead of instance_eval. The former is the most robust,
     # but the later can work if we are very explict about methods in the context.
     class Parser
       public_instance_methods.each{ |m| undef_method m unless /^(__|instance_)/ =~ m.to_s }

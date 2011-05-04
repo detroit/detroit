@@ -291,8 +291,8 @@ module Redline
       # tab completion -- improve this in the future.
       #if cli == '?'
       #  m, l = [], []
-      #  Redline.pipelines.each do |key, pipe|
-      #     pipe.phasemap.keys.each do |phase|
+      #  Redline.tracks.each do |key, track|
+      #     track.phasemap.keys.each do |phase|
       #       if key == :main
       #         m << "#{phase}"
       #         l << "#{key}:#{phase}"
@@ -359,13 +359,13 @@ module Redline
       puts "\nFinished in #{stop_time - start_time} seconds." unless script.quiet?
     end
 
-    # Execute service hook for given pipe and phase.
+    # Execute service hook for given track and phase.
     #--
-    # TODO: Currently only phase counts, maybe add pipe subdirs.
+    # TODO: Currently only phase counts, maybe add track subdirs.
     #++
-    def service_hooks(pipe, phase)
+    def service_hooks(track, phase)
        dir  = project.config + "redline/hooks"
-       #hook = dir + ("#{pipe}/#{phase}.rb".gsub('_', '-'))
+       #hook = dir + ("#{track}/#{phase}.rb".gsub('_', '-'))
        name = phase.to_s.gsub('_', '-')
        hook = dir + "#{name}.rb"
        if hook.exist?
@@ -376,12 +376,12 @@ module Redline
 
     # Make service calls.
 
-    def service_calls(pipe, phase)
+    def service_calls(track, phase)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
         # remove any services specified by the -s option on the comamndline.
         services = services.reject{ |srv| skip.include?(srv.key.to_s) }
-        tasklist = services.map{ |srv| [srv, pipe, phase] }
+        tasklist = services.map{ |srv| [srv, track, phase] }
         if multitask?
           results = Parallel.in_processes(tasklist.size) do |i|
             run_a_service(*tasklist[i])
@@ -394,17 +394,17 @@ module Redline
       end
     end
 
-    # Run a service given the service, pipe name and phase name.
+    # Run a service given the service, track name and phase name.
 
-    def run_a_service(srv, pipe, phase)
-      # run if the service supports the pipe and phase.
-      if srv.respond_to?("#{pipe}_#{phase}")
+    def run_a_service(srv, track, phase)
+      # run if the service supports the track and phase.
+      if srv.respond_to?("#{track}_#{phase}")
         if script.verbose?
-          io.status_line("#{srv.key.to_s} (#{srv.class}##{pipe}_#{phase})", phase.to_s.gsub('_', '-').capitalize)
+          io.status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{phase})", phase.to_s.gsub('_', '-').capitalize)
         else
           io.status_line("#{srv.key.to_s}", phase.to_s.gsub('_', '-').capitalize)
         end
-        srv.__send__("#{pipe}_#{phase}")
+        srv.__send__("#{track}_#{phase}")
       end
     end
 
@@ -428,7 +428,7 @@ module Redline
       (phase_map.keys - phase_map.values).compact
     end
 
-    # Give an overview of phases this pipeline supports.
+    # Give an overview of phases this track supports.
     # FIXME: end_phases blows up.
 
     def overview
@@ -443,4 +443,3 @@ module Redline
   end
 
 end #module Redline
-
