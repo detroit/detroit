@@ -13,7 +13,11 @@ module Redline
   #
   class Track
     #
+    attr :name
+
+    #
     attr :routes
+    #alias_method :tracks, :routes
 
     #
     def initialize(name, &block)
@@ -26,6 +30,7 @@ module Redline
     def route(*stops)
       @routes << stops.map{ |s| s.to_sym }
     end
+    
 
     #
     def route_with_stop(stop)
