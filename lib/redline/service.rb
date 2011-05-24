@@ -204,7 +204,8 @@ module Redline
       end
 
       # When subclassing, put default instance variable settngs here.
-      # Eg.
+      #
+      # Examples
       #
       #   def initialize_defaults
       #     @gravy = true

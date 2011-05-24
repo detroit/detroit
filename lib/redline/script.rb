@@ -1,5 +1,5 @@
 require 'yaml'
-require 'rbconfig'  # replace with facets/rbsystem?
+require 'rbconfig'
 #require 'ostruct'
 #require 'tmpdir'
 
