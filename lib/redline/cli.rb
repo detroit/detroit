@@ -103,7 +103,7 @@ module Redline
     #
     def run
       parse
-      if /\.redline$/ =~ arguments[0]
+      if /\.redfile$/ =~ arguments[0]
         job = arguments[1]
         application.runscript(arguments[0], job)
       else
