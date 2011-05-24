@@ -40,9 +40,14 @@ module Redline::Plugins
     # the project's log directory. This should alwasy be a
     # dedicated directory because mutiple files are generated
     # with generic names, eg. +index.html+.
-    attr_accessor :output
+    attr_reader :output
 
-    # Title of pacakge. Thisis used to put a header in the output.
+    # See #output.
+    def output=(dir)
+      @output = pathname(dir).expand_path
+    end
+
+    # Title of package. This is used to put a header in the output.
     attr_accessor :title
 
     # Setup default attribute values.
@@ -77,6 +82,11 @@ module Redline::Plugins
     end
 
   private
+
+    #
+    def pathname(*dirs)
+      Pathname.new(File.join(*dirs))
+    end
 
     # Save stats to output.
     #
