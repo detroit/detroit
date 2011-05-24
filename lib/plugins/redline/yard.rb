@@ -47,10 +47,10 @@ module Redline::Plugins
     #end
 
     # Default location to store yard documentation files.
-    DEFAULT_OUTPUT       = "doc/yard"
+    DEFAULT_OUTPUT       = "doc"
 
     # Locations to check for existance in deciding where to store yard documentation.
-    DEFAULT_OUTPUT_MATCH = "{yard,doc/yard}"
+    DEFAULT_OUTPUT_MATCH = "{yard,doc/yard,doc}"
 
     # Default main file.
     DEFAULT_README       = "README"
