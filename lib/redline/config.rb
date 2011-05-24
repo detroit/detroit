@@ -8,7 +8,7 @@ module Redline
     #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
     # File identifier used to find a project's Redfile(s).
-    FILE_ID = "redfile"
+    FILE_EXTENSION = "redfile"
 
     # Current POM::Project object.
     attr :project
@@ -32,7 +32,9 @@ module Redline
       #  conf = {}
       #end
 
-      if file = project.config.glob('redline/defaults.{yml,yaml}').first
+      # TODO: Are these still here?
+      if file = project.root.glob('.redline/defaults.{yml,yaml}').first ||
+                project.config.glob('redline/defaults.{yml,yaml}').first
         self.defaults = YAML.load(File.new(file))
       else
         self.defaults = {}
@@ -55,9 +57,14 @@ module Redline
     # Otherwise all task/*.redfile files.
     def redline_files
       @confg_files ||= (
-        files = project.root.glob("{,.}#{FILE_ID}{,.yml,.yaml}", :casefold)
+        files = []
+        ## match 'Redfile' or '.redfile' with optional .yml or .yaml
+        files += project.root.glob("{,.}#{FILE_EXTENSION}{,.yml,.yaml}", :casefold)
+        ## match '.redfile/*.redfile' or 'redfile/*.redfile'
+        files += project.root.glob("{,.}redline/*.#{FILE_EXTENSION}", :casefold)
         if files.empty?
-          files += project.task.glob("*.#{FILE_ID}")
+          ## try 'task/*.redfile' (OLD SCHOOL)
+          files += project.task.glob("*.#{FILE_EXTENSION}")
         end
         files = files.select{ |f| File.file?(f) }
       )
