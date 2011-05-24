@@ -443,6 +443,12 @@ module Redline
       end
     end
 
+    #def lines
+    #  l =[]
+    #  active_services.each do |service|
+    #    service.
+    #  end
+    #end
   end
 
 end #module Redline
