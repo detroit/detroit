@@ -15,13 +15,13 @@ module Redline::Plugins
     # Which track(s) to run this custom plugin.
     attr_accessor :track
 
-    # Plural alias for #track.
-    alias_accessor :tracks, :track
-
     # Special writer to allow single track or a list of tracks.
     def track=(val)
       @track = [val].flatten
     end
+
+    # Plural alias for #track.
+    alias_accessor :tracks, :track
 
   private
 
@@ -54,7 +54,7 @@ module Redline::Plugins
 
     # Set initial attribute defaults.
     def initialize_defaults
-      @track = DEFAULT_TRACK
+      @track = [DEFAULT_TRACK]
     end
 
     #
