@@ -15,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-05-03 00:00:00 -04:00
+date: 2011-05-04 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -88,7 +88,7 @@ dependencies:
         version: "0"
   type: :development
   version_requirements: *id005
-description: Redline is an advanced life-cycle based build system.
+description: Redline is an advanced lifecycle-oriented build system. With Redline build tasks are user define service instances tied to stops along a line, or track. Whenever the redline console command is run a track is followed from beginning to designated destination.
 email: transfire@gmail.com
 executables: 
 - redline
@@ -128,16 +128,17 @@ files:
 - lib/redline/cli.rb
 - lib/redline/config.rb
 - lib/redline/core_ext.rb
-- lib/redline/cycles/attn.rb
-- lib/redline/cycles/main.rb
-- lib/redline/cycles/site.rb
-- lib/redline/cycles.rb
 - lib/redline/io.rb
 - lib/redline/log.rb
 - lib/redline/script.rb
+- lib/redline/service/domain.rb
 - lib/redline/service.rb
 - lib/redline/shell/email.rb
 - lib/redline/shell.rb
+- lib/redline/track.rb
+- lib/redline/tracks/attn.rb
+- lib/redline/tracks/main.rb
+- lib/redline/tracks/site.rb
 - lib/redline.rb
 - lib/redline.yml
 - test/fn/rdoc/rdoc-plugin.rdoc
@@ -153,9 +154,9 @@ files:
 - GPL3.txt
 - COPYING.rdoc
 has_rdoc: true
-homepage: http://proutils.github.com/syckle
+homepage: http://proutils.github.com/redline
 licenses: 
-- Apache 2.0
+- Dual GPL3
 post_install_message: 
 rdoc_options: 
 - --title
@@ -188,6 +189,6 @@ rubyforge_project: redline
 rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
-summary: Advanced life-cycle build tool
+summary: Lifecycle-oriented build tool
 test_files: []
 

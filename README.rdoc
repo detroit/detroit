@@ -22,11 +22,11 @@ and release Ruby projects.
 
 Using Redline is not diffcult, but it does take a few minutes to understand
 how it operates. If you are familiar with Maven from the Java ecosystem then
-you have as fair notion of Redline. In short, Redline defines *lines* (or *tracks*)
-within which all Redline services run. The developer only needs to define service
-instances or *tasks*, as YAML and Ruby configuration files in a project's
-+task+ directory with a `.redfile` extension, or in a central +Redfile+ file.
-For example, Redline's RubyForge service config looks like this:
+you have as fair notion about Redline. In short, Redline defines _lines_, 
+or _tracks_, within which all Redline services run. The developer only needs
+to define service instances or _tasks_, as YAML and Ruby configuration files
+in a project's Redfile or task/*.redfile files. For example, Redline's RubyForge
+service config looks like this:
 
   rubyforge:
     service: Rubyforge

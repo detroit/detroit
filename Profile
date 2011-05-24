@@ -1,10 +1,14 @@
 ---
 title  : Redline
-summary: Advanced life-cycle build tool
+summary: Lifecycle-oriented build tool
 contact: Trans <transfire@gmail.com>
 
 description:
-  Redline is an advanced life-cycle based build system.
+  Redline is an advanced lifecycle-oriented build system.
+  With Redline build tasks are user define service instances
+  tied to stops along a line, or track. Whenever the redline
+  console command is run a track is followed from beginning
+  to designated destination.
 
 requires:
 - facets
@@ -14,15 +18,15 @@ requires:
 - qed (test)
 
 resources:
-  home: http://proutils.github.com/syckle
+  home: http://proutils.github.com/redline
 
 repositories:
-  public: http://github.com/proutils/syckle.git
+  public: http://github.com/proutils/redline.git
 
 authors:
   - Thomas Sawyer
 
-license: Apache 2.0
+license: Dual GPL3
 created: 2007-10-10
 
 organization: Rubyworks

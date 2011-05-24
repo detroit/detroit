@@ -6,7 +6,7 @@ loadpath:
 - lib
 name: redline
 repositories: 
-  public: http://github.com/proutils/syckle.git
+  public: http://github.com/proutils/redline.git
 conflicts: []
 
 engine_check: []
@@ -14,7 +14,7 @@ engine_check: []
 title: Redline
 contact: Trans <transfire@gmail.com>
 resources: 
-  home: http://proutils.github.com/syckle
+  home: http://proutils.github.com/redline
 maintainers: []
 
 requires: 
@@ -41,11 +41,11 @@ requires:
 manifest: MANIFEST
 version: 1.0.0
 licenses: 
-- Apache 2.0
+- Dual GPL3
 copyright: Copyright (c) 2007 Thomas Sawyer
 authors: 
 - Thomas Sawyer
 organization: Rubyworks
-description: Redline is an advanced life-cycle based build system.
-summary: Advanced life-cycle build tool
+description: Redline is an advanced lifecycle-oriented build system. With Redline build tasks are user define service instances tied to stops along a line, or track. Whenever the redline console command is run a track is followed from beginning to designated destination.
+summary: Lifecycle-oriented build tool
 created: 2007-10-10
