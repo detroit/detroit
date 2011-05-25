@@ -1,5 +1,6 @@
 require 'redline/application'
 require 'optparse'
+require 'redtools'
 
 module Redline
 

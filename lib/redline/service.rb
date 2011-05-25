@@ -51,6 +51,13 @@ module Redline
         Class.new(self, &block)
       end
 
+      #
+      def options(service_class=self)
+        service_class.instance_methods.
+          select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }.
+          map{ |m| m.to_s.chomp('=') }
+      end
+
     end
 
     # Service Domain language. This module extends the Service class,
@@ -187,10 +194,8 @@ module Redline
         initialize_requires
         initialize_defaults
 
-        options ||= {}
-
-        options.each do |k, v|
-          send("#{k}=", v) unless v.nil? #if respond_to?("#{k}=") && !v.nil?
+        @options.each do |k, v|
+          send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
         end
       end
 

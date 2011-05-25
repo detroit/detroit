@@ -20,7 +20,7 @@ module Redline::Plugins
 
     # Special writer to allow single track or a list of tracks.
     def track=(val)
-      @track = [val].flatten
+      @track = val.to_list #[val].flatten
     end
 
   private
@@ -34,7 +34,7 @@ module Redline::Plugins
       options.each do |stop, script|
         # skip specific config options
         next if stop == 'service'
-        next if stop == 'track' or key == 'tracks'
+        next if stop == 'track' or stop == 'tracks'
         next if stop == 'active'
         next if stop == 'priority'
         # remaining options are names of track stops

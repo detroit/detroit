@@ -113,7 +113,7 @@ module Redline
     def config_template
       cfg = {}
       Redline.services.each do |srv_name, srv_class|
-        attrs = srv_class.instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
+        attrs = srv_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
         atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
         atcfg['service'] = srv_class.basename.downcase
         atcfg['active']  = false

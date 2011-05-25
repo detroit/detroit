@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-email do
+announce do
   mailto "transfire@gmail.com"
   active true
 end

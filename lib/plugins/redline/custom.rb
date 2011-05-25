@@ -17,13 +17,13 @@ module Redline::Plugins
 
     # Special writer to allow single track or a list of tracks.
     def track=(val)
-      @track = [val].flatten
+      @track = val.to_list #[val].flatten
     end
 
     # Plural alias for #track.
     alias_accessor :tracks, :track
 
-  private
+    private
 
     # Instantiate new custom plugin.
     #
@@ -37,7 +37,7 @@ module Redline::Plugins
       options.each do |stop, script|
         # skip specific names used for configuration
         next if stop == 'service'
-        next if stop == 'track' or key == 'tracks'
+        next if stop == 'track' or stop == 'tracks'
         next if stop == 'active'
         next if stop == 'priority'
         # remaining options are names of track stops

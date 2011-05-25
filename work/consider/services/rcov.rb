@@ -77,4 +77,3 @@ module Redline::Plugins
   end
 
 end
-
