@@ -99,6 +99,15 @@ module Redline
         end
       end
 
+      ## require plugins
+      if plugins = data.delete('plugins')
+        [plugins].flatten.each do |file|
+          #pattern = File.join(dir,glob)
+          #Dir[pattern].each{ |f| require(f) }
+          require file
+        end
+      end
+
       @services.update(data)
     end
 
