@@ -29,7 +29,7 @@ module Redline::Plugins
 
     #
     def tool
-      @tool ||= RedTools::Testrb(@options)
+      @tool ||= RedTools::Testrb(options)
     end
 
     #
@@ -40,3 +40,4 @@ module Redline::Plugins
   end
 
 end
+

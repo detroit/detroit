@@ -42,7 +42,7 @@ module Redline::Plugins
 
     # Options conform to RedTools::RI class.
     def self.options
-      super(RedTools::RDoc)
+      super(RedTools::RI)
     end
 
     #
@@ -64,7 +64,7 @@ module Redline::Plugins
 
     #
     def tool
-      @tool ||= RedTools::RI(@options)
+      @tool ||= RedTools::RI(options)
     end
 
     #

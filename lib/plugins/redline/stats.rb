@@ -1,19 +1,14 @@
 module Redline::Plugins
 
-  # = Simple Code Statistics Plugin
+  # Stats provides a very simple LOC metrics service.
   #
-  # The Stats plugin is a simple code statistics analyizer,
-  # producing a basic LOC analysis.
-  #
-  # TODO: Add support for testable demo/ (how?).
-  #
-  class Stats < Service
+  class Stats < Tool
 
-    stop :main, :analyize
+    stop :main, :analyze
     stop :main, :reset
     stop :main, :clean
 
-    stop :site, :analyize
+    stop :site, :analyze
     stop :site, :reset
     stop :site, :clean
 
@@ -64,7 +59,7 @@ module Redline::Plugins
     #
     # TODO: Add C support for ext/.
     #
-    def analyize
+    def analyze
       loadpath = self.loadpath.to_list
       exclude  = self.exclude.to_list
 
