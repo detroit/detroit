@@ -1,17 +1,20 @@
+# Erb is used to to script YAML-based redfiles.
 require 'erb'
 
+# The ANSI gem is used to colorize terminal output.
 require 'ansi/terminal'
 require 'ansi/code'
 
-require 'redtools/tool'
-
+# The parallel gem is used to (optionally) multitask services.
 begin
   require 'parallel'
 rescue LoadError
 end
 
-require 'redline/core_ext'
+#
+require 'redtools/tool'
 
+require 'redline/core_ext'
 require 'redline/cli'
 require 'redline/config'
 
@@ -22,22 +25,20 @@ require 'redline/tracks/attn'
 
 require 'redline/service'
 
-
-# FIXME: Not all io output is running through the io object.
-
 module Redline
 
   #
-  #PLUGIN_DIRECTORY = File.dirname(__FILE__) + '/plugins'
+  PLUGIN_DIRECTORY = File.dirname(__FILE__) + '/plugins'
 
+  # Returns Array of file paths.
   def self.standard_plugins
-    glob = File.dirname(__FILE__) + '/plugins/*.rb'
-    Dir[glob]
+    Dir[PLUGIN_DIRECTORY + '/*.rb']
   end
 
   # = Application
   #
   # TODO: Probably rename this class --"Application" is too generic.
+  #
   # TODO: Continue to imporve CLI layer.
   #
   class Application
@@ -45,24 +46,24 @@ module Redline
     # Commandline interface controller.
     attr :cli
 
-    # Redline mater configuration.
+    # Redline configuration.
     attr :config
 
-    # Actions (extracted from services).
-    attr :actions
+    ## Actions (extracted from services).
+    #attr :actions
 
-    # New Redline Application.
+    # Create a new Redline Application instance.
     def initialize(cli_options)
       @cli      = cli_options #Redline::CLI.new
       @config   = Redline::Config.new(project)
 
       #@services, @actions = *load_service_configuration
 
-      load_plugins
+      load_standard_plugins
     end
 
-    #
-    def load_plugins
+    # Load standard plugins.
+    def load_standard_plugins
       #::Plugin.find("redline/*.rb").each do |file|
       Redline.standard_plugins.each do |file|
         begin
@@ -79,41 +80,25 @@ module Redline
     end
 
     # Multitask mode?
-
     def multitask?
-      cli.multitask? && defined?(Parallel) #parallel?
+      cli.multitask? && defined?(Parallel)
     end
 
-    # Parallel library installed?
-
-    #def parallel?
-    #  if @parallel.nil?
-    #    begin
-    #      require 'parallel'
-    #      @parallel = true
-    #    rescue LoadError
-    #      @parallel = false
-    #    end
-    #  end
-    #  @parallel
-    #end
-
     # Provides access to the Project instance.
-
     def project
       #script.project
       @project ||= POM::Project.find
     end
 
     # User-defined service defaults.
-
+    #
+    # Returns Hash of service defaults.
     def defaults
       config.defaults
     end
 
     # Generates a master configuration template.
     # This is only used for reference purposes.
-
     def config_template
       cfg = {}
       Redline.services.each do |srv_name, srv_class|
@@ -126,8 +111,10 @@ module Redline
       cfg
     end
 
-    # Returns an Array of actived services.
-
+    # Active services are services defined in redfiles and do not
+    # have their active setting turned off.
+    #
+    # Returns Array of actived services.
     def active_services
       @active_services ||= (
         activelist = []
@@ -173,10 +160,10 @@ module Redline
     #  )
     #end
 
-    # Service configuration. These are stored in the
-    # project's Redfile, or .redline/ or task/ folders
-    # as Ruby or YAML files.
-
+    # Service configuration. These are stored in the project's Redfile,
+    # or .redline/ or task/ folders as Ruby or YAML files.
+    #
+    # Returns Hash of service name and settings.
     def service_configs
       config.services
     end
@@ -203,13 +190,11 @@ module Redline
     #end
 
     # Returns a list of services to skip as specificed on the commandline.
-
     def skip
       @skip ||= cli.skip.to_list.map{ |s| s.downcase }
     end
 
     # Run individual redline scripts/tasks.
-
     def runscript(script, stop)
       @config.services.clear
       @config.load_redline_file(script)
@@ -218,7 +203,6 @@ module Redline
     end
 
     # Start the run.
-
     def start(argv=ARGV)
       Dir.chdir(project.root)        # change into project directory
       load_project_plugins           # load any local plugins
@@ -347,7 +331,6 @@ module Redline
     end
 
     # Make service calls.
-
     def service_calls(track, stop)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
@@ -370,7 +353,6 @@ module Redline
     end
 
     # Run a service given the service, track name and stop name.
-
     def run_a_service(srv, track, stop)
       # run if the service supports the track and stop.
       #if srv.respond_to?("#{track}_#{stop}")
@@ -388,7 +370,6 @@ module Redline
 
     # Load custom plugins.
     # FIXME: how to load?
-
     def load_project_plugins
       #plugs = project.config_redline.glob('*.rb')
       plugs = project.plugin.glob('*.rb')
@@ -401,14 +382,12 @@ module Redline
 
     # Returns a list of all terminal stops, i.e. stops at a tracks end.
     # FIXME: stop_map is not defined.
-
     def end_stops
       (stop_map.keys - stop_map.values).compact
     end
 
     # Give an overview of stops this track supports.
     # FIXME: end_stops blows up.
-
     def overview
       end_stops.each do |stop_name|
         action_plan(stop_name).each do |act|
