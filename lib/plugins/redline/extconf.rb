@@ -7,9 +7,11 @@ module Redline::Plugins
   #
   class ExtConf < Service
 
+=begin
     stop :main, :compile
     stop :main, :reset
     stop :main, :clean
+=end
 
     #available do |project|
     #  # check for make tools

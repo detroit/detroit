@@ -4,6 +4,7 @@ module Redline::Plugins
   #
   class Stats < Tool
 
+=begin
     stop :main, :analyze
     stop :main, :reset
     stop :main, :clean
@@ -11,6 +12,7 @@ module Redline::Plugins
     stop :site, :analyze
     stop :site, :reset
     stop :site, :clean
+=end
 
     # Default folder to store generated files under log/.
     DEFAULT_FOLDER = 'stats'

@@ -18,6 +18,7 @@ module Redline::Plugins
   #
   class Yard < Service
 
+=begin
     stop :main, :document
     stop :main, :reset
     stop :main, :clean
@@ -25,6 +26,7 @@ module Redline::Plugins
     stop :site, :document
     stop :site, :reset
     stop :site, :clean
+=end
 
     # Make sure YARD is available.
     available do |project|

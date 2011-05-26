@@ -30,25 +30,25 @@ module Redline::Plugins
     # FIXME: Custom#initialize seems to be running twice at startup. Why?
     #
     # This works by interpreting the service configuration as a hash of
-    # stop names => ruby code.
+    # stop names to ruby code.
     #
     def initialize(context, key, options)
       super
       options.each do |stop, script|
         # skip specific names used for configuration
         next if stop == 'service'
-        next if stop == 'track' or stop == 'tracks'
+        next if stop == 'tracks' or stop == 'track'
         next if stop == 'active'
         next if stop == 'priority'
         # remaining options are names of track stops
-        tracks.each do |t|
+        #tracks.each do |t|
           src = %{
-            def #{t}_#{stop}
+            def #{stop}
               #{script}
             end
           }
           (class << self; self; end).module_eval(src)
-        end
+        #end
       end
     end
 

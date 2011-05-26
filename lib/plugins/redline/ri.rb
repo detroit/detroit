@@ -22,6 +22,7 @@ module Redline::Plugins
   #
   class RI < Service
 
+=begin
     stop :main, :document
     stop :main, :reset
     stop :main, :clean
@@ -29,15 +30,10 @@ module Redline::Plugins
     stop :site, :document
     stop :site, :reset
     stop :site, :clean
+=end
 
     #available do |project|
     #  !project.metadata.loadpath.empty?
-    #end
-
-    ## RIDoc can run automatically if the project has
-    ## a +doc/ri+ directory.
-    #autorun do |project|
-    #  project.root.glob('doc/ri').first
     #end
 
     # Options conform to RedTools::RI class.

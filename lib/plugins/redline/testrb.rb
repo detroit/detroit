@@ -9,7 +9,9 @@ module Redline::Plugins
   #
   class Testrb < Service
 
+=begin
     stop :main, :test
+=end
 
     #available do |project|
     #  !Dir['test/**/*.rb'].empty?

@@ -19,6 +19,7 @@ module Redline::Plugins
   #
   class RDoc < Service
 
+=begin
     ##
     # Generate rdocs in main cycle.
     # :method: main_document
@@ -29,6 +30,7 @@ module Redline::Plugins
     stop :site, :document
     stop :site, :reset
     stop :site, :clean
+=end
 
     # TODO: IMPROVE
     #available do |project|

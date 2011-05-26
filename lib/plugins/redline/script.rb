@@ -23,7 +23,7 @@ module Redline::Plugins
       @track = val.to_list #[val].flatten
     end
 
-  private
+    private
 
     # Instantiate new custom plugin.
     #
@@ -38,14 +38,14 @@ module Redline::Plugins
         next if stop == 'active'
         next if stop == 'priority'
         # remaining options are names of track stops
-        tracks.each do |t|
+        #tracks.each do |t|
           src = %{
-            def #{t}_#{stop}
+            def ##{stop}
               sh "#{script}"
             end
           }
           (class << self; self; end).module_eval(src)
-        end
+        #end
       end
     end
 

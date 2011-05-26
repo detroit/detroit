@@ -71,7 +71,7 @@ module Redline
       load_plugins
     end
 
-    #
+    # TODO: Do not load plugins automatically!!!!!!!!!!!
     def load_plugins
       ::Plugin.find("redline/*.rb").each do |file|
       #Redline.plugins.each do |file|
@@ -168,7 +168,8 @@ module Redline
             options = defaults[service_name.downcase].to_h
             options = opts.merge(common_tool_options)
             options = opts.merge(opts)
-            activelist << service_class.new(key, options) #script,
+            #activelist << service_class.new(key, options) #script,
+            activelist << ServiceWrapper.new(key, service_class, options) #script,
           #else
           #  warn "Service #{service_class} is not available."
           end
@@ -333,7 +334,7 @@ module Redline
         stop = nil
       end
 
-      name  = name.to_sym
+      name = name.to_sym
       stop = stop.to_sym if stop
 
       track = Redline.tracks[name]
@@ -413,8 +414,11 @@ module Redline
     def service_calls(track, stop)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
-        # remove any services specified by the -s option on the comamndline.
+        # remove any services specified by the -s option on the comamndline
         services = services.reject{ |srv| skip.include?(srv.key.to_s) }
+        # only servies that are on the track
+        services = services.select{ |srv| srv.tracks.nil? or srv.tracks.include?(track.to_s) }
+
         tasklist = services.map{ |srv| [srv, track, stop] }
         if multitask?
           results = Parallel.in_processes(tasklist.size) do |i|
@@ -432,13 +436,16 @@ module Redline
 
     def run_a_service(srv, track, stop)
       # run if the service supports the track and stop.
-      if srv.respond_to?("#{track}_#{stop}")
+      #if srv.respond_to?("#{track}_#{stop}")
+      if srv.stop?(stop)
         if cli.verbose?
-          status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
+          #status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
+          status_line("#{srv.key.to_s} (#{srv.class}##{stop})", stop.to_s.gsub('_', '-').capitalize)
         else
           status_line("#{srv.key.to_s}", stop.to_s.gsub('_', '-').capitalize)
         end
-        srv.__send__("#{track}_#{stop}")
+        #srv.__send__("#{track}_#{stop}")
+        srv.invoke(stop)
       end
     end
 

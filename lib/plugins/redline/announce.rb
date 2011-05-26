@@ -8,8 +8,10 @@ module Redline::Plugins
   # on a projects README.* file.
   class Announce < Service
 
+=begin
     stop :main, :announce
     stop :attn, :announce
+=end
 
     #available do |project|
     #  true # when ?

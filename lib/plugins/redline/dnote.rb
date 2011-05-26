@@ -17,9 +17,11 @@ module Redline::Plugins
   #++
   class DNote < Service
 
+=begin
     stop :main, :document
     stop :main, :reset
     stop :main, :clean
+=end
 
     #available do |project|
     #  !project.metadata.loadpath.empty?

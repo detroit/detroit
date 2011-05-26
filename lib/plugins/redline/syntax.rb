@@ -6,7 +6,9 @@ module Redline::Plugins
   #
   class Syntax < Service
 
+=begin
     stop :main, :analyze
+=end
 
     #available do |project|
     #  !project.metadata.loadpath.empty?

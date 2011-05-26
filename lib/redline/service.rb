@@ -8,6 +8,49 @@ module Redline
     @registry ||= {}
   end
 
+  # TODO: change name
+  class ServiceWrapper
+    attr :key
+    attr :tracks
+    attr :priority
+    attr :active
+    attr :service
+    #attr :options
+
+    def priority=(integer)
+      @priority = integer.to_i
+    end
+
+    def tracks=(list)
+      @tracks = list.to_list
+    end
+
+    def initialize(key, service_class, options)
+      @key      = key
+
+      @tracks   = nil
+      @priority = 0
+      @active   = true
+
+      @active   = options.delete('active')   if !options['active'].nil?
+
+      self.tracks   = options.delete('tracks')   if options.key?('tracks')
+      self.priority = options.delete('priority') if options.key?('priority')
+
+      @service = service_class.new(options)
+    end
+
+    #
+    def stop?(name)
+      @service.respond_to?(name)
+    end
+
+    #
+    def invoke(name)
+      @service.__send__(name)  # public_send
+    end
+  end
+
   #
   module Serviceable
 
@@ -58,6 +101,7 @@ module Redline
         define_method(:init, &block)
       end
 
+=begin
       # Designate that service provides a stop on a particular track.
       #
       #   stop '<track>:<stop>'
@@ -114,6 +158,7 @@ module Redline
         stop = "aft_#{stop}".to_sym
         stop(track, stop, &block)
       end
+=end
 
       #
       def available(&block)
@@ -145,21 +190,29 @@ module Redline
     ##attr :context
 
     #
-    attr :key
+    #attr :key
 
     #
-    attr :options
+    #attr :options
 
     #
-    attr_accessor :priority
+    #attr :tracks
 
     #
-    attr_accessor :active
+    #attr :priority
 
     #
+    #def priority=(integer)
+    #  @priority = integer.to_i
+    #end
+
+    #
+    #attr_accessor :active
+
 
     private
 
+=begin
     # Sets the context and assigns options to setter attributes
     # if they exist and values are not nil. That last point is
     # important. You must use 'false' to purposely negate an option.
@@ -169,13 +222,16 @@ module Redline
     def initialize(key, options={})
       @key = key
 
+      @tracks   = nil
       @priority = 0
       @active   = true
 
       #@project  = context.project
 
-      @priority = options.delete('priority') if options.key?('priority')
+      @tracks   = options.delete('tracks')   if options.key?('tracks')
       @active   = options.delete('active')   if !options['active'].nil?
+
+      self.priority = options.delete('priority') if options.key?('priority')
 
       @options = options
 
@@ -186,6 +242,7 @@ module Redline
       #  send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
       #end
     end
+=end
 
     #attr_reader :service_name
     #attr :project
@@ -222,39 +279,31 @@ module Redline
     ##end
   end
 
-  # The Service class is the base class for defining services.
+  # The Service class is the base class for defining basic or delgated services.
   class Service
     include Serviceable
+
+    #
+    attr :options
+
+    def initialize(options={})
+      @options = options
+    end
   end
 
-  # Tool class is essentially the same as a Service class except
-  # that is is a subclass of RedTools::Tool.
+  # Tool class is essentially the same as a Service class except that it is
+  # a subclass of RedTools::Tool. Use this class to build Redline services
+  # with all the conveniences of a RedTools::Tool.
   class Tool < RedTools::Tool
     include Serviceable
+
     #
-    def initialize(key, options={})
-      @key = key
+    attr :options
 
-      @priority = 0
-      @active   = true
-
-      #@project  = context.project
-
-      @priority = options.delete('priority') if options.key?('priority')
-      @active   = options.delete('active')   if !options['active'].nil?
-
+    def initialize(options={})
       @options = options
-
       super(options)
-
-      #initialize_requires
-      #initialize_defaults
-
-      #@options.each do |k, v|
-      #  send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
-      #end
     end
-
   end
 
 end #module Redline

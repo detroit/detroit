@@ -8,9 +8,11 @@ module Redline::Plugins
   #++
   class RSpec < Service
 
+=begin
     stop :main, :test
     stop :main, :document
     stop :site, :document
+=end
 
     #
     #available do |project|
