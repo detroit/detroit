@@ -92,6 +92,7 @@ module Redline
       stdout.puts message unless quiet?
     end
 
+##
     #
     def printline(left, right='', options={})
       return if quiet?
@@ -126,6 +127,7 @@ module Redline
       puts line + ansize('', :clear)
     end
 
+##
     #
     #
     def display_action(action_item)
@@ -134,6 +136,7 @@ module Redline
       #status_line(service.service_title, phase.to_s.capitalize)
     end
 
+##
     #
     #
     def status_header(left, right='')
@@ -147,6 +150,7 @@ module Redline
       end
     end
 
+##
     #
     #
     def status_line(left, right='')

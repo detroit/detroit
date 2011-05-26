@@ -4,11 +4,10 @@
 #  require file
 #end
 
-#require 'facets/to_hash'
-#require 'facets/module/basename'
-#require 'facets/module/alias_accessor'
-
-require 'facets'
+#require 'facets'
+require 'facets/to_hash'
+require 'facets/module/basename'
+require 'facets/module/alias_accessor'
 require 'facets/pathname'
 
 class Array

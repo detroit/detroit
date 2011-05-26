@@ -2,7 +2,7 @@ module Redline
 
   # The website track is a subset of the main track with two routes:
   #
-  #   prepare -> generate -> analyize -> document -> release
+  #   prepare -> generate -> analyze -> document -> release
   #
   # And the usual maintainence route:
   #
@@ -12,7 +12,7 @@ module Redline
 
     route :prepare,
           :generate,
-          :analyize,
+          :analyze,
           :document,
           :release
 

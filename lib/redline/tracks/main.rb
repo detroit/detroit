@@ -7,12 +7,12 @@ module Redline
           :generate,   # code generation
           :compile,    # compile source code
           :test,       # run tests and/or specifications
-          :analyize,   # run code analysis
+          :analyze,    # run code analysis
           :document,   # generate documentation
           :package,    # create packages
-          :verify,     # post package verification (eg. integration tests)
-          :release,    # release packages / deploy to servers?
-          :promote     # tell the world about you awesome work
+          :verify,     # post package verification
+          :release,    # release packages / deploy to servers(?)
+          :announce    # tell the world about your awesome work
 
     route :reset,
           :clean

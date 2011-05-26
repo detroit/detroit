@@ -1,5 +1,10 @@
 require 'erb'
 
+require 'ansi/terminal'
+require 'ansi/code'
+
+require 'redtools/tool'
+
 begin
   require 'parallel'
 rescue LoadError
@@ -9,7 +14,7 @@ require 'plugin'
 
 require 'redline/core_ext'
 
-require 'redline/script'
+#require 'redline/script'
 require 'redline/cli'
 require 'redline/io'
 require 'redline/config'
@@ -20,6 +25,7 @@ require 'redline/tracks/site'
 require 'redline/tracks/attn'
 
 require 'redline/service'
+
 
 # FIXME: Not all io output is running through the io object.
 
@@ -38,14 +44,14 @@ module Redline
     # Commandline interface controller.
     attr :cli
 
-    # Input/Ouput controller.
-    attr :io
+    ### Input/Ouput controller.
+    ##attr :io
 
     # Redline mater configuration.
     attr :config
 
-    # Run context.
-    attr :script
+    ### Run context.
+    ##attr :script
 
     # Actions (extracted from services).
     attr :actions
@@ -53,8 +59,11 @@ module Redline
     # New Redline Application.
     def initialize(cli_options)
       @cli      = cli_options #Redline::CLI.new
-      @io       = Redline::IO.new(@cli)
-      @script   = Redline::Script.new(:io=>io, :cli=>cli)
+
+      ##@io       = Redline::IO.new(@cli)
+
+      ##@script   = Redline::Script.new(:io=>io, :cli=>cli)
+
       @config   = Redline::Config.new(project)
 
       #@services, @actions = *load_service_configuration
@@ -73,6 +82,11 @@ module Redline
         end
         #Redline.module_eval(File.read(file))
       end
+    end
+
+    #
+    def quiet?
+      cli.quiet?
     end
 
     # Multitask mode?
@@ -98,7 +112,8 @@ module Redline
     # Provides access to the Project instance.
 
     def project
-      script.project
+      #script.project
+      @project ||= POM::Project.find
     end
 
     # User-defined service defaults.
@@ -150,8 +165,10 @@ module Redline
           if service_class.available?(project)
             #autolist.delete(service_class) # remove class from autolist
             #opts = inject_environment(opts) # TODO: DEPRECATE
-            opts = defaults[service_name.downcase].to_h.merge(opts)
-            activelist << service_class.new(script, key, opts) #project,
+            options = defaults[service_name.downcase].to_h
+            options = opts.merge(common_tool_options)
+            options = opts.merge(opts)
+            activelist << service_class.new(key, options) #script,
           #else
           #  warn "Service #{service_class} is not available."
           end
@@ -186,7 +203,7 @@ module Redline
     #end
 
     # Service configuration. These are stored in the
-    # project's task/ or script/ folder as YAML files.
+    # project's .redline/ or task/ folders as Ruby or YAML files.
 
     def service_configs
       config.services
@@ -196,8 +213,6 @@ module Redline
     end
 
 =begin
-    #require 'facets/hashbuilder'
-
     # Load service configs for a select set of redline scripts/tasks.
 
     def load_service_configs(files)
@@ -344,7 +359,7 @@ module Redline
       else
         h = ["#{project.metadata.title} v#{project.metadata.version}", "#{project.root}"]
       end
-      io.status_header(*h)
+      status_header(*h)
 
       start_time = Time.now
 
@@ -359,7 +374,7 @@ module Redline
       end
 
       stop_time = Time.now
-      puts "\nFinished in #{stop_time - start_time} seconds." unless script.quiet?
+      puts "\nFinished in #{stop_time - start_time} seconds." unless cli.quiet?
     end
 
     # Execute service hook for given track and destination.
@@ -372,9 +387,25 @@ module Redline
        name = stop.to_s.gsub('_', '-')
        hook = dir + "#{name}.rb"
        if hook.exist?
-         io.status_line("hook", name.capitalize)
+         status_line("hook", name.capitalize)
          script.instance_eval(hook.read)
        end
+    end
+
+    #
+    def hook_tool
+      #@script   = Redline::Script.new(:io=>io, :cli=>cli)
+      @hook_tool ||= RedTools::Tool.new(common_tool_options)
+    end
+
+    #
+    def common_tool_options
+      {
+        :project => project,
+        :trail   => cli.trial,
+        :quiet   => cli.quiet,
+        :force   => cli.force
+      }
     end
 
     # Make service calls.
@@ -402,10 +433,10 @@ module Redline
     def run_a_service(srv, track, stop)
       # run if the service supports the track and stop.
       if srv.respond_to?("#{track}_#{stop}")
-        if script.verbose?
-          io.status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
+        if cli.verbose?
+          status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
         else
-          io.status_line("#{srv.key.to_s}", stop.to_s.gsub('_', '-').capitalize)
+          status_line("#{srv.key.to_s}", stop.to_s.gsub('_', '-').capitalize)
         end
         srv.__send__("#{track}_#{stop}")
       end
@@ -415,12 +446,12 @@ module Redline
     # FIXME: how to load?
 
     def load_project_plugins
-      #scripts = project.config_redline.glob('*.rb')
-      scripts = project.plugin.glob('*.rb')
-      scripts.each do |script|
-        load(script.to_s)
-        #  self.class.class_eval(File.read(script))
-        #instance_eval(File.read(script))
+      #plugs = project.config_redline.glob('*.rb')
+      plugs = project.plugin.glob('*.rb')
+      plugs.each do |plug|
+        load(plug.to_s)
+        #  self.class.class_eval(File.read(plug))
+        #instance_eval(File.read(plug))
       end
     end
 
@@ -437,7 +468,7 @@ module Redline
     def overview
       end_stops.each do |stop_name|
         action_plan(stop_name).each do |act|
-          io.display_action(act)
+          display_action(act)
         end
         puts
       end
@@ -449,6 +480,115 @@ module Redline
     #    service.
     #  end
     #end
+
+    # --- Print Methods ------------------------------------------------------
+
+    #
+    #
+    def status_header(left, right='')
+      left, right = left.to_s, right.to_s
+      #left.color  = 'blue'
+      #right.color = 'magenta'
+      unless quiet?
+        puts
+        print_header(left, right)
+        #puts "=" * io.screen_width
+      end
+    end
+
+    #
+    #
+    def status_line(left, right='')
+      left, right = left.to_s, right.to_s
+      #left.color  = 'blue'
+      #right.color = 'magenta'
+      unless quiet?
+        puts
+        #puts "-" * io.screen_width
+        print_phase(left, right)
+        #puts "-" * io.screen_width
+        #puts
+      end
+    end
+
+    #
+    #
+    def display_action(action_item)
+      phase, service, action, parameters = *action_item
+      puts "  %-10s %-10s %-10s" % [phase.to_s.capitalize, service.service_title, action]
+      #status_line(service.service_title, phase.to_s.capitalize)
+    end
+
+    #
+    def print_header(left, right)
+      if ANSI::SUPPORTED
+        printline('', '', :pad=>1, :sep=>' ', :style=>[:negative, :bold], :left=>[:bold], :right=>[:bold])
+        printline(left, right, :pad=>2, :sep=>' ', :style=>[:negative, :bold], :left=>[:bold], :right=>[:bold])
+        printline('', '', :pad=>1, :sep=>' ', :style=>[:negative, :bold], :left=>[:bold], :right=>[:bold])
+      else
+        printline(left, right, :pad=>2, :sep=>'=')
+      end
+    end
+
+    #
+    def print_phase(left, right)
+      if ANSI::SUPPORTED
+        printline(left, right, :pad=>2, :sep=>' ', :style=>[:on_white, :black, :bold], :left=>[:bold], :right=>[:bold])
+      else
+        printline(left, right, :pad=>2, :sep=>'-')
+      end
+    end
+
+    #
+    def printline(left, right='', options={})
+      return if quiet?
+
+      separator = options[:seperator] || options[:sep] || ' '
+      padding   = options[:padding]   || options[:pad] || 0
+
+      left, right = left.to_s, right.to_s
+
+      left_size  = left.size
+      right_size = right.size
+
+      #left  = colorize(left)
+      #right = colorize(right)
+
+      l = padding
+      r = -(right_size + padding)
+
+      style  = options[:style] || []
+      lstyle = options[:left]  || []
+      rstyle = options[:right] || []
+
+      left  = lstyle.inject(left) { |s, c| ansize(s, c) }
+      right = rstyle.inject(right){ |s, c| ansize(s, c) }
+
+      line = separator * screen_width
+      line[l, left_size]  = left  if left_size != 0
+      line[r, right_size] = right if right_size != 0
+
+      line = style.inject(line){ |s, c| ansize(s, c) }
+
+      puts line + ansize('', :clear)
+    end
+
+    #
+    def ansize(text, code)
+      #return text unless text.color
+      if RUBY_PLATFORM =~ /win/
+        text.to_s
+      else
+        ANSI::Code.send(code.to_sym) + text
+      end
+    end
+
+    #
+    def screen_width
+      #Clio::ConsoleUtils.screen_width
+      ANSI::Terminal.terminal_width
+    end
+
   end
 
 end #module Redline

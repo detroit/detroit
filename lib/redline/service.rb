@@ -1,41 +1,30 @@
-require 'redline/service/domain'
+#require 'redtools/tool'
+require 'redtools'
 
 module Redline
 
   #
   def self.services
-    Service.registry
+    @registry ||= {}
   end
 
-  # = Service
   #
-  # The plugin acts a base class for ecapsulating batch routines.
-  # This helps to keep the main batch context free of the clutter
-  # of private supporting methods.
-  #
-  # Plugins are tightly coupled to the batch context,
-  # which allows them to call on the context easily.
-  # However this means plugins cannot be used independent
-  # of a batch context, and changes in the batch context
-  # can cause effects in plugin behvior that can be harder
-  # to track down and fix if a bug arises.
-  #
-  # The context must be a subclass of Redline::Script.
-  #
-  #--
-  # TODO: Perhaps use a secondary class to delegate the class level.
-  #++
+  module Serviceable
 
-  class Service #< Ratch::Plugin
+    #
+    def self.included(base)
+      base.extend ClassRegistry
+      base.extend DomainLanguage
+    end
 
     # Register new instance of the Service class.
-    module ClassRegistery
+    module ClassRegistry
 
       # Class-level attribute of registered Service subclasses.
       # 
       # Returns a Hash.
       def registry
-        @@registry ||= {}
+        Redline.services
       end
 
       # TODO: Probably should make a named registry instead.
@@ -152,131 +141,127 @@ module Redline
 
     end
 
+    ## The batch context.
+    ##attr :context
+
     #
-    module InstanceMethods
+    attr :key
 
-      # The batch context.
-      attr :context
+    #
+    attr :options
 
-      #
-      attr :key
+    #
+    attr_accessor :priority
 
-      #
-      attr :options
+    #
+    attr_accessor :active
 
-      #
-      attr_accessor :priority
+    #
 
-      #
-      attr_accessor :active
+    private
 
-      #
+    # Sets the context and assigns options to setter attributes
+    # if they exist and values are not nil. That last point is
+    # important. You must use 'false' to purposely negate an option.
+    # +nil+ will instead allow any default setting to be used.
 
-      private
+    #
+    def initialize(key, options={})
+      @key = key
 
-      # Sets the context and assigns options to setter attributes
-      # if they exist and values are not nil. That last point is
-      # important. You must use 'false' to purposely negate an option.
-      # +nil+ will instead allow any default setting to be used.
+      @priority = 0
+      @active   = true
 
-      #
-      def initialize(context, key, options={})
-        @context  = context
-        @project  = context.project
-        @key      = key
-        @options  = options || {}
+      #@project  = context.project
 
-        @priority = 0
-        @active   = true
+      @priority = options.delete('priority') if options.key?('priority')
+      @active   = options.delete('active')   if !options['active'].nil?
 
-        raise TypeError, "context must be a subclass of Redline::Script" unless context.is_a?(Redline::Script) # Redline::DSL
+      @options = options
 
-        initialize_requires
-        initialize_defaults
+      #initialize_requires
+      #initialize_defaults
 
-        @options.each do |k, v|
-          send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
-        end
-      end
-
-      # Require support libraries needed by this service.
-      #
-      #   def initialize_requires
-      #     require 'ostruct'
-      #   end
-      #
-      def initialize_requires
-      end
-
-      # When subclassing, put default instance variable settngs here.
-      #
-      # Examples
-      #
-      #   def initialize_defaults
-      #     @gravy = true
-      #   end
-      #
-      def initialize_defaults
-      end
-
-      # TODO: Allow this to be optional? How?
-      #
-      def method_missing(s, *a, &b)
-        @context.send(s, *a, &b)
-      end
-
-      #
-      #attr_reader :service_name
-
-      #
-      attr :project
-
-
-      #
-      def service_title
-        self.class.name
-      end
-
-      #
-      def service_actions
-        self.class.service_actions
-      end
-
-      #
-      def inspect
-        "<#{self.class}:#{object_id}>"
-      end
-
-      # Override this method to return the files
-      # # TODO: An automatic way to check for "need".
-      #def resource_files
+      #@options.each do |k, v|
+      #  send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
       #end
-
-      # This isn't strictly neccessary since method_missing will
-      # pick it up, but it will make execution a bit faster.
-      #
-      def metadata
-        project.metadata
-      end
-
-      # = Plugin Registry MetaMixin
-      #
-      #module Registry
-      #end
-
     end
 
-    extend ClassRegistery
-    extend DomainLanguage
+    #attr_reader :service_name
+    #attr :project
 
-    include InstanceMethods
+    #
+    def service_title
+      self.class.name
+    end
 
-  end #class Service
+    #
+    def service_actions
+      self.class.service_actions
+    end
+
+    #
+    def inspect
+      "<#{self.class}:#{object_id}>"
+    end
+
+    # Override this method to return the files
+    # # TODO: An automatic way to check for "need".
+    #def resource_files
+    #end
+
+    ## This isn't strictly neccessary since method_missing will
+    ## pick it up, but it will make execution a bit faster.
+    ##
+    #def metadata
+    #  project.metadata
+    #end
+
+    ##
+    ##module Registry
+    ##end
+  end
+
+  # The Service class is the base class for defining services.
+  class Service
+    include Serviceable
+  end
+
+  # Tool class is essentially the same as a Service class except
+  # that is is a subclass of RedTools::Tool.
+  class Tool < RedTools::Tool
+    include Serviceable
+    #
+    def initialize(key, options={})
+      @key = key
+
+      @priority = 0
+      @active   = true
+
+      #@project  = context.project
+
+      @priority = options.delete('priority') if options.key?('priority')
+      @active   = options.delete('active')   if !options['active'].nil?
+
+      @options = options
+
+      super(options)
+
+      #initialize_requires
+      #initialize_defaults
+
+      #@options.each do |k, v|
+      #  send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
+      #end
+    end
+
+  end
 
 end #module Redline
 
 module Redline::Plugins
   Service = Redline::Service
+  Tool    = Redline::Tool
 end
 
 # TOPLEVEL DSL?
