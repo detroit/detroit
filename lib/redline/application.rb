@@ -10,7 +10,7 @@ begin
 rescue LoadError
 end
 
-require 'plugin'
+#require 'plugin'
 
 require 'redline/core_ext'
 
@@ -32,7 +32,12 @@ require 'redline/service'
 module Redline
 
   #
-  #PLUGIN_DIRECTORY = "plugin{,s}/redline"
+  #PLUGIN_DIRECTORY = File.dirname(__FILE__) + '/plugins'
+
+  def self.standard_plugins
+    glob = File.dirname(__FILE__) + '/plugins/*.rb'
+    Dir[glob]
+  end
 
   # = Application
   #
@@ -71,16 +76,15 @@ module Redline
       load_plugins
     end
 
-    # TODO: Do not load plugins automatically!!!!!!!!!!!
+    #
     def load_plugins
-      ::Plugin.find("redline/*.rb").each do |file|
-      #Redline.plugins.each do |file|
+      #::Plugin.find("redline/*.rb").each do |file|
+      Redline.standard_plugins.each do |file|
         begin
           require(file)
         rescue => err
           $stderr.puts err if $DEBUG
         end
-        #Redline.module_eval(File.read(file))
       end
     end
 

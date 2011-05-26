@@ -11,10 +11,9 @@ description:
   to designated destination.
 
 requires:
+- redtools
 - facets
-- ratch
 - pom
-- plugin
 - qed (test)
 
 resources:
