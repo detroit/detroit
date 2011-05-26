@@ -49,9 +49,14 @@ module Redline
     def invoke(name)
       @service.__send__(name)  # public_send
     end
+
+    #
+    def inspect
+      "<#{self.class}:#{object_id} @key='#{key}'>"
+    end
   end
 
-  #
+  # Mixin module is added to Service and Tool.
   module Serviceable
 
     #
@@ -95,72 +100,13 @@ module Redline
     # Service Domain language. This module extends the Service class,
     # to provide a convenience interface for defining stops.
     module DomainLanguage
+      ## TODO: Err.. Is this being used?
+      #def init(&block)
+      #  define_method(:init, &block)
+      #end
 
-      # TODO: Err.. Is this being used?
-      def init(&block)
-        define_method(:init, &block)
-      end
-
-=begin
-      # Designate that service provides a stop on a particular track.
-      #
-      #   stop '<track>:<stop>'
-      #
-      # or
-      #
-      #   stop <track>, <stop>
-      #
-      # An optional procedure can be given to be run in place of the default
-      # action of calling the method named after the stop.
-      #
-      #   stop '<track>:<stop>' do
-      #     ...
-      #   end
-      #
-      # The end result of calling this method is to define an instance method
-      # by the name `<track>_<stop>`.
-      def stop(track, stop=nil, &block)
-        unless stop
-          track, stop = *track.split(':')
-          track, stop = 'main', track unless stop
-        end
-        if block
-          define_method("#{track}_#{stop}", &block)
-        else
-          define_method("#{track}_#{stop}") do
-            send(stop)
-          end
-        end
-      end
-
-      # Designate the procedure to run just prior to the given stop.
-      #
-      # The end result of calling this method is to define an instance method
-      # by the name `<track>_pre_<stop>`.
-      def pre_stop(track, stop=nil, &block)
-        unless stop
-          track, stop = *track.split(':')
-          track, stop = 'main', track unless stop
-        end
-        stop = "pre_#{stop}".to_sym
-        stop(track, stop, &block)
-      end
-
-      # Designate the procedure to run just after the given stop.
-      #
-      # The end result of calling this method is to define an instance method
-      # by the name `<track>_aft_<stop>`.
-      def aft_stop(track, stop=nil, &block)
-        unless stop
-          track, stop = *track.split(':')
-          track, stop = 'main', track unless stop
-        end
-        stop = "aft_#{stop}".to_sym
-        stop(track, stop, &block)
-      end
-=end
-
-      #
+      # TODO: Perhaps deprecate this in favor of just defining an `availabe?`
+      # class method.
       def available(&block)
         @available = block if block
         @available ||= nil
@@ -171,112 +117,24 @@ module Redline
         return true unless available
         @available.call(project)
       end
-
-      # DEPRECATE: temporarily, this is a no-op to prevent old plugins from breaking.
-      def autorun(&block)
-      #  @autorun = block if block
-      #  @autorun ||= nil
-      end
-
-      ##
-      #def autorun?(project)
-      #  return false unless autorun
-      #  @autorun.call(project)
-      #end
-
     end
-
-    ## The batch context.
-    ##attr :context
-
-    #
-    #attr :key
-
-    #
-    #attr :options
-
-    #
-    #attr :tracks
-
-    #
-    #attr :priority
-
-    #
-    #def priority=(integer)
-    #  @priority = integer.to_i
-    #end
-
-    #
-    #attr_accessor :active
-
-
-    private
-
-=begin
-    # Sets the context and assigns options to setter attributes
-    # if they exist and values are not nil. That last point is
-    # important. You must use 'false' to purposely negate an option.
-    # +nil+ will instead allow any default setting to be used.
-
-    #
-    def initialize(key, options={})
-      @key = key
-
-      @tracks   = nil
-      @priority = 0
-      @active   = true
-
-      #@project  = context.project
-
-      @tracks   = options.delete('tracks')   if options.key?('tracks')
-      @active   = options.delete('active')   if !options['active'].nil?
-
-      self.priority = options.delete('priority') if options.key?('priority')
-
-      @options = options
-
-      #initialize_requires
-      #initialize_defaults
-
-      #@options.each do |k, v|
-      #  send("#{k}=", v) if respond_to?("#{k}=") && !v.nil?
-      #end
-    end
-=end
 
     #attr_reader :service_name
-    #attr :project
 
     #
     def service_title
       self.class.name
     end
 
-    #
-    def service_actions
-      self.class.service_actions
-    end
-
-    #
-    def inspect
-      "<#{self.class}:#{object_id}>"
-    end
-
-    # Override this method to return the files
-    # # TODO: An automatic way to check for "need".
-    #def resource_files
+    # TODO: Is this being used?
+    #def service_actions
+    #  self.class.service_actions
     #end
 
-    ## This isn't strictly neccessary since method_missing will
-    ## pick it up, but it will make execution a bit faster.
-    ##
-    #def metadata
-    #  project.metadata
+    #
+    #def inspect
+    #  "<#{self.class}:#{object_id}>"
     #end
-
-    ##
-    ##module Registry
-    ##end
   end
 
   # The Service class is the base class for defining basic or delgated services.

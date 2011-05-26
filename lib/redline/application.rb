@@ -519,7 +519,6 @@ module Redline
     end
 
     #
-    #
     def display_action(action_item)
       phase, service, action, parameters = *action_item
       puts "  %-10s %-10s %-10s" % [phase.to_s.capitalize, service.service_title, action]
