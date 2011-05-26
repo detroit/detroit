@@ -10,13 +10,9 @@ begin
 rescue LoadError
 end
 
-#require 'plugin'
-
 require 'redline/core_ext'
 
-#require 'redline/script'
 require 'redline/cli'
-require 'redline/io'
 require 'redline/config'
 
 require 'redline/track'
@@ -49,14 +45,8 @@ module Redline
     # Commandline interface controller.
     attr :cli
 
-    ### Input/Ouput controller.
-    ##attr :io
-
     # Redline mater configuration.
     attr :config
-
-    ### Run context.
-    ##attr :script
 
     # Actions (extracted from services).
     attr :actions
@@ -64,11 +54,6 @@ module Redline
     # New Redline Application.
     def initialize(cli_options)
       @cli      = cli_options #Redline::CLI.new
-
-      ##@io       = Redline::IO.new(@cli)
-
-      ##@script   = Redline::Script.new(:io=>io, :cli=>cli)
-
       @config   = Redline::Config.new(project)
 
       #@services, @actions = *load_service_configuration
@@ -146,17 +131,6 @@ module Redline
     def active_services
       @active_services ||= (
         activelist = []
-        #autolist = []
-
-        #if config.automatic?
-        #  Redline.services.each do |service_name, service_class|
-        #    if service_class.available?(project) &&
-        #         service_class.autorun?(project) &&
-        #         !config.standard.include?(service_name)
-        #      autolist << service_class
-        #    end
-        #  end
-        #end
 
         service_configs.each do |key, opts|
           next unless opts && opts['active'] != false
@@ -167,7 +141,6 @@ module Redline
           abort "Unkown service #{service_name}." unless service_class
 
           if service_class.available?(project)
-            #autolist.delete(service_class) # remove class from autolist
             #opts = inject_environment(opts) # TODO: DEPRECATE
             options = defaults[service_name.downcase].to_h
             options = opts.merge(common_tool_options)
@@ -179,14 +152,7 @@ module Redline
           end
         end
 
-        ## If any autorunning services are not accounted for then add to active list.
-        #autolist.each do |service_class|
-        #  service_name = service_class.basename.downcase
-        #  service_opts = defaults[service_name.downcase].to_h
-        #  activelist << service_class.new(script, service_name, service_opts)
-        #end
-
-        # sorting here trickles down to processing
+        # sorting here trickles down to processing later
         activelist = activelist.sort_by{ |s| s.priority || 0 }
         #activelist = activelist.sort_by{ |sc, cn, key, opts| opts['priority'] || 0 }
 
@@ -208,48 +174,14 @@ module Redline
     #end
 
     # Service configuration. These are stored in the
-    # project's .redline/ or task/ folders as Ruby or YAML files.
+    # project's Redfile, or .redline/ or task/ folders
+    # as Ruby or YAML files.
 
     def service_configs
       config.services
-      #@service_configs ||= (
-      #  load_service_configs(files)
-      #)
     end
 
-=begin
-    # Load service configs for a select set of redline scripts/tasks.
-
-    def load_service_configs(files)
-      files = []
-      if project.root.glob('Syckfile')
-        files += project.root.glob('Syckfile')
-      else
-        files += project.task.glob('*.red')
-        files += project.script.glob('*.red')
-      end
-      files  = files.select{ |f| File.file?(f) }
-
-      abort "No redline services defined." if files.empty?
-
-      srvcfg = files.inject({}) do |cfg, file|
-        tmp = TMP.new(project.metadata)
-        erb = ERB.new(File.read(file))
-        txt = erb.result(tmp._binding).strip
-        if /\A---/ =~ txt
-          yml = YAML.load(txt) || {}
-        else
-          yml = HashBuilder.load(txt)
-        end
-        cfg.update(yml)
-      end
-
-      @config = Config.new(srvcfg)
-
-      return srvcfg
-    end
-=end
-
+    # OMG! This goes back to Clio days!
     # setup cli
     #def cli
     #  @cli ||= (
@@ -403,11 +335,12 @@ module Redline
       @hook_tool ||= RedTools::Tool.new(common_tool_options)
     end
 
-    #
+    # TODO: add verbose?
     def common_tool_options
       {
         :project => project,
         :trail   => cli.trial,
+        :trace   => cli.trace,
         :quiet   => cli.quiet,
         :force   => cli.force
       }
@@ -494,7 +427,8 @@ module Redline
 
     # --- Print Methods ------------------------------------------------------
 
-    #
+    # Print a status header, which consists of project name and version on the
+    # left and stop location on the right.
     #
     def status_header(left, right='')
       left, right = left.to_s, right.to_s
@@ -507,7 +441,8 @@ module Redline
       end
     end
 
-    #
+    # Print a status line, which consists of service name on the left
+    # and stop name on the right.
     #
     def status_line(left, right='')
       left, right = left.to_s, right.to_s

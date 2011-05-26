@@ -43,15 +43,6 @@ module Redline
           options[:trial] =true
         end
 
-        usage.on('--debug', "Run with $DEBUG set to true.") do
-          $DEBUG   = true
-          options[:debug] = true  # DEPRECATE
-        end
-
-        usage.on('--warn', "Run with $VERBOSE set to true.") do
-          $VERBOSE = true  # wish this were called $WARN
-        end
-
         # TODO: do we really need verbose?
         usage.on('--verbose', "Provided extra output.") do
           options[:verbose] = true
@@ -71,6 +62,15 @@ module Redline
 
         usage.on('-s', '--skip [SERVICE]', 'Skip service.') do |s|
           options[:skip] << s
+        end
+
+        usage.on('--debug', "Run with $DEBUG set to true.") do
+          $DEBUG   = true
+          options[:debug] = true  # DEPRECATE
+        end
+
+        usage.on('--warn', "Run with $VERBOSE set to true.") do
+          $VERBOSE = true  # wish this were called $WARN
         end
 
         usage.on_tail('--help', "Display this help message.") do
