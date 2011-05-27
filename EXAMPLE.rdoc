@@ -1,0 +1,117 @@
+= EXAMPLE REDFILE
+
+== RUBY FORMAT
+
+Ruby-based redfiles are written with the name of the service
+as a capitalized method followed by an optional name for the particular
+service instance and then a block of settings. If no name
+is given, the name defaults to the name of the service itself downcased.
+Settings are simply method calls followed by the value. They
+can be nested with additional blocks which define Hash values.
+
+  Announce do |ann|
+    ann.mailto = "ruby-talk@ruby-lang.org"
+    ann.active = true
+  end
+
+  Announce :myself do
+    mailto "transfire@gmail.com"
+    active true
+  end
+
+  Gem do
+    types  ['gem']
+    spec   false
+    active true
+  end
+
+  DNote do
+    priority -1
+    active   true
+  end
+
+  RDoc do
+    include [ 'lib', '[A-Z]*' ]
+    exclude [ 'Redfile' ]
+  end
+
+  RI do
+    exclude []
+    active  true
+  end
+
+  Stats do
+    priority -1
+    active   true
+  end
+
+  Testrb do
+    active true
+  end
+
+  Rubyforge do
+    sitemap do
+      site 'example'
+    end
+    active false
+  end
+
+The setting +active+ defaults to +true+ if not given, so is not strictly
+needed in the above example, but it's convenient to put it in case you
+even need to turn a service off temporarily (more convenient than remarking
+out the whole section).
+
+
+== YAML FORMAT
+
+The YAML format is essentailly the same as the Ruby format except that
+the main key provides the service instance name and the service is an
+setting which defaults the name. Unlike the Ruby format the service names
+do not have to be capitalized. Also, notic the start document indicator
+(`---`). The indeicator is required for Redline to recognize the redfile
+as YAML, rather than Ruby.
+
+  ---
+  announce:
+    mailto: "transfire@gmail.com"
+    active: true
+
+  myself:
+    service: Announce
+    mailto : "transfire@gmail.com"
+    active : true
+
+  gem:
+    types    : ['gem']
+    autospec : false
+    active   : true
+
+  dnote:
+    priority: -1
+    active  : true
+
+  rdoc:
+    include: [ lib, '[A-Z]*' ]
+    exclude: [ Redfile ]
+  end
+
+  ri:
+    exclude: []
+    active : true
+  end
+
+  stats:
+    priority: -1
+    active  : true
+
+  testrb:
+    active: true
+
+  rubyforge:
+    service: forge
+    sitemap:
+      site: example
+    active: false
+
+
+
