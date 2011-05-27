@@ -15,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-05-26 00:00:00 Z
+date: 2011-05-27 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: redtools
@@ -60,7 +60,7 @@ dependencies:
   type: :runtime
   version_requirements: *id003
 - !ruby/object:Gem::Dependency 
-  name: plugin
+  name: qed
   prerelease: false
   requirement: &id004 !ruby/object:Gem::Requirement 
     none: false
@@ -71,22 +71,8 @@ dependencies:
         segments: 
         - 0
         version: "0"
-  type: :runtime
-  version_requirements: *id004
-- !ruby/object:Gem::Dependency 
-  name: qed
-  prerelease: false
-  requirement: &id005 !ruby/object:Gem::Requirement 
-    none: false
-    requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        hash: 3
-        segments: 
-        - 0
-        version: "0"
   type: :development
-  version_requirements: *id005
+  version_requirements: *id004
 description: Redline is an advanced lifecycle-oriented build system. With Redline build tasks are user define service instances tied to stops along a line, or track. Whenever the redline console command is run a track is followed from beginning to designated destination.
 email: transfire@gmail.com
 executables: 
@@ -98,21 +84,6 @@ extra_rdoc_files:
 files: 
 - .ruby
 - bin/redline
-- lib/plugins/redline/announce.rb
-- lib/plugins/redline/custom.rb
-- lib/plugins/redline/dnote.rb
-- lib/plugins/redline/extconf.rb
-- lib/plugins/redline/gem.rb
-- lib/plugins/redline/grancher.rb
-- lib/plugins/redline/rdoc.rb
-- lib/plugins/redline/ri.rb
-- lib/plugins/redline/rspec.rb
-- lib/plugins/redline/script.rb
-- lib/plugins/redline/stats.rb
-- lib/plugins/redline/syntax.rb
-- lib/plugins/redline/testrb.rb
-- lib/plugins/redline/turn.rb
-- lib/plugins/redline/yard.rb
 - lib/plugins/sow/redline/README
 - lib/plugins/sow/redline/Sowfile
 - lib/plugins/sow/redline/template/PROFILE
@@ -122,16 +93,27 @@ files:
 - lib/redline/application.rb
 - lib/redline/basic_object.rb
 - lib/redline/cli.rb
+- lib/redline/config/ruby_parser.rb
+- lib/redline/config/yaml_parser.rb
 - lib/redline/config.rb
 - lib/redline/core_ext.rb
-- lib/redline/io.rb
-- lib/redline/log.rb
-- lib/redline/script.rb
-- lib/redline/service/domain.rb
+- lib/redline/plugins/announce.rb
+- lib/redline/plugins/custom.rb
+- lib/redline/plugins/dnote.rb
+- lib/redline/plugins/extconf.rb
+- lib/redline/plugins/gem.rb
+- lib/redline/plugins/grancher.rb
+- lib/redline/plugins/rdoc.rb
+- lib/redline/plugins/ri.rb
+- lib/redline/plugins/rspec.rb
+- lib/redline/plugins/script.rb
+- lib/redline/plugins/stats.rb
+- lib/redline/plugins/syntax.rb
+- lib/redline/plugins/testrb.rb
+- lib/redline/plugins/turn.rb
+- lib/redline/plugins/yard.rb
 - lib/redline/service.rb
 - lib/redline/shell/email.rb
-- lib/redline/shell.rb
-- lib/redline/tool.rb
 - lib/redline/track.rb
 - lib/redline/tracks/attn.rb
 - lib/redline/tracks/main.rb
@@ -146,14 +128,23 @@ files:
 - qed/rdoc/sample/lib/xxx/bye.rb
 - qed/rdoc/sample/meta/name
 - qed/rdoc/sample/meta/version
+- test/case_rdoc.rb
+- test/sample/.ruby
+- test/sample/Redfile
+- test/sample/lib/foo/.xxx
+- test/sample/lib/foo/hello.rb
+- test/sample/lib/foo/xxx/bye.rb
+- test/sample/lib/foo/xxx.rb
+- test/sample/meta/name
+- test/sample/meta/version
 - HISTORY.rdoc
 - README.rdoc
 - GPL3.txt
 - COPYING.rdoc
-homepage: http://proutils.github.com/redline
+- EXAMPLE.rdoc
+homepage: http://rubyworks.github.com/redline
 licenses: 
-- Dual GPL3
-- Dual GPL3
+- GPL3
 post_install_message: 
 rdoc_options: 
 - --title
