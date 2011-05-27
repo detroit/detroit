@@ -2,7 +2,7 @@
 name: redline
 version: !ruby/object:Gem::Version 
   hash: 23
-  prerelease: false
+  prerelease: 
   segments: 
   - 1
   - 0
@@ -15,11 +15,10 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-05-04 00:00:00 -04:00
-default_executable: 
+date: 2011-05-26 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
-  name: facets
+  name: redtools
   prerelease: false
   requirement: &id001 !ruby/object:Gem::Requirement 
     none: false
@@ -33,7 +32,7 @@ dependencies:
   type: :runtime
   version_requirements: *id001
 - !ruby/object:Gem::Dependency 
-  name: ratch
+  name: facets
   prerelease: false
   requirement: &id002 !ruby/object:Gem::Requirement 
     none: false
@@ -99,18 +98,15 @@ extra_rdoc_files:
 files: 
 - .ruby
 - bin/redline
-- lib/plugins/redline/autotools.rb
+- lib/plugins/redline/announce.rb
 - lib/plugins/redline/custom.rb
-- lib/plugins/redline/email.rb
-- lib/plugins/redline/excellent.rb
+- lib/plugins/redline/dnote.rb
+- lib/plugins/redline/extconf.rb
 - lib/plugins/redline/gem.rb
-- lib/plugins/redline/gemcutter.rb
 - lib/plugins/redline/grancher.rb
-- lib/plugins/redline/rcov.rb
 - lib/plugins/redline/rdoc.rb
-- lib/plugins/redline/ridoc.rb
+- lib/plugins/redline/ri.rb
 - lib/plugins/redline/rspec.rb
-- lib/plugins/redline/rubyprof.rb
 - lib/plugins/redline/script.rb
 - lib/plugins/redline/stats.rb
 - lib/plugins/redline/syntax.rb
@@ -135,27 +131,28 @@ files:
 - lib/redline/service.rb
 - lib/redline/shell/email.rb
 - lib/redline/shell.rb
+- lib/redline/tool.rb
 - lib/redline/track.rb
 - lib/redline/tracks/attn.rb
 - lib/redline/tracks/main.rb
 - lib/redline/tracks/site.rb
 - lib/redline.rb
 - lib/redline.yml
-- test/fn/rdoc/rdoc-plugin.rdoc
-- test/fn/rdoc/sample/Syckfile
-- test/fn/rdoc/sample/lib/sandbox/.xxx
-- test/fn/rdoc/sample/lib/sandbox/hello.rb
-- test/fn/rdoc/sample/lib/sandbox/xxx.rb
-- test/fn/rdoc/sample/lib/xxx/bye.rb
-- test/fn/rdoc/sample/meta/name
-- test/fn/rdoc/sample/meta/version
+- qed/rdoc/rdoc-plugin.rdoc
+- qed/rdoc/sample/Syckfile
+- qed/rdoc/sample/lib/sandbox/.xxx
+- qed/rdoc/sample/lib/sandbox/hello.rb
+- qed/rdoc/sample/lib/sandbox/xxx.rb
+- qed/rdoc/sample/lib/xxx/bye.rb
+- qed/rdoc/sample/meta/name
+- qed/rdoc/sample/meta/version
 - HISTORY.rdoc
 - README.rdoc
 - GPL3.txt
 - COPYING.rdoc
-has_rdoc: true
 homepage: http://proutils.github.com/redline
 licenses: 
+- Dual GPL3
 - Dual GPL3
 post_install_message: 
 rdoc_options: 
@@ -186,7 +183,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: redline
-rubygems_version: 1.3.7
+rubygems_version: 1.8.2
 signing_key: 
 specification_version: 3
 summary: Lifecycle-oriented build tool

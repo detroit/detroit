@@ -1,5 +1,5 @@
-.cache
-doc/qedoc
+.rdoc
+doc/qed
 doc/rdoc
 doc/ri
 doc/yard

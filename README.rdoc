@@ -1,7 +1,7 @@
 = Redline
 
 Author:: Thomas Sawyer
-Licence:: Dual GPL v.3
+Licence:: GPL v.3
 
 
 == DESCRIPTION

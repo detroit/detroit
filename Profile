@@ -17,7 +17,9 @@ requires:
 - qed (test)
 
 resources:
-  home: http://proutils.github.com/redline
+  home: http://rubyworks.github.com/redline
+  code: http://github.com/rubyworks/redline
+  mail: http://groups.google.com/rubyworks-mailinglist
 
 repositories:
   public: http://github.com/proutils/redline.git
@@ -25,7 +27,7 @@ repositories:
 authors:
   - Thomas Sawyer
 
-license: Dual GPL3
+license: GPL3
 created: 2007-10-10
 
 organization: Rubyworks

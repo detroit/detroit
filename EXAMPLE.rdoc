@@ -4,14 +4,14 @@
 
 Ruby-based redfiles are written with the name of the service
 as a capitalized method followed by an optional name for the particular
-service instance and then a block of settings. If no name
+service instance and then a block of settings. If no instance name
 is given, the name defaults to the name of the service itself downcased.
 Settings are simply method calls followed by the value. They
 can be nested with additional blocks which define Hash values.
 
-  Announce do |ann|
-    ann.mailto = "ruby-talk@ruby-lang.org"
-    ann.active = true
+  Announce do
+    mailto "ruby-talk@ruby-lang.org"
+    active true
   end
 
   Announce :myself do
@@ -57,9 +57,16 @@ can be nested with additional blocks which define Hash values.
   end
 
 The setting +active+ defaults to +true+ if not given, so is not strictly
-needed in the above example, but it's convenient to put it in case you
-even need to turn a service off temporarily (more convenient than remarking
-out the whole section).
+needed in the above example, but it is convenient to have in case you
+ever need to deactivate a service temporarily --more convenient than
+remarking out the whole section.
+
+Alternately the Ruby format supports yield notation too, e.g.
+
+  Announce do |ann|
+    ann.mailto = "ruby-talk@ruby-lang.org"
+    ann.active = true
+  end
 
 
 == YAML FORMAT
@@ -68,7 +75,7 @@ The YAML format is essentailly the same as the Ruby format except that
 the main key provides the service instance name and the service is an
 setting which defaults the name. Unlike the Ruby format the service names
 do not have to be capitalized. Also, notic the start document indicator
-(`---`). The indeicator is required for Redline to recognize the redfile
+(<code>---</code>). The indeicator is required for Redline to recognize the redfile
 as YAML, rather than Ruby.
 
   ---
@@ -93,12 +100,10 @@ as YAML, rather than Ruby.
   rdoc:
     include: [ lib, '[A-Z]*' ]
     exclude: [ Redfile ]
-  end
 
   ri:
     exclude: []
     active : true
-  end
 
   stats:
     priority: -1
@@ -110,8 +115,19 @@ as YAML, rather than Ruby.
   rubyforge:
     service: forge
     sitemap:
-      site: example
+      site: <% name %>
     active: false
 
+As we can see in the last entry, the YAML format also supports ERB and provides
+access to project metadata via the ERB's binding.
 
+With the Ruby format it is easy enough to load external Redline plugins using
+standard +require+ and +load+ methods. The YAML format's support of ERB
+can be used to achieve the same effect.
+
+  ---
+  <% require 'some/redline/plugin' %>
+
+
+Which format you use is strictly a regard of your personal preference.
 

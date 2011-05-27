@@ -1,25 +1,27 @@
 ---
-email:
+announce:
+  service: Announce
   mailto : transfire@gmail.com
   active : true
 
 gem:
-  service: Gem
-  pom    : true
-  active : true
+  service  : Gem
+  autospec : true
+  active   : true
 
 dnote:
   priority: -1
   active  : true
 
 rdoc:
+  tracks  : site
   format  : newfish
   include : [ lib, "[A-Z]*" ]
   exclude : [ Redfile, lib/plugins/sow ]
   extra   : ~
 
 ri:
-  exclude: []
+  exclude: [ lib/plugins/sow ]
   active : true
 
 stats:
