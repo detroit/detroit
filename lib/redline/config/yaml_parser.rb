@@ -7,6 +7,11 @@ module Redline
     # Parse YAML formatted Redfile.
     class YAMLParser
 
+      #
+      def self.parse(config, text, file=nil)
+        new(config, text, file).__services__
+      end
+
       # Create new YAMLParser.
       def initialize(config, text, file=nil)
         @__config__ = config

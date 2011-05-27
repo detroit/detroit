@@ -122,14 +122,12 @@ module Redline
 
     # Parse a YAML-based redfile.
     def parse_redline_file_yaml(text, file)
-      parser = YAMLParser.new(self, text, file)
-      parser.__services__
+      YAMLParser.parse(self, text, file)
     end
 
     # Parse a Ruby-based redfile.
     def parse_redline_file_ruby(text, file)
-      parser = RubyParser.new(self, text, file)
-      parser.__services__
+      RubyParser.parse(self, text, file)
     end
 
   end
