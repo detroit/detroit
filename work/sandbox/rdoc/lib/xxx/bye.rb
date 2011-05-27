@@ -1,4 +1,0 @@
-# Bye
-module Bye
-
-end

@@ -1,5 +1,0 @@
-# Hello
-module Hello
-
-
-end
