@@ -10,50 +10,83 @@ Settings are simply method calls followed by the value. They
 can be nested with additional blocks which define Hash values.
 
   Announce do
-    mailto "ruby-talk@ruby-lang.org"
-    active true
+    @mailto = "ruby-talk@ruby-lang.org",
+    @active = true
   end
 
   Announce :myself do
-    mailto "transfire@gmail.com"
-    active true
+    @mailto = "transfire@gmail.com"
+    @active = true
   end
 
   Gem do
-    types  ['gem']
-    spec   false
-    active true
+    @types  = ['gem']
+    @spec   = false,
+    @active = true
   end
 
   DNote do
-    priority -1
-    active   true
+    @priority = -1
+    @active   = true
   end
 
   RDoc do
-    include [ 'lib', '[A-Z]*' ]
-    exclude [ 'Redfile' ]
-  end
-
-  RI do
-    exclude []
-    active  true
-  end
-
-  Stats do
-    priority -1
-    active   true
-  end
-
-  Testrb do
-    active true
+    @include = [ 'lib', '[A-Z]*' ]
+    @exclude = [ 'Redfile' ]
   end
 
   Rubyforge do
-    sitemap do
-      site 'example'
+    @sitemap = set do
+      @site = 'example'
     end
-    active false
+    @active = false
+  end
+
+== Or
+
+  Announce   mailto: "ruby-talk@ruby-lang.org",
+             active: true
+
+  Announce   :myself
+             mailto: "transfire@gmail.com",
+             active: true
+
+  Gem        types:  ['gem'],
+             spec:   false,
+             active: true
+
+  DNote      priority: -1,
+             active: true
+
+  RDoc       include: [ 'lib', '[A-Z]*' ],
+             exclude: [ 'Redfile' ]
+
+  Rubyforge  sitemap: {
+               site: 'example'
+             }
+             active: false
+
+== Or 
+  
+  service :ri do
+    set :exclude, []
+    set :active,  true
+  end
+
+  service :stats do
+    set :priority, -1
+    set :active,   true
+  end
+
+  service :testrb do
+    set :active, true
+  end
+
+  service :rubyforge do
+    set :sitemap, {
+      site 'example'
+    }
+    set :active, false
   end
 
 The setting +active+ defaults to +true+ if not given, so is not strictly
@@ -63,9 +96,10 @@ remarking out the whole section.
 
 Alternately the Ruby format supports yield notation too, e.g.
 
-  Announce do |ann|
-    ann.mailto = "ruby-talk@ruby-lang.org"
-    ann.active = true
+  service :myself do |s|
+    s.type   = :Announce
+    s.mailto = "transfire@gmail.com"
+    sactive  = true
   end
 
 
@@ -85,17 +119,17 @@ as YAML, rather than Ruby.
 
   myself:
     service: Announce
-    mailto : "transfire@gmail.com"
-    active : true
+    mailto:  "transfire@gmail.com"
+    active:  true
 
   gem:
-    types    : ['gem']
-    autospec : false
-    active   : true
+    types:    ['gem']
+    autospec: false
+    active:   true
 
   dnote:
     priority: -1
-    active  : true
+    active:   true
 
   rdoc:
     include: [ lib, '[A-Z]*' ]
@@ -103,11 +137,11 @@ as YAML, rather than Ruby.
 
   ri:
     exclude: []
-    active : true
+    active:  true
 
   stats:
     priority: -1
-    active  : true
+    active:   true
 
   testrb:
     active: true
