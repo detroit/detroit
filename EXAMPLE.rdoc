@@ -9,45 +9,10 @@ is given, the name defaults to the name of the service itself downcased.
 Settings are simply method calls followed by the value. They
 can be nested with additional blocks which define Hash values.
 
-  Announce do
-    @mailto = "ruby-talk@ruby-lang.org",
-    @active = true
-  end
-
-  Announce :myself do
-    @mailto = "transfire@gmail.com"
-    @active = true
-  end
-
-  Gem do
-    @types  = ['gem']
-    @spec   = false,
-    @active = true
-  end
-
-  DNote do
-    @priority = -1
-    @active   = true
-  end
-
-  RDoc do
-    @include = [ 'lib', '[A-Z]*' ]
-    @exclude = [ 'Redfile' ]
-  end
-
-  Rubyforge do
-    @sitemap = set do
-      @site = 'example'
-    end
-    @active = false
-  end
-
-== Or
-
   Announce   mailto: "ruby-talk@ruby-lang.org",
              active: true
 
-  Announce   :myself
+  Announce :myself,
              mailto: "transfire@gmail.com",
              active: true
 
@@ -56,10 +21,18 @@ can be nested with additional blocks which define Hash values.
              active: true
 
   DNote      priority: -1,
-             active: true
+             active:   true
+
+  RI         exclude: [],
+             active:  true
 
   RDoc       include: [ 'lib', '[A-Z]*' ],
              exclude: [ 'Redfile' ]
+
+  Stats      priority: -1
+             active:   true
+
+  Testrb     active: true
 
   Rubyforge  sitemap: {
                site: 'example'
@@ -67,10 +40,36 @@ can be nested with additional blocks which define Hash values.
              active: false
 
 == Or 
-  
+
+  service :announce
+    set :mailto, "ruby-talk@ruby-lang.org"
+    set :active, true
+  end
+
+  service :myself do
+    set :type,   :Announce
+    set :mailto, "transfire@gmail.com"
+    set :active, true
+  end
+
+  service :gem do
+    set :spec,   false
+    set :active, true
+  end
+
+  service :dnote do
+    set :priority, -1
+    set :active, true
+  end
+
   service :ri do
     set :exclude, []
     set :active,  true
+  end
+
+  service :rdoc do
+    include: [ 'lib', '[A-Z]*' ],
+    exclude: [ 'Redfile' ]
   end
 
   service :stats do
