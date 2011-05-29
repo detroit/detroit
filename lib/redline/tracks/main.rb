@@ -12,7 +12,8 @@ module Redline
           :package,    # create packages
           :verify,     # post package verification
           :publish,    # publish documentation/website
-          :release,    # release packages / deploy to servers(?)
+          :release,    # release packages
+          :deploy,     # deploy to servers
           :announce    # tell the world about your awesome work
 
     route :reset,      # mark artifacts as out-of-date

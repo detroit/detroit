@@ -1,6 +1,8 @@
 module Redline
 
+  # Stores the defined lines.
   #
+  # Retruns Hash of name and track instance pairs.
   def self.tracks
     @tracks ||= {}
   end
@@ -10,29 +12,31 @@ module Redline
     tracks[name.to_sym] = Track.new(name, &block)
   end
 
-  #
+  # The Track class encapsulates the definition of
+  # a track/line. 
   class Track
-    #
+
+    # Name of the track.
     attr :name
 
-    #
+    # Routes on the track.
     attr :routes
+
     #alias_method :tracks, :routes
 
-    #
+    # Create a new instance of Track.
     def initialize(name, &block)
       @name     = name.to_sym
       @routes   = []
       instance_eval(&block) if block
     end
 
-    #
+    # Drefine a route within the track.
     def route(*stops)
       @routes << stops.map{ |s| s.to_sym }
     end
-    
 
-    #
+    # Lookup routes that have a given stop.
     def route_with_stop(stop)
       routes.find{ |c| c.include?(stop.to_sym) }
     end
@@ -40,46 +44,3 @@ module Redline
   end
 
 end
-
-
-
-=begin
-
-    #
-    #def phase(map)
-    #  case map
-    #  when String, Symbol
-    #    phasemap[map.to_sym] = nil
-    #  else
-    #    map.each do |post_phase, pre_phase|
-    #      phasemap[post_phase.to_sym] = pre_phase.to_sym
-    #    end
-    #  end
-    #end
-
-    #
-    #def systems
-    #  @systems ||= calc_systems
-    #end
-
-    #private
-
-    #
-    #def calc_systems
-    #  systems = []
-    #  end_phases = (phasemap.keys - phasemap.values).compact
-    #  end_phases.each do |end_phase|
-    #    system = []
-    #    x = end_phase
-    #    until x == nil
-    #      system.unshift(x)
-    #      x = phasemap[x]
-    #      raise "recursive pipleine -- #{type}/#{x}" if system.include?(x)
-    #    end
-    #    systems << system
-    #  end
-    #  return systems
-    #end
-
-=end
-
