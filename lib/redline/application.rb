@@ -300,6 +300,8 @@ module Redline
 
     # Execute service hook for given track and destination.
     #--
+    # TODO: Deprecate service hooks?
+    #
     # TODO: Currently only stop counts, maybe add track subdirs.
     #++
     def service_hooks(track, stop)

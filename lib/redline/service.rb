@@ -17,35 +17,44 @@ module Redline
     attr :service
     #attr :options
 
+    # Set the priority. Priority determines the order which
+    # services on the same stop are run.
     def priority=(integer)
       @priority = integer.to_i
     end
 
+    # Set the tracks a service will be available on.
     def tracks=(list)
       @tracks = list.to_list
     end
 
+    #
+    def active=(boolean)
+      @active = !!boolean
+    end
+
+    # Create new ServiceWrapper.
     def initialize(key, service_class, options)
       @key      = key
 
-      @tracks   = nil
+      ## set service defaults
+      @tracks   = service_class.tracks
       @priority = 0
       @active   = true
 
-      @active   = options.delete('active')   if !options['active'].nil?
-
+      self.active   = options.delete('active')   if !options['active'].nil?
       self.tracks   = options.delete('tracks')   if options.key?('tracks')
       self.priority = options.delete('priority') if options.key?('priority')
 
       @service = service_class.new(options)
     end
 
-    #
+    # Does the service support the give stop.
     def stop?(name)
       @service.respond_to?(name)
     end
 
-    #
+    # Run the service stop procedure.
     def invoke(name)
       @service.__send__(name)  # public_send
     end
@@ -104,6 +113,12 @@ module Redline
       #def init(&block)
       #  define_method(:init, &block)
       #end
+
+      # Override the `tracks` method to limit the lines a service
+      # will work with by default. Generally this is not used,
+      # and a return value of +nil+ means all lines apply.
+      def tracks
+      end
 
       # TODO: Perhaps deprecate this in favor of just defining an `availabe?`
       # class method.
@@ -166,6 +181,7 @@ module Redline
 
 end #module Redline
 
+# Provides a clean namespace for creating services.
 module Redline::Plugins
   Service = Redline::Service
   Tool    = Redline::Tool
