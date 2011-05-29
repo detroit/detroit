@@ -14,10 +14,11 @@ module Redline
           :generate,
           :analyze,
           :document,
-          :release
+          :publish
 
     route :reset,
-          :clean
+          :clean,
+          :purge
 
   end
 

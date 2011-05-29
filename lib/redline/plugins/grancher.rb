@@ -10,35 +10,19 @@ module Redline::Plugins
   #
   class Grancher < Service
 
-=begin
-    # TODO: should grancher transfer be a `generate` stop?
-    pre_stop :main, :release do
-      transfer
-    end
-
-    stop :main, :release
-
-    # TODO: should grancher transfer be a `generate` stop?
-    pre_stop :site, :release do
-      transfer
-    end
-
-    stop :site, :release
-=end
-
     # Options conform to RedTools::Grancher class.
     def self.options
       super(RedTools::Grancher)
     end
 
     # TODO: should grancher transfer be a `generate` stop?
-    def pre_release
+    def pre_publish
       tool.transfer
     end
 
     #
-    def release
-      tool.release
+    def publish
+      tool.publish
     end
 
     private

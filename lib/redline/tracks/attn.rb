@@ -15,7 +15,8 @@ module Redline
           :announce
 
     route :reset,
-          :clean
+          :clean,
+          :purge
 
   end
 

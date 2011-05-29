@@ -11,11 +11,13 @@ module Redline
           :document,   # generate documentation
           :package,    # create packages
           :verify,     # post package verification
+          :publish,    # publish documentation/website
           :release,    # release packages / deploy to servers(?)
           :announce    # tell the world about your awesome work
 
-    route :reset,
-          :clean
+    route :reset,      # mark artifacts as out-of-date
+          :clean,      # remove temporary artifacts
+          :purge       # remove all generate files
 
   end
 
