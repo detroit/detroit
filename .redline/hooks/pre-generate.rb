@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+report "Hooks are working."
+
 file  = "lib/#{project.metadata.name}.rb"
 text1 = read(file)
 text2 = text1.sub(/VERSION\s*\=\s*\S+/, %{VERSION = "#{project.metadata.version}"})
