@@ -1,117 +1,139 @@
-= EXAMPLE REDFILE
+# Redfile
 
-== RUBY FORMAT
+Redline's main configuration file is called a *Redfile*. Redfiles define the 
+<i>service instances</i> that a project will utilize. 
 
-Ruby-based redfiles are written with the name of the service
-as a capitalized method followed by an optional name for the particular
-service instance and then a block of settings. If no instance name
-is given, the name defaults to the name of the service itself downcased.
-Settings are simply method calls followed by the value. They
-can be nested with additional blocks which define Hash values.
+Redfiles can be written in a few different formats thanks to the flexibility
+of Ruby. All formats are equivalent. Which format you use is strictly a regard
+of your personal preference.
 
-  Announce   mailto: "ruby-talk@ruby-lang.org",
-             active: true
+## Ruby-based Redfile
 
-  Announce :myself,
-             mailto: "transfire@gmail.com",
-             active: true
+### Traditional Format
 
-  Gem        types:  ['gem'],
-             spec:   false,
-             active: true
+Traditionally a Ruby-based Redfile is dominated by calls to the `service` method
+with an optional service instance name and a setter block.
 
-  DNote      priority: -1,
-             active:   true
-
-  RI         exclude: [],
-             active:  true
-
-  RDoc       include: [ 'lib', '[A-Z]*' ],
-             exclude: [ 'Redfile' ]
-
-  Stats      priority: -1
-             active:   true
-
-  Testrb     active: true
-
-  Rubyforge  sitemap: {
-               site: 'example'
-             }
-             active: false
-
-== Or 
-
-  service :announce
-    set :mailto, "ruby-talk@ruby-lang.org"
-    set :active, true
+```ruby
+  service :myself do |s|
+    s.service = :Announce
+    s.mailto  = "transfire@gmail.com"
+    s.active  = true
   end
 
+  service :rdoc do |r|
+    r.include = [ 'lib', '[A-Z]*' ]
+    r.exclude = [ 'Redfile' ]
+  end
+```
+
+If no `service` setting is given, it is assumed to be same as the service instance name.
+In the above example `rdoc` is taken to be both the service desired and the name of
+this particular instance.
+
+A few years ago, Sinatra came along and popularized the use of the `#set` method. A simple addition
+to the the Redfile parser now allows for the slightly cleaner notation:
+
+```ruby
   service :myself do
-    set :type,   :Announce
+    set :service, :Announce
     set :mailto, "transfire@gmail.com"
-    set :active, true
-  end
-
-  service :gem do
-    set :spec,   false
-    set :active, true
-  end
-
-  service :dnote do
     set :priority, -1
     set :active, true
-  end
-
-  service :ri do
-    set :exclude, []
-    set :active,  true
   end
 
   service :rdoc do
-    include: [ 'lib', '[A-Z]*' ],
-    exclude: [ 'Redfile' ]
+    set :include, [ 'lib', '[A-Z]*' ]
+    set :exclude, [ 'Redfile' ]
   end
+```
 
-  service :stats do
-    set :priority, -1
-    set :active,   true
-  end
+The `#set` method also allows for nested set blocks to define hash values.
 
-  service :testrb do
-    set :active, true
-  end
-
+```ruby
   service :rubyforge do
-    set :sitemap, {
-      site 'example'
-    }
+    set :sitemap do
+      set :site, name
+    end
     set :active, false
   end
+```
 
-The setting +active+ defaults to +true+ if not given, so is not strictly
-needed in the above example, but it is convenient to have in case you
+The setting `active` defaults to `true` if not given, so is not strictly
+needed in the above examples, but it is convenient to have in case you
 ever need to deactivate a service temporarily --more convenient than
-remarking out the whole section.
+remarking out a whole section. 
 
-Alternately the Ruby format supports yield notation too, e.g.
+Almost all options have standard defaults so it is often possible for a service
+definition to be written as simply as:
 
-  service :myself do |s|
-    s.type   = :Announce
-    s.mailto = "transfire@gmail.com"
-    sactive  = true
-  end
+```ruby
+  service :rdoc
+```
 
+### Modern Notation
 
-== YAML FORMAT
+Thanks to some straight-forward meta-programming, a Ruby-based Redfile can
+be written in a more concisely notation by using the name of the service class as a
+method. This can be followed by a settings block, as with the above examples,
+or passed a <i>settings hash</i>. In which case a Redfile can look like this:
 
-The YAML format is essentailly the same as the Ruby format except that
-the main key provides the service instance name and the service is an
-setting which defaults the name. Unlike the Ruby format the service names
-do not have to be capitalized. Also, notic the start document indicator
-(<code>---</code>). The indeicator is required for Redline to recognize the redfile
-as YAML, rather than Ruby.
+```ruby
+  Announce   :mailto   => "ruby-talk@ruby-lang.org",
+             :active   => true
 
-  ---
+  Announce   :myself,
+             :mailto   => "transfire@gmail.com",
+             :priority => -1
+             :active   => true
+
+  Gem        :types    => ['gem'],
+             :spec     => false,
+             :active   => true
+
+  DNote      :priority => -1,
+             :active   => true
+
+  RI         :exclude  => [],
+             :active   => true
+
+  RDoc       :include  => [ 'lib', '[A-Z]*' ],
+             :exclude  => [ 'Redfile' ]
+
+  Testrb     :active   => true
+
+  Rubyforge  :sitemap  => {
+               :site => name
+             }
+             :active   => false
+```
+
+This format is convenient in that it reduced the amount of extraneous syntax
+need to define service instances. With Ruby 1.9 it can be even more conisce
+using the new Hash syntax.
+
+```ruby
+  Announce  :myself,
+             mailto:   "transfire@gmail.com",
+             priority: -1
+             active:   true
+```
+
+But you might want to hold off on that a couple of years until Ruby 1.8 is pretty much
+shot and buried ;)
+
+## YAML-based Redfile
+
+We have saved the most concise notation for last. The YAML format is
+essentially the same as the traditional Ruby format except that
+the main key provides the service instance name and the service is a
+setting which defaults to the name. Also, notice the start document indicator
+(<code>---</code>). The indicator is NECESSARY for the Redfile to be
+recognized as YAML, rather than Ruby.
+
+```yaml
+  --- !redfile
+
   announce:
     mailto: "transfire@gmail.com"
     active: true
@@ -150,17 +172,17 @@ as YAML, rather than Ruby.
     sitemap:
       site: <% name %>
     active: false
+```
 
 As we can see in the last entry, the YAML format also supports ERB and provides
 access to project metadata via the ERB's binding.
 
 With the Ruby format it is easy enough to load external Redline plugins using
-standard +require+ and +load+ methods. The YAML format's support of ERB
-can be used to achieve the same effect.
+standard `require` and `load` methods. Since the YAML format supports ERB
+it can be used to achieve the same effect.
 
-  ---
+```ruby
+  --- !redfile
   <% require 'some/redline/plugin' %>
-
-
-Which format you use is strictly a regard of your personal preference.
+```
 
