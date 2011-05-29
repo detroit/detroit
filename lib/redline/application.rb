@@ -1,64 +1,18 @@
-# Erb is used to to script YAML-based redfiles.
-require 'erb'
-
-# The ANSI gem is used to colorize terminal output.
-require 'ansi/terminal'
-require 'ansi/code'
-
-# The parallel gem is used to (optionally) multitask services.
-begin
-  require 'parallel'
-rescue LoadError
-end
-
-#
-require 'redtools/tool'
-
-require 'redline/core_ext'
-require 'redline/cli'
-require 'redline/config'
-
-require 'redline/track'
-require 'redline/tracks/main'
-require 'redline/tracks/site'
-require 'redline/tracks/attn'
-
-require 'redline/service'
-
 module Redline
 
-  #
-  PLUGIN_DIRECTORY = File.dirname(__FILE__) + '/plugins'
-
-  # Returns Array of file paths.
-  def self.standard_plugins
-    Dir[PLUGIN_DIRECTORY + '/*.rb']
-  end
-
-  # = Application
-  #
-  # TODO: Probably rename this class --"Application" is too generic.
-  #
-  # TODO: Continue to imporve CLI layer.
-  #
+  # Application class is the main controller class for running
+  # a session of Redline.
+  #--
+  # TODO: Renname Application to `Session`?
+  #++
   class Application
 
     # Commandline interface controller.
     attr :cli
 
-    # Redline configuration.
-    attr :config
-
-    ## Actions (extracted from services).
-    #attr :actions
-
     # Create a new Redline Application instance.
     def initialize(cli_options)
-      @cli      = cli_options #Redline::CLI.new
-      @config   = Redline::Config.new(project)
-
-      #@services, @actions = *load_service_configuration
-
+      @cli = cli_options
       load_standard_plugins
     end
 
@@ -76,17 +30,26 @@ module Redline
 
     #
     def quiet?
-      cli.quiet?
+      cli[:quiet]
     end
 
     # Multitask mode?
     def multitask?
-      cli.multitask? && defined?(Parallel)
+      cli[:multitask] && defined?(Parallel)
     end
 
-    # Provides access to the Project instance.
+    # Returns a list of services to skip as specificed on the commandline.
+    def skip
+      @skip ||= cli[:skip].to_list.map{ |s| s.downcase }
+    end
+
+    # Redline configuration.
+    def config
+      @config ||= Redline::Config.new(project)
+    end
+
+    # Provides access to the Project instance via `Redline.project` class method.
     def project
-      #script.project
       @project ||= POM::Project.find
     end
 
@@ -123,9 +86,9 @@ module Redline
           next unless opts && opts['active'] != false
 
           service_name  = opts.delete('service') || key
-          service_class = Redline.services[service_name.downcase]
+          service_class = Redline.services[service_name.to_s.downcase]
 
-          abort "Unkown service #{service_name}." unless service_class
+          abort "Unknown service #{service_name}." unless service_class
 
           if service_class.available?(project)
             #opts = inject_environment(opts) # TODO: DEPRECATE
@@ -149,49 +112,12 @@ module Redline
 
     #alias_method :services, :active_services
 
-    #
-    #def service_configuration
-    #  @service_configuration ||= (
-    #    services = {}
-    #    service_configs.each do |classname, options|
-    #      services[classname] = options
-    #    end
-    #    services
-    #  )
-    #end
-
     # Service configuration. These are stored in the project's Redfile,
     # or .redline/ or task/ folders as Ruby or YAML files.
     #
     # Returns Hash of service name and settings.
     def service_configs
       config.services
-    end
-
-    # OMG! This goes back to Clio days!
-    # setup cli
-    #def cli
-    #  @cli ||= (
-    #    cli = script.cli
-    #    Redline.tracks.each do |key, track|
-    #      track.routes.each do |stops|
-    #        stops.each do |stop|
-    #          if key.to_sym == :main
-    #            cli.usage.subcommand("#{stop}") #.desc("no help")
-    #            cli.usage.subcommand("#{key}:#{stop}")
-    #          else
-    #            cli.usage.subcommand("#{key}:#{stop}")
-    #          end
-    #        end
-    #      end
-    #    end
-    #    cli
-    #  )
-    #end
-
-    # Returns a list of services to skip as specificed on the commandline.
-    def skip
-      @skip ||= cli.skip.to_list.map{ |s| s.downcase }
     end
 
     # Run individual redline scripts/tasks.
@@ -203,47 +129,14 @@ module Redline
     end
 
     # Start the run.
-    def start(argv=ARGV)
-      Dir.chdir(project.root)        # change into project directory
-      load_project_plugins           # load any local plugins
-      cli.parse                      # parse the cli
-      stop = argv.shift #cli.command  # what stop has been requested
-      #help(stop) if !stop             # if none then show help and exit
-      #help(cli,stop) if cli.help?    # display help message if requested
-      #help(stop) if cli.options[:help]
-      run(stop)
+    def start(stop)
+      Dir.chdir(project.root) do       # change into project directory
+        run(stop)
+      end
     end
-
-    # Show commndline help and exit.
-    #def help(stop)
-    #  case stop
-    #  when nil
-    #    puts cli.usage.help #_text
-    #  else
-    #    puts cli.usage.subcommand(stop).help_text
-    #  end
-    #  exit
-    #end
 
     # Run up to the specified +track_and_stop+.
     def run(track_and_stop)
-      # tab completion -- improve this in the future.
-      #if cli == '?'
-      #  m, l = [], []
-      #  Redline.tracks.each do |key, track|
-      #     track.stop_map.keys.each do |stop|
-      #       if key == :main
-      #         m << "#{stop}"
-      #         l << "#{key}:#{stop}"
-      #       else
-      #         l << "#{key}:#{stop}"
-      #       end
-      #     end
-      #  end
-      #  puts m.sort.join(" ") + l.sort.join(" ")
-      #  exit
-      #end
-
       raise "Malformed destination -- #{track_and_stop}" unless /^\w+\:{0,1}\w+$/ =~ track_and_stop
 
       if track_and_stop
@@ -295,7 +188,7 @@ module Redline
       end
 
       stop_time = Time.now
-      puts "\nFinished in #{stop_time - start_time} seconds." unless cli.quiet?
+      puts "\nFinished in #{stop_time - start_time} seconds." unless quiet?
     end
 
     # Execute service hook for given track and destination.
@@ -305,30 +198,35 @@ module Redline
     # TODO: Currently only stop counts, maybe add track subdirs.
     #++
     def service_hooks(track, stop)
-       dir  = project.config + "redline/hooks"
        #hook = dir + ("#{track}/#{stop}.rb".gsub('_', '-'))
+       dir  = hook_directory
        name = stop.to_s.gsub('_', '-')
        hook = dir + "#{name}.rb"
        if hook.exist?
          status_line("hook", name.capitalize)
-         script.instance_eval(hook.read)
+         hook_tool.instance_eval(hook.read)
        end
+    end
+
+    # Returns a project's Redline hooks directory.
+    def hook_directory
+      dir  = project.root.glob("{.,}redline/hooks").first
     end
 
     #
     def hook_tool
-      #@script   = Redline::Script.new(:io=>io, :cli=>cli)
       @hook_tool ||= RedTools::Tool.new(common_tool_options)
     end
 
-    # TODO: add verbose?
+    # TODO: Do we need verbose?
     def common_tool_options
       {
         :project => project,
-        :trail   => cli.trial,
-        :trace   => cli.trace,
-        :quiet   => cli.quiet,
-        :force   => cli.force
+        :trial   => cli[:trial],
+        :trace   => cli[:trace],
+        :quiet   => cli[:quiet],
+        :force   => cli[:force],
+        :verbose => cli[:verbose]
       }
     end
 
@@ -336,9 +234,9 @@ module Redline
     def service_calls(track, stop)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
-        # remove any services specified by the -s option on the comamndline
+        ## remove any services specified by the -s option on the comamndline
         services = services.reject{ |srv| skip.include?(srv.key.to_s) }
-        # only servies that are on the track
+        ## only servies that are on the track
         services = services.select{ |srv| srv.tracks.nil? or srv.tracks.include?(track.to_s) }
 
         tasklist = services.map{ |srv| [srv, track, stop] }
@@ -359,7 +257,7 @@ module Redline
       # run if the service supports the track and stop.
       #if srv.respond_to?("#{track}_#{stop}")
       if srv.stop?(stop)
-        if cli.verbose?
+        if cli[:verbose]
           #status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
           status_line("#{srv.key.to_s} (#{srv.class}##{stop})", stop.to_s.gsub('_', '-').capitalize)
         else
@@ -370,17 +268,18 @@ module Redline
       end
     end
 
-    # Load custom plugins.
-    # FIXME: how to load?
-    def load_project_plugins
-      #plugs = project.config_redline.glob('*.rb')
-      plugs = project.plugin.glob('*.rb')
-      plugs.each do |plug|
-        load(plug.to_s)
-        #  self.class.class_eval(File.read(plug))
-        #instance_eval(File.read(plug))
-      end
-    end
+    ## Load custom plugins.
+    ##
+    ## COMMIT: Load local plugins manually via .redfile/plugins.rb
+    #def load_project_plugins
+    #  #plugs = project.config_redline.glob('*.rb')
+    #  plugs = project.plugin.glob('*.rb')
+    #  plugs.each do |plug|
+    #    load(plug.to_s)
+    #    #  self.class.class_eval(File.read(plug))
+    #    #instance_eval(File.read(plug))
+    #  end
+    #end
 
     # Returns a list of all terminal stops, i.e. stops at a tracks end.
     # FIXME: stop_map is not defined.
@@ -398,13 +297,6 @@ module Redline
         puts
       end
     end
-
-    #def lines
-    #  l =[]
-    #  active_services.each do |service|
-    #    service.
-    #  end
-    #end
 
     # --- Print Methods ------------------------------------------------------
 
@@ -511,7 +403,6 @@ module Redline
 
     #
     def screen_width
-      #Clio::ConsoleUtils.screen_width
       ANSI::Terminal.terminal_width
     end
 

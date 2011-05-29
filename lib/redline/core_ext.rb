@@ -9,6 +9,7 @@ require 'facets/to_hash'
 require 'facets/module/basename'
 require 'facets/module/alias_accessor'
 require 'facets/pathname'
+#require 'facets/boolean'
 
 class Array
 
@@ -40,6 +41,8 @@ class String
 end
 
 # TODO: Replace these with facets/shellwords !!!
+
+# TODO: Belongs in Redtools, no?
 
 #
 class Array #:nodoc:

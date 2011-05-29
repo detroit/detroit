@@ -1,6 +1,3 @@
-#require 'redtools/tool'
-require 'redtools'
-
 module Redline
 
   #

@@ -1,10 +1,3 @@
-#require 'facets/boolean'
-
-require 'redline/redfile'
-
-#require 'redline/config/ruby_parser'
-#require 'redline/config/yaml_parser'
-
 module Redline
 
   # Redline configuration. Configuration comes from a main +Redfile+
@@ -95,7 +88,7 @@ module Redline
       @redfile_filenames ||= (
         files = []
         ## match 'Redfile' or '.redfile' file
-        files = project.root.glob("{,.}#{FILE_EXTENSION}", :casefold)
+        files = project.root.glob("{,.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
         ## only files
         files = files.select{ |f| File.file?(f) }
         if files.empty?
