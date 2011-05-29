@@ -1,66 +1,59 @@
-require 'facets/to_hash'
-#require 'redline/erbio'
-
 module Redline
-
-  def self.project
-    @project ||= POM::Project.find
-  end
 
   # Redfile encapsulates a redfile's list of service definitions.
   class Redfile
 
     # Load a Redfile.
-    def self.load(io)
-      text = String === io ? io : io.read
-      if /^---/ =~ text
-        YAML.load(erb(text))
-      else
-        eval(text)
-      end
-    end
-
-    # Evaluate a Redfile script.
-    def self.eval(script, file=nil)
-      new.instance_eval(script, file)
-    end
-
-    private
-
-    # Process Redfile document via ERB.
-    def self.erb(text)
-      ERB.new(text).result(__binding__)
-    end
-
-    # Access to a clean binding.
-    def self.__binding__
-      binding
-    end
-
-    public
-
-    # Provide access to project data.
-    def self.project
-      Redline.project
+    def self.load(input)
+      new(input)
     end
 
     # Hash table of services.
     attr :services
 
+    private
+
     # Create new Redfile instance.
-    def initialize(services={})
-      @services = services.to_h
+    def initialize(file, options={})
+      @project = options[:project]
+
+      @services = {}
+
+      @file = (String === file ? File.new(file) : file)
+
+      case File.extname(@file.path)
+      when '.rb'
+        instance_eval(@file.read, @file.path)
+      when '.yml', '.yaml'
+        @services = YAML.load(erb(@file.read))
+      else
+        text = @file.read
+        if /^---/ =~ text
+          @services = YAML.load(erb(text))
+        else
+          instance_eval(text, @file.path)
+        end
+      end
     end
 
     # Define a service.
     def service(name, settings={}, &block)
-      settings = settings.merge(block.to_h) if block
-      @services[name.to_s] = settings
+      if block
+        block_context = BlockContext.new(&block)
+        settings = block_context.settings
+      end
+      @services[name.to_s] = settings.rekey(&:to_s)
     end
 
-    # Project access to project data.
+    # Access to project data.
+    #
+    # NOTE: Thinking that the project should be relative
+    # to the redfile itself, unless a `project` is passed
+    # in manually through the initializer. In the mean time,
+    # the project is just relative to the current working directory.
+    #
     def project
-      Redline.project
+      @project ||= POM::Project.find #(file_directory)
     end
 
     # Capitalized service names called as methods
@@ -74,13 +67,95 @@ module Redline
         else
           args << {:services=>service_class}
         end
-        service(*args, &block)
+        case args.first
+        when String, Symbol
+          name = args.first
+        else
+          name = service_class.to_s.downcase
+        end
+        service(name, *args, &block)
       else
         super(sym, *args, &block)
       end
     end
 
+    private
+
+    # Process Redfile document via ERB.
+    def erb(text)
+      context = ERBContext.new(project)
+      ERB.new(text).result(context.__binding__)
+    end
+
+    # ERBContext provides the clean context to process a Redfile
+    # as an ERB template.
+    class ERBContext
+      #
+      def initialize(project)
+        @project = project
+      end
+
+      # Access to a clean binding.
+      def __binding__
+        binding
+      end
+
+      # Provide access to project data.
+      def project
+        @project
+      end
+
+      #
+      def method_missing(name, *args)
+        if project.respond_to?(name)
+          project.__send__(name, *args)
+        else
+          super(name, *args)
+        end
+      end
+    end
+
+    #
+    class BlockContext
+      #
+      attr :settings
+
+      #
+      def initialize(&block)
+        @settings = {}
+        if block.arity == 0
+          instance_eval(&block)
+        else
+          block.call(self)
+        end
+      end
+
+      #
+      def set(name, value=nil, &block)
+        if block
+          block_context = BlockContext.new
+          block.call(block_context)
+          @settings[name.to_s] = block_context.settings
+        else
+          @settings[name.to_s] = value
+        end
+      end
+
+      #
+      def method_missing(symbol, value=nil, *args)
+        case name = symbol.to_s
+        when /=$/
+          @settings[name.chomp('=')] = value
+        else
+          super(symbol, value=nil, *args)
+        end
+      end
+    end
+
   end
+
+  # NOTE: This is problematic, because a Redfile should really know from
+  # what file it was derived.
 
   #
   DOMAIN = "rubyworks.github.com/redline,2011-05-27"
@@ -93,14 +168,15 @@ module Redline
   #  end
   #else
     YAML::add_builtin_type("redfile") do |type, value|
-      case value
-      when String
-        Redfile.eval(value)
-      when Hash
-        Redfile.new(value)
-      else
-        raise "ERROR: Invalid Redfile"
-      end
+      value
+      #case value
+      #when String
+      #  Redfile.eval(value)
+      #when Hash
+      #  Redfile.new(value)
+      #else
+      #  raise "ERROR: Invalid Redfile"
+      #end
     end
   #end
 
