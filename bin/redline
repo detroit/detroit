@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
-require 'redline/cli'
+require 'redline'
 begin
-  Redline::CLI.new.run
+  Redline.cli(*ARGV)
 rescue => err
-  raise err if $DEBUG
+  raise err #if $DEBUG
   $stderr.puts err
 end
 
