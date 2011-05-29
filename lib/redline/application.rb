@@ -7,12 +7,12 @@ module Redline
   #++
   class Application
 
-    # Commandline interface controller.
-    attr :cli
+    # Options (generally from #cli).
+    attr :options
 
     # Create a new Redline Application instance.
-    def initialize(cli_options)
-      @cli = cli_options
+    def initialize(options)
+      @options = options
       load_standard_plugins
     end
 
@@ -30,17 +30,17 @@ module Redline
 
     #
     def quiet?
-      cli[:quiet]
+      options[:quiet]
     end
 
     # Multitask mode?
     def multitask?
-      cli[:multitask] && defined?(Parallel)
+      options[:multitask] && defined?(Parallel)
     end
 
     # Returns a list of services to skip as specificed on the commandline.
     def skip
-      @skip ||= cli[:skip].to_list.map{ |s| s.downcase }
+      @skip ||= options[:skip].to_list.map{ |s| s.downcase }
     end
 
     # Redline configuration.
@@ -222,11 +222,11 @@ module Redline
     def common_tool_options
       {
         :project => project,
-        :trial   => cli[:trial],
-        :trace   => cli[:trace],
-        :quiet   => cli[:quiet],
-        :force   => cli[:force],
-        :verbose => cli[:verbose]
+        :trial   => options[:trial],
+        :trace   => options[:trace],
+        :quiet   => options[:quiet],
+        :force   => options[:force],
+        :verbose => options[:verbose]
       }
     end
 
@@ -257,7 +257,7 @@ module Redline
       # run if the service supports the track and stop.
       #if srv.respond_to?("#{track}_#{stop}")
       if srv.stop?(stop)
-        if cli[:verbose]
+        if options[:verbose]
           #status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
           status_line("#{srv.key.to_s} (#{srv.class}##{stop})", stop.to_s.gsub('_', '-').capitalize)
         else
@@ -267,19 +267,6 @@ module Redline
         srv.invoke(stop)
       end
     end
-
-    ## Load custom plugins.
-    ##
-    ## COMMIT: Load local plugins manually via .redfile/plugins.rb
-    #def load_project_plugins
-    #  #plugs = project.config_redline.glob('*.rb')
-    #  plugs = project.plugin.glob('*.rb')
-    #  plugs.each do |plug|
-    #    load(plug.to_s)
-    #    #  self.class.class_eval(File.read(plug))
-    #    #instance_eval(File.read(plug))
-    #  end
-    #end
 
     # Returns a list of all terminal stops, i.e. stops at a tracks end.
     # FIXME: stop_map is not defined.
