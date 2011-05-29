@@ -30,8 +30,8 @@ module Redline
       end
 
       #
-      def import(file)
-        @__config__.import(file)
+      def redfile(file)
+        @__config__.redfile(file)
       end
 
       #

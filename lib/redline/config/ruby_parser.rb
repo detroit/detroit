@@ -25,11 +25,21 @@ module Redline
         instance_eval(text, file)
       end
 
+      # Load an external redfile.
+      def redfile(file)
+        @__config__.redfile(file)
+      end
+
+      # Access to project metadata.
+      def project
+        @__config__.project
+      end
+
       # TODO: Should we enforce capitalization of service names?
       def method_missing(service, name=nil, *args, &block)
         name = (name || service).to_s.downcase
         if block
-          @__services__[name] = SettingsParser.parse(&block)
+          @__services__[name] = SettingsParser.parse(@__config__, &block)
         else
           @__services__[name] = {}
         end
@@ -37,6 +47,11 @@ module Redline
         @__services__[name]
       end
 
+      # SettingsParser provides a Ruby DSL for setting configuration values.
+      # A few field names are off limits becuase the method names are too
+      # vital to Ruby itself, namely `initialize`, `p` and `instance_*`.
+      # Also `project` is reserved for access to project metadata.
+      #
       # TODO: This should probably be a subclass of BasicObject.
       class SettingsParser
         # undefine most methods
@@ -46,15 +61,21 @@ module Redline
         end
 
         # Initialize new SettingsParser and return parsed settings.
-        def self.parse(&block)
-          new(&block).__settings__
+        def self.parse(config, &block)
+          new(config, &block).__settings__
         end
 
         # Stores a Hash of settings.
         attr :__settings__
 
+        # Access to project metadata.
+        def project
+          @__config__.project
+        end
+
         # Create a new instance of SettingsParser.
-        def initialize(&block)
+        def initialize(config, &block)
+          @__config__   = config
           @__settings__ = {}
           if block.arity == 1
             block.call(self)
@@ -63,7 +84,7 @@ module Redline
           end
         end
 
-        # 
+        # If method is missing than make a setting.
         def method_missing(name, *args, &block)
           name  = name.to_s.chomp('=')
           value = args.first
