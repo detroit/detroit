@@ -1,0 +1,63 @@
+= Snippets
+
+== CLIO for CLI
+
+Orginally I used CLIO gem for the CLI. That project
+has been abandoned. Here is the code that was in the
+Application class.
+
+    # Setup CLI.
+    def cli
+      @cli ||= (
+        cli = script.cli
+        Redline.tracks.each do |key, track|
+          track.routes.each do |stops|
+            stops.each do |stop|
+              if key.to_sym == :main
+                cli.usage.subcommand("#{stop}") #.desc("no help")
+                cli.usage.subcommand("#{key}:#{stop}")
+              else
+                cli.usage.subcommand("#{key}:#{stop}")
+              end
+            end
+          end
+        end
+        cli
+      )
+    end
+
+This was the help method used by Application class when
+CLIO was used for the command line interface.
+
+    # Show commndline help and exit.
+    def help(stop)
+      case stop
+      when nil
+        puts cli.usage.help #_text
+      else
+        puts cli.usage.subcommand(stop).help_text
+      end
+      exit
+    end
+
+At some point it would be nice to have tab completion. My first stab
+was something like this:
+
+    # tab completion -- improve this in the future.
+    if cli == '?'
+      m, l = [], []
+      Redline.tracks.each do |key, track|
+         track.stop_map.keys.each do |stop|
+           if key == :main
+             m << "#{stop}"
+             l << "#{key}:#{stop}"
+           else
+             l << "#{key}:#{stop}"
+           end
+         end
+      end
+      puts m.sort.join(" ") + l.sort.join(" ")
+      exit
+    end
+
+
