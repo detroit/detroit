@@ -10,29 +10,38 @@ module Redline
   # Redfile encapsulates a redfile's list of service definitions.
   class Redfile
 
+    # Load a Redfile.
+    def self.load(io)
+      text = String === io ? io : io.read
+      if /^---/ =~ text
+        YAML.load(erb(text))
+      else
+        eval(text)
+      end
+    end
+
     # Evaluate a Redfile script.
     def self.eval(script, file=nil)
       new.instance_eval(script, file)
     end
 
-    # Load a Redfile.
-    def self.load(io)
-      YAML.load(erb(io))
-    end
+    private
 
     # Process Redfile document via ERB.
-    def self.erb(io)
-      text = String === io ? io : io.read
+    def self.erb(text)
       ERB.new(text).result(__binding__)
     end
+
+    # Access to a clean binding.
+    def self.__binding__
+      binding
+    end
+
+    public
 
     # Provide access to project data.
     def self.project
       Redline.project
-    end
-
-    def self.__binding__
-      binding
     end
 
     # Hash table of services.
@@ -90,7 +99,7 @@ module Redline
       when Hash
         Redfile.new(value)
       else
-        raise
+        raise "ERROR: Invalid Redfile"
       end
     end
   #end
