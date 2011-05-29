@@ -1,4 +1,5 @@
----
+--- !redfile
+
 announce:
   service: Announce
   mailto : transfire@gmail.com
