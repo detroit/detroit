@@ -1,9 +1,9 @@
 # Pitstop
 
-Redline's main configuration file is called a *Pitstop*. Pitstops define the 
+Pitstop's main configuration file is called a *Pitfile*. Pitfiles define the 
 <i>service instances</i> that a project will utilize. 
 
-Pitstops can be written in a few different formats thanks to the flexibility
+Pitfiles can be written in a few different formats thanks to the flexibility
 of Ruby. All formats are equivalent. Which format you use is strictly a regard
 of your personal preference.
 
@@ -177,12 +177,12 @@ recognized as YAML, rather than Ruby.
 As we can see in the last entry, the YAML format also supports ERB and provides
 access to project metadata via the ERB's binding.
 
-With the Ruby format it is easy enough to load external Redline plugins using
+With the Ruby format it is easy enough to load external Pitstop plugins using
 standard `require` and `load` methods. Since the YAML format supports ERB
 it can be used to achieve the same effect.
 
 ```ruby
   --- !pitstop
-  <% require 'some/redline/plugin' %>
+  <% require 'some/pitstop/plugin' %>
 ```
 
