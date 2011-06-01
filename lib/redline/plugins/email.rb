@@ -6,23 +6,14 @@ module Redline::Plugins
   #
   # By default it generates a <i>Release Announcement</i> based
   # on a projects README.* file.
-  class Announce < Service
-
-=begin
-    stop :main, :announce
-    stop :attn, :announce
-=end
-
-    #available do |project|
-    #  true # when ?
-    #end
+  class Email < Service
 
     def announce
       tool.announce
     end
 
     def tool
-      @tool ||= RedTools::Announce.new(options)
+      @tool ||= RedTools::EMail.new(options)
     end
 
     #
