@@ -200,6 +200,7 @@ module Redline
     def service_hooks(track, stop)
        #hook = dir + ("#{track}/#{stop}.rb".gsub('_', '-'))
        dir  = hook_directory
+       return unless dir
        name = stop.to_s.gsub('_', '-')
        hook = dir + "#{name}.rb"
        if hook.exist?
