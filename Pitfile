@@ -1,7 +1,7 @@
---- !redfile
+--- !pitfile
 
 announce:
-  service: Announce
+  service: Email
   mailto : transfire@gmail.com
   active : true
 

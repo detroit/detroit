@@ -7,30 +7,7 @@ module Pitstop::Plugins
   # directory, in which case the rdoc documentation will be
   # stored there.
   #
-  # This plugin provides the following cycle-phases:
-  #
-  #   main:document  - generate rdocs
-  #   main:reset     - mark rdocs out-of-date
-  #   main:clean     - remove rdocs
-  #
-  #   site:document  - generate rdocs
-  #   site:reset     - mark rdocs out-of-date
-  #   site:clean     - remove rdocs
-  #
   class RDoc < Service
-
-=begin
-    ##
-    # Generate rdocs in main cycle.
-    # :method: main_document
-    stop :main, :document
-    stop :main, :reset
-    stop :main, :clean
-
-    stop :site, :document
-    stop :site, :reset
-    stop :site, :clean
-=end
 
     # TODO: IMPROVE
     #available do |project|
@@ -55,6 +32,11 @@ module Pitstop::Plugins
     #
     def clean
       tool.clean
+    end
+
+    #
+    def purge
+      tool.purge
     end
 
     private

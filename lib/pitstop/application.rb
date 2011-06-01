@@ -1,9 +1,12 @@
 module Pitstop
 
+  #
+  DEFAULT_CIRCUIT = :standard
+
   # Application class is the main controller class for running
   # a session of Pitstop.
   #--
-  # TODO: Renname Application to `Session`?
+  # TODO: Rename Application to `Session`?
   #++
   class Application
 
@@ -26,6 +29,11 @@ module Pitstop
           $stderr.puts err if $DEBUG
         end
       end
+    end
+
+    #
+    def circuit
+      options[:circuit] || DEFAULT_CIRCUIT
     end
 
     #
@@ -143,23 +151,27 @@ module Pitstop
         name, stop = track_and_stop.split(':')
         name, stop = 'main', name unless stop
       else
-        name  = 'main'
+        name = 'main'
         stop = nil
       end
 
       name = name.to_sym
       stop = stop.to_sym if stop
 
-      track = Pitstop.tracks[name]
 
-      raise "Unknown track -- #{name}" unless track
+      circ = Pitstop.circuits[circuit]
 
-      if stop
-        system = track.route_with_stop(stop)
-        raise "Unknown stop -- #{stop}" unless system
-      else
+      raise "Unkown circuit `#{circuit}'" unless circ
+
+      track = circ.get_track(name, stop)
+
+      #if stop
+      #  system = track.route_with_stop(stop)
+      #  raise "Unknown stop -- #{stop}" unless system
+
+      if not track.include?(stop)
         #overview
-        $stderr.puts "Unknown track:stop given."
+        $stderr.puts "Unknown stop for track `#{name}'."
         exit 0
       end
 
@@ -177,7 +189,7 @@ module Pitstop
 
       start_time = Time.now
 
-      system.each do |run_stop|
+      track.each do |run_stop|
         next if skip.include?("#{run_stop}")  # TODO: Should we really allow skipping stops?
         service_hooks(name, ('pre_' + run_stop.to_s).to_sym)
         service_calls(name, ('pre_' + run_stop.to_s).to_sym)

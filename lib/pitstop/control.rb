@@ -35,9 +35,19 @@ module Pitstop
 
       if /\.pitfile$/ =~ argv[0]
         job = argv[1]
-        application(cli_options).runscript(argv[0], job)
+        begin
+          application(cli_options).runscript(argv[0], job)
+        rescue => error
+          $stderr.puts error.message
+          exit -1
+        end
       else
-        application(cli_options).start(*argv)
+        begin
+          application(cli_options).start(*argv)
+        rescue => error
+          $stderr.puts error.message
+          exit -1
+        end
       end
     end
 
@@ -46,6 +56,9 @@ module Pitstop
       @usage ||= (
         OptionParser.new do |usage|
           usage.banner = "Usage: pitstop [<track>:]<stop> [options]"
+          usage.on('-c', '--circuit=NAME', "Select circuit [standard]") do |circuit|
+            options[:circuit] = circuit
+          end
           usage.on('--trace', "Run in TRACE mode.") do
             #$TRACE = true
             options[:trace] = true

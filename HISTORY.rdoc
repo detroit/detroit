@@ -5,8 +5,8 @@
 Pitstop is a life-cycle build system for Ruby. Pitstop was originally
 called Syckle, and was developed and used in house for Rubyworks projects
 for a number of years. With the renaming of the project, the system has
-been simplified, the code cleaned up and the version count reset, as part
-of a wider public release.
+been simplified, the code cleaned up and the version count reset, in
+preperation of it's wider public release.
 
 Changes:
 

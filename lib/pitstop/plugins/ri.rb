@@ -10,27 +10,7 @@ module Pitstop::Plugins
   # directory, in which case the ri documentation will be
   # stored there.
   #
-  # This plugin provides the following cycle-phases:
-  #
-  #   main:document  - generate ri docs
-  #   main:reset     - mark ri docs out-of-date
-  #   main:clean     - remove ri docs
-  #
-  #   site:document  - generate ri docs
-  #   site:reset     - mark ri docs out-of-date
-  #   site:clean     - remove ri docs
-  #
   class RI < Service
-
-=begin
-    stop :main, :document
-    stop :main, :reset
-    stop :main, :clean
-
-    stop :site, :document
-    stop :site, :reset
-    stop :site, :clean
-=end
 
     #available do |project|
     #  !project.metadata.loadpath.empty?
@@ -54,6 +34,11 @@ module Pitstop::Plugins
     #
     def clean
       tool.clean
+    end
+
+    #
+    def purge
+      tool.purge
     end
 
     private
