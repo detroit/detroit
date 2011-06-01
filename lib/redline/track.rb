@@ -31,7 +31,7 @@ module Redline
       instance_eval(&block) if block
     end
 
-    # Drefine a route within the track.
+    # Define a route within the track.
     def route(*stops)
       @routes << stops.map{ |s| s.to_sym }
     end

@@ -5,10 +5,6 @@ module Redline::Plugins
   #
   class Turn < Service
 
-=begin
-    stop :main, :test
-=end
-
     #available do |project|
     #  !Dir['test/**/*.rb'].empty?
     #end
@@ -32,7 +28,7 @@ module Redline::Plugins
 
     #
     def tool
-      @tool ||= RedTools::Turn(@options)
+      @tool ||= RedTools::Turn(options)
     end
 
     #
