@@ -59,6 +59,11 @@ module Redline::Plugins
       tool.clean
     end
 
+    #
+    def purge
+      tool.purge
+    end
+
     private
 
     #
