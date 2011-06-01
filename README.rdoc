@@ -6,27 +6,26 @@ Licence:: GPL v.3
 
 == DESCRIPTION
 
-Pitstop is a lifecycle-oriented Ruby project mangement tool. Pitstop
-provides a systematic methodology to help developers prepare
-and release Ruby projects.
+Pitstop is a life-cycle build tool. Pitstop provides a systematic methodology
+to help developers prepare and release Ruby projects.
 
 
 == RESOURCES
 
-* Homepage: http://rubyworks.github.com/pitstop
-* Development: http://github.com/rubyworks/pitstop
-* Mailing List: http://googlegroups.com/group/rubyworks-mailinglist
+* Homepage[http://rubyworks.github.com/pitstop]
+* Development[http://github.com/rubyworks/pitstop]
+* {Mailing List}[http://googlegroups.com/group/rubyworks-mailinglist]
 
 
 == SYNOPSIS
 
 Using Pitstop is not diffcult, but it does take a few minutes to understand
 how it operates. If you are familiar with Maven from the Java ecosystem then
-you have as fair notion about Pitstop. In short, Pitstop defines _lines_, 
-or _tracks_, within which all Pitstop services run. The developer only needs
-to define service instances or _tasks_, as YAML and Ruby configuration files
-in a project's Pitfile or task/*.pitfile files. For example, Pitstop's RubyForge
-service config looks like this:
+you have as fair notion about Pitstop. In short, Pitstop defines _tracks_
+along which various project services run. The developer only needs to define
+service instances (aka _tasks_) in YAML or Ruby configuration files
+in a project's Pitfile, .pitstop/*.pitfile or task/*.pitfile files. 
+For example, Pitstop's RubyForge service config looks like this:
 
   rubyforge:
     service: Rubyforge
@@ -34,21 +33,21 @@ service config looks like this:
       site: <%= name %>
     active: true
 
-Actually, this is no longer used becuase Pitstop moved to GitHub, but this
-example is good one becuase it exemplifies how tasks are defined. These
-service configs often draw on metadata about your project, as in the above
-example's use of <tt><%= name %></tt>. Metadata is defined using POM
-(see http://rubyworks.rubyforge.org/pom). Essentially, you add files to your
-project's +meta+ directory or +Profile+ file, and the information becomes
-available via ERB embedded tags.
+Actually, the Rubyforge service is no longer used becuase Pitstop moved to
+GitHub, but this example is good one becuase it exemplifies how tasks are
+defined. These service configs often draw on metadata about a project,
+as in the above example's use of <tt><%= name %></tt>. Metadata is defined
+using POM (see http://rubyworks.rubyforge.org/pom). Essentially, you add
+files to your project's +meta+ directory or +Profile+ file, and the information
+becomes available via ERB embedded tags.
 
 With service configuration and metadata in place, using Pitstop is simply
-a matter of specifying the *line* and *stop* desired.
+a matter of specifying the *track* and *stop* desired.
 
   $ pitstop main:document
 
 The track name and its stop are separated by a colon. This command
-would run every stop on the +main+ line, in order, until it completes
+would run every stop on the +main+ track, in order, until it completes
 the +document+ stop. Since +main+ is the default track, we can acheive
 the same effect without specifying it.
 
@@ -60,24 +59,29 @@ always up-to-date and in-sync. Pitstop includes three tracks out of the box.
 The most significant of which is +main+ which entails a primary route
 with ordred stops:
 
-  prepare     # prepare services / ensure service requirements
+  prepare     # prepare services and ensure requirements
   generate    # code generation
   compile     # compile source code
   test        # run tests and/or specifications
-  analyize    # run code analysis
+  analyze     # run code analysis
   document    # generate documentation
   package     # create packages
   verify      # post package verification (eg. integration tests)
-  release     # release packages / deploy to servers?
+  install     # install package locally
+  publish     # publish website/documentation
+  release     # release packages
+  deploy      # deply system to servers
   promote     # tell the world about you awesome work
 
 It also has a maintainence route, which is common to many tracks. It consits
 of just two stops:
 
   reset       # mark build files as out-of-date
-  clean       # remove build files
+  clean       # remove minor build files
+  purge       # remove all build files
 
-Where reset marks generated files out-of-date, and clean actually removes them.
+Where reset marks generated files out-of-date, clean removes minor
+products and purge removes all prodcuts.
 
 In additon to +main+, Pitstop includes +site+ and +attn+ lines which are used
 to generate and publish a project website, and make project announcements
@@ -125,6 +129,12 @@ Pitstop is actaully the offspring of Reap v10, and was call Syckle for
 a few years. It represents about four years worth of design consideration
 (and reconsideration), that brought Reap from a simple Rake extension (a la Hoe)
 to the lifecycle-oriented system Pitstop is today.
+
+
+== DEDICATION
+
+This program is in dedication to a great programmer, mentor and all around
+helpful guy, Pit Captain.
 
 
 == COPYRIGHT & LICENSE
