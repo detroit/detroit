@@ -35,6 +35,9 @@ begin
 rescue LoadError
 end
 
+# POM is used to access project metadata.
+require 'pom'
+
 # Redtools provide the standard services.
 require 'redtools'
 

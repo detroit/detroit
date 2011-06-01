@@ -1,9 +1,11 @@
 = RELEASE HISTORY
 
-== 1.0.0 / 2010-06-10
+== 0.1.0 / 2011-05-29
 
-redline is life-cycle based build system for Ruby.
-This is it's initial public release.
+Redline is life-cycle based build system for Ruby. Redline was originally
+called Syckle, and was developed and used in house for Rubyworks projects
+over the last few years. With the renaming of the project, the system has
+been simplified, the code cleaned up and the version count reset.
 
 Changes:
 
