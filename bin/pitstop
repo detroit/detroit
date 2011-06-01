@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'pitstop'
+begin
+  Pitstop.cli(*ARGV)
+rescue => err
+  raise err #if $DEBUG
+  $stderr.puts err
+end
+

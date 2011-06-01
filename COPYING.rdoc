@@ -1,6 +1,6 @@
 = COPYRIGHT NOTICES
 
-== Redline
+== Pitstop
 
 Copyright (c) 2011 Thomas Sawyer
 

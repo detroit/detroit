@@ -1,28 +1,28 @@
 ---
-title  : Redline
-summary: Lifecycle-oriented build tool
+title  : Pitstop
+summary: Life-cycle build tool
 contact: Trans <transfire@gmail.com>
 
 description:
-  Redline is an advanced lifecycle-oriented build system.
-  With Redline build tasks are user define service instances
-  tied to stops along a line, or track. Whenever the redline
-  console command is run a track is followed from beginning
-  to designated destination.
+  Pitstop is an advanced life-cycle build system.
+  With Pitstop, build tasks are user defined service
+  instances tied to stops along a track. Whenever the
+  pistop console command is run, a track is followed
+  from beginning to designated destination.
 
 requires:
-- redtools
-- facets
-- pom
-- qed (test)
+  - redtools
+  - facets
+  - pom
+  - qed (test)
 
 resources:
-  home: http://rubyworks.github.com/redline
-  code: http://github.com/rubyworks/redline
+  home: http://rubyworks.github.com/pitstop
+  code: http://github.com/rubyworks/pitstop
   mail: http://groups.google.com/rubyworks-mailinglist
 
 repositories:
-  public: http://github.com/proutils/redline.git
+  public: http://github.com/proutils/pitstop.git
 
 authors:
   - Thomas Sawyer

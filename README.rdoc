@@ -1,4 +1,4 @@
-= Redline
+= Pitstop
 
 Author:: Thomas Sawyer
 Licence:: GPL v.3
@@ -6,26 +6,26 @@ Licence:: GPL v.3
 
 == DESCRIPTION
 
-Redline is a lifecycle-oriented Ruby project mangement tool. Redline
+Pitstop is a lifecycle-oriented Ruby project mangement tool. Pitstop
 provides a systematic methodology to help developers prepare
 and release Ruby projects.
 
 
 == RESOURCES
 
-* Homepage: http://rubyworks.github.com/redline
-* Development: http://github.com/rubyworks/redline
+* Homepage: http://rubyworks.github.com/pitstop
+* Development: http://github.com/rubyworks/pitstop
 * Mailing List: http://googlegroups.com/group/rubyworks-mailinglist
 
 
 == SYNOPSIS
 
-Using Redline is not diffcult, but it does take a few minutes to understand
+Using Pitstop is not diffcult, but it does take a few minutes to understand
 how it operates. If you are familiar with Maven from the Java ecosystem then
-you have as fair notion about Redline. In short, Redline defines _lines_, 
-or _tracks_, within which all Redline services run. The developer only needs
+you have as fair notion about Pitstop. In short, Pitstop defines _lines_, 
+or _tracks_, within which all Pitstop services run. The developer only needs
 to define service instances or _tasks_, as YAML and Ruby configuration files
-in a project's Redfile or task/*.redfile files. For example, Redline's RubyForge
+in a project's Pitfile or task/*.pitfile files. For example, Pitstop's RubyForge
 service config looks like this:
 
   rubyforge:
@@ -34,7 +34,7 @@ service config looks like this:
       site: <%= name %>
     active: true
 
-Actually, this is no longer used becuase Redline moved to GitHub, but this
+Actually, this is no longer used becuase Pitstop moved to GitHub, but this
 example is good one becuase it exemplifies how tasks are defined. These
 service configs often draw on metadata about your project, as in the above
 example's use of <tt><%= name %></tt>. Metadata is defined using POM
@@ -42,21 +42,21 @@ example's use of <tt><%= name %></tt>. Metadata is defined using POM
 project's +meta+ directory or +Profile+ file, and the information becomes
 available via ERB embedded tags.
 
-With service configuration and metadata in place, using Redline is simply
+With service configuration and metadata in place, using Pitstop is simply
 a matter of specifying the *line* and *stop* desired.
 
-  $ redline main:document
+  $ pitstop main:document
 
 The track name and its stop are separated by a colon. This command
 would run every stop on the +main+ line, in order, until it completes
 the +document+ stop. Since +main+ is the default track, we can acheive
 the same effect without specifying it.
 
-  $ redline document
+  $ pitstop document
 
 The use of tracks may seem constrictive to users of tools like Rake, but
 there is a benefit to this approach. It helps ensure a project is 
-always up-to-date and in-sync. Redline includes three tracks out of the box.
+always up-to-date and in-sync. Pitstop includes three tracks out of the box.
 The most significant of which is +main+ which entails a primary route
 with ordred stops:
 
@@ -79,28 +79,28 @@ of just two stops:
 
 Where reset marks generated files out-of-date, and clean actually removes them.
 
-In additon to +main+, Redline includes +site+ and +attn+ lines which are used
+In additon to +main+, Pitstop includes +site+ and +attn+ lines which are used
 to generate and publish a project website, and make project announcements
 respectively. They are simply useful subsets of the +main+ line.
 
-Please see http://rubyworks.github.com/redline for more details on how to
-use Redline, including the creation of custom tracks, stops and service plugins.
-Also try the <tt>--help</tt> option to see the redline command's help
+Please see http://rubyworks.github.com/pitstop for more details on how to
+use Pitstop, including the creation of custom tracks, stops and service plugins.
+Also try the <tt>--help</tt> option to see the pitstop command's help
 information.
 
 
 == INSTALLATION
 
-Redline can, of course, be installed via RubyGems:
+Pitstop can, of course, be installed via RubyGems:
 
-  $ gem install redline
+  $ gem install pitstop
 
-We no longer recommend it, but Redline can also be installed the
+We no longer recommend it, but Pitstop can also be installed the
 old-fashion way by downloading the .tar.gz package and using
 Ruby Setup (See http://setup.rubyforge.org).
 
-  $ tar -xvzf redline-1.0.0.tar.gz
-  $ cd redline-1.0.0
+  $ tar -xvzf pitstop-1.0.0.tar.gz
+  $ cd pitstop-1.0.0
   $ sudo setup.rb
 
 Ruby Setup is stand-alone version of the original setup.rb script.
@@ -108,7 +108,7 @@ Ruby Setup is stand-alone version of the original setup.rb script.
 
 == ISSUES
 
-All in all, Redline works well. There are some rough edges with regards
+All in all, Pitstop works well. There are some rough edges with regards
 to the built-in service plugins, so from time to time you might run into
 an odd error. Ususally it just means a service confirguraiton needs 
 adjustment.
@@ -116,15 +116,15 @@ adjustment.
 Please note, Windows support has not been considered at all. While I do
 not see any specific reason it should not work, there may well be issues
 I have not considered since I do not use Windows. If you are Windows user
-and give Redline a try please let us know of any issues you encounter.
+and give Pitstop a try please let us know of any issues you encounter.
 
 
 == HISTORY
 
-Redline is actaully the offspring of Reap v10, and was call Syckle for 
+Pitstop is actaully the offspring of Reap v10, and was call Syckle for 
 a few years. It represents about four years worth of design consideration
 (and reconsideration), that brought Reap from a simple Rake extension (a la Hoe)
-to the lifecycle-oriented system Redline is today.
+to the lifecycle-oriented system Pitstop is today.
 
 
 == COPYRIGHT & LICENSE

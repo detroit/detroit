@@ -2,10 +2,11 @@
 
 == 0.1.0 / 2011-05-29
 
-Redline is life-cycle based build system for Ruby. Redline was originally
+Pitstop is a life-cycle build system for Ruby. Pitstop was originally
 called Syckle, and was developed and used in house for Rubyworks projects
-over the last few years. With the renaming of the project, the system has
-been simplified, the code cleaned up and the version count reset.
+for a number of years. With the renaming of the project, the system has
+been simplified, the code cleaned up and the version count reset, as part
+of a wider public release.
 
 Changes:
 

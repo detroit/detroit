@@ -1,5 +1,5 @@
 --- !ruby/object:Gem::Specification 
-name: redline
+name: pitstop
 version: !ruby/object:Gem::Version 
   hash: 23
   prerelease: 
@@ -15,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-05-27 00:00:00 Z
+date: 2011-06-01 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: redtools
@@ -73,53 +73,55 @@ dependencies:
         version: "0"
   type: :development
   version_requirements: *id004
-description: Redline is an advanced lifecycle-oriented build system. With Redline build tasks are user define service instances tied to stops along a line, or track. Whenever the redline console command is run a track is followed from beginning to designated destination.
+description: Pitstop is an advanced life-cycle build system. With Pitstop, build tasks are user defined service instances tied to stops along a track. Whenever the pistop console command is run, a track is followed from beginning to designated destination.
 email: transfire@gmail.com
 executables: 
-- redline
+- pitstop
 extensions: []
 
 extra_rdoc_files: 
 - README.rdoc
 files: 
 - .ruby
-- bin/redline
+- bin/pitstop
+- lib/pitstop/application.rb
+- lib/pitstop/config/ruby_parser.rb
+- lib/pitstop/config/yaml_parser.rb
+- lib/pitstop/config.rb
+- lib/pitstop/control.rb
+- lib/pitstop/core_ext.rb
+- lib/pitstop/dsl.rb
+- lib/pitstop/pitfile.rb
+- lib/pitstop/plugins/custom.rb
+- lib/pitstop/plugins/dnote.rb
+- lib/pitstop/plugins/email.rb
+- lib/pitstop/plugins/extconf.rb
+- lib/pitstop/plugins/gem.rb
+- lib/pitstop/plugins/grancher.rb
+- lib/pitstop/plugins/rdoc.rb
+- lib/pitstop/plugins/ri.rb
+- lib/pitstop/plugins/rspec.rb
+- lib/pitstop/plugins/script.rb
+- lib/pitstop/plugins/stats.rb
+- lib/pitstop/plugins/syntax.rb
+- lib/pitstop/plugins/testrb.rb
+- lib/pitstop/plugins/turn.rb
+- lib/pitstop/plugins/yard.rb
+- lib/pitstop/service.rb
+- lib/pitstop/shell/email.rb
+- lib/pitstop/track.rb
+- lib/pitstop/tracks/attn.rb
+- lib/pitstop/tracks/main.rb
+- lib/pitstop/tracks/site.rb
+- lib/pitstop.rb
+- lib/pitstop.yml
 - lib/plugins/sow/redline/README
 - lib/plugins/sow/redline/Sowfile
 - lib/plugins/sow/redline/template/PROFILE
 - lib/plugins/sow/redline/template/REQUIRE
 - lib/plugins/sow/redline/template/Syckfile
 - lib/plugins/sow/redline/template/VERSION
-- lib/redline/application.rb
-- lib/redline/basic_object.rb
-- lib/redline/cli.rb
-- lib/redline/config/ruby_parser.rb
-- lib/redline/config/yaml_parser.rb
-- lib/redline/config.rb
-- lib/redline/core_ext.rb
-- lib/redline/plugins/announce.rb
-- lib/redline/plugins/custom.rb
-- lib/redline/plugins/dnote.rb
-- lib/redline/plugins/extconf.rb
-- lib/redline/plugins/gem.rb
-- lib/redline/plugins/grancher.rb
-- lib/redline/plugins/rdoc.rb
-- lib/redline/plugins/ri.rb
-- lib/redline/plugins/rspec.rb
-- lib/redline/plugins/script.rb
-- lib/redline/plugins/stats.rb
-- lib/redline/plugins/syntax.rb
-- lib/redline/plugins/testrb.rb
-- lib/redline/plugins/turn.rb
-- lib/redline/plugins/yard.rb
-- lib/redline/service.rb
-- lib/redline/shell/email.rb
-- lib/redline/track.rb
-- lib/redline/tracks/attn.rb
-- lib/redline/tracks/main.rb
-- lib/redline/tracks/site.rb
-- lib/redline.rb
-- lib/redline.yml
+- qed/pitfile/Pitfile.rb
 - qed/rdoc/rdoc-plugin.rdoc
 - qed/rdoc/sample/Syckfile
 - qed/rdoc/sample/lib/sandbox/.xxx
@@ -130,7 +132,7 @@ files:
 - qed/rdoc/sample/meta/version
 - test/case_rdoc.rb
 - test/sample/.ruby
-- test/sample/Redfile
+- test/sample/Pitfile
 - test/sample/lib/foo/.xxx
 - test/sample/lib/foo/hello.rb
 - test/sample/lib/foo/xxx/bye.rb
@@ -141,14 +143,14 @@ files:
 - README.rdoc
 - GPL3.txt
 - COPYING.rdoc
-- EXAMPLE.rdoc
-homepage: http://rubyworks.github.com/redline
+- EXAMPLE.md
+homepage: http://rubyworks.github.com/pitstop
 licenses: 
 - GPL3
 post_install_message: 
 rdoc_options: 
 - --title
-- Redline API
+- Pitstop API
 - --main
 - README.rdoc
 require_paths: 
@@ -173,10 +175,10 @@ required_rubygems_version: !ruby/object:Gem::Requirement
       version: "0"
 requirements: []
 
-rubyforge_project: redline
+rubyforge_project: pitstop
 rubygems_version: 1.8.2
 signing_key: 
 specification_version: 3
-summary: Lifecycle-oriented build tool
+summary: Life-cycle build tool
 test_files: []
 
