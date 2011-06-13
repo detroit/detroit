@@ -1,10 +1,10 @@
-module Pitstop
+module Promenade
 
   #
   DEFAULT_CIRCUIT = :standard
 
   # Application class is the main controller class for running
-  # a session of Pitstop.
+  # a session of Promenade.
   #--
   # TODO: Rename Application to `Session`?
   #++
@@ -13,7 +13,7 @@ module Pitstop
     # Options (generally from #cli).
     attr :options
 
-    # Create a new Pitstop Application instance.
+    # Create a new Promenade Application instance.
     def initialize(options)
       @options = options
       load_standard_plugins
@@ -21,8 +21,8 @@ module Pitstop
 
     # Load standard plugins.
     def load_standard_plugins
-      #::Plugin.find("pitstop/*.rb").each do |file|
-      Pitstop.standard_plugins.each do |file|
+      #::Plugin.find("promenade/*.rb").each do |file|
+      Promenade.standard_plugins.each do |file|
         begin
           require(file)
         rescue => err
@@ -51,12 +51,12 @@ module Pitstop
       @skip ||= options[:skip].to_list.map{ |s| s.downcase }
     end
 
-    # Pitstop configuration.
+    # Promenade configuration.
     def config
-      @config ||= Pitstop::Config.new(project)
+      @config ||= Promenade::Config.new(project)
     end
 
-    # Provides access to the Project instance via `Pitstop.project` class method.
+    # Provides access to the Project instance via `Promenade.project` class method.
     def project
       @project ||= POM::Project.find
     end
@@ -72,7 +72,7 @@ module Pitstop
     # This is only used for reference purposes.
     def config_template
       cfg = {}
-      Pitstop.services.each do |srv_name, srv_class|
+      Promenade.services.each do |srv_name, srv_class|
         attrs = srv_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
         atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
         atcfg['service'] = srv_class.basename.downcase
@@ -94,15 +94,15 @@ module Pitstop
           next unless opts && opts['active'] != false
 
           service_name  = opts.delete('service') || key
-          service_class = Pitstop.services[service_name.to_s.downcase]
+          service_class = Promenade.services[service_name.to_s.downcase]
 
           abort "Unknown service #{service_name}." unless service_class
 
           if service_class.available?(project)
             #opts = inject_environment(opts) # TODO: DEPRECATE
             options = defaults[service_name.downcase].to_h
-            options = opts.merge(common_tool_options)
-            options = opts.merge(opts)
+            options = options.merge(common_tool_options)
+            options = options.merge(opts)
             #activelist << service_class.new(key, options) #script,
             activelist << ServiceWrapper.new(key, service_class, options) #script,
           #else
@@ -121,17 +121,17 @@ module Pitstop
     #alias_method :services, :active_services
 
     # Service configuration. These are stored in the project's Pitfile,
-    # or .pitstop/ or task/ folders as Ruby or YAML files.
+    # or .promenade/ or task/ folders as Ruby or YAML files.
     #
     # Returns Hash of service name and settings.
     def service_configs
       config.services
     end
 
-    # Run individual pitstop scripts/tasks.
+    # Run individual promenade scripts/tasks.
     def runscript(script, stop)
       @config.services.clear
-      @config.load_pitstop_file(script)
+      @config.load_promenade_file(script)
       #@service_configs = load_service_configs(script)
       run(stop)
     end
@@ -158,8 +158,7 @@ module Pitstop
       name = name.to_sym
       stop = stop.to_sym if stop
 
-
-      circ = Pitstop.circuits[circuit]
+      circ = Promenade.circuits[circuit]
 
       raise "Unkown circuit `#{circuit}'" unless circ
 
@@ -221,9 +220,9 @@ module Pitstop
        end
     end
 
-    # Returns a project's Pitstop hooks directory.
+    # Returns a project's Promenade hooks directory.
     def hook_directory
-      dir  = project.root.glob("{.,}pitstop/hooks").first
+      dir  = project.root.glob("{.,}promenade/hooks").first
     end
 
     #
@@ -234,12 +233,12 @@ module Pitstop
     # TODO: Do we need verbose?
     def common_tool_options
       {
-        :project => project,
-        :trial   => options[:trial],
-        :trace   => options[:trace],
-        :quiet   => options[:quiet],
-        :force   => options[:force],
-        :verbose => options[:verbose]
+        'project' => project,
+        'trial'   => options[:trial],
+        'trace'   => options[:trace],
+        'quiet'   => options[:quiet],
+        'force'   => options[:force],
+        'verbose' => options[:verbose]
       }
     end
 
@@ -408,4 +407,4 @@ module Pitstop
 
   end
 
-end #module Pitstop
+end #module Promenade

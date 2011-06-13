@@ -1,14 +1,14 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
-  # The Announce service supports the @promote@ action
+  # The Email service supports the @promote@ action
   # to send out a project annoucement to a set of email
   # addresses.
   #
   # By default it generates a <i>Release Announcement</i> based
-  # on a projects README.* file.
+  # on a projects metadata and README.* file.
   class Email < Service
 
-    def announce
+    def promote
       tool.announce
     end
 

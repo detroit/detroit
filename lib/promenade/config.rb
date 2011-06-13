@@ -1,56 +1,61 @@
-module Pitstop
+module Promenade
 
-  # Pitstop configuration. Configuration comes from a main +Pitfile+
-  # and/or +.pitfile+ task files.
+  # Promenade configuration. Configuration comes from a main +Routine+
+  # and/or +.routine+ files.
   class Config
     #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
-    # Configuration directory name (usually a hidden "dot" directory).
-    DIRECTORY = "pitstop"
+    # Configuration directory name (most likely a hidden "dot" directory).
+    DIRECTORY = "promenade"
 
-    # File identifier used to find a project's Pitfile(s).
-    FILE_EXTENSION = "pitfile"
+    # File identifier used to find a project's Schedule(s).
+    FILE_EXTENSION = "schedule"
 
     # Current POM::Project object.
     #attr :project
 
+    # The list of a project's routine files.
     #
-    attr :pitfiles
+    # @return [Array<String>] routine files
+    attr :schedules
 
-    # Service configurations from Pitfile or task/*.pitfile files.
-    # This is a hash of parameters.
+    # Service configurations from Routine or *.routine files.
+    # 
+    # @return [Hash] service settings
     attr :services
 
     # Service defaults. This is a mapping of service names to
     # default settings. Very useful for when using the same
     # service more than once.
+    #
+    # @return [Hash] default settings
     attr :defaults
 
     # TODO: remove project argument
     def initialize(project=nil) #, *files)
       #@project = project
 
-      #if file = project.config.glob('pitstop/config.{yml,yaml}').first
+      #if file = project.config.glob('promenade/config.{yml,yaml}').first
       #  conf = YAML.load(File.new(file))
       #else
       #  conf = {}
       #end
 
-      @pitfiles = {}
-      @services = {}
-      @defaults = {}
+      @schedules = {}
+      @services  = {}
+      @defaults  = {}
 
       load_plugins
       load_defaults
-      load_pitfiles
+      load_schedules
     end
 
     #
     def project
-      Pitstop.project
+      Promenade.project
     end
 
-    # Load plugins from `.pitstop/plugins.rb`.
+    # Load plugins from `.promenade/plugins.rb`.
     def load_plugins
       if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
         require file
@@ -59,7 +64,7 @@ module Pitstop
       end
     end
 
-    # Load defaults from `.pitstop/defaults.yml`.
+    # Load defaults from `.promenade/defaults.yml`.
     def load_defaults
       if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
         self.defaults = YAML.load(File.new(file))
@@ -69,10 +74,10 @@ module Pitstop
     end
 
     #
-    def load_pitfiles
-      pitfile_filenames.each do |file|
-        @pitfiles[file] = Pitfile.load(File.new(file))
-        @services.merge!(pitfiles[file].services)
+    def load_schedules
+      schedule_filenames.each do |file|
+        @schedules[file] = Schedule.load(File.new(file))
+        @services.merge!(schedules[file].services)
       end
     end
 
@@ -81,20 +86,20 @@ module Pitstop
       @defaults = hash.to_h
     end
 
-    # If a `Pitfile` or `.pitfile` file exist, then it is returned. Otherwise
-    # all `*.pitfile` files in `.pitstop/`, `pitstop/` and `task/`
-    # directories.
-    def pitfile_filenames
-      @pitfile_filenames ||= (
+    # If a `Schedule` or `.schedule` file exists, then it is returned. Otherwise
+    # all `*.schedule` files are loaded. To load `*.schedule` files from another
+    # directory add the directory to config options file.
+    def schedule_filenames
+      @schedule_filenames ||= (
         files = []
-        ## match 'Pitfile' or '.pitfile' file
+        ## match 'Routine' or '.routine' file
         files = project.root.glob("{,.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
         ## only files
         files = files.select{ |f| File.file?(f) }
         if files.empty?
-          ## match '.pitstop/*.pitfile' or 'pitstop/*.pitfile'
+          ## match '.promenade/*.routine' or 'promenade/*.routine'
           files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
-          ## match 'task/*.pitfile' (OLD SCHOOL)
+          ## match 'task/*.routine' (OLD SCHOOL)
           files += project.task.glob("*.#{FILE_EXTENSION}", :casefold)
           ## only files
           files = files.select{ |f| File.file?(f) }
@@ -104,22 +109,22 @@ module Pitstop
     end
 
 =begin
-    # If using a Pitfile and want to import antoher file then use
+    # If using a `Routine` file and want to import antoher file then use
     # `import:` entry.
-    def load_pitstop_file(file)
+    def load_promenade_file(file)
       #@dir = File.dirname(file)
 
-      pitfiles[file] = 
+      schedules[file] = 
 
       # TODO: can we just read the first line of the file and go from there?
       #text = File.read(file).strip
 
       ## if yaml vs. ruby file
       #if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
-      #  #data = parse_pitstop_file_yaml(text, file)
+      #  #data = parse_promenade_file_yaml(text, file)
       #  YAML.load(text)
       #else
-      #  data = parse_pitstop_file_ruby(text, file)
+      #  data = parse_promenade_file_ruby(text, file)
       #end    
 
       ## extract defaults
@@ -130,7 +135,7 @@ module Pitstop
       ## import other files
       #if import = data.delete('import')
       #  [import].flatten.each do |glob|
-      #    pitfile(glob)
+      #    routine(glob)
       #  end
       #end
 
@@ -145,20 +150,20 @@ module Pitstop
     end
 =end
 
-    ## Parse a YAML-based pitfile.
-    #def parse_pitstop_file_yaml(text, file)
+    ## Parse a YAML-based routine.
+    #def parse_promenade_file_yaml(text, file)
     #  YAMLParser.parse(self, text, file)
     #end
 
-    ## Parse a Ruby-based pitfile.
-    #def parse_pitstop_file_ruby(text, file)
+    ## Parse a Ruby-based routine.
+    #def parse_promenade_file_ruby(text, file)
     #  RubyParser.parse(self, text, file)
     #end
 
     ## TODO: Should the +dir+ be relative to the file or project.root?
-    #def pitfile(glob)
+    #def routine(glob)
     #  pattern = File.join(@dir, glob)
-    #  Dir[pattern].each{ |f| load_pitstop_file(f) }
+    #  Dir[pattern].each{ |f| load_promenade_file(f) }
     #end
 
   end

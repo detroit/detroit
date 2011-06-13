@@ -1,4 +1,4 @@
-module Pitstop
+module Promenade
 
   #
   def self.services
@@ -46,7 +46,7 @@ module Pitstop
       @service = service_class.new(options)
     end
 
-    # Does the service support the give stop.
+    # Does the service support the given stop.
     def stop?(name)
       @service.respond_to?(name)
     end
@@ -78,7 +78,7 @@ module Pitstop
       # 
       # Returns a Hash.
       def registry
-        Pitstop.services
+        Promenade.services
       end
 
       # TODO: Probably should make a named registry instead.
@@ -162,7 +162,7 @@ module Pitstop
   end
 
   # Tool class is essentially the same as a Service class except that it is
-  # a subclass of RedTools::Tool. Use this class to build Pitstop services
+  # a subclass of RedTools::Tool. Use this class to build Promenade services
   # with all the conveniences of a RedTools::Tool.
   class Tool < RedTools::Tool
     include Serviceable
@@ -176,17 +176,17 @@ module Pitstop
     end
   end
 
-end #module Pitstop
+end #module Promenade
 
 # Provides a clean namespace for creating services.
-module Pitstop::Plugins
-  Service = Pitstop::Service
-  Tool    = Pitstop::Tool
+module Promenade::Plugins
+  Service = Promenade::Service
+  Tool    = Promenade::Tool
 end
 
 # TOPLEVEL DSL?
 #def service(name, &block)
-#  #Pitstop.services[name] = Service.factory(&block)
-#  Pitstop::Service.registry[name.to_s] = Pitstop::Service.factory(&block)
+#  #Promenade.services[name] = Service.factory(&block)
+#  Promenade::Service.registry[name.to_s] = Promenade::Service.factory(&block)
 #end
 

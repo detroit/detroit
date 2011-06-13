@@ -1,6 +1,6 @@
 = COPYRIGHT NOTICES
 
-== Pitstop
+== Promenade
 
 Copyright (c) 2011 Thomas Sawyer
 

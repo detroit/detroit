@@ -1,4 +1,4 @@
---- !pitfile
+---
 
 announce:
   service: Email

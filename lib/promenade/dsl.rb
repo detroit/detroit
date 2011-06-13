@@ -1,4 +1,4 @@
-module Pitstop
+module Promenade
 
   # NOT YET IN USE.
   module DSL
@@ -31,12 +31,12 @@ module Pitstop
       Service.registry[name.to_s] ||= ServiceDSL.new(&block).service_class
     end
 
-    # ServiceDSL is used to define services via the Pitstop DSL.
+    # ServiceDSL is used to define services via the Promenade DSL.
     class ServiceDSL < BasicObject
       attr :service_class
 
       def initialize(name, &block)
-        @service_class = Class.new(Pitstop::Service)
+        @service_class = Class.new(Promenade::Service)
       end
 
       def available(&block)

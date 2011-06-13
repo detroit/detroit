@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require 'pitstop'
+require 'promenade'
 begin
-  Pitstop.cli(*ARGV)
+  Promenade.cli(*ARGV)
 rescue => err
   raise err #if $DEBUG
   $stderr.puts err

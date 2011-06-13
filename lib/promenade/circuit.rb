@@ -1,4 +1,4 @@
-module Pitstop
+module Promenade
 
   # All circuits and tracks have a maintenance track/sub-track.
   # For this reason stop names `reset`, `clean` and `purge`
@@ -23,7 +23,7 @@ module Pitstop
     # Name of the circuit.
     attr :name
 
-    # Returns a Hash of track name mapped to list of stops.
+    # Returns a Hash of track names mapped to list of stops.
     attr :tracks
 
     # Create a new instance of Track.

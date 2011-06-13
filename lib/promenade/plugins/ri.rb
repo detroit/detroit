@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # = RI Documentation Plugin
   #

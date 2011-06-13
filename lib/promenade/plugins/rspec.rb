@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # RSpec Service runs RSpec specifications and also
   # generates RSpec documentation.

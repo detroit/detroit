@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # The Developmer's Notes tool goes through you source files
   # and compiles a list of any labeled comments. Labels are
@@ -16,12 +16,6 @@ module Pitstop::Plugins
   # TODO: Should this service be part of the +site+ track?
   #++
   class DNote < Service
-
-=begin
-    stop :main, :document
-    stop :main, :reset
-    stop :main, :clean
-=end
 
     #available do |project|
     #  !project.metadata.loadpath.empty?

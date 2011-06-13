@@ -1,7 +1,7 @@
-module Pitstop
+module Promenade
 
   # The control module is a function module that extends
-  # the toplevel Pitstop namespace module.
+  # the toplevel Promenade namespace module.
   module Control
 
     # Location of standard plugins.
@@ -55,7 +55,7 @@ module Pitstop
     def cli_usage(options)
       @usage ||= (
         OptionParser.new do |usage|
-          usage.banner = "Usage: pitstop [<track>:]<stop> [options]"
+          usage.banner = "Usage: promenade [<track>:]<stop> [options]"
           usage.on('-c', '--circuit=NAME', "Select circuit [standard]") do |circuit|
             options[:circuit] = circuit
           end

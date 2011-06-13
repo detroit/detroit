@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # Stats provides a very simple LOC metrics service.
   #

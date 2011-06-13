@@ -1,9 +1,10 @@
-module Pitstop
+module Promenade
 
-  # Pitfile encapsulates a pitfile's list of service definitions.
-  class Pitfile
+  # Schedule encapsulates a `Schedule` file and it's service instance
+  # definitions.
+  class Schedule
 
-    # Load a Pitfile.
+    # Load Routine file.
     def self.load(input)
       new(input)
     end
@@ -13,7 +14,7 @@ module Pitstop
 
     private
 
-    # Create new Pitfile instance.
+    # Create new Routine instance.
     def initialize(file, options={})
       @project = options[:project]
 
@@ -48,10 +49,11 @@ module Pitstop
     # Access to project data.
     #
     # NOTE: Thinking that the project should be relative
-    # to the pitfile itself, unless a `project` is passed
+    # to the Routine file itself, unless a `project` is passed
     # in manually through the initializer. In the mean time,
     # the project is just relative to the current working directory.
     #
+    # TODO: Make configurable and use .ruby by default ?
     def project
       @project ||= POM::Project.find #(file_directory)
     end
@@ -81,13 +83,13 @@ module Pitstop
 
     private
 
-    # Process Pitfile document via ERB.
+    # Process Routine document via ERB.
     def erb(text)
       context = ERBContext.new(project)
       ERB.new(text).result(context.__binding__)
     end
 
-    # ERBContext provides the clean context to process a Pitfile
+    # ERBContext provides the clean context to process a Routine
     # as an ERB template.
     class ERBContext
       #
@@ -109,6 +111,8 @@ module Pitstop
       def method_missing(name, *args)
         if project.respond_to?(name)
           project.__send__(name, *args)
+        elsif project.metadata.respond_to?(name)
+          project.metadata.__send__(name, *args)
         else
           super(name, *args)
         end
@@ -154,28 +158,28 @@ module Pitstop
 
   end
 
-  # NOTE: This is problematic, because a Pitfile should really know from
+  # NOTE: This is problematic, because a Routine file should really know from
   # what file it was derived.
 
   #
-  DOMAIN = "rubyworks.github.com/pitstop,2011-05-27"
+  DOMAIN = "rubyworks.github.com/promenade,2011-05-27"
 
   # TODO: If using Psych rather than Syck, then define a domain type.
 
   #if defined?(Psych) #RUBY_VERSION >= '1.9'
-  #  YAML::add_domain_type(DOMAIN, "pitfile") do |type, hash|
-  #    Pitfile.load(hash)
+  #  YAML::add_domain_type(DOMAIN, "routine") do |type, hash|
+  #    Routine.load(hash)
   #  end
   #else
-    YAML::add_builtin_type("pitfile") do |type, value|
+    YAML::add_builtin_type("routine") do |type, value|
       value
       #case value
       #when String
-      #  Pitfile.eval(value)
+      #  Routine.eval(value)
       #when Hash
-      #  Pitfile.new(value)
+      #  Routine.new(value)
       #else
-      #  raise "ERROR: Invalid Pitfile"
+      #  raise "ERROR: Invalid Routine"
       #end
     end
   #end

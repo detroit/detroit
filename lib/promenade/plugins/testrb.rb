@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # = Test::Unit Plugin via testrb
   #
@@ -8,10 +8,6 @@ module Pitstop::Plugins
   # TODO: How to abort track if fail?
   #
   class Testrb < Service
-
-=begin
-    stop :main, :test
-=end
 
     #available do |project|
     #  !Dir['test/**/*.rb'].empty?

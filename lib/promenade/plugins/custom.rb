@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # = Custom Plugin
   #
@@ -32,8 +32,8 @@ module Pitstop::Plugins
     # This works by interpreting the service configuration as a hash of
     # stop names to ruby code.
     #
-    def initialize(context, key, options)
-      super
+    def initialize(options)
+      super(options)
       options.each do |stop, script|
         # skip specific names used for configuration
         next if stop == 'service'

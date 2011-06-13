@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # The Turn service runs TestUnit/MiniTest unit tests using
   # the +turn+ tool.

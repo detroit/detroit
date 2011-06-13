@@ -1,13 +1,13 @@
 ---
-title  : Pitstop
-summary: Life-cycle build tool
+title  : Promenade
+summary: Software Production Mangement
 contact: Trans <transfire@gmail.com>
 
 description:
-  Pitstop is an advanced life-cycle build system.
-  With Pitstop, build tasks are user defined service
+  Promenade is an advanced lifecycle build system.
+  With Promenade, build tasks are user defined service
   instances tied to stops along a track. Whenever the
-  pistop console command is run, a track is followed
+  promenade console command is run, a track is followed
   from beginning to designated destination.
 
 requires:
@@ -17,12 +17,12 @@ requires:
   - qed (test)
 
 resources:
-  home: http://rubyworks.github.com/pitstop
-  code: http://github.com/rubyworks/pitstop
+  home: http://rubyworks.github.com/promenade
+  code: http://github.com/rubyworks/promenade
   mail: http://groups.google.com/rubyworks-mailinglist
 
 repositories:
-  public: http://github.com/proutils/pitstop.git
+  public: http://github.com/proutils/promenade.git
 
 authors:
   - Thomas Sawyer

@@ -1,12 +1,7 @@
 --- !ruby/object:Gem::Specification 
-name: pitstop
+name: promenade
 version: !ruby/object:Gem::Version 
-  hash: 23
   prerelease: 
-  segments: 
-  - 1
-  - 0
-  - 0
   version: 1.0.0
 platform: ruby
 authors: 
@@ -15,7 +10,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-06-01 00:00:00 Z
+date: 2011-06-13 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: redtools
@@ -25,9 +20,6 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
-        segments: 
-        - 0
         version: "0"
   type: :runtime
   version_requirements: *id001
@@ -39,9 +31,6 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
-        segments: 
-        - 0
         version: "0"
   type: :runtime
   version_requirements: *id002
@@ -53,9 +42,6 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
-        segments: 
-        - 0
         version: "0"
   type: :runtime
   version_requirements: *id003
@@ -67,61 +53,55 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
-        segments: 
-        - 0
         version: "0"
   type: :development
   version_requirements: *id004
-description: Pitstop is an advanced life-cycle build system. With Pitstop, build tasks are user defined service instances tied to stops along a track. Whenever the pistop console command is run, a track is followed from beginning to designated destination.
+description: Promenade is an advanced lifecycle build system. With Promenade, build tasks are user defined service instances tied to stops along a track. Whenever the promenade console command is run, a track is followed from beginning to designated destination.
 email: transfire@gmail.com
 executables: 
-- pitstop
+- promenade
 extensions: []
 
 extra_rdoc_files: 
 - README.rdoc
 files: 
 - .ruby
-- bin/pitstop
-- lib/pitstop/application.rb
-- lib/pitstop/config/ruby_parser.rb
-- lib/pitstop/config/yaml_parser.rb
-- lib/pitstop/config.rb
-- lib/pitstop/control.rb
-- lib/pitstop/core_ext.rb
-- lib/pitstop/dsl.rb
-- lib/pitstop/pitfile.rb
-- lib/pitstop/plugins/custom.rb
-- lib/pitstop/plugins/dnote.rb
-- lib/pitstop/plugins/email.rb
-- lib/pitstop/plugins/extconf.rb
-- lib/pitstop/plugins/gem.rb
-- lib/pitstop/plugins/grancher.rb
-- lib/pitstop/plugins/rdoc.rb
-- lib/pitstop/plugins/ri.rb
-- lib/pitstop/plugins/rspec.rb
-- lib/pitstop/plugins/script.rb
-- lib/pitstop/plugins/stats.rb
-- lib/pitstop/plugins/syntax.rb
-- lib/pitstop/plugins/testrb.rb
-- lib/pitstop/plugins/turn.rb
-- lib/pitstop/plugins/yard.rb
-- lib/pitstop/service.rb
-- lib/pitstop/shell/email.rb
-- lib/pitstop/track.rb
-- lib/pitstop/tracks/attn.rb
-- lib/pitstop/tracks/main.rb
-- lib/pitstop/tracks/site.rb
-- lib/pitstop.rb
-- lib/pitstop.yml
-- lib/plugins/sow/redline/README
-- lib/plugins/sow/redline/Sowfile
-- lib/plugins/sow/redline/template/PROFILE
-- lib/plugins/sow/redline/template/REQUIRE
-- lib/plugins/sow/redline/template/Syckfile
-- lib/plugins/sow/redline/template/VERSION
-- qed/pitfile/Pitfile.rb
+- bin/promenade
+- lib/plugins/sow/pitstop/README
+- lib/plugins/sow/pitstop/Sowfile
+- lib/plugins/sow/pitstop/template/PROFILE
+- lib/plugins/sow/pitstop/template/REQUIRE
+- lib/plugins/sow/pitstop/template/Syckfile
+- lib/plugins/sow/pitstop/template/VERSION
+- lib/promenade/application.rb
+- lib/promenade/circuit.rb
+- lib/promenade/config.rb
+- lib/promenade/control.rb
+- lib/promenade/core_ext.rb
+- lib/promenade/dsl.rb
+- lib/promenade/plugins/custom.rb
+- lib/promenade/plugins/dnote.rb
+- lib/promenade/plugins/email.rb
+- lib/promenade/plugins/extconf.rb
+- lib/promenade/plugins/gem.rb
+- lib/promenade/plugins/grancher.rb
+- lib/promenade/plugins/qed.rb
+- lib/promenade/plugins/rdoc.rb
+- lib/promenade/plugins/ri.rb
+- lib/promenade/plugins/rspec.rb
+- lib/promenade/plugins/script.rb
+- lib/promenade/plugins/stats.rb
+- lib/promenade/plugins/syntax.rb
+- lib/promenade/plugins/testrb.rb
+- lib/promenade/plugins/turn.rb
+- lib/promenade/plugins/vclog.rb
+- lib/promenade/plugins/yard.rb
+- lib/promenade/schedule.rb
+- lib/promenade/service.rb
+- lib/promenade/standard_circuit.rb
+- lib/promenade.rb
+- lib/promenade.yml
+- qed/promenade/Pitfile.rb
 - qed/rdoc/rdoc-plugin.rdoc
 - qed/rdoc/sample/Syckfile
 - qed/rdoc/sample/lib/sandbox/.xxx
@@ -144,13 +124,13 @@ files:
 - GPL3.txt
 - COPYING.rdoc
 - EXAMPLE.md
-homepage: http://rubyworks.github.com/pitstop
+homepage: http://rubyworks.github.com/promenade
 licenses: 
 - GPL3
 post_install_message: 
 rdoc_options: 
 - --title
-- Pitstop API
+- Promenade API
 - --main
 - README.rdoc
 require_paths: 
@@ -160,25 +140,19 @@ required_ruby_version: !ruby/object:Gem::Requirement
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
-      segments: 
-      - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
   none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
-      segments: 
-      - 0
       version: "0"
 requirements: []
 
-rubyforge_project: pitstop
+rubyforge_project: promenade
 rubygems_version: 1.8.2
 signing_key: 
 specification_version: 3
-summary: Life-cycle build tool
+summary: Software Production Mangement
 test_files: []
 

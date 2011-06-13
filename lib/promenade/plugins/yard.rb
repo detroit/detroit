@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # Yard documentation service generates YARD docs for your project.
   #
@@ -6,27 +6,13 @@ module Pitstop::Plugins
   # unless a 'yard' directory exists in the project's root
   # directory, in which case the documentation will be stored there.
   #
-  # This plugin provides the following track-stops:
+  # This plugin provides the following stops:
   #
-  #   main:document  - generate yardocs
-  #   main:reset     - mark yardocs out-of-date
-  #   main:clean     - remove yardocs
-  #
-  #   site:document  - generate yardocs
-  #   site:reset     - mark yardocs out-of-date
-  #   site:clean     - remove yardocs
+  #   document  - generate yardocs
+  #   reset     - mark yardocs out-of-date
+  #   purge     - remove yardocs
   #
   class Yard < Service
-
-=begin
-    stop :main, :document
-    stop :main, :reset
-    stop :main, :clean
-
-    stop :site, :document
-    stop :site, :reset
-    stop :site, :clean
-=end
 
     # Make sure YARD is available.
     available do |project|
@@ -44,22 +30,23 @@ module Pitstop::Plugins
       super(RedTools::Yard)
     end
 
-    #
+    # Generate YARD documentation. 
     def document
       tool.document
     end
 
-    #
+    # Mark the YARD documentation as out-of-date.
     def reset
       tool.reset
     end
 
-    #
+    # @note this doesn't actually do anything presently
+    #   but it has been added should the tool change.
     def clean
       tool.clean
     end
 
-    #
+    # Remove the YARD documentation.
     def purge
       tool.purge
     end
@@ -68,7 +55,7 @@ module Pitstop::Plugins
 
     #
     def tool
-      @tool ||= RedTools::Yard(@options)
+      @tool ||= RedTools::Yard(options)
     end
 
     #

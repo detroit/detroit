@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # RDoc documentation plugin generates RDocs for your project.
   #

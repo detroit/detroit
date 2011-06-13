@@ -1,4 +1,4 @@
-module Pitstop::Plugins
+module Promenade::Plugins
 
   # The ExtConf service utilizes extconf.rb and
   # standard Makefile(s) to compile native extensions.
