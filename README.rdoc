@@ -21,11 +21,11 @@ release Ruby software in a clear, repeatable, linear fashion.
 
 == HOW IT WORKS
 
-Detroit defines development _processions_ which consist of a series of
-named destinations, or _stops_. Developers attach production elements to
-destination by defining production service instances in project 
-Schedule or *.schedule files. Schedules are written either in YAML or
-a Ruby DSL.
+Detroit defines development processions which consist of a set of named 
+production _lines_, or _tracks_, each with a series of named _stations_,
+or _stops_. Developers attach work elements to stations by configuring
+service instances in a project's Schedule or *.schedule files. Schedules
+are written in either YAML or a Ruby DSL.
 
 For example, a RubyForge service can be defined:
 
@@ -41,7 +41,7 @@ metadata via ERB embedded tags. Detroit gathers this information using
 easily customized to meet the needs of different projects.
 
 With service configuration and metadata in place, using Detroit is simply
-a matter of passing a procession name and stop to the +detroit+ command line
+a matter of passing a line name and stop to the +detroit+ command line
 tool. For example,
 
   $ detroit main:document
