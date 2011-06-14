@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # QED Plugin - This service plugin runs your QED test-documents
   # and can generate QEDocs too.

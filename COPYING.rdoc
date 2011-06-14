@@ -1,6 +1,6 @@
 = COPYRIGHT NOTICES
 
-== Promenade
+== Detroit
 
 Copyright (c) 2011 Thomas Sawyer
 

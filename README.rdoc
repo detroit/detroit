@@ -1,4 +1,4 @@
-= Promenade
+= Detroit
 
 Author:: Thomas Sawyer
 Licence:: GPL v.3
@@ -7,21 +7,21 @@ Copyright:: (c) 2011 Rubyworks, Thomas Sawyer
 
 == DESCRIPTION
 
-Promenade is a software production management aid for Ruby developers.
-Promenade utilizes a lifecycle methodology to help developers prepare and
+Detroit is a software production management aid for Ruby developers.
+Detroit utilizes a lifecycle methodology to help developers prepare and
 release Ruby software in a clear, repeatable, linear fashion.
 
 
 == RESOURCES
 
-* {Homepage}[http://rubyworks.github.com/promenade]
-* {Development}[http://github.com/rubyworks/promenade]
+* {Homepage}[http://rubyworks.github.com/detroit]
+* {Development}[http://github.com/rubyworks/detroit]
 * {Mailing List}[http://googlegroups.com/group/rubyworks-mailinglist]
 
 
 == HOW IT WORKS
 
-Promenade defines development _processions_ which consist of a series of
+Detroit defines development _processions_ which consist of a series of
 named destinations, or _stops_. Developers attach production elements to
 destination by defining production service instances in project 
 Schedule or *.schedule files. Schedules are written either in YAML or
@@ -36,27 +36,27 @@ For example, a RubyForge service can be defined:
     active: true
 
 As this example demonstrates, service configurations can draw on project
-metadata via ERB embedded tags. Promenade gathers this information using
+metadata via ERB embedded tags. Detroit gathers this information using
 {.ruby}[http://dotruby.github.com/dotruby], but the data source can be
 easily customized to meet the needs of different projects.
 
-With service configuration and metadata in place, using Promenade is simply
-a matter of passing a procession name and stop to the +promenade+ command line
+With service configuration and metadata in place, using Detroit is simply
+a matter of passing a procession name and stop to the +detroit+ command line
 tool. For example,
 
-  $ promenade main:document
+  $ detroit main:document
 
 The track name and its stop are separated by a colon. This command
 would run every stop on the +main+ track, in order, until it completes
 the +document+ stop. Since +main+ is the default track, we can acheive
 the same effect without specifying it.
 
-  $ promenade document
+  $ detroit document
 
 The use of tracks may seem constrictive to users of tools like Rake, but
 there is a benefit to this approach. It helps ensure a project is 
 always up-to-date and in-sync --that no necessary steps are missed.
-Promenade includes three tracks out of the box. The most significant of
+Detroit includes three tracks out of the box. The most significant of
 which is +main+ which entails a route with ordred stops:
 
   prepare     # prepare services and ensure requirements
@@ -82,28 +82,28 @@ All tracks also have a maintainence subtrack which consits of three stops:
 Where reset marks generated files out-of-date, clean removes temporary
 products and purge removes all generated prodcuts.
 
-In additon to +main+, Promenade includes +site+ and +attn+ tracks which are used
+In additon to +main+, Detroit includes +site+ and +attn+ tracks which are used
 to generate and publish a project's website, and make project announcements
 respectively. They are simply useful subsets of the +main+ track.
 
-Please see http://rubyworks.github.com/promenade for more details on how to
-use Promenade, including the creation of custom tracks, stops and service plugins.
-Also try the <tt>--help</tt> option to see the promenade command's help
+Please see http://rubyworks.github.com/detroit for more details on how to
+use Detroit, including the creation of custom tracks, stops and service plugins.
+Also try the <tt>--help</tt> option to see the detroit command's help
 information.
 
 
 == INSTALLATION
 
-Promenade can, of course, be installed via RubyGems:
+Detroit can, of course, be installed via RubyGems:
 
-  $ gem install promenade
+  $ gem install detroit
 
-We no longer recommend it, but Promenade can also be installed the
+We no longer recommend it, but Detroit can also be installed the
 old-fashion way by downloading the .tar.gz package and using
 Ruby Setup (See http://setup.rubyforge.org).
 
-  $ tar -xvzf promenade-1.0.0.tar.gz
-  $ cd promenade-1.0.0
+  $ tar -xvzf detroit-1.0.0.tar.gz
+  $ cd detroit-1.0.0
   $ sudo setup.rb
 
 Ruby Setup is stand-alone version of the original setup.rb script.
@@ -111,7 +111,7 @@ Ruby Setup is stand-alone version of the original setup.rb script.
 
 == ISSUES
 
-All in all, Promenade works well. There are some rough edges with regards
+All in all, Detroit works well. There are some rough edges with regards
 to the built-in service plugins, so from time to time you might run into
 an odd error. Ususally it just means a service confirguraiton needs 
 adjustment.
@@ -119,12 +119,12 @@ adjustment.
 Please note, Windows support has not been considered at all. While I do
 not see any specific reason it should not work, there may well be issues
 I have not considered since I do not use Windows. If you are Windows user
-and give Promenade a try please let us know of any issues you encounter.
+and give Detroit a try please let us know of any issues you encounter.
 
 
 == HISTORY
 
-Promenade is actaully the offspring of Reap v.10, and was called Syckle for 
+Detroit is actaully the offspring of Reap v.10, and was called Syckle for 
 a number of years as it matured. It represents many years of design considerations
 (and reconsiderations), that evolved Reap from its simple Rake extension origins,
 which pre-dated Hoe, to the lifecycle system it is today.

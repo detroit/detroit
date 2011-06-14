@@ -1,10 +1,10 @@
-module Promenade
+module Detroit
 
   #
   DEFAULT_CIRCUIT = :standard
 
   # Application class is the main controller class for running
-  # a session of Promenade.
+  # a session of Detroit.
   #--
   # TODO: Rename Application to `Session`?
   #++
@@ -13,7 +13,7 @@ module Promenade
     # Options (generally from #cli).
     attr :options
 
-    # Create a new Promenade Application instance.
+    # Create a new Detroit Application instance.
     def initialize(options)
       @options = options
       load_standard_plugins
@@ -21,8 +21,8 @@ module Promenade
 
     # Load standard plugins.
     def load_standard_plugins
-      #::Plugin.find("promenade/*.rb").each do |file|
-      Promenade.standard_plugins.each do |file|
+      #::Plugin.find("detroit/*.rb").each do |file|
+      Detroit.standard_plugins.each do |file|
         begin
           require(file)
         rescue => err
@@ -51,12 +51,12 @@ module Promenade
       @skip ||= options[:skip].to_list.map{ |s| s.downcase }
     end
 
-    # Promenade configuration.
+    # Detroit configuration.
     def config
-      @config ||= Promenade::Config.new(project)
+      @config ||= Detroit::Config.new(project)
     end
 
-    # Provides access to the Project instance via `Promenade.project` class method.
+    # Provides access to the Project instance via `Detroit.project` class method.
     def project
       @project ||= POM::Project.find
     end
@@ -72,7 +72,7 @@ module Promenade
     # This is only used for reference purposes.
     def config_template
       cfg = {}
-      Promenade.services.each do |srv_name, srv_class|
+      Detroit.services.each do |srv_name, srv_class|
         attrs = srv_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
         atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
         atcfg['service'] = srv_class.basename.downcase
@@ -94,7 +94,7 @@ module Promenade
           next unless opts && opts['active'] != false
 
           service_name  = opts.delete('service') || key
-          service_class = Promenade.services[service_name.to_s.downcase]
+          service_class = Detroit.services[service_name.to_s.downcase]
 
           abort "Unknown service #{service_name}." unless service_class
 
@@ -121,17 +121,17 @@ module Promenade
     #alias_method :services, :active_services
 
     # Service configuration. These are stored in the project's Pitfile,
-    # or .promenade/ or task/ folders as Ruby or YAML files.
+    # or .detroit/ or task/ folders as Ruby or YAML files.
     #
     # Returns Hash of service name and settings.
     def service_configs
       config.services
     end
 
-    # Run individual promenade scripts/tasks.
+    # Run individual detroit scripts/tasks.
     def runscript(script, stop)
       @config.services.clear
-      @config.load_promenade_file(script)
+      @config.load_detroit_file(script)
       #@service_configs = load_service_configs(script)
       run(stop)
     end
@@ -158,7 +158,7 @@ module Promenade
       name = name.to_sym
       stop = stop.to_sym if stop
 
-      circ = Promenade.circuits[circuit]
+      circ = Detroit.circuits[circuit]
 
       raise "Unkown circuit `#{circuit}'" unless circ
 
@@ -220,9 +220,9 @@ module Promenade
        end
     end
 
-    # Returns a project's Promenade hooks directory.
+    # Returns a project's Detroit hooks directory.
     def hook_directory
-      dir  = project.root.glob("{.,}promenade/hooks").first
+      dir  = project.root.glob("{.,}detroit/hooks").first
     end
 
     #
@@ -407,4 +407,4 @@ module Promenade
 
   end
 
-end #module Promenade
+end #module Detroit

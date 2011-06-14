@@ -1,9 +1,9 @@
-module Promenade
+module Detroit
   # Access to this project's metadata.
   def self.metadata
     @metadata ||= (
       require 'yaml'
-      YAML.load(File.new(File.dirname(__FILE__) + '/promenade.yml'))
+      YAML.load(File.new(File.dirname(__FILE__) + '/detroit.yml'))
     )
   end
 
@@ -41,23 +41,23 @@ require 'pom'
 # Redtools provides the standard services.
 require 'redtools'
 
-# And all the rest is Promenade, baby.
+# And all the rest is Detroit, baby.
 if RUBY_VERSION > '1.9'
-  require_relative 'promenade/core_ext'
-  require_relative 'promenade/config'
-  require_relative 'promenade/service'
-  require_relative 'promenade/circuit'
-  require_relative 'promenade/standard_circuit'
-  require_relative 'promenade/control'
-  require_relative 'promenade/application'
-  require_relative 'promenade/schedule'
+  require_relative 'detroit/core_ext'
+  require_relative 'detroit/config'
+  require_relative 'detroit/service'
+  require_relative 'detroit/circuit'
+  require_relative 'detroit/standard_circuit'
+  require_relative 'detroit/control'
+  require_relative 'detroit/application'
+  require_relative 'detroit/schedule'
 else
-  require 'promenade/core_ext'
-  require 'promenade/config'
-  require 'promenade/service'
-  require 'promenade/circuit'
-  require 'promenade/standard_circuit'
-  require 'promenade/control'
-  require 'promenade/application'
-  require 'promenade/schedule'
+  require 'detroit/core_ext'
+  require 'detroit/config'
+  require 'detroit/service'
+  require 'detroit/circuit'
+  require 'detroit/standard_circuit'
+  require 'detroit/control'
+  require 'detroit/application'
+  require 'detroit/schedule'
 end

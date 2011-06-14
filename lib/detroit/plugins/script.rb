@@ -1,13 +1,13 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
-  # = Custom Plugin
+  # = Script Plugin
   #
-  # Use this plugin to create your own "quicky" service.
+  # Use this plugin to run an external script as a service.
   #
   # This is a useful alternative to writing a full-blown plugin
   # class when the need is simple.
   #
-  class Custom < Service
+  class Script < Service
 
     # Default track(s) in which this plugin operates.
     DEFAULT_TRACK = "main"
@@ -15,13 +15,13 @@ module Promenade::Plugins
     # Which track(s) to run this custom plugin.
     attr_accessor :track
 
+    # Plural alias for #track.
+    alias_accessor :tracks, :track
+
     # Special writer to allow single track or a list of tracks.
     def track=(val)
       @track = val.to_list #[val].flatten
     end
-
-    # Plural alias for #track.
-    alias_accessor :tracks, :track
 
     private
 
@@ -29,22 +29,19 @@ module Promenade::Plugins
     #
     # FIXME: Custom#initialize seems to be running twice at startup. Why?
     #
-    # This works by interpreting the service configuration as a hash of
-    # stop names to ruby code.
-    #
-    def initialize(options)
-      super(options)
+    def initialize(context, key, options)
+      super
       options.each do |stop, script|
-        # skip specific names used for configuration
+        # skip specific config options
         next if stop == 'service'
-        next if stop == 'tracks' or stop == 'track'
+        next if stop == 'track' or stop == 'tracks'
         next if stop == 'active'
         next if stop == 'priority'
         # remaining options are names of track stops
         #tracks.each do |t|
           src = %{
-            def #{stop}
-              #{script}
+            def ##{stop}
+              sh "#{script}"
             end
           }
           (class << self; self; end).module_eval(src)
@@ -54,7 +51,7 @@ module Promenade::Plugins
 
     # Set initial attribute defaults.
     def initialize_defaults
-      @track = [DEFAULT_TRACK]
+      @track  = DEFAULT_TRACK
     end
 
     #

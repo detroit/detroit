@@ -1,10 +1,10 @@
 = RELEASE HISTORY
 
-== 0.1.0 / 2011-05-29
+== 0.1.0 / 2011-06-29
 
-Pitstop is a life-cycle build system for Ruby. Pitstop was originally
+Detroit is a lifecycle build system for Ruby. Detroit was originally
 called Syckle, and was developed and used in house for Rubyworks projects
-for a number of years. With the renaming of the project, the system has
+for several years. With the renaming of the project, the system has
 been simplified, the code cleaned up and the version count reset, in
 preperation of it's wider public release.
 

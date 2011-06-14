@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # Stats provides a very simple LOC metrics service.
   #

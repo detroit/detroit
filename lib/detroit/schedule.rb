@@ -1,10 +1,10 @@
-module Promenade
+module Detroit
 
   # Schedule encapsulates a `Schedule` file and it's service instance
-  # definitions.
+  # configurations.
   class Schedule
 
-    # Load Routine file.
+    # Load Scedule file.
     def self.load(input)
       new(input)
     end
@@ -14,7 +14,7 @@ module Promenade
 
     private
 
-    # Create new Routine instance.
+    # Initialize new Schedule instance.
     def initialize(file, options={})
       @project = options[:project]
 
@@ -162,7 +162,7 @@ module Promenade
   # what file it was derived.
 
   #
-  DOMAIN = "rubyworks.github.com/promenade,2011-05-27"
+  DOMAIN = "rubyworks.github.com/detroit,2011-05-27"
 
   # TODO: If using Psych rather than Syck, then define a domain type.
 

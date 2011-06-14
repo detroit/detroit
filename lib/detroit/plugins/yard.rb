@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # Yard documentation service generates YARD docs for your project.
   #

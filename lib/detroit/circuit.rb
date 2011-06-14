@@ -1,4 +1,4 @@
-module Promenade
+module Detroit
 
   # All circuits and tracks have a maintenance track/sub-track.
   # For this reason stop names `reset`, `clean` and `purge`

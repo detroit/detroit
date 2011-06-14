@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   #
   class VClog < Service

@@ -1,13 +1,13 @@
 ---
-title  : Promenade
+title  : Detroit
 summary: Software Production Mangement
 contact: Trans <transfire@gmail.com>
 
 description:
-  Promenade is an advanced lifecycle build system.
-  With Promenade, build tasks are user defined service
+  Detroit is an advanced lifecycle build system.
+  With Detroit, build tasks are user defined service
   instances tied to stops along a track. Whenever the
-  promenade console command is run, a track is followed
+  detroit console command is run, a track is followed
   from beginning to designated destination.
 
 requires:
@@ -17,12 +17,12 @@ requires:
   - qed (test)
 
 resources:
-  home: http://rubyworks.github.com/promenade
-  code: http://github.com/rubyworks/promenade
+  home: http://rubyworks.github.com/detroit
+  code: http://github.com/rubyworks/detroit
   mail: http://groups.google.com/rubyworks-mailinglist
 
 repositories:
-  public: http://github.com/proutils/promenade.git
+  public: http://github.com/proutils/detroit.git
 
 authors:
   - Thomas Sawyer

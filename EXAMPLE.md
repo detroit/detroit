@@ -1,17 +1,17 @@
-# Pitstop
+# Detroit
 
-Pitstop's main configuration file is called a *Pitfile*. Pitfiles define the 
+Detroit's main configuration file is called a *Pitfile*. Pitfiles define the 
 <i>service instances</i> that a project will utilize. 
 
 Pitfiles can be written in a few different formats thanks to the flexibility
 of Ruby. All formats are equivalent. Which format you use is strictly a regard
 of your personal preference.
 
-## Ruby-based Pitstop
+## Ruby-based Detroit
 
 ### Traditional Format
 
-Traditionally a Ruby-based Pitstop is dominated by calls to the `service` method
+Traditionally a Ruby-based Detroit is dominated by calls to the `service` method
 with an optional service instance name and a setter block.
 
 ```ruby
@@ -23,7 +23,7 @@ with an optional service instance name and a setter block.
 
   service :rdoc do |r|
     r.include = [ 'lib', '[A-Z]*' ]
-    r.exclude = [ 'Pitstop' ]
+    r.exclude = [ 'Schedule' ]
   end
 ```
 
@@ -32,7 +32,7 @@ In the above example `rdoc` is taken to be both the service desired and the name
 this particular instance.
 
 A few years ago, Sinatra came along and popularized the use of the `#set` method. A simple addition
-to the the Pitstop parser now allows for the slightly cleaner notation:
+to the the Detroit parser now allows for the slightly cleaner notation:
 
 ```ruby
   service :myself do
@@ -44,7 +44,7 @@ to the the Pitstop parser now allows for the slightly cleaner notation:
 
   service :rdoc do
     set :include, [ 'lib', '[A-Z]*' ]
-    set :exclude, [ 'Pitstop' ]
+    set :exclude, [ 'Schedule' ]
   end
 ```
 
@@ -73,10 +73,10 @@ definition to be written as simply as:
 
 ### Modern Notation
 
-Thanks to some straight-forward meta-programming, a Ruby-based Pitstop can
+Thanks to some straight-forward meta-programming, a Ruby-based Detroit can
 be written in a more concisely notation by using the name of the service class as a
 method. This can be followed by a settings block, as with the above examples,
-or passed a <i>settings hash</i>. In which case a Pitstop can look like this:
+or passed a <i>settings hash</i>. In which case a Detroit can look like this:
 
 ```ruby
   Announce   :mailto   => "ruby-talk@ruby-lang.org",
@@ -98,7 +98,7 @@ or passed a <i>settings hash</i>. In which case a Pitstop can look like this:
              :active   => true
 
   RDoc       :include  => [ 'lib', '[A-Z]*' ],
-             :exclude  => [ 'Pitstop' ]
+             :exclude  => [ 'Schedule' ]
 
   Testrb     :active   => true
 
@@ -122,17 +122,17 @@ using the new Hash syntax.
 But you might want to hold off on that a couple of years until Ruby 1.8 is pretty much
 shot and buried ;)
 
-## YAML-based Pitstop
+## YAML-based Detroit
 
 We have saved the most concise notation for last. The YAML format is
 essentially the same as the traditional Ruby format except that
 the main key provides the service instance name and the service is a
 setting which defaults to the name. Also, notice the start document indicator
-(<code>---</code>). The indicator is NECESSARY for the Pitstop to be
+(<code>---</code>). The indicator is NECESSARY for the Detroit to be
 recognized as YAML, rather than Ruby.
 
 ```yaml
-  --- !pitstop
+  --- !detroit
 
   announce:
     mailto: "transfire@gmail.com"
@@ -154,7 +154,7 @@ recognized as YAML, rather than Ruby.
 
   rdoc:
     include: [ lib, '[A-Z]*' ]
-    exclude: [ Pitstop ]
+    exclude: [ Schedule ]
 
   ri:
     exclude: []
@@ -177,12 +177,12 @@ recognized as YAML, rather than Ruby.
 As we can see in the last entry, the YAML format also supports ERB and provides
 access to project metadata via the ERB's binding.
 
-With the Ruby format it is easy enough to load external Pitstop plugins using
+With the Ruby format it is easy enough to load external Detroit plugins using
 standard `require` and `load` methods. Since the YAML format supports ERB
 it can be used to achieve the same effect.
 
 ```ruby
-  --- !pitstop
-  <% require 'some/pitstop/plugin' %>
+  --- !detroit
+  <% require 'some/detroit/plugin' %>
 ```
 

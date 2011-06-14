@@ -1,12 +1,12 @@
-module Promenade
+module Detroit
 
-  # Promenade configuration. Configuration comes from a main +Routine+
+  # Detroit configuration. Configuration comes from a main +Routine+
   # and/or +.routine+ files.
   class Config
     #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
     # Configuration directory name (most likely a hidden "dot" directory).
-    DIRECTORY = "promenade"
+    DIRECTORY = "detroit"
 
     # File identifier used to find a project's Schedule(s).
     FILE_EXTENSION = "schedule"
@@ -35,7 +35,7 @@ module Promenade
     def initialize(project=nil) #, *files)
       #@project = project
 
-      #if file = project.config.glob('promenade/config.{yml,yaml}').first
+      #if file = project.config.glob('detroit/config.{yml,yaml}').first
       #  conf = YAML.load(File.new(file))
       #else
       #  conf = {}
@@ -52,10 +52,10 @@ module Promenade
 
     #
     def project
-      Promenade.project
+      Detroit.project
     end
 
-    # Load plugins from `.promenade/plugins.rb`.
+    # Load plugins from `.detroit/plugins.rb`.
     def load_plugins
       if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
         require file
@@ -64,7 +64,7 @@ module Promenade
       end
     end
 
-    # Load defaults from `.promenade/defaults.yml`.
+    # Load defaults from `.detroit/defaults.yml`.
     def load_defaults
       if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
         self.defaults = YAML.load(File.new(file))
@@ -97,7 +97,7 @@ module Promenade
         ## only files
         files = files.select{ |f| File.file?(f) }
         if files.empty?
-          ## match '.promenade/*.routine' or 'promenade/*.routine'
+          ## match '.detroit/*.routine' or 'detroit/*.routine'
           files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
           ## match 'task/*.routine' (OLD SCHOOL)
           files += project.task.glob("*.#{FILE_EXTENSION}", :casefold)
@@ -111,7 +111,7 @@ module Promenade
 =begin
     # If using a `Routine` file and want to import antoher file then use
     # `import:` entry.
-    def load_promenade_file(file)
+    def load_detroit_file(file)
       #@dir = File.dirname(file)
 
       schedules[file] = 
@@ -121,10 +121,10 @@ module Promenade
 
       ## if yaml vs. ruby file
       #if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
-      #  #data = parse_promenade_file_yaml(text, file)
+      #  #data = parse_detroit_file_yaml(text, file)
       #  YAML.load(text)
       #else
-      #  data = parse_promenade_file_ruby(text, file)
+      #  data = parse_detroit_file_ruby(text, file)
       #end    
 
       ## extract defaults
@@ -151,19 +151,19 @@ module Promenade
 =end
 
     ## Parse a YAML-based routine.
-    #def parse_promenade_file_yaml(text, file)
+    #def parse_detroit_file_yaml(text, file)
     #  YAMLParser.parse(self, text, file)
     #end
 
     ## Parse a Ruby-based routine.
-    #def parse_promenade_file_ruby(text, file)
+    #def parse_detroit_file_ruby(text, file)
     #  RubyParser.parse(self, text, file)
     #end
 
     ## TODO: Should the +dir+ be relative to the file or project.root?
     #def routine(glob)
     #  pattern = File.join(@dir, glob)
-    #  Dir[pattern].each{ |f| load_promenade_file(f) }
+    #  Dir[pattern].each{ |f| load_detroit_file(f) }
     #end
 
   end

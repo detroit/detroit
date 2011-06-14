@@ -1,7 +1,12 @@
 --- !ruby/object:Gem::Specification 
-name: promenade
+name: detroit
 version: !ruby/object:Gem::Version 
+  hash: 23
   prerelease: 
+  segments: 
+  - 1
+  - 0
+  - 0
   version: 1.0.0
 platform: ruby
 authors: 
@@ -10,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-06-13 00:00:00 Z
+date: 2011-06-14 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: redtools
@@ -20,6 +25,9 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
         version: "0"
   type: :runtime
   version_requirements: *id001
@@ -31,6 +39,9 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
         version: "0"
   type: :runtime
   version_requirements: *id002
@@ -42,6 +53,9 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
         version: "0"
   type: :runtime
   version_requirements: *id003
@@ -53,84 +67,87 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
         version: "0"
   type: :development
   version_requirements: *id004
-description: Promenade is an advanced lifecycle build system. With Promenade, build tasks are user defined service instances tied to stops along a track. Whenever the promenade console command is run, a track is followed from beginning to designated destination.
+description: Detroit is an advanced lifecycle build system. With Detroit, build tasks are user defined service instances tied to stops along a track. Whenever the detroit console command is run, a track is followed from beginning to designated destination.
 email: transfire@gmail.com
 executables: 
-- promenade
+- detroit
 extensions: []
 
 extra_rdoc_files: 
 - README.rdoc
 files: 
 - .ruby
-- bin/promenade
-- lib/plugins/sow/pitstop/README
-- lib/plugins/sow/pitstop/Sowfile
-- lib/plugins/sow/pitstop/template/PROFILE
-- lib/plugins/sow/pitstop/template/REQUIRE
-- lib/plugins/sow/pitstop/template/Syckfile
-- lib/plugins/sow/pitstop/template/VERSION
-- lib/promenade/application.rb
-- lib/promenade/circuit.rb
-- lib/promenade/config.rb
-- lib/promenade/control.rb
-- lib/promenade/core_ext.rb
-- lib/promenade/dsl.rb
-- lib/promenade/plugins/custom.rb
-- lib/promenade/plugins/dnote.rb
-- lib/promenade/plugins/email.rb
-- lib/promenade/plugins/extconf.rb
-- lib/promenade/plugins/gem.rb
-- lib/promenade/plugins/grancher.rb
-- lib/promenade/plugins/qed.rb
-- lib/promenade/plugins/rdoc.rb
-- lib/promenade/plugins/ri.rb
-- lib/promenade/plugins/rspec.rb
-- lib/promenade/plugins/script.rb
-- lib/promenade/plugins/stats.rb
-- lib/promenade/plugins/syntax.rb
-- lib/promenade/plugins/testrb.rb
-- lib/promenade/plugins/turn.rb
-- lib/promenade/plugins/vclog.rb
-- lib/promenade/plugins/yard.rb
-- lib/promenade/schedule.rb
-- lib/promenade/service.rb
-- lib/promenade/standard_circuit.rb
-- lib/promenade.rb
-- lib/promenade.yml
-- qed/promenade/Pitfile.rb
-- qed/rdoc/rdoc-plugin.rdoc
-- qed/rdoc/sample/Syckfile
-- qed/rdoc/sample/lib/sandbox/.xxx
-- qed/rdoc/sample/lib/sandbox/hello.rb
-- qed/rdoc/sample/lib/sandbox/xxx.rb
-- qed/rdoc/sample/lib/xxx/bye.rb
-- qed/rdoc/sample/meta/name
-- qed/rdoc/sample/meta/version
-- test/case_rdoc.rb
-- test/sample/.ruby
-- test/sample/Pitfile
-- test/sample/lib/foo/.xxx
-- test/sample/lib/foo/hello.rb
-- test/sample/lib/foo/xxx/bye.rb
-- test/sample/lib/foo/xxx.rb
-- test/sample/meta/name
-- test/sample/meta/version
+- bin/detroit
+- lib/detroit/application.rb
+- lib/detroit/circuit.rb
+- lib/detroit/config.rb
+- lib/detroit/control.rb
+- lib/detroit/core_ext.rb
+- lib/detroit/dsl.rb
+- lib/detroit/plugins/custom.rb
+- lib/detroit/plugins/dnote.rb
+- lib/detroit/plugins/email.rb
+- lib/detroit/plugins/extconf.rb
+- lib/detroit/plugins/gem.rb
+- lib/detroit/plugins/grancher.rb
+- lib/detroit/plugins/qed.rb
+- lib/detroit/plugins/rdoc.rb
+- lib/detroit/plugins/ri.rb
+- lib/detroit/plugins/rspec.rb
+- lib/detroit/plugins/script.rb
+- lib/detroit/plugins/stats.rb
+- lib/detroit/plugins/syntax.rb
+- lib/detroit/plugins/testrb.rb
+- lib/detroit/plugins/turn.rb
+- lib/detroit/plugins/vclog.rb
+- lib/detroit/plugins/yard.rb
+- lib/detroit/schedule.rb
+- lib/detroit/service.rb
+- lib/detroit/standard_circuit.rb
+- lib/detroit.rb
+- lib/detroit.yml
+- lib/plugins/sow/detroit/README
+- lib/plugins/sow/detroit/Sowfile
+- lib/plugins/sow/detroit/template/PROFILE
+- lib/plugins/sow/detroit/template/REQUIRE
+- lib/plugins/sow/detroit/template/Syckfile
+- lib/plugins/sow/detroit/template/VERSION
+- qed/01_schedule/02_initialize.md
+- qed/99_plugins/rdoc/rdoc-plugin.rdoc
+- qed/99_plugins/rdoc/sample/Syckfile
+- qed/99_plugins/rdoc/sample/lib/sandbox/.xxx
+- qed/99_plugins/rdoc/sample/lib/sandbox/hello.rb
+- qed/99_plugins/rdoc/sample/lib/sandbox/xxx.rb
+- qed/99_plugins/rdoc/sample/lib/xxx/bye.rb
+- qed/99_plugins/rdoc/sample/meta/name
+- qed/99_plugins/rdoc/sample/meta/version
+- qed/samples/example_project/.ruby
+- qed/samples/example_project/Schedule
+- qed/samples/example_project/lib/foo/.xxx
+- qed/samples/example_project/lib/foo/hello.rb
+- qed/samples/example_project/lib/foo/xxx/bye.rb
+- qed/samples/example_project/lib/foo/xxx.rb
+- qed/samples/example_project/meta/name
+- qed/samples/example_project/meta/version
+- qed/samples/example_schedule.rb
 - HISTORY.rdoc
 - README.rdoc
 - GPL3.txt
 - COPYING.rdoc
 - EXAMPLE.md
-homepage: http://rubyworks.github.com/promenade
+homepage: http://rubyworks.github.com/detroit
 licenses: 
 - GPL3
 post_install_message: 
 rdoc_options: 
 - --title
-- Promenade API
+- Detroit API
 - --main
 - README.rdoc
 require_paths: 
@@ -140,16 +157,22 @@ required_ruby_version: !ruby/object:Gem::Requirement
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
   none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
 requirements: []
 
-rubyforge_project: promenade
+rubyforge_project: detroit
 rubygems_version: 1.8.2
 signing_key: 
 specification_version: 3

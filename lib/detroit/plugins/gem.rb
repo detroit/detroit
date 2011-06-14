@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # The Gem service is used to generate a gem package
   # and dsitribute it to a Gemcutter service. It can

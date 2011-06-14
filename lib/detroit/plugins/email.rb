@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # The Email service supports the @promote@ action
   # to send out a project annoucement to a set of email

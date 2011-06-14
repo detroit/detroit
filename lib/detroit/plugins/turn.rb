@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # The Turn service runs TestUnit/MiniTest unit tests using
   # the +turn+ tool.

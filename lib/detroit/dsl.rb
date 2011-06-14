@@ -1,4 +1,4 @@
-module Promenade
+module Detroit
 
   # NOT YET IN USE.
   module DSL
@@ -31,12 +31,12 @@ module Promenade
       Service.registry[name.to_s] ||= ServiceDSL.new(&block).service_class
     end
 
-    # ServiceDSL is used to define services via the Promenade DSL.
+    # ServiceDSL is used to define services via the Detroit DSL.
     class ServiceDSL < BasicObject
       attr :service_class
 
       def initialize(name, &block)
-        @service_class = Class.new(Promenade::Service)
+        @service_class = Class.new(Detroit::Service)
       end
 
       def available(&block)

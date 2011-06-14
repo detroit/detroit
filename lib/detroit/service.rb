@@ -1,4 +1,4 @@
-module Promenade
+module Detroit
 
   #
   def self.services
@@ -78,7 +78,7 @@ module Promenade
       # 
       # Returns a Hash.
       def registry
-        Promenade.services
+        Detroit.services
       end
 
       # TODO: Probably should make a named registry instead.
@@ -162,7 +162,7 @@ module Promenade
   end
 
   # Tool class is essentially the same as a Service class except that it is
-  # a subclass of RedTools::Tool. Use this class to build Promenade services
+  # a subclass of RedTools::Tool. Use this class to build Detroit services
   # with all the conveniences of a RedTools::Tool.
   class Tool < RedTools::Tool
     include Serviceable
@@ -176,17 +176,17 @@ module Promenade
     end
   end
 
-end #module Promenade
+end #module Detroit
 
 # Provides a clean namespace for creating services.
-module Promenade::Plugins
-  Service = Promenade::Service
-  Tool    = Promenade::Tool
+module Detroit::Plugins
+  Service = Detroit::Service
+  Tool    = Detroit::Tool
 end
 
 # TOPLEVEL DSL?
 #def service(name, &block)
-#  #Promenade.services[name] = Service.factory(&block)
-#  Promenade::Service.registry[name.to_s] = Promenade::Service.factory(&block)
+#  #Detroit.services[name] = Service.factory(&block)
+#  Detroit::Service.registry[name.to_s] = Detroit::Service.factory(&block)
 #end
 

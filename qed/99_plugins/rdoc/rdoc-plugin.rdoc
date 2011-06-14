@@ -9,7 +9,7 @@ Given a suitable project.
 
 Now if we run 'syckle document' on the sample project.
 
-  `syckle document`
+  `detroit document`
 
 The documentation should be generated as expected.
 

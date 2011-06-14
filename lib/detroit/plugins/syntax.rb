@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # The Syntax service simply checks all Ruby code for
   # syntax errors. It's a rather trivial tool, and is

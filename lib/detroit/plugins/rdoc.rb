@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # RDoc documentation plugin generates RDocs for your project.
   #

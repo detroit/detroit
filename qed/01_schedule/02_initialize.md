@@ -3,7 +3,7 @@
 Load schedule text written in Ruby DSL.
 
     check do |ruby|
-      Promenade::Schedule.new(ruby)
+      Detroit::Schedule.new(ruby)
     end
 
     ok <<-HERE
@@ -22,7 +22,7 @@ Load schedule from a file written in Ruby DSL.
 
     check do |file|
       path = File.join(root_dir, file)
-      Promenade::Schedule.new(File.new(path))
+      Detroit::Schedule.new(File.new(path))
     end
 
     ok 'samples/example_schedule.rb'
@@ -30,7 +30,7 @@ Load schedule from a file written in Ruby DSL.
 Load schedule text written in YAML"
 
     check do |yaml|
-      Promenade::Schedule.new(yaml)
+      Detroit::Schedule.new(yaml)
     end
 
     ok <<-HERE
@@ -50,7 +50,7 @@ Load schedule from a file written in YAML.
 
     check do |file|
       path = File.join(root_dir, file)
-      Promenade::Schedule.new(File.new(path))
+      Detroit::Schedule.new(File.new(path))
     end
 
     ok 'samples/example_schedule.yml'

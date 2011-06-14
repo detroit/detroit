@@ -1,7 +1,7 @@
-module Promenade
+module Detroit
 
   # The control module is a function module that extends
-  # the toplevel Promenade namespace module.
+  # the toplevel Detroit namespace module.
   module Control
 
     # Location of standard plugins.
@@ -55,7 +55,7 @@ module Promenade
     def cli_usage(options)
       @usage ||= (
         OptionParser.new do |usage|
-          usage.banner = "Usage: promenade [<track>:]<stop> [options]"
+          usage.banner = "Usage: detroit [<track>:]<stop> [options]"
           usage.on('-c', '--circuit=NAME', "Select circuit [standard]") do |circuit|
             options[:circuit] = circuit
           end

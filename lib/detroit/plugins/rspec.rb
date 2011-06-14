@@ -1,4 +1,4 @@
-module Promenade::Plugins
+module Detroit::Plugins
 
   # RSpec Service runs RSpec specifications and also
   # generates RSpec documentation.
