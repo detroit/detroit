@@ -92,15 +92,16 @@ module Detroit
     def schedule_filenames
       @schedule_filenames ||= (
         files = []
-        ## match 'Routine' or '.routine' file
-        files = project.root.glob("{,.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
+        ## match 'Schedule' or '.schedule' file
+        files = project.root.glob("{,.,*.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
         ## only files
         files = files.select{ |f| File.file?(f) }
+        ## 
         if files.empty?
-          ## match '.detroit/*.routine' or 'detroit/*.routine'
+          ## match '.detroit/*.schedule' or 'detroit/*.schedule'
           files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
-          ## match 'task/*.routine' (OLD SCHOOL)
-          files += project.task.glob("*.#{FILE_EXTENSION}", :casefold)
+          ## match 'task/*.schedule' (OLD SCHOOL)
+          files += project.root.glob("{task,tasks}/*.#{FILE_EXTENSION}", :casefold)
           ## only files
           files = files.select{ |f| File.file?(f) }
         end

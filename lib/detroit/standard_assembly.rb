@@ -1,8 +1,8 @@
 module Detroit
 
-  # Standard circuit is the default. In the vast majority of
+  # Standard assembly is the default. In the vast majority of
   # cases this is all that will ever be used.
-  circuit :standard do
+  assembly :standard do
 
     # Main track.
     #

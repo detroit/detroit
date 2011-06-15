@@ -56,8 +56,8 @@ module Detroit
       @usage ||= (
         OptionParser.new do |usage|
           usage.banner = "Usage: detroit [<track>:]<stop> [options]"
-          usage.on('-c', '--circuit=NAME', "Select circuit [standard]") do |circuit|
-            options[:circuit] = circuit
+          usage.on('-a', '--assembly=NAME', "Select assembly [standard]") do |assembly|
+            options[:assembly] = assembly
           end
           usage.on('--trace', "Run in TRACE mode.") do
             #$TRACE = true
@@ -74,7 +74,7 @@ module Detroit
           usage.on('-q', '--quiet', "Run silently.") do
             options[:quiet] = true
           end
-          usage.on('--force', "Force operations.") do
+          usage.on('-F', '--force', "Force operations.") do
             options[:force] = true
           end
           usage.on('-m', '--multitask', "Run in parallel.") do

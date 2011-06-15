@@ -1,7 +1,7 @@
 module Detroit
 
   #
-  DEFAULT_CIRCUIT = :standard
+  DEFAULT_ASSEMBLY = :standard
 
   # Application class is the main controller class for running
   # a session of Detroit.
@@ -32,8 +32,8 @@ module Detroit
     end
 
     #
-    def circuit
-      options[:circuit] || DEFAULT_CIRCUIT
+    def assembly
+      options[:assembly] || DEFAULT_ASSEMBLY
     end
 
     #
@@ -158,11 +158,11 @@ module Detroit
       name = name.to_sym
       stop = stop.to_sym if stop
 
-      circ = Detroit.circuits[circuit]
+      assm = Detroit.assemblies[assembly]
 
-      raise "Unkown circuit `#{circuit}'" unless circ
+      raise "Unkown assembly `#{assembly}'" unless assm
 
-      track = circ.get_track(name, stop)
+      track = assm.get_track(name, stop)
 
       #if stop
       #  system = track.route_with_stop(stop)
