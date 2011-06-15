@@ -27,7 +27,7 @@ module Detroit
     attr :lines
 
     # Lines are also called `tracks`.
-    alias_methods :tracks, :lines
+    alias_method :tracks, :lines
 
     # Create a new instance.
     def initialize(name, &block)
