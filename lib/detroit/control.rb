@@ -5,12 +5,12 @@ module Detroit
   module Control
 
     # Location of standard plugins.
-    PLUGIN_DIRECTORY = File.dirname(__FILE__) + '/plugins'
+    #PLUGIN_DIRECTORY = File.dirname(__FILE__) + '/plugins'
 
     # Returns Array of standard plugin file names.
-    def standard_plugins
-      Dir[PLUGIN_DIRECTORY + '/*.rb']
-    end
+    #def standard_plugins
+    #  Dir[PLUGIN_DIRECTORY + '/*.rb']
+    #end
 
     # Universal acccess to the current project.
     #
@@ -27,28 +27,33 @@ module Detroit
     # Run the command line interface.
     def cli(*argv)
       cli_options = {
+        :schedules => [],
         :trace=>nil, :trial=>nil, :debug=>nil, :quiet=>nil, :verbose=>nil,
         :force=>nil, :multitask=>nil, :skip=>[]
       }
 
       cli_usage(cli_options).parse!(argv)
 
-      if /\.pitfile$/ =~ argv[0]
-        job = argv[1]
-        begin
-          application(cli_options).runscript(argv[0], job)
-        rescue => error
-          $stderr.puts error.message
-          exit -1
-        end
-      else
+      #if /\.schedule$/ =~ argv[0]
+      #  job = argv[1]
+      #  begin
+      #    application(cli_options).runscript(argv[0], job)
+      #  rescue => error
+      #    $stderr.puts error.message
+      #    exit -1
+      #  end
+      #else
         begin
           application(cli_options).start(*argv)
         rescue => error
-          $stderr.puts error.message
-          exit -1
+          if $DEBUG
+            raise error
+          else
+            $stderr.puts error.message
+            exit -1
+          end
         end
-      end
+      #end
     end
 
     # Returns an instance of OptionParser.
@@ -56,8 +61,22 @@ module Detroit
       @usage ||= (
         OptionParser.new do |usage|
           usage.banner = "Usage: detroit [<track>:]<stop> [options]"
-          usage.on('-a', '--assembly=NAME', "Select assembly [standard]") do |assembly|
+          usage.on('-m', '--multitask', "Run work elements in parallel.") do
+            options[:multitask] = true
+          end
+          usage.on('-S', '--skip [SERVICE]', 'Skip a service.') do |skip|
+            options[:skip] << skip
+          end
+
+          usage.on('-a', '--assembly=NAME', "Select assembly. Default is `standard'.") do |assembly|
             options[:assembly] = assembly
+          end
+          usage.on('-s', '--schedule [FILE]', 'Use specific schedule file(s).') do |file|
+            options[:schedules] << file
+          end
+
+          usage.on('-F', '--force', "Force operations.") do
+            options[:force] = true
           end
           usage.on('--trace', "Run in TRACE mode.") do
             #$TRACE = true
@@ -65,7 +84,7 @@ module Detroit
           end
           usage.on('--trial', "Run in TRIAL mode (no disk writes).") do
             #$TRIAL = true
-            options[:trial] =true
+            options[:trial] = true
           end
           # TODO: do we really need verbose?
           usage.on('--verbose', "Provided extra output.") do
@@ -74,15 +93,7 @@ module Detroit
           usage.on('-q', '--quiet', "Run silently.") do
             options[:quiet] = true
           end
-          usage.on('-F', '--force', "Force operations.") do
-            options[:force] = true
-          end
-          usage.on('-m', '--multitask', "Run in parallel.") do
-            options[:multitask] = true
-          end
-          usage.on('-s', '--skip [SERVICE]', 'Skip service.') do |skip|
-            options[:skip] << skip
-          end
+
           usage.on('-I=PATH', "Add directory to $LOAD_PATH") do |dirs|
             dirs.to_list.each do |dir|
               $LOAD_PATH.unshift(dir)

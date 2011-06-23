@@ -19,7 +19,7 @@ module Detroit
     # @return [Array<String>] routine files
     attr :schedules
 
-    # Service configurations from Routine or *.routine files.
+    # Service configurations from Schedule or *.schedule files.
     # 
     # @return [Hash] service settings
     attr :services
@@ -31,31 +31,41 @@ module Detroit
     # @return [Hash] default settings
     attr :defaults
 
-    # TODO: remove project argument
-    def initialize(project=nil) #, *files)
-      #@project = project
-
-      #if file = project.config.glob('detroit/config.{yml,yaml}').first
-      #  conf = YAML.load(File.new(file))
-      #else
-      #  conf = {}
-      #end
+    #
+    def initialize(schedule_files=nil)
+      if schedule_files && !schedule_files.empty?
+        @schedule_filenames = schedule_files
+      else
+        @schedule_filenames = nil
+      end
 
       @schedules = {}
       @services  = {}
       @defaults  = {}
+
+      @loaded_plugins = {}
 
       load_plugins
       load_defaults
       load_schedules
     end
 
-    #
+    #--
+    # TODO: Use this, or pass in via initialize?
+    #++
     def project
       Detroit.project
     end
 
-    # Load plugins from `.detroit/plugins.rb`.
+    # Load a plugin.
+    def load_plugin(name)
+      @loaded_plugins[name] ||= (
+        require "detroit-#{name}"
+        name
+      )
+    end
+
+    # Pre-load plugins using `.detroit/plugins.rb`.
     def load_plugins
       if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
         require file
@@ -76,9 +86,14 @@ module Detroit
     #
     def load_schedules
       schedule_filenames.each do |file|
-        @schedules[file] = Schedule.load(File.new(file))
-        @services.merge!(schedules[file].services)
+        load_schedule_file(file)
       end
+    end
+
+    #
+    def load_schedule_file(file)
+      @schedules[file] = Schedule.load(File.new(file))
+      @services.merge!(schedules[file].services)
     end
 
     # Set defaults.
@@ -107,6 +122,16 @@ module Detroit
         end
         files
       )
+    end
+
+    #
+    def each(&block)
+      services.each(&block)
+    end
+
+    #
+    def size
+      services.size
     end
 
 =begin

@@ -158,7 +158,7 @@ module Detroit
 
   end
 
-  # NOTE: This is problematic, because a Routine file should really know from
+  # NOTE: This is problematic, because a Scheudle file should really know from
   # what file it was derived.
 
   #
@@ -167,19 +167,19 @@ module Detroit
   # TODO: If using Psych rather than Syck, then define a domain type.
 
   #if defined?(Psych) #RUBY_VERSION >= '1.9'
-  #  YAML::add_domain_type(DOMAIN, "routine") do |type, hash|
-  #    Routine.load(hash)
+  #  YAML::add_domain_type(DOMAIN, "schedule") do |type, hash|
+  #    Schedule.load(hash)
   #  end
   #else
-    YAML::add_builtin_type("routine") do |type, value|
+    YAML::add_builtin_type("schedule") do |type, value|
       value
       #case value
       #when String
-      #  Routine.eval(value)
+      #  Schedule.eval(value)
       #when Hash
-      #  Routine.new(value)
+      #  Schedule.new(value)
       #else
-      #  raise "ERROR: Invalid Routine"
+      #  raise "ERROR: Invalid Schedule"
       #end
     end
   #end

@@ -1,11 +1,15 @@
 module Detroit
 
   #
-  def self.services
-    @registry ||= {}
-  end
-
-  # TODO: change name
+  #def self.services
+  #  @registry ||= {}
+  #end
+ 
+  # Service class wraps a Tool instance.
+  #
+  # TODO: change name ?
+  #
+  # TODO: Need to work on how to limit a service's tracks per-assembly.
   class ServiceWrapper
     attr :key
     attr :tracks
@@ -35,7 +39,7 @@ module Detroit
       @key      = key
 
       ## set service defaults
-      @tracks   = service_class.tracks
+      @tracks   = nil #service_class.tracks
       @priority = 0
       @active   = true
 
@@ -62,6 +66,11 @@ module Detroit
     end
   end
 
+end
+
+
+
+=begin
   # Mixin module is added to Service and Tool.
   module Serviceable
 
@@ -161,20 +170,6 @@ module Detroit
     end
   end
 
-  # Tool class is essentially the same as a Service class except that it is
-  # a subclass of RedTools::Tool. Use this class to build Detroit services
-  # with all the conveniences of a RedTools::Tool.
-  class Tool < RedTools::Tool
-    include Serviceable
-
-    #
-    attr :options
-
-    def initialize(options={})
-      @options = options
-      super(options)
-    end
-  end
 
 end #module Detroit
 
@@ -184,9 +179,10 @@ module Detroit::Plugins
   Tool    = Detroit::Tool
 end
 
+=end
+
 # TOPLEVEL DSL?
 #def service(name, &block)
 #  #Detroit.services[name] = Service.factory(&block)
 #  Detroit::Service.registry[name.to_s] = Detroit::Service.factory(&block)
 #end
-

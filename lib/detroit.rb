@@ -13,7 +13,7 @@ module Detroit
   end
 
   # TODO: Only here b/c of bug in Ruby 1.8.x
-  #VERSION = "1.0.0"
+  #VERSION = "0.1.0"
 end
 
 # Erb is used to to script YAML-based schedule files.
@@ -46,18 +46,22 @@ if RUBY_VERSION > '1.9'
   require_relative 'detroit/core_ext'
   require_relative 'detroit/config'
   require_relative 'detroit/service'
+  require_relative 'detroit/tool'
   require_relative 'detroit/assembly'
   require_relative 'detroit/standard_assembly'
   require_relative 'detroit/control'
   require_relative 'detroit/application'
   require_relative 'detroit/schedule'
+  require_relative 'detroit/custom'
 else
   require 'detroit/core_ext'
   require 'detroit/config'
   require 'detroit/service'
+  require 'detroit/tool'
   require 'detroit/assembly'
   require 'detroit/standard_assembly'
   require 'detroit/control'
   require 'detroit/application'
   require 'detroit/schedule'
+  require 'detroit/custom'
 end

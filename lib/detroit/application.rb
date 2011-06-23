@@ -16,27 +16,27 @@ module Detroit
     # Create a new Detroit Application instance.
     def initialize(options)
       @options = options
-      load_standard_plugins
+      #load_standard_plugins
     end
 
-    # Load standard plugins.
-    def load_standard_plugins
-      #::Plugin.find("detroit/*.rb").each do |file|
-      Detroit.standard_plugins.each do |file|
-        begin
-          require(file)
-        rescue => err
-          $stderr.puts err if $DEBUG
-        end
-      end
-    end
+#    # Load standard plugins.
+#    def load_standard_plugins
+#      #::Plugin.find("detroit/*.rb").each do |file|
+#      Detroit.standard_plugins.each do |file|
+#        begin
+#          require(file)
+#        rescue => err
+#          $stderr.puts err if $DEBUG
+#        end
+#      end
+#    end
 
-    #
+    # The selected assembly system.
     def assembly
       options[:assembly] || DEFAULT_ASSEMBLY
     end
 
-    #
+    # Quiet mode?
     def quiet?
       options[:quiet]
     end
@@ -51,9 +51,14 @@ module Detroit
       @skip ||= options[:skip].to_list.map{ |s| s.downcase }
     end
 
+    #
+    def schedules
+      @schedules ||= options[:schedules]
+    end
+
     # Detroit configuration.
     def config
-      @config ||= Detroit::Config.new(project)
+      @config ||= Detroit::Config.new(schedules)
     end
 
     # Provides access to the Project instance via `Detroit.project` class method.
@@ -68,11 +73,16 @@ module Detroit
       config.defaults
     end
 
-    # Generates a master configuration template.
+    # Generates a configuration template for particular tool or all tools.
     # This is only used for reference purposes.
-    def config_template
+    def config_template(name=nil)
+      if name
+        list = [name, Detroit.tools[name]]
+      else
+        list = Detroit.tools
+      end
       cfg = {}
-      Detroit.services.each do |srv_name, srv_class|
+      list.each do |srv_name, srv_class|
         attrs = srv_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
         atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
         atcfg['service'] = srv_class.basename.downcase
@@ -82,37 +92,45 @@ module Detroit
       cfg
     end
 
-    # Active services are services defined in pitfiles and do not
+    # Active services are services defined in schedule files and do not
     # have their active setting turned off.
     #
-    # Returns Array of actived services.
+    # Returns Array of active services.
     def active_services
       @active_services ||= (
         activelist = []
 
-        service_configs.each do |key, opts|
+        config.each do |key, opts|
           next unless opts && opts['active'] != false
 
-          service_name  = opts.delete('service') || key
-          service_class = Detroit.services[service_name.to_s.downcase]
+          # omit any service in the skip list
+          next if skip.include?(key.to_s)
 
-          abort "Unknown service #{service_name}." unless service_class
+          tool_name = (opts.delete('tool') || opts.delete('service') || key).to_s.downcase
 
-          if service_class.available?(project)
+          unless Detroit.tools.key?(tool_name)
+            config.load_plugin(tool_name)
+          end
+
+          tool_class = Detroit.tools[tool_name]
+
+          abort "Unknown tool `#{tool_name}'." unless tool_class
+
+          if tool_class.available? #(project)
             #opts = inject_environment(opts) # TODO: DEPRECATE
-            options = defaults[service_name.downcase].to_h
+            options = defaults[tool_name.downcase].to_h
             options = options.merge(common_tool_options)
             options = options.merge(opts)
-            #activelist << service_class.new(key, options) #script,
-            activelist << ServiceWrapper.new(key, service_class, options) #script,
+            #activelist << tool_class.new(key, options) #script,
+            ## remove any services specified by the --skip option on the comamndline
+            activelist << ServiceWrapper.new(key, tool_class, options) #script,
           #else
-          #  warn "Service #{service_class} is not available."
+          #  warn "Service #{tool_class} is not available."
           end
         end
 
         # sorting here trickles down to processing later
         activelist = activelist.sort_by{ |s| s.priority || 0 }
-        #activelist = activelist.sort_by{ |sc, cn, key, opts| opts['priority'] || 0 }
 
         activelist
       )
@@ -120,21 +138,20 @@ module Detroit
 
     #alias_method :services, :active_services
 
-    # Service configuration. These are stored in the project's Pitfile,
-    # or .detroit/ or task/ folders as Ruby or YAML files.
+    # Service configuration, from project's schedule file(s).
     #
     # Returns Hash of service name and settings.
-    def service_configs
-      config.services
-    end
+    #def service_configs
+    #  config.services
+    #end
 
-    # Run individual detroit scripts/tasks.
-    def runscript(script, stop)
-      @config.services.clear
-      @config.load_detroit_file(script)
-      #@service_configs = load_service_configs(script)
-      run(stop)
-    end
+    # Run individual detroit scripts.
+    #def runscript(script, stop)
+    #  @config.services.clear
+    #  @config.load_schedule_file(script)
+    #  #@service_configs = load_service_configs(script)
+    #  run(stop)
+    #end
 
     # Start the run.
     def start(stop)
@@ -227,7 +244,7 @@ module Detroit
 
     #
     def hook_tool
-      @hook_tool ||= RedTools::Tool.new(common_tool_options)
+      @hook_tool ||= Tool.new(common_tool_options)
     end
 
     # TODO: Do we need verbose?
@@ -246,8 +263,8 @@ module Detroit
     def service_calls(track, stop)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
       prioritized_services.each do |(priority, services)|
-        ## remove any services specified by the -s option on the comamndline
-        services = services.reject{ |srv| skip.include?(srv.key.to_s) }
+        ## remove any services specified by the --skip option on the comamndline
+        #services = services.reject{ |srv| skip.include?(srv.key.to_s) }
         ## only servies that are on the track
         services = services.select{ |srv| srv.tracks.nil? or srv.tracks.include?(track.to_s) }
 

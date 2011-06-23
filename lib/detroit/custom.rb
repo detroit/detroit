@@ -1,13 +1,11 @@
-module Detroit::Plugins
+module Detroit
 
-  # = Custom Plugin
-  #
-  # Use this plugin to create your own "quicky" service.
+  # Custom tool is used to create "quicky" services.
   #
   # This is a useful alternative to writing a full-blown plugin
-  # class when the need is simple.
+  # when the need is simple.
   #
-  class Custom < Service
+  class Custom < Tool
 
     # Default track(s) in which this plugin operates.
     DEFAULT_TRACK = "main"
