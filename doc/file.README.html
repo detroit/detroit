@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  File: README
+  
+    &mdash; Detroit
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'>
+<h1>Detroit</h1>
+<table class="rdoc-list"><tr><td class="rdoc-term"><p>Author</p></td>
+<td>
+<p>Thomas Sawyer</p>
+</td></tr><tr><td class="rdoc-term"><p>Licence</p></td>
+<td>
+<p>GPL v.3</p>
+</td></tr><tr><td class="rdoc-term"><p>Copyright</p></td>
+<td>
+<p>© 2011 Rubyworks, Thomas Sawyer</p>
+</td></tr></table>
+
+<h2>DESCRIPTION</h2>
+
+<p>Detroit is a software production management aid for Ruby developers.
+Detroit utilizes a lifecycle methodology to help developers prepare and
+release Ruby software in a clear, repeatable, linear fashion.</p>
+
+<h2>RESOURCES</h2>
+<ul><li>
+<p><a href="http://rubyworks.github.com/detroit">Homepage</a></p>
+</li><li>
+<p><a href="http://github.com/rubyworks/detroit">Development</a></p>
+</li><li>
+<p><a href="http://googlegroups.com/group/rubyworks-mailinglist">Mailing
+List</a></p>
+</li></ul>
+
+<h2>HOW IT WORKS</h2>
+
+<p>Detroit defines development processions which consist of a set of named 
+production <em>lines</em>, or <em>tracks</em>, each with a series of named
+<em>stations</em>, or <em>stops</em>. Developers attach work elements to
+stations by configuring service instances in a project’s Schedule or
+*.schedule files. Schedules are written in either YAML or a Ruby DSL.</p>
+
+<p>For example, a RubyForge service can be defined:</p>
+
+<pre class="code"><span class='rubyforge identifier id'>rubyforge</span><span class='colon op'>:</span>
+  <span class='service identifier id'>service</span><span class='colon op'>:</span> <span class='Rubyforge constant id'>Rubyforge</span>
+  <span class='sitemap identifier id'>sitemap</span><span class='colon op'>:</span>
+    <span class='site identifier id'>site</span><span class='colon op'>:</span> <span class='lt op'>&lt;</span><span class='string val'>%= name %&gt;
+  active: true
+</span></pre>
+
+<p>As this example demonstrates, service configurations can draw on project
+metadata via ERB embedded tags. Detroit gathers this information using <a
+href="http://dotruby.github.com/dotruby">.ruby</a>, but the data source can
+be easily customized to meet the needs of different projects.</p>
+
+<p>With service configuration and metadata in place, using Detroit is simply a
+matter of passing a line name and stop to the <tt>detroit</tt> command line
+tool. For example,</p>
+
+<pre class="code">$ <span class='detroit identifier id'>detroit</span> <span class='main identifier id'>main</span><span class='symbol val'>:document</span>
+</pre>
+
+<p>The track name and its stop are separated by a colon. This command would
+run every stop on the <tt>main</tt> track, in order, until it completes the
+<tt>document</tt> stop. Since <tt>main</tt> is the default track, we can
+acheive the same effect without specifying it.</p>
+
+<pre class="code">$ <span class='detroit identifier id'>detroit</span> <span class='document identifier id'>document</span>
+</pre>
+
+<p>The use of tracks may seem constrictive to users of tools like Rake, but
+there is a benefit to this approach. It helps ensure a project is  always
+up-to-date and in-sync –that no necessary steps are missed. Detroit
+includes three tracks out of the box. The most significant of which is
+<tt>main</tt> which entails a route with ordred stops:</p>
+
+<pre class="code"><span class='prepare identifier id'>prepare</span>     <span class='comment val'># prepare services and ensure requirements</span>
+<span class='generate identifier id'>generate</span>    <span class='comment val'># code generation</span>
+<span class='compile identifier id'>compile</span>     <span class='comment val'># compile source code</span>
+<span class='test identifier id'>test</span>        <span class='comment val'># run tests and/or specifications</span>
+<span class='analyze identifier id'>analyze</span>     <span class='comment val'># run code analysis</span>
+<span class='document identifier id'>document</span>    <span class='comment val'># generate documentation</span>
+<span class='package identifier id'>package</span>     <span class='comment val'># create packages</span>
+<span class='verify identifier id'>verify</span>      <span class='comment val'># post package verification (eg. integration tests)</span>
+<span class='install identifier id'>install</span>     <span class='comment val'># install package locally</span>
+<span class='publish identifier id'>publish</span>     <span class='comment val'># publish website/documentation</span>
+<span class='release identifier id'>release</span>     <span class='comment val'># release packages</span>
+<span class='deploy identifier id'>deploy</span>      <span class='comment val'># deply system to servers</span>
+<span class='promote identifier id'>promote</span>     <span class='comment val'># tell the world about you awesome work</span>
+</pre>
+
+<p>All tracks also have a maintainence subtrack which consits of three stops:</p>
+
+<pre class="code"><span class='reset identifier id'>reset</span>       <span class='comment val'># mark build files as out-of-date</span>
+<span class='clean identifier id'>clean</span>       <span class='comment val'># remove minor build files</span>
+<span class='purge identifier id'>purge</span>       <span class='comment val'># remove all build files</span>
+</pre>
+
+<p>Where reset marks generated files out-of-date, clean removes temporary
+products and purge removes all generated prodcuts.</p>
+
+<p>In additon to <tt>main</tt>, Detroit includes <tt>site</tt> and
+<tt>attn</tt> tracks which are used to generate and publish a project’s
+website, and make project announcements respectively. They are simply
+useful subsets of the <tt>main</tt> track.</p>
+
+<p>Please see <a
+href="http://rubyworks.github.com/detroit">rubyworks.github.com/detroit</a>
+for more details on how to use Detroit, including the creation of custom
+tracks, stops and service plugins. Also try the <tt>--help</tt> option to
+see the detroit command’s help information.</p>
+
+<h2>INSTALLATION</h2>
+
+<p>Detroit can, of course, be installed via RubyGems:</p>
+
+<pre class="code">$ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='detroit identifier id'>detroit</span>
+</pre>
+
+<p>We no longer recommend it, but Detroit can also be installed the
+old-fashion way by downloading the .tar.gz package and using Ruby Setup
+(See <a href="http://setup.rubyforge.org">setup.rubyforge.org</a>).</p>
+
+<pre class="code">$ <span class='tar identifier id'>tar</span> <span class='minus op'>-</span><span class='xvzf identifier id'>xvzf</span> <span class='detroit identifier id'>detroit</span><span class='minus op'>-</span><span class='float val'>1.0</span><span class='float val'>.0</span><span class='dot token'>.</span><span class='tar identifier id'>tar</span><span class='dot token'>.</span><span class='gz identifier id'>gz</span>
+$ <span class='cd identifier id'>cd</span> <span class='detroit identifier id'>detroit</span><span class='minus op'>-</span><span class='float val'>1.0</span><span class='integer val'>.0</span>
+$ <span class='sudo identifier id'>sudo</span> <span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span>
+</pre>
+
+<p>Ruby Setup is stand-alone version of the original setup.rb script.</p>
+
+<h2>ISSUES</h2>
+
+<p>All in all, Detroit works well. There are some rough edges with regards to
+the built-in service plugins, so from time to time you might run into an
+odd error. Ususally it just means a service confirguraiton needs 
+adjustment.</p>
+
+<p>Please note, Windows support has not been considered at all. While I do not
+see any specific reason it should not work, there may well be issues I have
+not considered since I do not use Windows. If you are Windows user and give
+Detroit a try please let us know of any issues you encounter.</p>
+
+<h2>HISTORY</h2>
+
+<p>Detroit is actaully the offspring of Reap v.10, and was called Syckle for 
+a number of years as it matured. It represents many years of design
+considerations (and reconsiderations), that evolved Reap from its simple
+Rake extension origins, which pre-dated Hoe, to the lifecycle system it is
+today.</p>
+
+<h2>COPYRIGHT &amp; LICENSE</h2>
+
+<p>(GPL v3 License)</p>
+
+<p>Copyright © 2007 Thomas Sawyer</p>
+
+<p>See COPYING.rdoc and GPL3.txt for details.</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Wed Jun 29 06:56:06 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

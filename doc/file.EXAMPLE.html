@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  File: EXAMPLE
+  
+    &mdash; Detroit
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: EXAMPLE</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>Detroit</h1>
+
+<p>Detroit's main configuration file is called a <em>Pitfile</em>. Pitfiles define the
+<i>service instances</i> that a project will utilize.</p>
+
+<p>Pitfiles can be written in a few different formats thanks to the flexibility
+of Ruby. All formats are equivalent. Which format you use is strictly a regard
+of your personal preference.</p>
+
+<h2>Ruby-based Detroit</h2>
+
+<h3>Traditional Format</h3>
+
+<p>Traditionally a Ruby-based Detroit is dominated by calls to the <code>service</code> method
+with an optional service instance name and a setter block.</p>
+
+<p>```ruby
+  service :myself do |s|</p>
+
+<pre class="code"><span class='s identifier id'>s</span><span class='dot token'>.</span><span class='service identifier id'>service</span> <span class='assign token'>=</span> <span class='symbol val'>:Announce</span>
+<span class='s identifier id'>s</span><span class='dot token'>.</span><span class='mailto identifier id'>mailto</span>  <span class='assign token'>=</span> <span class='string val'>&quot;transfire@gmail.com&quot;</span>
+<span class='s identifier id'>s</span><span class='dot token'>.</span><span class='active identifier id'>active</span>  <span class='assign token'>=</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  end</p>
+
+<p>  service :rdoc do |r|</p>
+
+<pre class="code"><span class='r identifier id'>r</span><span class='dot token'>.</span><span class='include identifier id'>include</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span> <span class='string val'>'lib'</span><span class='comma token'>,</span> <span class='string val'>'[A-Z]*'</span> <span class='rbrack token'>]</span>
+<span class='r identifier id'>r</span><span class='dot token'>.</span><span class='exclude identifier id'>exclude</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span> <span class='string val'>'Schedule'</span> <span class='rbrack token'>]</span>
+</pre>
+
+<p>  end
+```</p>
+
+<p>If no <code>service</code> setting is given, it is assumed to be same as the service instance name.
+In the above example <code>rdoc</code> is taken to be both the service desired and the name of
+this particular instance.</p>
+
+<p>A few years ago, Sinatra came along and popularized the use of the <code>#set</code> method. A simple addition
+to the the Detroit parser now allows for the slightly cleaner notation:</p>
+
+<p>```ruby
+  service :myself do</p>
+
+<pre class="code"><span class='set identifier id'>set</span> <span class='symbol val'>:service</span><span class='comma token'>,</span> <span class='symbol val'>:Announce</span>
+<span class='set identifier id'>set</span> <span class='symbol val'>:mailto</span><span class='comma token'>,</span> <span class='string val'>&quot;transfire@gmail.com&quot;</span>
+<span class='set identifier id'>set</span> <span class='symbol val'>:priority</span><span class='comma token'>,</span> <span class='integer val'>-1</span>
+<span class='set identifier id'>set</span> <span class='symbol val'>:active</span><span class='comma token'>,</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  end</p>
+
+<p>  service :rdoc do</p>
+
+<pre class="code"><span class='set identifier id'>set</span> <span class='symbol val'>:include</span><span class='comma token'>,</span> <span class='lbrack token'>[</span> <span class='string val'>'lib'</span><span class='comma token'>,</span> <span class='string val'>'[A-Z]*'</span> <span class='rbrack token'>]</span>
+<span class='set identifier id'>set</span> <span class='symbol val'>:exclude</span><span class='comma token'>,</span> <span class='lbrack token'>[</span> <span class='string val'>'Schedule'</span> <span class='rbrack token'>]</span>
+</pre>
+
+<p>  end
+```</p>
+
+<p>The <code>#set</code> method also allows for nested set blocks to define hash values.</p>
+
+<p>```ruby
+  service :rubyforge do</p>
+
+<pre class="code"><span class='set identifier id'>set</span> <span class='symbol val'>:sitemap</span> <span class='do do kw'>do</span>
+  <span class='set identifier id'>set</span> <span class='symbol val'>:site</span><span class='comma token'>,</span> <span class='name identifier id'>name</span>
+<span class='end end kw'>end</span>
+<span class='set identifier id'>set</span> <span class='symbol val'>:active</span><span class='comma token'>,</span> <span class='false false kw'>false</span>
+</pre>
+
+<p>  end
+```</p>
+
+<p>The setting <code>active</code> defaults to <code>true</code> if not given, so is not strictly
+needed in the above examples, but it is convenient to have in case you
+ever need to deactivate a service temporarily --more convenient than
+remarking out a whole section.</p>
+
+<p>Almost all options have standard defaults so it is often possible for a service
+definition to be written as simply as:</p>
+
+<p><code>ruby
+  service :rdoc
+</code></p>
+
+<h3>Modern Notation</h3>
+
+<p>Thanks to some straight-forward meta-programming, a Ruby-based Detroit can
+be written in a more concisely notation by using the name of the service class as a
+method. This can be followed by a settings block, as with the above examples,
+or passed a <i>settings hash</i>. In which case a Detroit can look like this:</p>
+
+<p>```ruby
+  Announce   :mailto   => "<a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#114;&#117;&#x62;&#x79;&#x2d;&#x74;&#97;&#x6c;&#107;&#x40;&#114;&#117;&#98;&#121;&#45;&#108;&#97;&#x6e;&#103;&#x2e;&#x6f;&#x72;&#x67;">&#114;&#x75;&#98;&#x79;&#x2d;&#116;&#x61;&#108;&#107;&#x40;&#114;&#117;&#x62;&#x79;&#45;&#108;&#x61;&#x6e;&#103;&#x2e;&#x6f;&#114;&#x67;</a>",</p>
+
+<pre class="code">         <span class='symbol val'>:active</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  Announce   :myself,</p>
+
+<pre class="code">         <span class='symbol val'>:mailto</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;transfire@gmail.com&quot;</span><span class='comma token'>,</span>
+         <span class='symbol val'>:priority</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>-1</span>
+         <span class='symbol val'>:active</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  Gem        :types    => ['gem'],</p>
+
+<pre class="code">         <span class='symbol val'>:spec</span>     <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span><span class='comma token'>,</span>
+         <span class='symbol val'>:active</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  DNote      :priority => -1,</p>
+
+<pre class="code">         <span class='symbol val'>:active</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  RI         :exclude  => [],</p>
+
+<pre class="code">         <span class='symbol val'>:active</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  RDoc       :include  => [ 'lib', '[A-Z]*' ],</p>
+
+<pre class="code">         <span class='symbol val'>:exclude</span>  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'Schedule'</span> <span class='rbrack token'>]</span>
+</pre>
+
+<p>  Testrb     :active   => true</p>
+
+<p>  Rubyforge  :sitemap  => {</p>
+
+<pre class="code">           <span class='symbol val'>:site</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='name identifier id'>name</span>
+         <span class='rbrace token'>}</span>
+         <span class='symbol val'>:active</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span>
+</pre>
+
+<p>```</p>
+
+<p>This format is convenient in that it reduced the amount of extraneous syntax
+need to define service instances. With Ruby 1.9 it can be even more conisce
+using the new Hash syntax.</p>
+
+<p>```ruby
+  Announce  :myself,</p>
+
+<pre class="code">         <span class='mailto identifier id'>mailto</span><span class='colon op'>:</span>   <span class='string val'>&quot;transfire@gmail.com&quot;</span><span class='comma token'>,</span>
+         <span class='priority identifier id'>priority</span><span class='colon op'>:</span> <span class='integer val'>-1</span>
+         <span class='active identifier id'>active</span><span class='colon op'>:</span>   <span class='true true kw'>true</span>
+</pre>
+
+<p>```</p>
+
+<p>But you might want to hold off on that a couple of years until Ruby 1.8 is pretty much
+shot and buried ;)</p>
+
+<h2>YAML-based Detroit</h2>
+
+<p>We have saved the most concise notation for last. The YAML format is
+essentially the same as the traditional Ruby format except that
+the main key provides the service instance name and the service is a
+setting which defaults to the name. Also, notice the start document indicator
+(<code>---</code>). The indicator is NECESSARY for the Detroit to be
+recognized as YAML, rather than Ruby.</p>
+
+<p>```yaml
+  --- !detroit</p>
+
+<p>  announce:</p>
+
+<pre class="code"><span class='mailto identifier id'>mailto</span><span class='colon op'>:</span> <span class='string val'>&quot;transfire@gmail.com&quot;</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  myself:</p>
+
+<pre class="code"><span class='service identifier id'>service</span><span class='colon op'>:</span> <span class='Announce constant id'>Announce</span>
+<span class='mailto identifier id'>mailto</span><span class='colon op'>:</span>  <span class='string val'>&quot;transfire@gmail.com&quot;</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span>  <span class='true true kw'>true</span>
+</pre>
+
+<p>  gem:</p>
+
+<pre class="code"><span class='types identifier id'>types</span><span class='colon op'>:</span>    <span class='lbrack token'>[</span><span class='string val'>'gem'</span><span class='rbrack token'>]</span>
+<span class='autospec identifier id'>autospec</span><span class='colon op'>:</span> <span class='false false kw'>false</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span>   <span class='true true kw'>true</span>
+</pre>
+
+<p>  dnote:</p>
+
+<pre class="code"><span class='priority identifier id'>priority</span><span class='colon op'>:</span> <span class='integer val'>-1</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span>   <span class='true true kw'>true</span>
+</pre>
+
+<p>  rdoc:</p>
+
+<pre class="code"><span class='include identifier id'>include</span><span class='colon op'>:</span> <span class='lbrack token'>[</span> <span class='lib identifier id'>lib</span><span class='comma token'>,</span> <span class='string val'>'[A-Z]*'</span> <span class='rbrack token'>]</span>
+<span class='exclude identifier id'>exclude</span><span class='colon op'>:</span> <span class='lbrack token'>[</span> <span class='Schedule constant id'>Schedule</span> <span class='rbrack token'>]</span>
+</pre>
+
+<p>  ri:</p>
+
+<pre class="code"><span class='exclude identifier id'>exclude</span><span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span>  <span class='true true kw'>true</span>
+</pre>
+
+<p>  stats:</p>
+
+<pre class="code"><span class='priority identifier id'>priority</span><span class='colon op'>:</span> <span class='integer val'>-1</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span>   <span class='true true kw'>true</span>
+</pre>
+
+<p>  testrb:</p>
+
+<pre class="code"><span class='active identifier id'>active</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+</pre>
+
+<p>  rubyforge:</p>
+
+<pre class="code"><span class='service identifier id'>service</span><span class='colon op'>:</span> <span class='forge identifier id'>forge</span>
+<span class='sitemap identifier id'>sitemap</span><span class='colon op'>:</span>
+  <span class='site identifier id'>site</span><span class='colon op'>:</span> <span class='lt op'>&lt;</span><span class='string val'>% name </span><span class='mod op'>%</span><span class='gt op'>&gt;</span>
+<span class='active identifier id'>active</span><span class='colon op'>:</span> <span class='false false kw'>false</span>
+</pre>
+
+<p>```</p>
+
+<p>As we can see in the last entry, the YAML format also supports ERB and provides
+access to project metadata via the ERB's binding.</p>
+
+<p>With the Ruby format it is easy enough to load external Detroit plugins using
+standard <code>require</code> and <code>load</code> methods. Since the YAML format supports ERB
+it can be used to achieve the same effect.</p>
+
+<p><code>ruby
+  --- !detroit
+  &lt;% require 'some/detroit/plugin' %&gt;
+</code></p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Wed Jun 29 06:56:07 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

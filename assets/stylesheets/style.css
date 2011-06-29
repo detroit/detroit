@@ -1,0 +1,164 @@
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 9pt;
+  font-family: microsoft sans-serif, sans-serif, helvetica;
+  text-align: center;
+  color: black;
+}
+
+h1 {
+  font-family: times;
+  margin-top: 30px;
+  font-size: 2.5em;
+}
+
+h1.top {
+  margin-top: -10px;
+}
+
+h2 {
+  margin-top: 25px;
+}
+
+img {
+  border: none;
+}
+
+p {
+  font-size: 1em;
+  line-height: 15pt;
+  text-align: justify;
+}
+
+pre {
+  padding: 10px 10px 0 10px;
+  font-size: 0.9em;
+  background-color: #f1f1f1;
+  color: #FF0055;
+  font-weight: bold;
+}
+
+a { text-decoration: none; color: #CC0000; }
+a:hover { text-decoration: underline; }
+
+pre.script { background-color: #DDFFDD; color: black; }
+
+.container {
+  /* border: 1px solid #bbbbbb; */
+  margin: 0 auto;
+  width: 640px;
+  text-align: left;
+}
+
+.banner {
+  /*
+    background: url(img/clipboard.png) 100px 0px no-repeat white;
+    padding: 36px 0px 36px 20px;
+    background: url(img/ratch2.png) 300px -10px no-repeat #666666;
+  */
+  margin-top: 1px;
+  height: 140px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+}
+
+.content {
+  padding-top: 30px;
+}
+
+.title {
+  font: bold 70pt sans-serif;
+  color: red;
+  letter-spacing: 7pt;
+}
+
+.subtitle {
+  padding-left: 7px;
+  font-size: 10pt;
+  color: red;
+  letter-spacing: 3px;
+}
+
+.menu {
+  background: url(img/menu_bg.jpg) repeat-x white;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  padding-right: 220px;
+  padding-left: 20px;
+  line-height: 32px;
+  color: #CC1133;
+}
+
+.menu a {
+  color: black;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.menu a:hover {
+  color: #CC0000;
+  text-decoration: underline;
+}
+
+.ad {
+  float: right;
+  width: 164px;
+  height: 604px;
+  padding: 10px;
+  text-align: center;
+}
+
+.adframe {
+  margin: 0 auto;
+  width: 162px;
+  height: 602px;
+  padding: 0;
+}
+
+.intro {
+  font-weight: normal;
+  font-size: 1.4em;
+}
+
+.date {
+  float:right; color:gray; margin: 0;
+}
+
+.tiger {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.footer {
+  height: 72px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 0;
+  border-top: 1px solid #ccc;
+  color: #999;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: left;
+  background: url(assets/images/ruby-blur.png) bottom right no-repeat white;
+}
+
+.copyright a {
+  color: pink;
+}
+
+.important {
+  color: red;
+}
+
+.rev {
+  font-size: 10pt;
+  padding-left: 15px;
+}
+
+p.top {
+  font-weight: bold;
+}

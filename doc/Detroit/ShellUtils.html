@@ -1,0 +1,4435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Detroit::ShellUtils
+  
+    &mdash; Detroit
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Detroit.html" title="Detroit (module)">Detroit</a></span></span>
+     &raquo; 
+    <span class="title">ShellUtils</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Detroit::ShellUtils
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="Tool.html" title="Detroit::Tool (class)">Tool</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/detroit/tool/shell_utils.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>ShellUtils provides the whole slew of FileUtils, FileTest and File class
+methods in a single module and modifies methods according to noop? and
+verbose? options.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="RUBY-constant" class="">RUBY =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Current ruby binary.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='colon3 op'>::</span><span class='Config constant id'>Config</span><span class='colon2 op'>::</span><span class='CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'bindir'</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='colon3 op'>::</span><span class='Config constant id'>Config</span><span class='colon2 op'>::</span><span class='CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'ruby_install_name'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='sub identifier id'>sub</span><span class='lparen token'>(</span><span class='regexp val'>/.*\s.*/</span><span class='m identifier id'>m</span><span class='comma token'>,</span> <span class='string val'>'&quot;\&amp;&quot;'</span><span class='rparen token'>)</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#debug%3D-instance_method" title="#debug= (instance method)">- (Object) <strong>debug</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    <span class="note title writeonly">writeonly</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the attribute debug.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#force%3D-instance_method" title="#force= (instance method)">- (Object) <strong>force</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    <span class="note title writeonly">writeonly</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the attribute force.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#quiet%3D-instance_method" title="#quiet= (instance method)">- (Object) <strong>quiet</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    <span class="note title writeonly">writeonly</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the attribute quiet.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stderr-instance_method" title="#stderr (instance method)">- (Object) <strong>stderr</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stdin-instance_method" title="#stdin (instance method)">- (Object) <strong>stdin</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stdout-instance_method" title="#stdout (instance method)">- (Object) <strong>stdout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trace-instance_method" title="#trace (instance method)">- (Object) <strong>trace</strong>(message) </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Internal trace report.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trial%3D-instance_method" title="#trial= (instance method)">- (Object) <strong>trial</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    <span class="note title writeonly">writeonly</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the attribute trial.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#verbose%3D-instance_method" title="#verbose= (instance method)">- (Object) <strong>verbose</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    <span class="note title writeonly">writeonly</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the attribute verbose.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#absolute%3F-instance_method" title="#absolute? (instance method)">- (Boolean) <strong>absolute?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#append-instance_method" title="#append (instance method)">- (Object) <strong>append</strong>(path, text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Append to file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ask-instance_method" title="#ask (instance method)">- (Object) <strong>ask</strong>(question) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convenient method to get simple console reply.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#atime-instance_method" title="#atime (instance method)">- (Object) <strong>atime</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>– File Methods ———————————————————.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#blockdev%3F-instance_method" title="#blockdev? (instance method)">- (Boolean) <strong>blockdev?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#chardev%3F-instance_method" title="#chardev? (instance method)">- (Boolean) <strong>chardev?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ctime-instance_method" title="#ctime (instance method)">- (Object) <strong>ctime</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#debug%3F-instance_method" title="#debug? (instance method)">- (Boolean) <strong>debug?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#directory%3F-instance_method" title="#directory? (instance method)">- (Boolean) <strong>directory?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dryrun%3F-instance_method" title="#dryrun? (instance method)">- (Boolean) <strong>dryrun?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#executable%3F-instance_method" title="#executable? (instance method)">- (Boolean) <strong>executable?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#executable_real%3F-instance_method" title="#executable_real? (instance method)">- (Boolean) <strong>executable_real?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exist%3F-instance_method" title="#exist? (instance method)">- (Boolean) <strong>exist?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exists%3F-instance_method" title="#exists? (instance method)">- (Boolean) <strong>exists?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#file%3F-instance_method" title="#file? (instance method)">- (Boolean) <strong>file?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fileutils-instance_method" title="#fileutils (instance method)">- (Object) <strong>fileutils</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns FileUtils module based on mode.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#force%3F-instance_method" title="#force? (instance method)">- (Boolean) <strong>force?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#grpowned%3F-instance_method" title="#grpowned? (instance method)">- (Boolean) <strong>grpowned?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#identical%3F-instance_method" title="#identical? (instance method)">- (Boolean) <strong>identical?</strong>(path, other) </a>
+    
+
+    
+      (also: #compare_file)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_extension_defaults-instance_method" title="#initialize_extension_defaults (instance method)">- (Object) <strong>initialize_extension_defaults</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_extensions-instance_method" title="#initialize_extensions (instance method)">- (Object) <strong>initialize_extensions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mtime-instance_method" title="#mtime (instance method)">- (Object) <strong>mtime</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#multiglob-instance_method" title="#multiglob (instance method)">- (Object) <strong>multiglob</strong>(*args, &amp;blk) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>TODO: Ultimately merge #glob and #multiglob.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#multiglob_r-instance_method" title="#multiglob_r (instance method)">- (Object) <strong>multiglob_r</strong>(*args, &amp;blk) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#noop%3F-instance_method" title="#noop? (instance method)">- (Boolean) <strong>noop?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#owned%3F-instance_method" title="#owned? (instance method)">- (Boolean) <strong>owned?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#password-instance_method" title="#password (instance method)">- (Object) <strong>password</strong>(prompt = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>TODO: Until we have better support for getting input across platforms, we
+are using #ask for passwords too.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#path-instance_method" title="#path (instance method)">- (Object) <strong>path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A path is required for shell methods to operate.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#path%3D-instance_method" title="#path= (instance method)">- (Object) <strong>path=</strong>(dir) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set shell path.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pipe%3F-instance_method" title="#pipe? (instance method)">- (Boolean) <strong>pipe?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#print-instance_method" title="#print (instance method)">- (Object) <strong>print</strong>(str = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#puts-instance_method" title="#puts (instance method)">- (Object) <strong>puts</strong>(str = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#quiet%3F-instance_method" title="#quiet? (instance method)">- (Boolean) <strong>quiet?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read-instance_method" title="#read (instance method)">- (Object) <strong>read</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Read file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#readable%3F-instance_method" title="#readable? (instance method)">- (Boolean) <strong>readable?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#readable_real%3F-instance_method" title="#readable_real? (instance method)">- (Boolean) <strong>readable_real?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#relative%3F-instance_method" title="#relative? (instance method)">- (Boolean) <strong>relative?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#report-instance_method" title="#report (instance method)">- (Object) <strong>report</strong>(message) </a>
+    
+
+    
+      (also: #status)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>TODO: deprecate in favor of #report ?.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ruby-instance_method" title="#ruby (instance method)">- (Object) <strong>ruby</strong>(cmd) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Shell-out to ruby.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#safe%3F-instance_method" title="#safe? (instance method)">- (Boolean) <strong>safe?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setgid%3F-instance_method" title="#setgid? (instance method)">- (Boolean) <strong>setgid?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setuid%3F-instance_method" title="#setuid? (instance method)">- (Boolean) <strong>setuid?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sh-instance_method" title="#sh (instance method)">- (Object) <strong>sh</strong>(cmd) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Shell runner.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#size-instance_method" title="#size (instance method)">- (Object) <strong>size</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>– File Testing ———————————————————.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#size%3F-instance_method" title="#size? (instance method)">- (Boolean) <strong>size?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#socket%3F-instance_method" title="#socket? (instance method)">- (Boolean) <strong>socket?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sticky%3F-instance_method" title="#sticky? (instance method)">- (Boolean) <strong>sticky?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#symlink%3F-instance_method" title="#symlink? (instance method)">- (Boolean) <strong>symlink?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trace%3F-instance_method" title="#trace? (instance method)">- (Boolean) <strong>trace?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trial%3F-instance_method" title="#trial? (instance method)">- (Boolean) <strong>trial?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#utime-instance_method" title="#utime (instance method)">- (Object) <strong>utime</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#verbose%3F-instance_method" title="#verbose? (instance method)">- (Boolean) <strong>verbose?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#writable%3F-instance_method" title="#writable? (instance method)">- (Boolean) <strong>writable?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#writable_real%3F-instance_method" title="#writable_real? (instance method)">- (Boolean) <strong>writable_real?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write-instance_method" title="#write (instance method)">- (Object) <strong>write</strong>(path, text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Write file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#zero%3F-instance_method" title="#zero? (instance method)">- (Boolean) <strong>zero?</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="debug=-instance_method"></span>
+      <span id=""></span>
+      <div class="method_details first">
+  <p class="signature first" id="debug=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>debug=</strong>(value)  <span class="extras">(writeonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the attribute debug</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value to set the attribute debug to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 58</span>
+
+<span class='def def kw'>def</span> <span class='debug= identifier id'>debug=</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='@debug ivar id'>@debug</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="force=-instance_method"></span>
+      <span id=""></span>
+      <div class="method_details ">
+  <p class="signature " id="force=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>force=</strong>(value)  <span class="extras">(writeonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the attribute force</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value to set the attribute force to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 54</span>
+
+<span class='def def kw'>def</span> <span class='force= identifier id'>force=</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='@force ivar id'>@force</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="quiet=-instance_method"></span>
+      <span id=""></span>
+      <div class="method_details ">
+  <p class="signature " id="quiet=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>quiet=</strong>(value)  <span class="extras">(writeonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the attribute quiet</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value to set the attribute quiet to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='quiet= identifier id'>quiet=</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='@quiet ivar id'>@quiet</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="stderr=-instance_method"></span>
+      <span id="stderr-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="stderr-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>stderr</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 50</span>
+
+<span class='def def kw'>def</span> <span class='stderr identifier id'>stderr</span>
+  <span class='@stdout ivar id'>@stdout</span> <span class='opasgn op'>||=</span> <span class='$stderr gvar id'>$stderr</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="stdin=-instance_method"></span>
+      <span id="stdin-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="stdin-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>stdin</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 46</span>
+
+<span class='def def kw'>def</span> <span class='stdin identifier id'>stdin</span>
+  <span class='@stdin ivar id'>@stdin</span> <span class='opasgn op'>||=</span> <span class='$stdin gvar id'>$stdin</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="stdout=-instance_method"></span>
+      <span id="stdout-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="stdout-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>stdout</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 42</span>
+
+<span class='def def kw'>def</span> <span class='stdout identifier id'>stdout</span>
+  <span class='@stdout ivar id'>@stdout</span> <span class='opasgn op'>||=</span> <span class='$stdout gvar id'>$stdout</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="trace=-instance_method"></span>
+      <span id="trace-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="trace-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>trace</strong>(message) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Internal trace report. Only output if in trace mode.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 91</span>
+
+<span class='def def kw'>def</span> <span class='trace identifier id'>trace</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
+  <span class='stderr identifier id'>stderr</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='message identifier id'>message</span> <span class='if if_mod kw'>if</span> <span class='trace? fid id'>trace?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="trial=-instance_method"></span>
+      <span id=""></span>
+      <div class="method_details ">
+  <p class="signature " id="trial=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>trial=</strong>(value)  <span class="extras">(writeonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the attribute trial</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value to set the attribute trial to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 57</span>
+
+<span class='def def kw'>def</span> <span class='trial= identifier id'>trial=</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='@trial ivar id'>@trial</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="verbose=-instance_method"></span>
+      <span id=""></span>
+      <div class="method_details ">
+  <p class="signature " id="verbose=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>verbose=</strong>(value)  <span class="extras">(writeonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the attribute verbose</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value to set the attribute verbose to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 59</span>
+
+<span class='def def kw'>def</span> <span class='verbose= identifier id'>verbose=</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='@verbose ivar id'>@verbose</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="absolute?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>absolute?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 199</span>
+
+<span class='def def kw'>def</span> <span class='absolute? fid id'>absolute?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='absolute? fid id'>absolute?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="append-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>append</strong>(path, text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Append to file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 168</span>
+
+<span class='def def kw'>def</span> <span class='append identifier id'>append</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='$stderr gvar id'>$stderr</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;append #{path}&quot;</span> <span class='if if_mod kw'>if</span> <span class='trace? fid id'>trace?</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'a'</span><span class='rparen token'>)</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='f identifier id'>f</span> <span class='lshft op'>&lt;&lt;</span> <span class='text identifier id'>text</span> <span class='rbrace token'>}</span> <span class='unless unless_mod kw'>unless</span> <span class='noop? fid id'>noop?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ask-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>ask</strong>(question) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Convenient method to get simple console reply.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 96</span>
+
+<span class='def def kw'>def</span> <span class='ask identifier id'>ask</span><span class='lparen token'>(</span><span class='question identifier id'>question</span><span class='rparen token'>)</span>
+  <span class='stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='print identifier id'>print</span> <span class='dstring node'>&quot;#{question} &quot;</span>
+  <span class='stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='flush identifier id'>flush</span>
+  <span class='input identifier id'>input</span> <span class='assign token'>=</span> <span class='stdin identifier id'>stdin</span><span class='dot token'>.</span><span class='gets identifier id'>gets</span> <span class='comment val'>#until inp = stdin.gets ; sleep 1 ; end</span>
+  <span class='input identifier id'>input</span><span class='dot token'>.</span><span class='strip identifier id'>strip</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="atime-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>atime</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>– File Methods ———————————————————</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 212</span>
+
+<span class='def def kw'>def</span> <span class='atime identifier id'>atime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='ctime identifier id'>ctime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="blockdev?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>blockdev?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 187</span>
+
+<span class='def def kw'>def</span> <span class='blockdev? fid id'>blockdev?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='blockdev? fid id'>blockdev?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="chardev?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>chardev?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 180</span>
+
+<span class='def def kw'>def</span> <span class='chardev? fid id'>chardev?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='chardev? fid id'>chardev?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ctime-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>ctime</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 213</span>
+
+<span class='def def kw'>def</span> <span class='ctime identifier id'>ctime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='ctime identifier id'>ctime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="debug?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>debug?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 67</span>
+
+<span class='def def kw'>def</span> <span class='debug? fid id'>debug?</span>   <span class='semicolon token'>;</span> <span class='@debug ivar id'>@debug</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="directory?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>directory?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 177</span>
+
+<span class='def def kw'>def</span> <span class='directory? fid id'>directory?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>       <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='directory? fid id'>directory?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="dryrun?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>dryrun?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 71</span>
+
+<span class='def def kw'>def</span> <span class='dryrun? fid id'>dryrun?</span>  <span class='semicolon token'>;</span> <span class='verbose? fid id'>verbose?</span> <span class='andop op'>&amp;&amp;</span> <span class='noop? fid id'>noop?</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="executable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>executable?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 194</span>
+
+<span class='def def kw'>def</span> <span class='executable? fid id'>executable?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>      <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='executable? fid id'>executable?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>       <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="executable_real?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>executable_real?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 202</span>
+
+<span class='def def kw'>def</span> <span class='executable_real? fid id'>executable_real?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='executable_real? fid id'>executable_real?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="exist?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>exist?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 181</span>
+
+<span class='def def kw'>def</span> <span class='exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="exists?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>exists?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 182</span>
+
+<span class='def def kw'>def</span> <span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="file?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>file?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 185</span>
+
+<span class='def def kw'>def</span> <span class='file? fid id'>file?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='file? fid id'>file?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>             <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="fileutils-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>fileutils</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns FileUtils module based on mode.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 221</span>
+
+<span class='def def kw'>def</span> <span class='fileutils identifier id'>fileutils</span>
+  <span class='if if kw'>if</span> <span class='dryrun? fid id'>dryrun?</span>
+    <span class='colon3 op'>::</span><span class='FileUtils constant id'>FileUtils</span><span class='colon2 op'>::</span><span class='DryRun constant id'>DryRun</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='noop? fid id'>noop?</span> <span class='or or kw'>or</span> <span class='trial? fid id'>trial?</span>
+    <span class='colon3 op'>::</span><span class='FileUtils constant id'>FileUtils</span><span class='colon2 op'>::</span><span class='Noop constant id'>Noop</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='trace? fid id'>trace?</span>
+    <span class='colon3 op'>::</span><span class='FileUtils constant id'>FileUtils</span><span class='colon2 op'>::</span><span class='Verbose constant id'>Verbose</span>
+  <span class='else else kw'>else</span>
+    <span class='colon3 op'>::</span><span class='FileUtils constant id'>FileUtils</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="force?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>force?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='force? fid id'>force?</span>   <span class='semicolon token'>;</span> <span class='@force ivar id'>@force</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="grpowned?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>grpowned?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 188</span>
+
+<span class='def def kw'>def</span> <span class='grpowned? fid id'>grpowned?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='grpowned? fid id'>grpowned?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="identical?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>identical?</strong>(path, other) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='compare_file-instance_method'>compare_file</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+205
+206
+207</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 205</span>
+
+<span class='def def kw'>def</span> <span class='identical? fid id'>identical?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='other identifier id'>other</span><span class='rparen token'>)</span>
+  <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='identical? fid id'>identical?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='other identifier id'>other</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="initialize_extension_defaults-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>initialize_extension_defaults</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 13</span>
+
+<span class='def def kw'>def</span> <span class='initialize_extension_defaults identifier id'>initialize_extension_defaults</span>
+  <span class='@quiet ivar id'>@quiet</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='@trial ivar id'>@trial</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='@noop ivar id'>@noop</span>  <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='@force ivar id'>@force</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='super super kw'>super</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="initialize_extensions-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>initialize_extensions</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 22</span>
+
+<span class='def def kw'>def</span> <span class='initialize_extensions identifier id'>initialize_extensions</span>
+  <span class='extend identifier id'>extend</span><span class='lparen token'>(</span><span class='fileutils identifier id'>fileutils</span><span class='rparen token'>)</span>
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='super super kw'>super</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mtime-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>mtime</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+214</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 214</span>
+
+<span class='def def kw'>def</span> <span class='mtime identifier id'>mtime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='mtime identifier id'>mtime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="multiglob-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>multiglob</strong>(*args, &amp;blk) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>TODO: Ultimately merge #glob and #multiglob.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 145</span>
+
+<span class='def def kw'>def</span> <span class='multiglob identifier id'>multiglob</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='blk identifier id'>blk</span><span class='rparen token'>)</span>
+  <span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='multiglob identifier id'>multiglob</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='blk identifier id'>blk</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="multiglob_r-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>multiglob_r</strong>(*args, &amp;blk) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 150</span>
+
+<span class='def def kw'>def</span> <span class='multiglob_r identifier id'>multiglob_r</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='blk identifier id'>blk</span><span class='rparen token'>)</span>
+  <span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='multiglob_r identifier id'>multiglob_r</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='blk identifier id'>blk</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="noop?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>noop?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 70</span>
+
+<span class='def def kw'>def</span> <span class='noop? fid id'>noop?</span>    <span class='semicolon token'>;</span> <span class='@trial ivar id'>@trial</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="owned?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>owned?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 192</span>
+
+<span class='def def kw'>def</span> <span class='owned? fid id'>owned?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='owned? fid id'>owned?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="password-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>password</strong>(prompt = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>TODO: Until we have better support for getting input across platforms, we
+are using #ask for passwords too.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+105
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 105</span>
+
+<span class='def def kw'>def</span> <span class='password identifier id'>password</span><span class='lparen token'>(</span><span class='prompt identifier id'>prompt</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='prompt identifier id'>prompt</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;Enter Password: &quot;</span>
+  <span class='ask identifier id'>ask</span><span class='lparen token'>(</span><span class='prompt identifier id'>prompt</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="path-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>A path is required for shell methods to operate. If no path is set than the
+current working path is used.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='path identifier id'>path</span>
+  <span class='@path ivar id'>@path</span> <span class='opasgn op'>||=</span> <span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='pwd identifier id'>pwd</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="path=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>path=</strong>(dir) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Set shell path.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 34</span>
+
+<span class='def def kw'>def</span> <span class='path= identifier id'>path=</span><span class='lparen token'>(</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span>
+  <span class='@path ivar id'>@path</span> <span class='assign token'>=</span> <span class='dir identifier id'>dir</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pipe?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>pipe?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 184</span>
+
+<span class='def def kw'>def</span> <span class='pipe? fid id'>pipe?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='pipe? fid id'>pipe?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>             <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="print-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>print</strong>(str = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 74</span>
+
+<span class='def def kw'>def</span> <span class='print identifier id'>print</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='print identifier id'>print</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='quiet? fid id'>quiet?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="puts-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>puts</strong>(str = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 79</span>
+
+<span class='def def kw'>def</span> <span class='puts identifier id'>puts</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='quiet? fid id'>quiet?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="quiet?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>quiet?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 63</span>
+
+<span class='def def kw'>def</span> <span class='quiet? fid id'>quiet?</span>   <span class='semicolon token'>;</span> <span class='@quiet ivar id'>@quiet</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>read</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Read file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 157</span>
+
+<span class='def def kw'>def</span> <span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="readable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>readable?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 179</span>
+
+<span class='def def kw'>def</span> <span class='readable? fid id'>readable?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='readable? fid id'>readable?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="readable_real?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>readable_real?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 203</span>
+
+<span class='def def kw'>def</span> <span class='readable_real? fid id'>readable_real?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>   <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='readable_real? fid id'>readable_real?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="relative?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>relative?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+198</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 198</span>
+
+<span class='def def kw'>def</span> <span class='relative? fid id'>relative?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='relative? fid id'>relative?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="report-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>report</strong>(message) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='status-instance_method'>status</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>TODO: deprecate in favor of #report ?</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 84</span>
+
+<span class='def def kw'>def</span> <span class='report identifier id'>report</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
+  <span class='stderr identifier id'>stderr</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='message identifier id'>message</span> <span class='unless unless_mod kw'>unless</span> <span class='quiet? fid id'>quiet?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ruby-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>ruby</strong>(cmd) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Shell-out to ruby.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 139</span>
+
+<span class='def def kw'>def</span> <span class='ruby identifier id'>ruby</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span>
+  <span class='sh identifier id'>sh</span> <span class='RUBY constant id'>RUBY</span> <span class='plus op'>+</span> <span class='string val'>&quot; &quot;</span> <span class='plus op'>+</span> <span class='cmd identifier id'>cmd</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="safe?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>safe?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 196</span>
+
+<span class='def def kw'>def</span> <span class='safe? fid id'>safe?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='safe? fid id'>safe?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>             <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setgid?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>setgid?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 189</span>
+
+<span class='def def kw'>def</span> <span class='setgid? fid id'>setgid?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='setgid? fid id'>setgid?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setuid?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>setuid?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 190</span>
+
+<span class='def def kw'>def</span> <span class='setuid? fid id'>setuid?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='setuid? fid id'>setuid?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="sh-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>sh</strong>(cmd) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Shell runner.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 124</span>
+
+<span class='def def kw'>def</span> <span class='sh identifier id'>sh</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span>
+  <span class='trace identifier id'>trace</span> <span class='cmd identifier id'>cmd</span>
+  <span class='return return kw'>return</span> <span class='true true kw'>true</span> <span class='if if_mod kw'>if</span> <span class='noop? fid id'>noop?</span>
+
+  <span class='if if kw'>if</span> <span class='quiet? fid id'>quiet?</span>
+    <span class='silently identifier id'>silently</span><span class='lbrace token'>{</span> <span class='system identifier id'>system</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='else else kw'>else</span>
+    <span class='system identifier id'>system</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="size-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>size</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>– File Testing ———————————————————</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 175</span>
+
+<span class='def def kw'>def</span> <span class='size identifier id'>size</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>             <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='size identifier id'>size</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>              <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="size?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>size?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 176</span>
+
+<span class='def def kw'>def</span> <span class='size? fid id'>size?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='size? fid id'>size?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>             <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="socket?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>socket?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+191</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 191</span>
+
+<span class='def def kw'>def</span> <span class='socket? fid id'>socket?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='socket? fid id'>socket?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="sticky?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>sticky?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+186</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 186</span>
+
+<span class='def def kw'>def</span> <span class='sticky? fid id'>sticky?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='sticky? fid id'>sticky?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>           <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="symlink?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>symlink?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 178</span>
+
+<span class='def def kw'>def</span> <span class='symlink? fid id'>symlink?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='symlink? fid id'>symlink?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>          <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trace?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>trace?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 66</span>
+
+<span class='def def kw'>def</span> <span class='trace? fid id'>trace?</span>   <span class='semicolon token'>;</span> <span class='@trace ivar id'>@trace</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="trial?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>trial?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 64</span>
+
+<span class='def def kw'>def</span> <span class='trial? fid id'>trial?</span>   <span class='semicolon token'>;</span> <span class='@trial ivar id'>@trial</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="utime-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>utime</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+216</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 216</span>
+
+<span class='def def kw'>def</span> <span class='utime identifier id'>utime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='utime identifier id'>utime</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='noop? fid id'>noop?</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="verbose?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>verbose?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 69</span>
+
+<span class='def def kw'>def</span> <span class='verbose? fid id'>verbose?</span> <span class='semicolon token'>;</span> <span class='@verbose ivar id'>@verbose</span>  <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="writable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>writable?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 193</span>
+
+<span class='def def kw'>def</span> <span class='writable? fid id'>writable?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='writable? fid id'>writable?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>         <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="writable_real?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>writable_real?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+201</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 201</span>
+
+<span class='def def kw'>def</span> <span class='writable_real? fid id'>writable_real?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>   <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='writable_real? fid id'>writable_real?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>    <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>write</strong>(path, text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Write file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 162</span>
+
+<span class='def def kw'>def</span> <span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='$stderr gvar id'>$stderr</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;write #{path}&quot;</span> <span class='if if_mod kw'>if</span> <span class='trace? fid id'>trace?</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='rparen token'>)</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='f identifier id'>f</span> <span class='lshft op'>&lt;&lt;</span> <span class='text identifier id'>text</span> <span class='rbrace token'>}</span> <span class='unless unless_mod kw'>unless</span> <span class='noop? fid id'>noop?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="zero?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>zero?</strong>(path) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/shell_utils.rb', line 183</span>
+
+<span class='def def kw'>def</span> <span class='zero? fid id'>zero?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>            <span class='semicolon token'>;</span> <span class='FileTest constant id'>FileTest</span><span class='dot token'>.</span><span class='zero? fid id'>zero?</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>             <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Jun 29 06:56:17 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

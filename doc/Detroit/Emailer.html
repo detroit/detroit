@@ -1,0 +1,1565 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Detroit::Emailer
+  
+    &mdash; Detroit
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (E)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Detroit.html" title="Detroit (module)">Detroit</a></span></span>
+     &raquo; 
+    <span class="title">Emailer</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Detroit::Emailer
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
+          
+            <li class="next">Detroit::Emailer</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/detroit/tool/email_utils.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Emailer class makes it easy send out an email.</p>
+
+<p>Settings:</p>
+
+<pre class="code"><span class='subject identifier id'>subject</span>      <span class='Subject constant id'>Subject</span> <span class='of identifier id'>of</span> <span class='email identifier id'>email</span> <span class='message identifier id'>message</span><span class='dot token'>.</span>
+<span class='from identifier id'>from</span>         <span class='Message constant id'>Message</span> <span class='FROM constant id'>FROM</span> <span class='address identifier id'>address</span> <span class='lbrack token'>[</span><span class='email identifier id'>email</span><span class='rbrack token'>]</span><span class='dot token'>.</span>
+<span class='to identifier id'>to</span>           <span class='Email constant id'>Email</span> <span class='address identifier id'>address</span> <span class='to identifier id'>to</span> <span class='send identifier id'>send</span> <span class='announcemnt identifier id'>announcemnt</span><span class='dot token'>.</span>
+<span class='server identifier id'>server</span>       <span class='Email constant id'>Email</span> <span class='server identifier id'>server</span> <span class='to identifier id'>to</span> <span class='route identifier id'>route</span> <span class='message identifier id'>message</span><span class='dot token'>.</span>
+<span class='port identifier id'>port</span>         <span class='Email constant id'>Email</span> <span class='server identifier id'>server</span><span class='string val'>'s port.
+port_secure  Email server'</span><span class='s identifier id'>s</span> <span class='port identifier id'>port</span><span class='dot token'>.</span>
+<span class='domain identifier id'>domain</span>       <span class='Email constant id'>Email</span> <span class='server identifier id'>server</span><span class='string val'>'s domain name.
+account      Email account name if needed.
+password     Password for login..
+login        Login type: plain, cram_md5 or login [plain].
+secure       Uses TLS security, true or false? [false]
+message      Mesage to send -or-
+file         File that contains message.
+</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#password-class_method" title="password (class method)">+ (Object) <strong>password</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Used for caching password between usages.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#account-instance_method" title="#account (instance method)">- (Object) <strong>account</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute account.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#domain-instance_method" title="#domain (instance method)">- (Object) <strong>domain</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute domain.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#from-instance_method" title="#from (instance method)">- (Object) <strong>from</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute from.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#login-instance_method" title="#login (instance method)">- (Object) <strong>login</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute login.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mailto-instance_method" title="#mailto (instance method)">- (Object) <strong>mailto</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute mailto.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#message-instance_method" title="#message (instance method)">- (Object) <strong>message</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute message.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#passwd-instance_method" title="#passwd (instance method)">- (Object) <strong>passwd</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute passwd.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#port-instance_method" title="#port (instance method)">- (Object) <strong>port</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute port.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#secure-instance_method" title="#secure (instance method)">- (Object) <strong>secure</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute secure.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#server-instance_method" title="#server (instance method)">- (Object) <strong>server</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute server.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subject-instance_method" title="#subject (instance method)">- (Object) <strong>subject</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute subject.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#environment_options-class_method" title="environment_options (class method)">+ (Object) <strong>environment_options</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_with_environment-class_method" title="new_with_environment (class method)">+ (Object) <strong>new_with_environment</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#email-instance_method" title="#email (instance method)">- (Object) <strong>email</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Emailer) <strong>initialize</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Emailer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#password-instance_method" title="#password (instance method)">- (Object) <strong>password</strong>(msg = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ask for a password.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#require_smtp-instance_method" title="#require_smtp (instance method)">- (Object) <strong>require_smtp</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Detroit::Emailer (class)">Emailer</a></span></tt>) <strong>initialize</strong>(options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>A new instance of Emailer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 95</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='require_smtp identifier id'>require_smtp</span>
+
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='rekey identifier id'>rekey</span>
+
+  <span class='if if kw'>if</span> <span class='not not kw'>not</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:server</span><span class='rbrack token'>]</span>
+    <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='environment_options identifier id'>environment_options</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@mailto ivar id'>@mailto</span>    <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:to</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:mailto</span><span class='rbrack token'>]</span>
+
+  <span class='@from ivar id'>@from</span>      <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:from</span><span class='rbrack token'>]</span>
+  <span class='@message ivar id'>@message</span>   <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span>
+  <span class='@subject ivar id'>@subject</span>   <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:subject</span><span class='rbrack token'>]</span>
+  <span class='@server ivar id'>@server</span>    <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:server</span><span class='rbrack token'>]</span>
+  <span class='@account ivar id'>@account</span>   <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span>
+  <span class='@passwd ivar id'>@passwd</span>    <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:password</span><span class='rbrack token'>]</span>
+  <span class='@login ivar id'>@login</span>     <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:login</span><span class='rbrack token'>]</span>
+  <span class='@secure ivar id'>@secure</span>    <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:secure</span><span class='rbrack token'>]</span> <span class='comment val'>#.to_b</span>
+  <span class='@domain ivar id'>@domain</span>    <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span>
+  <span class='@port ivar id'>@port</span>      <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:port</span><span class='rbrack token'>]</span>
+
+  <span class='@port ivar id'>@port</span>    <span class='opasgn op'>||=</span> <span class='secure identifier id'>secure</span> <span class='integer val'>? </span><span class='integer val'>465</span> <span class='colon op'>:</span> <span class='integer val'>25</span>
+  <span class='@port ivar id'>@port</span> <span class='assign token'>=</span> <span class='@port ivar id'>@port</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+
+  <span class='@account ivar id'>@account</span> <span class='opasgn op'>||=</span> <span class='@from ivar id'>@from</span>
+
+  <span class='@login ivar id'>@login</span>   <span class='opasgn op'>||=</span> <span class='symbol val'>:plain</span>
+  <span class='@login ivar id'>@login</span> <span class='assign token'>=</span> <span class='@login ivar id'>@login</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
+
+  <span class='@passwd ivar id'>@passwd</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='password identifier id'>password</span>
+
+  <span class='@domain ivar id'>@domain</span> <span class='opasgn op'>||=</span> <span class='@server ivar id'>@server</span>
+
+  <span class='comment val'># save the password for later use</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='password identifier id'>password</span> <span class='assign token'>=</span> <span class='@passwd ivar id'>@passwd</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id="password=-class_method"></span>
+      <span id="password-class_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="password-class_method">
+  
+    + (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>password</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Used for caching password between usages.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 58</span>
+
+<span class='def def kw'>def</span> <span class='password identifier id'>password</span>
+  <span class='@password ivar id'>@password</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="account=-instance_method"></span>
+      <span id="account-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="account-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>account</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute account</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 82</span>
+
+<span class='def def kw'>def</span> <span class='account identifier id'>account</span>
+  <span class='@account ivar id'>@account</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="domain=-instance_method"></span>
+      <span id="domain-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="domain-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>domain</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute domain</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 86</span>
+
+<span class='def def kw'>def</span> <span class='domain identifier id'>domain</span>
+  <span class='@domain ivar id'>@domain</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="from=-instance_method"></span>
+      <span id="from-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="from-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>from</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute from</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 87</span>
+
+<span class='def def kw'>def</span> <span class='from identifier id'>from</span>
+  <span class='@from ivar id'>@from</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="login=-instance_method"></span>
+      <span id="login-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="login-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>login</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute login</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 84</span>
+
+<span class='def def kw'>def</span> <span class='login identifier id'>login</span>
+  <span class='@login ivar id'>@login</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="mailto=-instance_method"></span>
+      <span id="mailto-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="mailto-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>mailto</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute mailto</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 88</span>
+
+<span class='def def kw'>def</span> <span class='mailto identifier id'>mailto</span>
+  <span class='@mailto ivar id'>@mailto</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="message=-instance_method"></span>
+      <span id="message-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="message-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>message</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute message</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 90</span>
+
+<span class='def def kw'>def</span> <span class='message identifier id'>message</span>
+  <span class='@message ivar id'>@message</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="passwd=-instance_method"></span>
+      <span id="passwd-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="passwd-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>passwd</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute passwd</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 83</span>
+
+<span class='def def kw'>def</span> <span class='passwd identifier id'>passwd</span>
+  <span class='@passwd ivar id'>@passwd</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="port=-instance_method"></span>
+      <span id="port-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="port-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>port</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute port</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 81</span>
+
+<span class='def def kw'>def</span> <span class='port identifier id'>port</span>
+  <span class='@port ivar id'>@port</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="secure=-instance_method"></span>
+      <span id="secure-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="secure-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>secure</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute secure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 85</span>
+
+<span class='def def kw'>def</span> <span class='secure identifier id'>secure</span>
+  <span class='@secure ivar id'>@secure</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="server=-instance_method"></span>
+      <span id="server-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="server-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>server</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute server</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='server identifier id'>server</span>
+  <span class='@server ivar id'>@server</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="subject=-instance_method"></span>
+      <span id="subject-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="subject-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>subject</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute subject</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 89</span>
+
+<span class='def def kw'>def</span> <span class='subject identifier id'>subject</span>
+  <span class='@subject ivar id'>@subject</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="environment_options-class_method">
+  
+    + (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>environment_options</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='environment_options identifier id'>environment_options</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:server</span><span class='rbrack token'>]</span>   <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_SERVER'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:from</span><span class='rbrack token'>]</span>     <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_FROM'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span>  <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_ACCOUNT'</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_FROM'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:password</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_PASSWORD'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:port</span><span class='rbrack token'>]</span>     <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_PORT'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span>   <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_DOMAIN'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:login</span><span class='rbrack token'>]</span>    <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_LOGIN'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:secure</span><span class='rbrack token'>]</span>   <span class='assign token'>=</span> <span class='ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'EMAIL_SECURE'</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="new_with_environment-class_method">
+  
+    + (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>new_with_environment</strong>(options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 74</span>
+
+<span class='def def kw'>def</span> <span class='new_with_environment identifier id'>new_with_environment</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='environment_options identifier id'>environment_options</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='rekey identifier id'>rekey</span><span class='rparen token'>)</span>
+  <span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="email-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>email</strong>(options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 135</span>
+
+<span class='def def kw'>def</span> <span class='email identifier id'>email</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='rekey identifier id'>rekey</span>
+
+  <span class='message identifier id'>message</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='message identifier id'>message</span>
+  <span class='subject identifier id'>subject</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:subject</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='subject identifier id'>subject</span>
+  <span class='from identifier id'>from</span>    <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:from</span><span class='rbrack token'>]</span>    <span class='orop op'>||</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='from identifier id'>from</span>
+  <span class='mailto identifier id'>mailto</span>  <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:mailto</span><span class='rbrack token'>]</span>  <span class='orop op'>||</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:to</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='mailto identifier id'>mailto</span>
+
+  <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;missing email field -- server&quot;</span>  <span class='unless unless_mod kw'>unless</span> <span class='server identifier id'>server</span>
+  <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;missing email field -- account&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='account identifier id'>account</span>
+
+  <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;missing email field -- from&quot;</span>    <span class='unless unless_mod kw'>unless</span> <span class='from identifier id'>from</span>
+  <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;missing email field -- mailto&quot;</span>  <span class='unless unless_mod kw'>unless</span> <span class='mailto identifier id'>mailto</span>
+  <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;missing email field -- subject&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='subject identifier id'>subject</span>
+
+  <span class='passwd identifier id'>passwd</span> <span class='opasgn op'>||=</span> <span class='password identifier id'>password</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{account} password:&quot;</span><span class='rparen token'>)</span>
+
+  <span class='mailto identifier id'>mailto</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='mailto identifier id'>mailto</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span>
+
+  <span class='msg identifier id'>msg</span> <span class='assign token'>=</span> <span class='string val'>&quot;&quot;</span>
+  <span class='msg identifier id'>msg</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot;From: #{from}\n&quot;</span>
+  <span class='msg identifier id'>msg</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot;To: #{mailto.join(';')}\n&quot;</span>
+  <span class='msg identifier id'>msg</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot;Subject: #{subject}\n&quot;</span>
+  <span class='msg identifier id'>msg</span> <span class='lshft op'>&lt;&lt;</span> <span class='string val'>&quot;&quot;</span>
+  <span class='msg identifier id'>msg</span> <span class='lshft op'>&lt;&lt;</span> <span class='message identifier id'>message</span>
+
+  <span class='comment val'>#p server, port, domain, account, passwd, login, secure if verbose?</span>
+
+  <span class='begin begin kw'>begin</span>
+    <span class='if if kw'>if</span> <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='SMTP constant id'>SMTP</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:enable_tls</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='secure identifier id'>secure</span>
+      <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='SMTP constant id'>SMTP</span><span class='dot token'>.</span><span class='enable_tls identifier id'>enable_tls</span>
+      <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='SMTP constant id'>SMTP</span><span class='dot token'>.</span><span class='start identifier id'>start</span><span class='lparen token'>(</span><span class='server identifier id'>server</span><span class='comma token'>,</span> <span class='port identifier id'>port</span><span class='comma token'>,</span> <span class='domain identifier id'>domain</span><span class='comma token'>,</span> <span class='account identifier id'>account</span><span class='comma token'>,</span> <span class='passwd identifier id'>passwd</span><span class='comma token'>,</span> <span class='login identifier id'>login</span><span class='comma token'>,</span> <span class='secure identifier id'>secure</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='smtp identifier id'>smtp</span><span class='bitor op'>|</span>
+        <span class='smtp identifier id'>smtp</span><span class='dot token'>.</span><span class='send_message identifier id'>send_message</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='mailto identifier id'>mailto</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='else else kw'>else</span>
+      <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='SMTP constant id'>SMTP</span><span class='dot token'>.</span><span class='start identifier id'>start</span><span class='lparen token'>(</span><span class='server identifier id'>server</span><span class='comma token'>,</span> <span class='port identifier id'>port</span><span class='comma token'>,</span> <span class='domain identifier id'>domain</span><span class='comma token'>,</span> <span class='account identifier id'>account</span><span class='comma token'>,</span> <span class='passwd identifier id'>passwd</span><span class='comma token'>,</span> <span class='login identifier id'>login</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='smtp identifier id'>smtp</span><span class='bitor op'>|</span>
+        <span class='smtp identifier id'>smtp</span><span class='dot token'>.</span><span class='send_message identifier id'>send_message</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='mailto identifier id'>mailto</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='return return kw'>return</span> <span class='mailto identifier id'>mailto</span>
+  <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+    <span class='return return kw'>return</span> <span class='e identifier id'>e</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="password-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>password</strong>(msg = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+<p>Ask for a password.</p>
+
+<p>FIXME: Does not hide password.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 184</span>
+
+<span class='def def kw'>def</span> <span class='password identifier id'>password</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='msg identifier id'>msg</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;Enter Password: &quot;</span>
+  <span class='inp identifier id'>inp</span> <span class='assign token'>=</span> <span class='string val'>''</span>
+
+  <span class='$stdout gvar id'>$stdout</span> <span class='lshft op'>&lt;&lt;</span> <span class='msg identifier id'>msg</span>
+
+  <span class='inp identifier id'>inp</span> <span class='assign token'>=</span> <span class='STDIN constant id'>STDIN</span><span class='dot token'>.</span><span class='gets identifier id'>gets</span><span class='dot token'>.</span><span class='chomp identifier id'>chomp</span>
+
+  <span class='comment val'>#begin</span>
+  <span class='comment val'>#  system &quot;stty -echo&quot;</span>
+  <span class='comment val'>#  inp = gets.chomp</span>
+  <span class='comment val'>#ensure</span>
+  <span class='comment val'>#  system &quot;stty echo&quot;</span>
+  <span class='comment val'>#end</span>
+
+  <span class='return return kw'>return</span> <span class='inp identifier id'>inp</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="require_smtp-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>require_smtp</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205
+206
+207
+208
+209</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/detroit/tool/email_utils.rb', line 203</span>
+
+<span class='def def kw'>def</span> <span class='require_smtp identifier id'>require_smtp</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='require identifier id'>require</span> <span class='string val'>'facets/net/smtp_tls'</span>
+  <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span>
+    <span class='require identifier id'>require</span> <span class='string val'>'net/smtp'</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Jun 29 06:56:14 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
