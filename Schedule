@@ -1,8 +1,9 @@
 ---
-
 announce:
   service: Email
-  mailto : transfire@gmail.com
+  mailto : 
+    - transfire@gmail.com
+    - ruby-talk@ruby-lang.org
   active : true
 
 gem:
@@ -14,37 +15,29 @@ dnote:
   priority: -1
   active  : true
 
-rdoc:
-  tracks  : site
-  format  : newfish
-  include : [ lib, "[A-Z][A-Z]*" ]
-  exclude : [ lib/plugins/sow ]
+yard:
+  service : yard
+  readme  : [ "README.rdoc" ]
+  topfiles: [ "[A-Z][A-Z]*" ]
+  files   : [ lib ]
+  exclude : [ lib/detroit.yml ]
+  output  : site/doc
   extra   : ~
-
-ri:
-  exclude: [ lib/plugins/sow ]
-  active : true
-
-stats:
-  priority: -1
   active  : true
 
-syntax:
-  exclude: [plug/sow/seeds]
-  active : false
+locat:
+  priority: -1
+  active  : false
 
 turn:
   active : false
 
-testrb:
-  active : true
-
-yard:
-  active : false
+github:
+  active: true
 
 #rubyforge:
 #  service: forge
 #  sitemap:
-#    site: syckle
+#    site: detroit
 #  active: false
 
