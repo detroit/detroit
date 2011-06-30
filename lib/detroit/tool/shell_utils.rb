@@ -1,4 +1,5 @@
 require 'detroit/tool/core_ext/shell_extensions'
+require 'rbconfig'
 
 module Detroit
 
@@ -132,7 +133,7 @@ module Detroit
     end
 
     # Current ruby binary.
-    RUBY = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name']).sub(/.*\s.*/m, '"\&"')
+    RUBY = File.join(::Config::CONFIG['bindir'], ::Config::CONFIG['ruby_install_name']).sub(/.*\s.*/m, '"\&"')
 
     # Shell-out to ruby.
     def ruby(cmd)
