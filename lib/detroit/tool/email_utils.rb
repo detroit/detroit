@@ -147,7 +147,7 @@ module Detroit
       raise ArgumentError, "missing email field -- mailto"  unless mailto
       raise ArgumentError, "missing email field -- subject" unless subject
 
-      passwd ||= password("#{account} password:")
+      passwd ||= password("#{account} password: ")
 
       mailto = [mailto].flatten.compact
 
@@ -161,16 +161,18 @@ module Detroit
       #p server, port, domain, account, passwd, login, secure if verbose?
 
       begin
-        if Net::SMTP.respond_to?(:enable_tls) && secure
-          Net::SMTP.enable_tls
-          Net::SMTP.start(server, port, domain, account, passwd, login, secure) do |smtp|
-            smtp.send_message(msg, from, mailto)
-          end
-        else
-          Net::SMTP.start(server, port, domain, account, passwd, login) do |smtp|
-            smtp.send_message(msg, from, mailto)
-          end
+        smtp = Net::SMTP.new(server, port)
+
+        if smtp.respond_to?(:enable_starttls_auto)
+          smtp.enable_starttls_auto
+        elsif secure #&& smtp.respond_to?(:enable_tls)
+          smtp.enable_tls
         end
+
+        smtp.start(domain, account, passwd, login) do |smtp|
+          smtp.send_message(msg, from, mailto)
+        end
+
         return mailto
       rescue Exception => e
         return e
@@ -202,7 +204,7 @@ module Detroit
     #
     def require_smtp
       begin
-        require 'facets/net/smtp_tls'
+        require 'net/smtp_tls'
       rescue LoadError
         require 'net/smtp'
       end

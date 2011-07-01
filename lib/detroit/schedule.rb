@@ -1,8 +1,8 @@
 module Detroit
 
-  # Schedule encapsulates a `Schedule` file and it's service instance
+  # Assembly encapsulates a `Assembly` file and it's service instance
   # configurations.
-  class Schedule
+  class Assembly
 
     # Load Scedule file.
     def self.load(input)
@@ -14,7 +14,7 @@ module Detroit
 
     private
 
-    # Initialize new Schedule instance.
+    # Initialize new Assembly instance.
     def initialize(file, options={})
       @project = options[:project]
 
@@ -167,19 +167,19 @@ module Detroit
   # TODO: If using Psych rather than Syck, then define a domain type.
 
   #if defined?(Psych) #RUBY_VERSION >= '1.9'
-  #  YAML::add_domain_type(DOMAIN, "schedule") do |type, hash|
-  #    Schedule.load(hash)
+  #  YAML::add_domain_type(DOMAIN, "assembly") do |type, hash|
+  #    Assembly.load(hash)
   #  end
   #else
-    YAML::add_builtin_type("schedule") do |type, value|
+    YAML::add_builtin_type("assembly") do |type, value|
       value
       #case value
       #when String
-      #  Schedule.eval(value)
+      #  Assembly.eval(value)
       #when Hash
-      #  Schedule.new(value)
+      #  Assembly.new(value)
       #else
-      #  raise "ERROR: Invalid Schedule"
+      #  raise "ERROR: Invalid Assembly"
       #end
     end
   #end

@@ -1,8 +1,9 @@
 module Detroit
 
-  # Standard assembly is the default. In the vast majority of
-  # cases this is all that will ever be used.
-  assembly :standard do
+  # Standard assembly is the default. In the majority of cases this
+  # is all that will be needed. It represents the workflow of
+  # a developing project (particularly Ruby project).
+  assembly_system :standard do
 
     # Main track.
     #

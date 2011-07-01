@@ -10,7 +10,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-06-30 00:00:00 Z
+date: 2011-07-01 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: facets
@@ -57,7 +57,7 @@ files:
 - .ruby
 - bin/detroit
 - lib/detroit/application.rb
-- lib/detroit/assembly.rb
+- lib/detroit/assembly_system.rb
 - lib/detroit/config.rb
 - lib/detroit/control.rb
 - lib/detroit/core_ext.rb

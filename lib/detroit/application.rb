@@ -1,7 +1,7 @@
 module Detroit
 
-  #
-  DEFAULT_ASSEMBLY = :standard
+  # The default assembly system to use.
+  DEFAULT_ASSEMBLY_SYSTEM = :standard
 
   # Application class is the main controller class for running
   # a session of Detroit.
@@ -32,8 +32,8 @@ module Detroit
 #    end
 
     # The selected assembly system.
-    def assembly
-      options[:assembly] || DEFAULT_ASSEMBLY
+    def assembly_system
+      options[:system] || DEFAULT_ASSEMBLY_SYSTEM
     end
 
     # Quiet mode?
@@ -52,13 +52,13 @@ module Detroit
     end
 
     #
-    def schedules
-      @schedules ||= options[:schedules]
+    def assemblies
+      @assemblies ||= options[:assemblies]
     end
 
     # Detroit configuration.
     def config
-      @config ||= Detroit::Config.new(schedules)
+      @config ||= Detroit::Config.new(assemblies)
     end
 
     # Provides access to the Project instance via `Detroit.project` class method.
@@ -92,7 +92,7 @@ module Detroit
       cfg
     end
 
-    # Active services are services defined in schedule files and do not
+    # Active services are services defined in assembly files and do not
     # have their active setting turned off.
     #
     # Returns Array of active services.
@@ -138,7 +138,7 @@ module Detroit
 
     #alias_method :services, :active_services
 
-    # Service configuration, from project's schedule file(s).
+    # Service configuration, from project's assembly file(s).
     #
     # Returns Hash of service name and settings.
     #def service_configs
@@ -148,7 +148,7 @@ module Detroit
     # Run individual detroit scripts.
     #def runscript(script, stop)
     #  @config.services.clear
-    #  @config.load_schedule_file(script)
+    #  @config.load_assembly_file(script)
     #  #@service_configs = load_service_configs(script)
     #  run(stop)
     #end
@@ -175,9 +175,9 @@ module Detroit
       name = name.to_sym
       stop = stop.to_sym if stop
 
-      assm = Detroit.assemblies[assembly]
+      assm = Detroit.assembly_systems[assembly_system]
 
-      raise "Unkown assembly `#{assembly}'" unless assm
+      raise "Unkown assembly system `#{assembly_system}'" unless assm
 
       track = assm.get_track(name, stop)
 
@@ -355,7 +355,7 @@ module Detroit
 
     #
     def print_header(left, right)
-      if ANSI::SUPPORTED
+      if $ansi #ANSI::SUPPORTED
         printline('', '', :pad=>1, :sep=>' ', :style=>[:negative, :bold], :left=>[:bold], :right=>[:bold])
         printline(left, right, :pad=>2, :sep=>' ', :style=>[:negative, :bold], :left=>[:bold], :right=>[:bold])
         printline('', '', :pad=>1, :sep=>' ', :style=>[:negative, :bold], :left=>[:bold], :right=>[:bold])
@@ -366,7 +366,7 @@ module Detroit
 
     #
     def print_phase(left, right)
-      if ANSI::SUPPORTED
+      if $ansi #ANSI::SUPPORTED
         printline(left, right, :pad=>2, :sep=>' ', :style=>[:on_white, :black, :bold], :left=>[:bold], :right=>[:bold])
       else
         printline(left, right, :pad=>2, :sep=>'-')

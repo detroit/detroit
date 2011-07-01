@@ -38,15 +38,20 @@ module Detroit
   # all of the utility methods provided by the regular Tool
   # class.
   class BasicTool
-    # Add an assembly to which the tool applies.
-    # By default the `standard` assembly is implied.
-    def self.assembly(assembly=nil)
+    # Add an assembly system to which the tool applies.
+    # By default the `standard` ssystem is implied.
+    def self.assembly_system(assembly=nil)
       @assembly ||= []
       if assembly
         @assembly << assembly.to_sym
         @assembly.uniq!
       end
       @assembly
+    end
+
+    class << self
+      # Shorter alias for #assembly_system.
+      alias_method :assembly, :assembly_system
     end
 
     # Override the `tracks` method to limit the lines a service

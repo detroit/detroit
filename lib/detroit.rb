@@ -38,16 +38,13 @@ end
 # POM is used to access project metadata.
 require 'pom'
 
-# Redtools provides the standard services.
-require 'redtools'
-
 # And all the rest is Detroit, baby.
 if RUBY_VERSION > '1.9'
   require_relative 'detroit/core_ext'
   require_relative 'detroit/config'
   require_relative 'detroit/service'
   require_relative 'detroit/tool'
-  require_relative 'detroit/assembly'
+  require_relative 'detroit/assembly_system'
   require_relative 'detroit/standard_assembly'
   require_relative 'detroit/control'
   require_relative 'detroit/application'

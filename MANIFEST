@@ -1,8 +1,8 @@
-#!mast .ruby bin lib man qed test [A-Z][A-Z]*
+#!mast .ruby bin lib man qed test [A-Z]*.*
 .ruby
 bin/detroit
 lib/detroit/application.rb
-lib/detroit/assembly.rb
+lib/detroit/assembly_system.rb
 lib/detroit/config.rb
 lib/detroit/control.rb
 lib/detroit/core_ext.rb

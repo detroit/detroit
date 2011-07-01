@@ -8,18 +8,18 @@ module Detroit
     # Configuration directory name (most likely a hidden "dot" directory).
     DIRECTORY = "detroit"
 
-    # File identifier used to find a project's Schedule(s).
-    FILE_EXTENSION = "schedule"
+    # File identifier used to find a project's Assembly(s).
+    FILE_EXTENSION = "assembly"
 
     # Current POM::Project object.
     #attr :project
 
-    # The list of a project's routine files.
+    # The list of a project's assembly files.
     #
     # @return [Array<String>] routine files
-    attr :schedules
+    attr :assemblies
 
-    # Service configurations from Schedule or *.schedule files.
+    # Service configurations from Assembly or *.assembly files.
     # 
     # @return [Hash] service settings
     attr :services
@@ -32,22 +32,22 @@ module Detroit
     attr :defaults
 
     #
-    def initialize(schedule_files=nil)
-      if schedule_files && !schedule_files.empty?
-        @schedule_filenames = schedule_files
+    def initialize(assembly_files=nil)
+      if assembly_files && !assembly_files.empty?
+        @assembly_filenames = assembly_files
       else
-        @schedule_filenames = nil
+        @assembly_filenames = nil
       end
 
-      @schedules = {}
-      @services  = {}
-      @defaults  = {}
+      @assemblies = {}
+      @services   = {}
+      @defaults   = {}
 
       @loaded_plugins = {}
 
       load_plugins
       load_defaults
-      load_schedules
+      load_assemblies
     end
 
     #--
@@ -84,16 +84,16 @@ module Detroit
     end
 
     #
-    def load_schedules
-      schedule_filenames.each do |file|
-        load_schedule_file(file)
+    def load_assemblies
+      assembly_filenames.each do |file|
+        load_assembly_file(file)
       end
     end
 
     #
-    def load_schedule_file(file)
-      @schedules[file] = Schedule.load(File.new(file))
-      @services.merge!(schedules[file].services)
+    def load_assembly_file(file)
+      @assemblies[file] = Assembly.load(File.new(file))
+      @services.merge!(assemblies[file].services)
     end
 
     # Set defaults.
@@ -101,21 +101,21 @@ module Detroit
       @defaults = hash.to_h
     end
 
-    # If a `Schedule` or `.schedule` file exists, then it is returned. Otherwise
-    # all `*.schedule` files are loaded. To load `*.schedule` files from another
+    # If a `Assembly` or `.assembly` file exists, then it is returned. Otherwise
+    # all `*.assembly` files are loaded. To load `*.assembly` files from another
     # directory add the directory to config options file.
-    def schedule_filenames
-      @schedule_filenames ||= (
+    def assembly_filenames
+      @assembly_filenames ||= (
         files = []
-        ## match 'Schedule' or '.schedule' file
+        ## match 'Assembly' or '.assembly' file
         files = project.root.glob("{,.,*.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
         ## only files
         files = files.select{ |f| File.file?(f) }
         ## 
         if files.empty?
-          ## match '.detroit/*.schedule' or 'detroit/*.schedule'
+          ## match '.detroit/*.assembly' or 'detroit/*.assembly'
           files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
-          ## match 'task/*.schedule' (OLD SCHOOL)
+          ## match 'task/*.assembly' (OLD SCHOOL)
           files += project.root.glob("{task,tasks}/*.#{FILE_EXTENSION}", :casefold)
           ## only files
           files = files.select{ |f| File.file?(f) }
@@ -140,7 +140,7 @@ module Detroit
     def load_detroit_file(file)
       #@dir = File.dirname(file)
 
-      schedules[file] = 
+      assemblies[file] = 
 
       # TODO: can we just read the first line of the file and go from there?
       #text = File.read(file).strip

@@ -27,14 +27,14 @@ module Detroit
     # Run the command line interface.
     def cli(*argv)
       cli_options = {
-        :schedules => [],
+        :system => nil, :assemblies => [], 
         :trace=>nil, :trial=>nil, :debug=>nil, :quiet=>nil, :verbose=>nil,
         :force=>nil, :multitask=>nil, :skip=>[]
       }
 
       cli_usage(cli_options).parse!(argv)
 
-      #if /\.schedule$/ =~ argv[0]
+      #if /\.assembly$/ =~ argv[0]
       #  job = argv[1]
       #  begin
       #    application(cli_options).runscript(argv[0], job)
@@ -68,11 +68,12 @@ module Detroit
             options[:skip] << skip
           end
 
-          usage.on('-a', '--assembly=NAME', "Select assembly. Default is `standard'.") do |assembly|
-            options[:assembly] = assembly
+          usage.on('-s', '--system=NAME', "Select assembly system. Default is `standard'.") do |system|
+            options[:system] = system
           end
-          usage.on('-s', '--schedule [FILE]', 'Use specific schedule file(s).') do |file|
-            options[:schedules] << file
+
+          usage.on('-a', '--assembly [FILE]', 'Use specific assembly file(s).') do |file|
+            options[:assemblies] << file
           end
 
           usage.on('-F', '--force', "Force operations.") do

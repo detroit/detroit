@@ -7,18 +7,18 @@ module Detroit
   MAINTENANCE_TRACK = [:reset, :clean, :purge]
 
   # Returns Hash of name and Circuit instance pairs.
-  def self.assemblies
-    @assemblies ||= {}
+  def self.assembly_systems
+    @assembly_system ||= {}
   end
 
-  # Define a new assembly.
-  def self.assembly(name, &block)
-    assemblies[name.to_sym] = Assembly.new(name, &block)
+  # Define a new assembly system.
+  def self.assembly_system(name, &block)
+    assembly_systems[name.to_sym] = AssemblySystem.new(name, &block)
   end
 
-  # The Assembly class encapsulates an *assembly system* which consists of
-  # a set of interrelated assembly lines, or tracks.
-  class Assembly
+  # The AssemblySystem class encapsulates  a set of interrelated
+  # assembly lines, or _tracks_.
+  class AssemblySystem
 
     # Name of the assembly system.
     attr :name
