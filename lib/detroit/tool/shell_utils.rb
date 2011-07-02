@@ -1,5 +1,6 @@
 require 'detroit/tool/core_ext/shell_extensions'
 require 'rbconfig'
+require 'ansi/core'
 
 module Detroit
 
@@ -14,7 +15,8 @@ module Detroit
       @quiet = false
       @trial = false
       @noop  = false
-      @force = false
+      @force = false     
+
       super() if defined?(super)
     end
 
@@ -33,22 +35,6 @@ module Detroit
     # Set shell path.
     def path=(dir)
       @path = dir
-    end
-
-    attr_writer :stdout
-    attr_writer :stdin
-    attr_writer :stderr
-
-    def stdout
-      @stdout ||= $stdout
-    end
-
-    def stdin
-      @stdin ||= $stdin
-    end
-
-    def stderr
-      @stdout ||= $stderr
     end
 
     attr_writer :force
@@ -70,26 +56,63 @@ module Detroit
     def noop?    ; @trial   ; end
     def dryrun?  ; verbose? && noop? ; end
 
+    def silent?  ; @quiet   ; end
+
+    # -- Standard IO ----------------------------------------------------------
+
+    attr_writer :stdout
+    attr_writer :stdin
+    attr_writer :stderr
+
+    def stdout
+      @stdout ||= $stdout
+    end
+
+    def stdin
+      @stdin ||= $stdin
+    end
+
+    def stderr
+      @stdout ||= $stderr
+    end
+
     #
     def print(str=nil)
-      stdout.print(str.to_s) unless quiet?
+      return if silent?
+      stdout.print(str.to_s)
     end
 
     #
     def puts(str=nil)
-      stdout.puts(str.to_s) unless quiet?
+      return if silent?
+      stdout.puts(str.to_s)
     end
 
-    # TODO: deprecate in favor of #report ?
-    def report(message)
-      stderr.puts message unless quiet?
+    #
+    def warn(message)
+      return if silent?
+      stderr.puts "WARNING ".ansi(:yellow) + message.to_s
     end
 
-    alias_method :status, :report
+    #
+    def status(message)
+      return if silent?
+      stdout.puts "#{message}".ansi(:bold)
+    end
+
+    # Same as status.
+    #
+    # @depreacated
+    #   Doubley redundant with #status and #puts.
+    alias report status
 
     # Internal trace report. Only output if in trace mode.
     def trace(message)
-      stderr.puts message if trace?
+      return if silent?
+      if trace?
+        stdout.print "TRIAL RUN " if trial?
+        stdout.puts message
+      end
     end
 
     # Convenient method to get simple console reply.
@@ -106,6 +129,8 @@ module Detroit
       prompt ||= "Enter Password: "
       ask(prompt)
     end
+
+    # -- Shell ----------------------------------------------------------------
 
     # Delegate to Ratch::Shell instance.
     #def shell(path=Dir.pwd)
@@ -133,13 +158,18 @@ module Detroit
     end
 
     # Current ruby binary.
-    RUBY = File.join(::Config::CONFIG['bindir'], ::Config::CONFIG['ruby_install_name']).sub(/.*\s.*/m, '"\&"')
+    RUBY = (
+      bindir   = ::Config::CONFIG['bindir']
+      rubyname = ::Config::CONFIG['ruby_install_name']
+      File.join(bindir, rubyname}.sub(/.*\s.*/m, '"\&"')
+    )
 
     # Shell-out to ruby.
     def ruby(cmd)
       sh RUBY + " " + cmd
     end
 
+    # -- Dir Methods ----------------------------------------------------------
 
     # TODO: Ultimately merge #glob and #multiglob.
     def multiglob(*args, &blk)
@@ -149,25 +179,6 @@ module Detroit
     #
     def multiglob_r(*args, &blk)
       Dir.multiglob_r(*args, &blk)
-    end
-
-    # -- File IO Shortcuts ----------------------------------------------------
-
-    # Read file.
-    def read(path)
-      File.read(path)
-    end
-
-    # Write file.
-    def write(path, text)
-      $stderr.puts "write #{path}" if trace?
-      File.open(path, 'w'){ |f| f << text } unless noop?
-    end
-
-    # Append to file.
-    def append(path, text)
-      $stderr.puts "append #{path}" if trace?
-      File.open(path, 'a'){ |f| f << text } unless noop?
     end
 
     # -- File Testing ---------------------------------------------------------
@@ -214,6 +225,25 @@ module Detroit
     def mtime(*args) ; File.mtime(*args) ; end
 
     def utime(*args) ; File.utime(*args) unless noop? ; end
+
+    # -- File IO Shortcuts ----------------------------------------------------
+
+    # Read file.
+    def read(path)
+      File.read(path)
+    end
+
+    # Write file.
+    def write(path, text)
+      $stderr.puts "write #{path}" if trace?
+      File.open(path, 'w'){ |f| f << text } unless noop?
+    end
+
+    # Append to file.
+    def append(path, text)
+      $stderr.puts "append #{path}" if trace?
+      File.open(path, 'a'){ |f| f << text } unless noop?
+    end
 
     private # -----------------------------------------------------------------
 
