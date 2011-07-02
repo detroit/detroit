@@ -17,43 +17,70 @@ module Detroit
     def initialize(options)
       @options = options
       #load_standard_plugins
-    end
 
-#    # Load standard plugins.
-#    def load_standard_plugins
-#      #::Plugin.find("detroit/*.rb").each do |file|
-#      Detroit.standard_plugins.each do |file|
-#        begin
-#          require(file)
-#        rescue => err
-#          $stderr.puts err if $DEBUG
-#        end
-#      end
-#    end
-
-    # The selected assembly system.
-    def assembly_system
-      options[:system] || DEFAULT_ASSEMBLY_SYSTEM
+      self.skip       = options[:skip]
+      self.quiet      = options[:quiet]
+      self.system     = options[:system]
+      self.multitask  = options[:multitask]
+      self.assemblies = options[:assemblies]
     end
 
     # Quiet mode?
     def quiet?
-      options[:quiet]
+      @quiet
     end
+
+    # Set quiet mode.
+    def quiet=(boolean)
+      @quiet = !!boolean
+    end
+
+    # List of service names to skip.
+    def skip
+      @skip
+    end
+
+    # Set skip list.
+    def skip=(list)
+      @skip = list.to_list.map{ |s| s.downcase }
+    end
+
+    # The selected assembly system.
+    def system
+      @system
+    end
+
+    # Set assembly system to use.
+    def system=(name)
+      @system = (name || DEFAULT_ASSEMBLY_SYSTEM)
+    end
+
+    # Alias for #system.
+    alias :assembly_system :system
 
     # Multitask mode?
     def multitask?
-      options[:multitask] && defined?(Parallel)
+      @multitask      
     end
 
-    # Returns a list of services to skip as specificed on the commandline.
-    def skip
-      @skip ||= options[:skip].to_list.map{ |s| s.downcase }
+    # Set multi-task mode.
+    def multitask=(boolean)
+      if boolean && !defined?(Parallel)
+        puts "Parallel gem must be installed to multitask."
+        @multitask = false
+      else
+        @multitask = boolean
+      end
+    end
+
+    # List of assembly files to use.
+    def assemblies
+      @assemblies
     end
 
     #
-    def assemblies
-      @assemblies ||= options[:assemblies]
+    def assemblies=(files)
+      @assemblies = files
     end
 
     # Detroit configuration.
@@ -72,6 +99,18 @@ module Detroit
     def defaults
       config.defaults
     end
+
+#    # Load standard plugins.
+#    def load_standard_plugins
+#      #::Plugin.find("detroit/*.rb").each do |file|
+#      Detroit.standard_plugins.each do |file|
+#        begin
+#          require(file)
+#        rescue => err
+#          $stderr.puts err if $DEBUG
+#        end
+#      end
+#    end
 
     # Generates a configuration template for particular tool or all tools.
     # This is only used for reference purposes.
@@ -92,21 +131,28 @@ module Detroit
       cfg
     end
 
+    # TODO: Setup all services, then wehn out inactive ones?
+    #def services
+    #end
+
     # Active services are services defined in assembly files and do not
     # have their active setting turned off.
     #
     # Returns Array of active services.
     def active_services
       @active_services ||= (
-        activelist = []
+        list = []
 
         config.each do |key, opts|
-          next unless opts && opts['active'] != false
-
-          # omit any service in the skip list
+          next unless opts
+          next unless opts['active'] != false
           next if skip.include?(key.to_s)
 
-          tool_name = (opts.delete('tool') || opts.delete('service') || key).to_s.downcase
+          tool_name = (
+            opts.delete('tool')    ||
+            opts.delete('service') ||
+            key
+          ).to_s.downcase
 
           unless Detroit.tools.key?(tool_name)
             config.load_plugin(tool_name)
@@ -121,39 +167,21 @@ module Detroit
             options = defaults[tool_name.downcase].to_h
             options = options.merge(common_tool_options)
             options = options.merge(opts)
-            #activelist << tool_class.new(key, options) #script,
-            ## remove any services specified by the --skip option on the comamndline
-            activelist << ServiceWrapper.new(key, tool_class, options) #script,
+
+            list << Service.new(key, tool_class, options) #script,
           #else
           #  warn "Service #{tool_class} is not available."
           end
         end
 
         # sorting here trickles down to processing later
-        activelist = activelist.sort_by{ |s| s.priority || 0 }
+        #list = list.sort_by{ |s| s.priority || 0 }
 
-        activelist
+        list
       )
     end
 
-    #alias_method :services, :active_services
-
-    # Service configuration, from project's assembly file(s).
-    #
-    # Returns Hash of service name and settings.
-    #def service_configs
-    #  config.services
-    #end
-
-    # Run individual detroit scripts.
-    #def runscript(script, stop)
-    #  @config.services.clear
-    #  @config.load_assembly_file(script)
-    #  #@service_configs = load_service_configs(script)
-    #  run(stop)
-    #end
-
-    # Start the run.
+    # Change direectory to project root and run.
     def start(stop)
       Dir.chdir(project.root) do       # change into project directory
         run(stop)
@@ -175,9 +203,9 @@ module Detroit
       name = name.to_sym
       stop = stop.to_sym if stop
 
-      assm = Detroit.assembly_systems[assembly_system]
+      assm = Detroit.assembly_systems[system]
 
-      raise "Unkown assembly system `#{assembly_system}'" unless assm
+      raise "Unkown assembly system `#{system}'" unless assm
 
       track = assm.get_track(name, stop)
 
@@ -196,12 +224,7 @@ module Detroit
         srv.preconfigure if srv.respond_to?("preconfigure")
       end
 
-      if multitask?
-        h = ["#{project.metadata.title} v#{project.metadata.version}   [M]", "#{project.root}"]
-      else
-        h = ["#{project.metadata.title} v#{project.metadata.version}", "#{project.root}"]
-      end
-      status_header(*h)
+      status_header(*header_message)
 
       start_time = Time.now
 
@@ -239,7 +262,7 @@ module Detroit
 
     # Returns a project's Detroit hooks directory.
     def hook_directory
-      dir  = project.root.glob("{.,}detroit/hooks").first
+      project.root.glob("{.,}detroit/hooks").first
     end
 
     #
@@ -260,9 +283,12 @@ module Detroit
     end
 
     # Make service calls.
+    #
+    # This groups services by priority b/c groups of the same priority can be run
+    # in parallel if the multitask option is on.
     def service_calls(track, stop)
       prioritized_services = active_services.group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
-      prioritized_services.each do |(priority, services)|
+      prioritized_services.each do |priority, services|
         ## remove any services specified by the --skip option on the comamndline
         #services = services.reject{ |srv| skip.include?(srv.key.to_s) }
         ## only servies that are on the track
@@ -286,7 +312,7 @@ module Detroit
       # run if the service supports the track and stop.
       #if srv.respond_to?("#{track}_#{stop}")
       if srv.stop?(stop)
-        if options[:verbose]
+        if options[:trace] #options[:verbose]
           #status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
           status_line("#{srv.key.to_s} (#{srv.class}##{stop})", stop.to_s.gsub('_', '-').capitalize)
         else
@@ -297,24 +323,15 @@ module Detroit
       end
     end
 
-    # Returns a list of all terminal stops, i.e. stops at a tracks end.
-    # FIXME: stop_map is not defined.
-    def end_stops
-      (stop_map.keys - stop_map.values).compact
-    end
+    # --- Print Methods -------------------------------------------------------
 
-    # Give an overview of stops this track supports.
-    # FIXME: end_stops blows up.
-    def overview
-      end_stops.each do |stop_name|
-        action_plan(stop_name).each do |act|
-          display_action(act)
-        end
-        puts
+    def header_message
+      if multitask?
+        ["#{project.metadata.title} v#{project.metadata.version}   [M]", "#{project.root}"]
+      else
+        ["#{project.metadata.title} v#{project.metadata.version}", "#{project.root}"]
       end
     end
-
-    # --- Print Methods ------------------------------------------------------
 
     # Print a status header, which consists of project name and version on the
     # left and stop location on the right.
