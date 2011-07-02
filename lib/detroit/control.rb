@@ -71,7 +71,6 @@ module Detroit
           usage.on('-s', '--system=NAME', "Select assembly system. Default is `standard'.") do |system|
             options[:system] = system
           end
-
           usage.on('-a', '--assembly [FILE]', 'Use specific assembly file(s).') do |file|
             options[:assemblies] << file
           end
@@ -88,7 +87,7 @@ module Detroit
             options[:trial] = true
           end
           # TODO: do we really need verbose?
-          usage.on('--verbose', "Provided extra output.") do
+          usage.on('--verbose', "Provide extra output.") do
             options[:verbose] = true
           end
           usage.on('-q', '--quiet', "Run silently.") do

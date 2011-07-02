@@ -188,7 +188,6 @@ module Detroit
       Platform.local.to_s
     end
 
-    # TODO: Is naming_policy really useful?
     # TODO: How to set this in a more universal manner?
     #
     def naming_policy(*policies)
