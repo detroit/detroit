@@ -5,12 +5,11 @@ module Detroit
   #  @registry ||= {}
   #end
  
-  # Service class wraps a Tool instance.
-  #
-  # TODO: change name ?
+  # Service class wraps a Tool instance when it is made
+  # part of an assembly.
   #
   # TODO: Need to work on how to limit a service's tracks per-assembly.
-  class ServiceWrapper
+  class Service
     attr :key
     attr :tracks
     attr :priority
