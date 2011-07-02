@@ -12,22 +12,27 @@ gem:
   active   : true
 
 dnote:
-  priority: -1
+  output  : log/DNOTE.rdoc
   active  : true
 
-yard:
-  service : yard
-  readme  : [ "README.rdoc" ]
-  topfiles: [ "[A-Z][A-Z]*" ]
-  files   : [ lib ]
-  exclude : [ lib/detroit.yml ]
-  output  : site/doc
-  extra   : ~
-  active  : true
+qedoc:
+  files : qed/
+  title : Detroit
+  output: QED.rdoc
 
 locat:
-  priority: -1
   active  : false
+
+yard:
+  service  : yard
+  readme   : [ "README.rdoc" ]
+  topfiles : [ "[A-Z][A-Z]*" ]
+  files    : [ lib ]
+  exclude  : [ lib/detroit.yml ]
+  output   : site/doc
+  extra    : ~
+  priority : 1
+  active   : true
 
 turn:
   active : false
