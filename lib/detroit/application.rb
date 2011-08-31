@@ -219,6 +219,8 @@ module Detroit
         exit 0
       end
 
+      @destination = stop
+
       # prime the services (so as to fail early)
       active_services.each do |srv|
         srv.preconfigure if srv.respond_to?("preconfigure")
@@ -319,7 +321,7 @@ module Detroit
           status_line("#{srv.key.to_s}", stop.to_s.gsub('_', '-').capitalize)
         end
         #srv.__send__("#{track}_#{stop}")
-        srv.invoke(stop)
+        srv.invoke(stop, @destination)
       end
     end
 

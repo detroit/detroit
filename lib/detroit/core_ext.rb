@@ -42,8 +42,6 @@ end
 
 # TODO: Replace these with facets/shellwords !!!
 
-# TODO: Belongs in Redtools, no?
-
 #
 class Array #:nodoc:
 

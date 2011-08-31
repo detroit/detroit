@@ -55,7 +55,7 @@ else
   require 'detroit/config'
   require 'detroit/service'
   require 'detroit/tool'
-  require 'detroit/assembly'
+  require 'detroit/assembly_system'
   require 'detroit/standard_assembly'
   require 'detroit/control'
   require 'detroit/application'

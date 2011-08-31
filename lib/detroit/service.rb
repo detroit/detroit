@@ -51,18 +51,26 @@ module Detroit
 
     # Does the service support the given stop.
     def stop?(name)
-      @service.respond_to?(name)
+      @service.respond_to?("station_#{name}")
     end
 
     # Run the service stop procedure.
-    def invoke(name)
-      @service.__send__(name)  # public_send
+    def invoke(name, stop=nil)
+      sm = @service.method("station_#{name}")  # public_send
+      sm.arity == 0 ? sm.call : sm.call(stop)
     end
 
     #
     def inspect
       "<#{self.class}:#{object_id} @key='#{key}'>"
     end
+
+    #
+    #def self.assemble(name, method=nil)
+    #  define_method("assembly_#{name}") do
+    #    __send__(method || name)  # public_send
+    #  end
+    #end
   end
 
 end

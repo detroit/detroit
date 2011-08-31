@@ -1,5 +1,8 @@
 module Detroit
 
+  # TODO: The plan is to replace most, if not all, of the fileutils
+  # functionality with Ratch when it is ready.
+
   require 'detroit/tool/core_ext'
   require 'detroit/tool/shell_utils'
   require 'detroit/tool/project_utils'
