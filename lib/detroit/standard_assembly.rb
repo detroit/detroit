@@ -7,8 +7,6 @@ module Detroit
 
     # Main track.
     #
-    # TODO: Should :install comes before :verify b/c verfication might
-    # require a local installation?
     track :main,
       :prepare,    # prepare services / ensure service requirements
       :generate,   # code generation
@@ -17,8 +15,8 @@ module Detroit
       :analyze,    # perform code analysis
       :document,   # generate documentation
       :package,    # create packages
-      :verify,     # post package verification / integration tests
       :install,    # install the package locally (if need be)
+      :verify,     # post package verification / integration tests
       :publish,    # publish website/documentation
       :release,    # release packages
       :deploy,     # deploy system to servers
