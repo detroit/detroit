@@ -23,6 +23,11 @@ module Detroit
 
     private
 
+    SPECIAL_OPTIONS = %w{
+      service track tracks active priority project 
+      trial trace verbose force quiet
+    }
+
     # Instantiate new custom plugin.
     #
     # FIXME: Custom#initialize seems to be running twice at startup. Why?
@@ -34,14 +39,11 @@ module Detroit
       super(options)
       options.each do |stop, script|
         # skip specific names used for configuration
-        next if stop == 'service'
-        next if stop == 'tracks' or stop == 'track'
-        next if stop == 'active'
-        next if stop == 'priority'
+        next if SPECIAL_OPTIONS.include? stop
         # remaining options are names of track stops
         #tracks.each do |t|
           src = %{
-            def #{stop}
+            def station_#{stop}
               #{script}
             end
           }
@@ -57,8 +59,21 @@ module Detroit
 
     #
     def method_missing(s, *a, &b)
-      super(s, *a, &b) if @context.respond_to?(s)
+      if @context.respond_to?(s)
+        @context.__send__(s,*a,&b)
+      else
+        super(s, *a, &b)
+      end
     end
+
+    public
+
+    #
+    #def respond_to?(name)
+    #  r = super(name)
+    #  return r if r
+    #  @context.respond_to?(s)
+    #end
 
   end
 

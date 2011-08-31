@@ -46,6 +46,18 @@ module Detroit
       @services[name.to_s] = settings.rekey(&:to_s)
     end
 
+    alias_method :tool, :service
+
+    #
+    #
+    #
+    #
+    def custom(name, &block)
+      context  = CustomContext.new(&block)
+      settings = context.settings
+      @services[name.to_s] = settings.rekey(&:to_s)
+    end
+
     # Access to project data.
     #
     # NOTE: Thinking that the project should be relative
@@ -67,7 +79,7 @@ module Detroit
         if Hash === args.last
           args.last[:service] = service_class
         else
-          args << {:services=>service_class}
+          args << {:service=>service_class}
         end
         case args.first
         when String, Symbol
@@ -125,13 +137,9 @@ module Detroit
       attr :settings
 
       #
-      def initialize(&block)
+      def initialize(&b)
         @settings = {}
-        if block.arity == 0
-          instance_eval(&block)
-        else
-          block.call(self)
-        end
+        b.arity == 0 ? instance_eval(&b) : b.call(self)
       end
 
       #
@@ -153,6 +161,30 @@ module Detroit
         else
           super(symbol, value=nil, *args)
         end
+      end
+    end
+
+    #
+    class CustomContext
+      #
+      attr :settings
+      #
+      def initialize(&b)
+        @settings = {}
+        b.arity == 0 ? instance_eval(&b) : b.call(self)
+      end
+      #
+      def method_missing(s,a=nil,*x,&b)
+        case s.to_s
+        when /=$/
+          @settings[s.to_s.chomp('=').to_sym] = b ? b : a
+        else
+          return @settings[s] unless a
+          @settings[s] = b ? b : a
+        end
+      end
+      def respond_to?(s)
+        @settings.key?(s.to_sym)
       end
     end
 
