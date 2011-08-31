@@ -22,8 +22,17 @@ module Detroit
 
     #
     def initialize_extensions
-      extend(fileutils)
+    #  extend(fileutils)
       super() if defined?(super)
+    end
+
+    # Fallback to filutils.
+    def method_missing(s, *a, &b)
+      if fileutils.respond_to?(s)
+        fileutils.send(s, *a, &b)
+      else
+        super(s, *a, &b)
+      end
     end
 
     # A path is required for shell methods to operate.
@@ -159,9 +168,9 @@ module Detroit
 
     # Current ruby binary.
     RUBY = (
-      bindir   = ::Config::CONFIG['bindir']
-      rubyname = ::Config::CONFIG['ruby_install_name']
-      File.join(bindir, rubyname}.sub(/.*\s.*/m, '"\&"')
+      bindir   = ::RbConfig::CONFIG['bindir']
+      rubyname = ::RbConfig::CONFIG['ruby_install_name']
+      File.join(bindir, rubyname).sub(/.*\s.*/m, '"\&"')
     )
 
     # Shell-out to ruby.
