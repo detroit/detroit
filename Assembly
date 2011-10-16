@@ -18,7 +18,8 @@ gem:
   active   : true
 
 dnote:
-  output  : log/DNOTE.rdoc
+  title   : Developer's Notes
+  output  : log/NOTES.rdoc
   active  : true
 
 qedoc:

@@ -1,11 +1,11 @@
+.reap/digest
 .rdoc
 .redcar
 .yardoc
-doc/qed
 doc/rdoc
-doc/ri
 doc/yard
 site/doc
 log
 pkg
 work/TRASH
+QED.rdoc
