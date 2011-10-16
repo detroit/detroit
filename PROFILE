@@ -1,7 +1,11 @@
 ---
+name   : detroit
+version: 0.1.0
+
 title  : Detroit
 summary: Software Production Mangement
 contact: Trans <transfire@gmail.com>
+created: 2007-10-10
 
 description:
   Detroit is an advanced lifecycle build system.
@@ -21,16 +25,14 @@ resources:
   mail: http://groups.google.com/rubyworks-mailinglist
 
 repositories:
-  public: http://github.com/proutils/detroit.git
+  upstream: http://github.com/proutils/detroit.git
 
 authors:
   - Thomas Sawyer
 
-license: GPL3
-created: 2007-10-10
+organization: Detroit
 
-organization: Rubyworks
+copyrights:
+  - Copyright (c) 2007 Thomas Sawyer (GPL3)
 
-copyright: 
-  Copyright (c) 2007 Thomas Sawyer
-
+source: PROFILE
