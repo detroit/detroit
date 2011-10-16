@@ -159,11 +159,13 @@ module Detroit
       trace cmd
       return true if noop?
 
+      success = nil
       if quiet?
-        silently{ system(cmd) }
+        silently{ success = system(cmd) }
       else
-        system(cmd)
+        success = system(cmd)
       end
+      success
     end
 
     # Current ruby binary.

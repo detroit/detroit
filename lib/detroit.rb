@@ -48,7 +48,7 @@ if RUBY_VERSION > '1.9'
   require_relative 'detroit/standard_assembly'
   require_relative 'detroit/control'
   require_relative 'detroit/application'
-  require_relative 'detroit/schedule'
+  require_relative 'detroit/assembly'
   require_relative 'detroit/custom'
 else
   require 'detroit/core_ext'
@@ -59,6 +59,6 @@ else
   require 'detroit/standard_assembly'
   require 'detroit/control'
   require 'detroit/application'
-  require 'detroit/schedule'
+  require 'detroit/assembly'
   require 'detroit/custom'
 end

@@ -142,7 +142,7 @@ module Detroit
     end
 
     # TODO: It would be best if an error were raised if an option is not
-    # supported, however for now only a warning will be issued, b/c of 
+    # supported, however for now only a warning will be issued, b/c
     # subclassing makes things more complicated.
     def initialize_options(options)
       @options = options

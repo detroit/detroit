@@ -41,7 +41,7 @@ module Detroit
     def service(name, settings={}, &block)
       if block
         block_context = BlockContext.new(&block)
-        settings = block_context.settings
+        settings.update(block_context.settings)
       end
       @services[name.to_s] = settings.rekey(&:to_s)
     end
@@ -139,7 +139,7 @@ module Detroit
       #
       def initialize(&b)
         @settings = {}
-        b.arity == 0 ? instance_eval(&b) : b.call(self)
+        b.arity == 1 ? b.call(self) : instance_eval(&b)
       end
 
       #
