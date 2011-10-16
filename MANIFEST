@@ -2,13 +2,13 @@
 .ruby
 bin/detroit
 lib/detroit/application.rb
+lib/detroit/assembly.rb
 lib/detroit/assembly_system.rb
 lib/detroit/config.rb
 lib/detroit/control.rb
 lib/detroit/core_ext.rb
 lib/detroit/custom.rb
 lib/detroit/dsl.rb
-lib/detroit/schedule.rb
 lib/detroit/service.rb
 lib/detroit/standard_assembly.rb
 lib/detroit/tool/core_ext/facets.rb
@@ -26,7 +26,7 @@ lib/detroit/tool/shell_utils.rb
 lib/detroit/tool.rb
 lib/detroit.rb
 lib/detroit.yml
-qed/01_schedule/02_initialize.md
+qed/01_assembly/02_initialize.md
 qed/99_plugins/rdoc/rdoc-plugin.rdoc
 qed/99_plugins/rdoc/sample/Syckfile
 qed/99_plugins/rdoc/sample/lib/sandbox/.xxx
@@ -47,5 +47,6 @@ qed/samples/example_schedule.rb
 HISTORY.rdoc
 README.rdoc
 GPL3.txt
+QED.rdoc
 COPYING.rdoc
 EXAMPLE.md

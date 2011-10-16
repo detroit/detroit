@@ -1,4 +1,10 @@
 ---
+#foo:
+#  service: custom
+#  track: main
+#  document: |
+#    puts "Hello World!"
+
 announce:
   service: Email
   mailto : 
