@@ -41,51 +41,59 @@ module Detroit
   # all of the utility methods provided by the regular Tool
   # class.
   class BasicTool
-    # Add an assembly system to which the tool applies.
-    # By default the `standard` ssystem is implied.
-    def self.assembly_system(assembly=nil)
-      @assembly ||= []
-      if assembly
-        @assembly << assembly.to_sym
-        @assembly.uniq!
-      end
-      @assembly
-    end
-
     class << self
+      # Add an assembly system to which the tool applies.
+      # By default the `standard` ssystem is implied.
+      def assembly_system(assembly=nil)
+        @assembly ||= []
+        if assembly
+          @assembly << assembly.to_sym
+          @assembly.uniq!
+        end
+        @assembly
+      end
+
       # Shorter alias for #assembly_system.
       alias_method :assembly, :assembly_system
-    end
 
-    # Override the `tracks` method to limit the lines a service
-    # will work with by default. Generally this is not used,
-    # and a return value of +nil+ means all lines apply.
-    #--
-    # TODO: Rename to #lines ?
-    #++
-    def self.tracks
-    end
+      # Override the `tracks` method to limit the lines a service
+      # will work with by default. Generally this is not used,
+      # and a return value of +nil+ means all lines apply.
+      #--
+      # TODO: Rename to #lines ?
+      #++
+      def tracks
+      end
 
-    # Override this method if the tools availability is conditional.
-    def self.available?
-      true
-    end
+      # Override this method if the tools availability is conditional.
+      def available?
+        true
+      end
 
-    # Returns list of writer method names.
-    def self.options(service_class=self)
-      service_class.instance_methods.
-        select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }.
-        map{ |m| m.to_s.chomp('=') }
-    end
+      # Returns list of writer method names. This is used for reference.
+      def options(service_class=self)
+        i = service_class.ancestors.index(Tool) ||
+            service_class.ancestors.index(BasicTool)
+        m = []
+        service_class.ancestors[0..i].each do |sc|
+          sc.public_instance_methods(false).each do |pm|
+            next if pm !~ /\w+=$/
+            next if %w{taguri=}.include?(m.to_s)
+            m << pm.to_s.chomp('=')
+          end
+        end
+        m
+      end
 
-    # Returns a Class which is a new subclass of the current class.
-    def self.factory(&block)
-      Class.new(self, &block)
-    end
+      # Returns a Class which is a new subclass of the current class.
+      def factory(&block)
+        Class.new(self, &block)
+      end
 
-    # When inherited, add class to tool registry.
-    def self.inherited(base)
-      Detroit.register_tool(base)
+      # When inherited, add class to tool registry.
+      def inherited(base)
+        Detroit.register_tool(base)
+      end
     end
 
     # TODO: Needed? Rename?

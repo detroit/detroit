@@ -32,7 +32,8 @@ module Detroit
         :force=>nil, :multitask=>nil, :skip=>[]
       }
 
-      cli_usage(cli_options).parse!(argv)
+      usage = cli_usage(cli_options)
+      usage.parse!(argv)
 
       #if /\.assembly$/ =~ argv[0]
       #  job = argv[1]
@@ -107,11 +108,11 @@ module Detroit
             $VERBOSE = true  # wish this were called $WARN
           end
           usage.on_tail('--help', "Display this help message.") do
-            puts usage
+            puts usaage
             exit
           end
-          usage.on_tail('--config', "Produce a configuration template.") do
-            puts application.config_template.to_yaml
+          usage.on_tail('-c', '--config TOOL', "Produce a configuration template.") do |tool|
+            puts application.config_template(tool).to_yaml
             exit
           end
         end

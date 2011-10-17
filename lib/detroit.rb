@@ -29,7 +29,7 @@ require 'yaml'
 require 'ansi/terminal'
 require 'ansi/code'
 
-# The parallel gem is used to (optionally) to multitask services.
+# The parallel gem is used to (optionally) multitask services.
 begin
   require 'parallel'
 rescue LoadError

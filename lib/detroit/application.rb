@@ -112,14 +112,13 @@ module Detroit
 #      end
 #    end
 
-    # Generates a configuration template for particular tool or all tools.
+    # Generates a configuration template for particular tool.
     # This is only used for reference purposes.
-    def config_template(name=nil)
-      if name
-        list = [name, Detroit.tools[name]]
-      else
-        list = Detroit.tools
+    def config_template(name)
+      if not Detroit.tools.key?(name)
+        config.load_plugin(name)
       end
+      list = {name => Detroit.tools[name]}
       cfg = {}
       list.each do |srv_name, srv_class|
         attrs = srv_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
@@ -131,7 +130,7 @@ module Detroit
       cfg
     end
 
-    # TODO: Setup all services, then wehn out inactive ones?
+    # TODO: Setup all services, then ween out inactive ones?
     #def services
     #end
 
