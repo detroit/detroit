@@ -36,7 +36,7 @@ yard:
   topfiles : [ "[A-Z][A-Z]*" ]
   files    : [ lib ]
   exclude  : [ lib/detroit.yml ]
-  output   : site/doc
+  output   : doc
   extra    : ~
   priority : 1
   active   : true
