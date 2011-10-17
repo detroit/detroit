@@ -2,9 +2,7 @@
 .rdoc
 .redcar
 .yardoc
-doc/rdoc
-doc/yard
-site/doc
+doc
 log
 pkg
 work/TRASH
