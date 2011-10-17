@@ -1,4 +1,4 @@
-KO.case Redline::Plugins::RDoc do
+Test.case Redline::Plugins::RDoc do
 
   before(:all) do
     stage_copy('sample')

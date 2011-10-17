@@ -112,6 +112,19 @@ module Detroit
 #      end
 #    end
 
+    # Display detailed help for a given tool.
+    def display_help(name)
+      if not Detroit.tools.key?(name)
+        config.load_plugin(name)
+      end
+      tool = Detroit.tools[name]
+      if tool.respond_to?(:man_page)
+        Kernel.system "man #{tool.man_page}"
+      else
+        puts "Sorry, no detailed help available for `#{name}'."
+      end
+    end
+
     # Generates a configuration template for particular tool.
     # This is only used for reference purposes.
     def config_template(name)

@@ -107,8 +107,12 @@ module Detroit
           usage.on('--warn', "Run with $VERBOSE set to true.") do
             $VERBOSE = true  # wish this were called $WARN
           end
-          usage.on_tail('--help', "Display this help message.") do
-            puts usaage
+          usage.on_tail('--help [TOOL]', "Display this help message.") do |tool|
+            if tool
+              application.display_help(tool)
+            else
+              puts usage
+            end
             exit
           end
           usage.on_tail('-c', '--config TOOL', "Produce a configuration template.") do |tool|
