@@ -111,7 +111,7 @@ module Detroit
 
     # Same as status.
     #
-    # @depreacated
+    # @deprecated
     #   Doubley redundant with #status and #puts.
     alias report status
 
