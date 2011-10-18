@@ -1,72 +1,171 @@
-<HTML>
-<HEAD>
-  <TITLE>Detroit</TITLE>
-  <link REL="SHORTCUT ICON" HREF="assets/images/icon.png"/>
-  <style>
-    * { margin: 0; padding: 0 }
-    body {
-      padding: 0; 
-      margin: 0;
-      color: black;
-      font: 1em sans-serif;
-      text-align: center;
-      background: url(../img/fade_yellow_up.jpg) bottom repeat-y;
-    }
-    a  { text-decoration: none; font-size: 10pt; font-weight: bold; }
-    a:hover { text-decoration: underline; }
-    h1 { font-size: 72pt; margin: 20px; color: red; }
-    h2 { margin: 20px; font-size: 16pt; }
-    ul { margin: 0 auto; list-style-type: none; width: 300px; }
-    li { float: left; padding: 10px; text-align: center; }
-    .doc { padding: 50px; text-align: center; }
-    .red { color: red; }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>detroit(1) - ruby life-cycle build tool</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
   </style>
-</HEAD>
-<BODY>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
 
-<div class="doc">
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
 
-  <img src="assets/images/detroit.jpg" style="height: 300px;"/><br/>
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#DESCRIPTION">DESCRIPTION</a>
+    <a href="#USAGE">USAGE</a>
+    <a href="#OPTIONS">OPTIONS</a>
+    <a href="#RESOURCES">RESOURCES</a>
+    <a href="#COPYRIGHT">COPYRIGHT</a>
+    </div>
 
-  <h2>Software Production Management</h2>
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>detroit(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>detroit(1)</li>
+  </ol>
 
-  <a href="http://github.com/detroit/detroit/wiki">User Guide</a> &middot;
-  <a href="http://rubydoc.info/gems/detroit/frames">API</a> &middot;
-  <!-- <a href="qedoc/index.html">QEDocs</a> &middot; -->
-  <a href="http://googlegroups.com/group/rubyworks-mailinglist">Google Group</a> &middot;
-  <a href="http://github.com/detroit/detroit">GitHub</a>
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>detroit</code> - <span class="man-whatis">ruby life-cycle build tool</span>
+</p>
 
-  <br/><br/><br/>
+<h2 id="DESCRIPTION">DESCRIPTION</h2>
+
+<p>Detroit is a software production management aid for Ruby developers.
+Detroit utilizes a life-cycle methodology to help developers prepare and
+release Ruby software in a clear, repeatable, linear fashion.</p>
+
+<h2 id="USAGE">USAGE</h2>
+
+<p>To utilize Detroit add an <code>Assembly</code> or <code>*.assembly</code> file to your project's
+root directory. In this file add instantiation of service tools, configured
+to your projects build requirements. Assembly files can be written in YAML
+or Ruby.</p>
+
+<p>For example to generate RDoc's for a project, a service might be defined:</p>
+
+<pre><code>rdoc:
+  service: rdoc
+  files:
+    - lib
+    - '[A-Z]*.*'
+  main: README.md
+</code></pre>
+
+<p>See the online <a href="http://wiki.rubyworks.github.com/detroit">User Guide</a> for
+more details on creating assembly files.</p>
+
+<p>Once an assembly file is in place, the <code>detroit</code> command line tool can be used
+to invoke the service. For example, to generate documentation:</p>
+
+<pre><code>$ detroit document
+</code></pre>
+
+<p>This will run through all standard stops up to and include the document stop.
+Since the RDoc service we setup above defines document job, it would be run
+in due course.</p>
+
+<h2 id="OPTIONS">OPTIONS</h2>
+
+<p>These are the available options for the <code>detroit</code> command line tool.</p>
+
+<ul>
+<li><p><code>-m</code>, <code>--multitask</code>
+ Run work elements in parallel.</p></li>
+<li><p><code>-S</code>, <code>--skip=SERVICE</code>
+ Skip a service.</p></li>
+<li><p><code>-s</code>, <code>--system=NAME</code>
+ Select assembly system. Default is 'standard'.</p></li>
+<li><p><code>-a</code>, <code>--assembly=FILE</code>
+ Use specific assembly file(s).</p></li>
+<li><p><code>-F</code>, <code>--force</code>
+ Force operations.</p></li>
+<li><p><code>--trace</code>
+ Run in TRACE mode.</p></li>
+<li><p><code>--trial</code>
+ Run in TRIAL mode (no disk writes).</p></li>
+<li><p><code>--verbose</code>
+ Provide extra output.</p></li>
+<li><p><code>-q</code>, <code>--quiet</code>
+ Run silently.</p></li>
+<li><p><code>-I=PATH</code>
+Add directory to $LOAD_PATH</p></li>
+<li><p><code>--debug</code>
+ Run with $DEBUG set to true.</p></li>
+<li><p><code>--warn</code>
+ Run with $VERBOSE set to true.</p></li>
+<li><p><code>--help [TOOL]</code>
+ Display this help message.</p></li>
+<li><p><code>-c</code>, <code>--config=TOOL</code>
+ Produce a configuration template.</p></li>
+</ul>
 
 
-  <h3>Available Plug-ins</h3>
+<h2 id="RESOURCES">RESOURCES</h2>
 
-  <div style="width: 400px; padding: 20px; margin: 0 auto;">
-    <a href="http://detroit.github.com/detroit-dnote/">DNote</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-email/">EMail</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-github/">GitHub</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-grancher/">Grancher</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-minitest/">MiniTest</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-qed/">QED</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-rdoc/">RDoc</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-ronn/">RONN</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-rspec/">RSpec</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-rubyforge/">Rubyforge</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-rubygems/">Rubygems</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-shomen/">Shomen</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-syntax/">Syntax</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-turn/">Turn</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-vclog/">VCLog</a> &nbsp;
-    <a href="http://detroit.github.com/detroit-yard/">YARD</a> &nbsp;
+<ul>
+<li><a href="http://rubyworks.github.com/detroit">Homepage</a></li>
+<li><a href="http://github.com/rubyworks/detroit">Development</a></li>
+<li><a href="http://googlegroups.com/group/rubyworks-mailinglist">Mailing List</a></li>
+</ul>
+
+
+<h2 id="COPYRIGHT">COPYRIGHT</h2>
+
+<p>Copyright (c) Thomas Sawyer, 2011</p>
+
+<p>Detroit is distributable in accordance with the terms of the GPL v.3 license.</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>October 2011</li>
+    <li class='tr'>detroit(1)</li>
+  </ol>
+
   </div>
-
-  <br/><br/>
-
-  <div style="width: 400px; margin: 0 auto; font-size: 0.8em; color: #999;">
-    Copyright &copy; 2011 <a href="http://trans.github.com/">Trans</a>, <a href="http://rubyworks.github.com/">Rubyworks</a>
-  </div>
-
-</div>
-</BODY>
-</HTML>
-
+</body>
+</html>
