@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+# TODO: Do things in ruby instead of shelling out!
+
+ignore 'pkg', 'site'
+
+desc "Release and announce new package."
+task 'release' do
+  exit -1 if !system('detroit promote')  # `detroit release`
+  system "pom news | git tag -a -F - #{version}"
+end
+
+file 'VERSION' do
+  #system "pom spec -u"
+  system 'dotruby'
+end
+
+file 'PROFILE' do
+  #system "pom spec -u"
+  system 'dotruby'
+end
+
+file 'MANIFEST' do
+  update_manifest
+end
+
+file 'lib/**/*' do
+  exit -1 if !system('detroit test')
+  update_manifest
+end
+
+def update_manifest
+  @update_manifest ||= system "mast -u"
+end
+
+# Could we incorporate detroit phases?
+# detroit :post_release do
+#   ...
+# end
+
+# Integrate git hooks ?
+#git :tag do
+#  `pom news | git tag -a -F - #{version}`
+#end
+
