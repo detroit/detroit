@@ -1,0 +1,68 @@
+detroit(1) - ruby life-cycle build tool
+=======================================
+
+## DESCRIPTION
+
+Detroit is a software production management aid for Ruby developers.
+Detroit utilizes a life-cycle methodology to help developers prepare and
+release Ruby software in a clear, repeatable, linear fashion.
+
+
+## OPTIONS
+
+  * `-m`, `--multitask`
+     Run work elements in parallel.
+
+  * `-S`, `--skip=SERVICE`
+     Skip a service.
+
+  * `-s`, `--system=NAME`
+     Select assembly system. Default is 'standard'.
+
+  * `-a`, `--assembly=[FILE]`
+     Use specific assembly file(s).
+
+  * `-F`, `--force`
+     Force operations.
+
+  * `--trace`
+     Run in TRACE mode.
+
+  * `--trial`
+     Run in TRIAL mode (no disk writes).
+
+  * `--verbose`
+     Provide extra output.
+
+  * `-q`, `--quiet`
+     Run silently.
+
+  * `-I=PATH`
+    Add directory to $LOAD_PATH
+
+  * `--debug`
+     Run with $DEBUG set to true.
+
+  * `--warn`
+     Run with $VERBOSE set to true.
+
+  * `--help [TOOL]`
+     Display this help message.
+
+  * `-c`, `--config=TOOL`
+     Produce a configuration template.
+
+
+## RESOURCES
+
+* [Homepage](http://rubyworks.github.com/detroit)
+* [Development](http://github.com/rubyworks/detroit)
+* [Mailing List](http://googlegroups.com/group/rubyworks-mailinglist)
+
+
+## COPYRIGHT
+
+Copyright (c) Thomas Sawyer, 2011
+
+Detroit is distributable in accordance with the terms of the GPL v.3 license.
+
