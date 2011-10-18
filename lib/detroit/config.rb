@@ -60,8 +60,14 @@ module Detroit
     # Load a plugin.
     def load_plugin(name)
       @loaded_plugins[name] ||= (
-        require "detroit-#{name}"
-        name
+        begin
+          require "detroit-#{name}"
+        rescue LoadError => e
+          $stderr.puts "ERROR: #{e.message.capitalize}"
+          $stderr.puts "       Perhaps `gem install detroit-#{name}`?"
+          exit -1
+        end
+        name # true ?
       )
     end
 
