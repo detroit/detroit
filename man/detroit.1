@@ -9,7 +9,48 @@
 .SH "DESCRIPTION"
 Detroit is a software production management aid for Ruby developers\. Detroit utilizes a life\-cycle methodology to help developers prepare and release Ruby software in a clear, repeatable, linear fashion\.
 .
+.SH "USAGE"
+To utilize Detroit add an \fBAssembly\fR or \fB*\.assembly\fR file to your project\'s root directory\. In this file add instantiation of service tools, configured to your projects build requirements\. Assembly files can be written in YAML or Ruby\.
+.
+.P
+For example to generate RDoc\'s for a project, a service might be defined:
+.
+.IP "" 4
+.
+.nf
+
+rdoc:
+  service: rdoc
+  files:
+    \- lib
+    \- \'[A\-Z]*\.*\'
+  main: README\.md
+.
+.fi
+.
+.IP "" 0
+.
+.P
+See the online User Guide \fIhttp://wiki\.rubyworks\.github\.com/detroit\fR for more details on creating assembly files\.
+.
+.P
+Once an assembly file is in place, the \fBdetroit\fR command line tool can be used to invoke the service\. For example, to generate documentation:
+.
+.IP "" 4
+.
+.nf
+
+$ detroit document
+.
+.fi
+.
+.IP "" 0
+.
+.P
+This will run through all standard stops up to and include the document stop\. Since the RDoc service we setup above defines document job, it would be run in due course\.
+.
 .SH "OPTIONS"
+These are the available options for the \fBdetroit\fR command line tool\.
 .
 .IP "\(bu" 4
 \fB\-m\fR, \fB\-\-multitask\fR Run work elements in parallel\.
@@ -21,7 +62,7 @@ Detroit is a software production management aid for Ruby developers\. Detroit ut
 \fB\-s\fR, \fB\-\-system=NAME\fR Select assembly system\. Default is \'standard\'\.
 .
 .IP "\(bu" 4
-\fB\-a\fR, \fB\-\-assembly=[FILE]\fR Use specific assembly file(s)\.
+\fB\-a\fR, \fB\-\-assembly=FILE\fR Use specific assembly file(s)\.
 .
 .IP "\(bu" 4
 \fB\-F\fR, \fB\-\-force\fR Force operations\.

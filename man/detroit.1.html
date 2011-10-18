@@ -55,6 +55,7 @@
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
     <a href="#DESCRIPTION">DESCRIPTION</a>
+    <a href="#USAGE">USAGE</a>
     <a href="#OPTIONS">OPTIONS</a>
     <a href="#RESOURCES">RESOURCES</a>
     <a href="#COPYRIGHT">COPYRIGHT</a>
@@ -77,7 +78,39 @@
 Detroit utilizes a life-cycle methodology to help developers prepare and
 release Ruby software in a clear, repeatable, linear fashion.</p>
 
+<h2 id="USAGE">USAGE</h2>
+
+<p>To utilize Detroit add an <code>Assembly</code> or <code>*.assembly</code> file to your project's
+root directory. In this file add instantiation of service tools, configured
+to your projects build requirements. Assembly files can be written in YAML
+or Ruby.</p>
+
+<p>For example to generate RDoc's for a project, a service might be defined:</p>
+
+<pre><code>rdoc:
+  service: rdoc
+  files:
+    - lib
+    - '[A-Z]*.*'
+  main: README.md
+</code></pre>
+
+<p>See the online <a href="http://wiki.rubyworks.github.com/detroit">User Guide</a> for
+more details on creating assembly files.</p>
+
+<p>Once an assembly file is in place, the <code>detroit</code> command line tool can be used
+to invoke the service. For example, to generate documentation:</p>
+
+<pre><code>$ detroit document
+</code></pre>
+
+<p>This will run through all standard stops up to and include the document stop.
+Since the RDoc service we setup above defines document job, it would be run
+in due course.</p>
+
 <h2 id="OPTIONS">OPTIONS</h2>
+
+<p>These are the available options for the <code>detroit</code> command line tool.</p>
 
 <ul>
 <li><p><code>-m</code>, <code>--multitask</code>
@@ -86,7 +119,7 @@ release Ruby software in a clear, repeatable, linear fashion.</p>
  Skip a service.</p></li>
 <li><p><code>-s</code>, <code>--system=NAME</code>
  Select assembly system. Default is 'standard'.</p></li>
-<li><p><code>-a</code>, <code>--assembly=[FILE]</code>
+<li><p><code>-a</code>, <code>--assembly=FILE</code>
  Use specific assembly file(s).</p></li>
 <li><p><code>-F</code>, <code>--force</code>
  Force operations.</p></li>

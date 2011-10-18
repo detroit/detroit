@@ -8,7 +8,38 @@ Detroit utilizes a life-cycle methodology to help developers prepare and
 release Ruby software in a clear, repeatable, linear fashion.
 
 
+## USAGE
+
+To utilize Detroit add an `Assembly` or `*.assembly` file to your project's
+root directory. In this file add instantiation of service tools, configured
+to your projects build requirements. Assembly files can be written in YAML
+or Ruby.
+
+For example to generate RDoc's for a project, a service might be defined:
+
+    rdoc:
+      service: rdoc
+      files:
+        - lib
+        - '[A-Z]*.*'
+      main: README.md
+
+See the online [User Guide](http://wiki.rubyworks.github.com/detroit) for
+more details on creating assembly files.
+
+Once an assembly file is in place, the `detroit` command line tool can be used
+to invoke the service. For example, to generate documentation:
+
+    $ detroit document
+
+This will run through all standard stops up to and include the document stop.
+Since the RDoc service we setup above defines document job, it would be run
+in due course.
+
+
 ## OPTIONS
+
+These are the available options for the `detroit` command line tool.
 
   * `-m`, `--multitask`
      Run work elements in parallel.
@@ -19,7 +50,7 @@ release Ruby software in a clear, repeatable, linear fashion.
   * `-s`, `--system=NAME`
      Select assembly system. Default is 'standard'.
 
-  * `-a`, `--assembly=[FILE]`
+  * `-a`, `--assembly=FILE`
      Use specific assembly file(s).
 
   * `-F`, `--force`
