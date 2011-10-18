@@ -1,14 +1,14 @@
 = Detroit
 
 Author:: Thomas Sawyer
-Licence:: GPL v.3
+License:: GPL v.3
 Copyright:: (c) 2011 Rubyworks, Thomas Sawyer
 
 
 == DESCRIPTION
 
 Detroit is a software production management aid for Ruby developers.
-Detroit utilizes a lifecycle methodology to help developers prepare and
+Detroit utilizes a life-cycle methodology to help developers prepare and
 release Ruby software in a clear, repeatable, linear fashion.
 
 
@@ -124,10 +124,10 @@ and give Detroit a try please let us know of any issues you encounter.
 
 == HISTORY
 
-Detroit is actaully the offspring of Reap v.10, and was called Syckle for 
+Detroit is actaully the offspring of Reap v10, and was called Syckle for 
 a number of years as it matured. It represents many years of design considerations
-(and reconsiderations), that evolved Reap from its simple Rake extension origins,
-which pre-dated Hoe, to the lifecycle system it is today.
+(and reconsiderations) that evolved Reap from its simple Rake extension origins,
+which pre-dated Hoe, to the life-cycle system it is today.
 
 
 == COPYRIGHT & LICENSE
