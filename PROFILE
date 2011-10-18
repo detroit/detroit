@@ -4,7 +4,6 @@ version: 0.2.0
 
 title  : Detroit
 summary: Software Production Mangement
-contact: Trans <transfire@gmail.com>
 created: 2007-10-10
 
 description:
@@ -14,7 +13,7 @@ description:
   detroit console command is run, a track is followed
   from beginning to designated destination.
 
-requires:
+requirements:
   - facets
   - pom
   - qed (test)
@@ -28,7 +27,7 @@ repositories:
   upstream: http://github.com/proutils/detroit.git
 
 authors:
-  - Thomas Sawyer
+  - Trans <transfire@gmail.com>
 
 organization: Detroit
 
