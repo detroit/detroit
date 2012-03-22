@@ -8,7 +8,7 @@ module Detroit
   require 'detroit/tool/project_utils'
   require 'detroit/tool/email_utils'
 
-  # The Toold module provide an isolated namespace for
+  # The Tools module provides an isolated namespace for
   # Detoit's tools. This allows for general use of these
   # tools by other applications, by including them into
   # their own namespace.
@@ -25,15 +25,26 @@ module Detroit
     tools
   end
 
-  # Add tool class to registry. If class name ends in `Tool`
+  #
+  def self.define_tool_method(name, tool_class)
+    (class << self; self; end).class_eval do
+      # raise if method_defined?(name)
+      define_method(name) do |*a, &b|
+        tool_class.new(*a,&b)
+      end
+    end
+  end
+
+  # Add tool class to registry. If class name ends in `Base`
   # it will be considered a reusable base class and not be added.
   def self.register_tool(tool_class)
     name = tool_class.basename
     return if name.empty?
-    return if name =~ /(Tool|Service)$/
+    return if name == 'Tool'
+    return if name =~ /Base$/
     tools[name.downcase] = tool_class
     Tools.const_set(name, tool_class)
-    # TODO: Should we auto-create convenience method?
+    Detroit.define_tool_method(name, tool_class)
     return tool_class
   end
 
