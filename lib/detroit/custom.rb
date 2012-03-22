@@ -21,10 +21,12 @@ module Detroit
     # Plural alias for #track.
     alias_accessor :tracks, :track
 
+    alias_accessor :on, :track
+
     private
 
     SPECIAL_OPTIONS = %w{
-      service track tracks active priority project 
+      service track tracks on active priority project 
       trial trace verbose force quiet
     }
 
@@ -59,21 +61,41 @@ module Detroit
 
     #
     def method_missing(s, *a, &b)
-      if @context.respond_to?(s)
-        @context.__send__(s,*a,&b)
+      if s.to_s.end_with?('=')
+      #  stop = s.to_s.chomp('=')
+      #  if !SPECIAL_OPTIONS.include?(stop)
+      #   (class << self; self; end).module_eval %{
+      #      def station_#{stop}
+      #        #{a.first}
+      #      end
+      #    }
+      #  end
       else
-        super(s, *a, &b)
+        if @context.respond_to?(s)
+          @context.__send__(s,*a,&b)
+        else
+          super(s, *a, &b)
+        end
       end
     end
 
-    public
-
-    #
-    #def respond_to?(name)
-    #  r = super(name)
-    #  return r if r
-    #  @context.respond_to?(s)
+    # @todo should only respond to stop names and special options.
+    #def respond_to?(s)
+    #  return true if SPECIAL_OPTIONS.include?(s.to_s)
+    #  return true
     #end
+
+    # RUBY 1.9
+    def respond_to_missing?(name, privy)
+      #return true if name.to_s.start_with?('station_')
+      return true if name.to_s.end_with?('=')
+      return true if @context.respond_to?(name)
+      false
+    end
+
+    def inspect
+      "#<Custom @on=#{track.join(',')}>"
+    end
 
   end
 
