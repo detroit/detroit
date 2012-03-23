@@ -41,10 +41,10 @@ yard:
   active   : true
 
 turn:
-  active : false
+  active: false
 
 github:
-  active: true
+  folder: web
 
 #rubyforge:
 #  service: forge
