@@ -14,34 +14,31 @@ announce:
 
 gem:
   service  : Gem
-  active   : true
+  gemspec  : pkg/detroit.gemspec
 
 dnote:
-  title   : Developer's Notes
-  output  : log/NOTES.rdoc
-  active  : true
+  title   : Source Notes
+  output  : log/notes.html
 
 qedoc:
-  files : qed/
+  active: false
+  files : spec/
   title : Detroit
   output: QED.rdoc
 
 locat:
-  active  : false
+  output: log/locat.html
 
 yard:
+  active   : false
   service  : yard
   readme   : [ "README.rdoc" ]
-  topfiles : [ "[A-Z][A-Z]*" ]
+  topfiles : [ "[A-Z][A-Z]*.*" ]
   files    : [ lib ]
   exclude  : [ lib/detroit.yml ]
   output   : doc
   extra    : ~
   priority : 1
-  active   : true
-
-turn:
-  active: false
 
 github:
   folder: web
