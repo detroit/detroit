@@ -4,7 +4,7 @@
 .yardoc
 doc
 log
-pkg
+pkg/*.gem
 web
 work/TRASH
 work/sandbox
