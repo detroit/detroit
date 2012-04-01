@@ -1,8 +1,8 @@
 = Detroit
 
-Author:: Thomas Sawyer
-License:: GPL v.3
-Copyright:: (c) 2011 Rubyworks, Thomas Sawyer
+{Homepage}[http://rubyworks.github.com/detroit] /
+{Development}[http://github.com/rubyworks/detroit] /
+{Mailing List}[http://googlegroups.com/group/rubyworks-mailinglist]
 
 
 == DESCRIPTION
@@ -10,13 +10,6 @@ Copyright:: (c) 2011 Rubyworks, Thomas Sawyer
 Detroit is a software production management aid for Ruby developers.
 Detroit utilizes a life-cycle methodology to help developers prepare and
 release Ruby software in a clear, repeatable, linear fashion.
-
-
-== RESOURCES
-
-* {Homepage}[http://rubyworks.github.com/detroit]
-* {Development}[http://github.com/rubyworks/detroit]
-* {Mailing List}[http://googlegroups.com/group/rubyworks-mailinglist]
 
 
 == HOW IT WORKS
