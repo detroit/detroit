@@ -1,6 +1,7 @@
 ---
 source:
 - PROFILE
+- meta
 authors:
 - name: Trans
   email: transfire@gmail.com
@@ -30,13 +31,14 @@ extra: {}
 load_path:
 - lib
 revision: 0
-name: detroit-core
+created: '2007-10-10'
+summary: Software Production Mangement
 title: Detroit
 version: 0.2.0
-summary: Software Production Mangement
-created: '2007-10-10'
+name: detroit
+suite: detroit
 description: Detroit is an advanced lifecycle build system. With Detroit, build tasks
   are user defined service instances tied to stops along a track. Whenever the detroit
   console command is run, a track is followed from beginning to designated destination.
-organization: Detroit
-date: '2012-03-22'
+organization: rubyworks
+date: '2012-04-01'

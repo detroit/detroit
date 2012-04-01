@@ -233,6 +233,8 @@ module Detroit
 
       @destination = stop
 
+      # TODO: Using #preconfigure as part of the protocol should probably change.
+
       # prime the services (so as to fail early)
       active_services.each do |srv|
         srv.preconfigure if srv.respond_to?("preconfigure")
@@ -256,12 +258,13 @@ module Detroit
       puts "\nFinished in #{stop_time - start_time} seconds." unless quiet?
     end
 
-    # Execute service hook for given track and destination.
-    #--
     # TODO: Deprecate service hooks?
+
     #
-    # TODO: Currently only stop counts, maybe add track subdirs.
-    #++
+    # Execute service hook for given track and destination.
+    #
+    # @todo Currently only stop counts, maybe add track subdirs.
+    #
     def service_hooks(track, stop)
        #hook = dir + ("#{track}/#{stop}.rb".gsub('_', '-'))
        dir  = hook_directory
@@ -321,11 +324,13 @@ module Detroit
       end
     end
 
-    # Run a service given the service, track name and stop name.
+    #
+    # Run a service given the service, track and stop name.
+    #
     def run_a_service(srv, track, stop)
       # run if the service supports the track and stop.
       #if srv.respond_to?("#{track}_#{stop}")
-      if srv.stop?(stop)
+      if srv.stop?(stop, @destination)
         if options[:trace] #options[:verbose]
           #status_line("#{srv.key.to_s} (#{srv.class}##{track}_#{stop})", stop.to_s.gsub('_', '-').capitalize)
           status_line("#{srv.key.to_s} (#{srv.class}##{stop})", stop.to_s.gsub('_', '-').capitalize)

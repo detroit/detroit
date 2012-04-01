@@ -1,7 +1,7 @@
 module Detroit
 
   # TODO: The plan is to replace most, if not all, of the fileutils
-  # functionality with Ratch when it is ready.
+  #       functionality with Ratch when it is ready.
 
   require 'detroit/tool/core_ext'
   require 'detroit/tool/shell_utils'
@@ -12,19 +12,28 @@ module Detroit
   # Detoit's tools. This allows for general use of these
   # tools by other applications, by including them into
   # their own namespace.
+  #
   module Tools
+    #BasicTool = Detroit::BasicTool
+    #Tool      = Detroit::Tool
   end
 
+  #
   # Tool registry.
+  #
   def self.tools
     @tools ||= {}
   end
 
+  #
+  # Alias for #tools.
   # 
   def self.services
     tools
   end
 
+  #
+  #
   #
   def self.define_tool_method(name, tool_class)
     (class << self; self; end).class_eval do
@@ -35,8 +44,10 @@ module Detroit
     end
   end
 
+  #
   # Add tool class to registry. If class name ends in `Base`
   # it will be considered a reusable base class and not be added.
+  #
   def self.register_tool(tool_class)
     name = tool_class.basename
     return if name.empty?
@@ -51,10 +62,11 @@ module Detroit
   # This base class can be used for tools that do not need
   # all of the utility methods provided by the regular Tool
   # class.
+  #
   class BasicTool
     class << self
       # Add an assembly system to which the tool applies.
-      # By default the `standard` ssystem is implied.
+      # By default the `standard` system is implied.
       def assembly_system(assembly=nil)
         @assembly ||= []
         if assembly
@@ -70,9 +82,9 @@ module Detroit
       # Override the `tracks` method to limit the lines a service
       # will work with by default. Generally this is not used,
       # and a return value of +nil+ means all lines apply.
-      #--
-      # TODO: Rename to #lines ?
-      #++
+      #
+      # @todo Rename to #lines ?
+      #
       def tracks
       end
 
@@ -107,17 +119,56 @@ module Detroit
       end
     end
 
-    # TODO: Needed? Rename?
+    #
+    # @todo Is this neeeed? Maybe rename?
+    #
     def service_title
       self.class.name
+    end
+
+    #
+    # Override this method so the assembly system can determine if the
+    # station is applicable with the given state of the project. By default
+    # the return value is always `true`.
+    #
+    # @param [Symbol] station
+    #
+    # @param [Hash] options
+    #   Additonal information significant to the determination.
+    #
+    # @option options [Symbol] :destination
+    #   The final stop designated for the particular run.
+    #
+    # @return [Boolean] Is the particular station applicable?
+    #
+    def assemble?(station, options={})
+      warn "tool #{self.class} has not defined an #assemble? method"
+      false
+    end
+
+    #
+    # Use the tool for the given station. By default this method does nothing
+    # It must be overriden by the tool to direct execution for the given station.
+    #
+    # @param [Symbol] station
+    #
+    # @param [Hash] options
+    #   Additonal information significant to the determination.
+    #
+    # @option options [Symbol] :destination
+    #   The final stop designated for the particular run.
+    #
+    def assemble(station, options={})
+      warn "tool #{self.class} has not defined an #assemble method"
     end
   end
 
   # Tool is the base class for all Detroit tools.
   #
-  # Tool class is essentially the same as a Service class except that it is
-  # a subclass of RedTools::Tool. Use this class to build Detroit services
-  # with all the conveniences of a RedTools::Tool.
+  # Tool class is essentially the same as the {BasicTool} but provides an
+  # assortment of addtional data and utility methods often useful to tools.
+  # Use this class to build Detroit tools with all the conveniences.
+  #
   class Tool < BasicTool
     include ShellUtils
     include ProjectUtils
@@ -210,7 +261,9 @@ module Detroit
       Platform.local.to_s
     end
 
-    # TODO: How to set this in a more universal manner?
+    # TODO: How to set naming policy in a more universal manner?
+
+    #
     #
     def naming_policy(*policies)
       if policies.empty?
