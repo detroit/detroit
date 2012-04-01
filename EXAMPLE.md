@@ -9,7 +9,7 @@ of your personal preference.
 
 ## Ruby-based Detroit
 
-### Traditional Format
+### Service Method Notation
 
 Traditionally a Ruby-based assembly file is dominated by calls to the `service`
 method with an optional service instance name and a setter block.
@@ -72,7 +72,7 @@ definition to be written as simply as:
   service :rdoc
 ```
 
-### Modern Notation
+### Service Name Notation
 
 Thanks to some straight-forward meta-programming, a Ruby-based assembly file can
 be written in a more concise notation by using the name of the service class as a
@@ -173,7 +173,6 @@ recognized as YAML, rather than Ruby.
     sitemap:
       site: <% name %>
     active: false
-```
 
 As we can see in the last entry, the YAML format also supports ERB and provides
 access to project metadata via the ERB's binding.
@@ -182,7 +181,7 @@ With the Ruby format it is easy enough to load external library using
 standard `require` and `load` methods. Since the YAML format supports ERB
 it can be used to achieve the same effect.
 
-```ruby
+```yaml
   ---
   <% require 'some/external/library' %>
 ```
