@@ -34,7 +34,7 @@ revision: 0
 created: '2007-10-10'
 summary: Software Production Mangement
 title: Detroit
-version: 0.2.0
+version: 0.3.0
 name: detroit
 suite: detroit
 description: Detroit is an advanced lifecycle build system. With Detroit, build tasks
