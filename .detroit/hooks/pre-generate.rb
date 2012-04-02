@@ -2,6 +2,7 @@
 
 report "Hooks are working."
 
+=begin
 file  = "lib/#{project.metadata.name}.rb"
 text1 = read(file)
 text2 = text1.sub(/VERSION\s*\=\s*\S+/, %{VERSION = "#{project.metadata.version}"})
@@ -11,4 +12,5 @@ if text1 != text2
 else
   report "Already current #{file}"
 end
+=end
 

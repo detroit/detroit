@@ -13,7 +13,7 @@ module Detroit
   end
 
   # TODO: Only here b/c of bug in Ruby 1.8.x
-  #VERSION = "0.2.0"
+  #VERSION = "0.3.0"
 end
 
 # Erb is used to to script YAML-based schedule files.
