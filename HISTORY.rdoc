@@ -1,5 +1,21 @@
 = RELEASE HISTORY
 
+== 0.3.0 / 2012-04-02
+
+This significant release changes the interface for tools to tap
+into the assembly line. Where as before specially named methods
+in the form of `station_{stop}` were used, now two special methods
+are expected `#assemble?` and `#assemble`. The first checks to see
+if a particular stop is supported and the later is used to execute
+it if it does.
+
+Changes:
+
+* Simplify the assembly interface for tools.
+* Tool classes ending in Base are abstract base class.
+* Add #on as alias from #track.
+
+
 == 0.2.0 / 2011-10-19
 
 The big news here is that Detroit configuration files are now
