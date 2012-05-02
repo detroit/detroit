@@ -1,6 +1,5 @@
 ---
 source:
-- PROFILE
 - meta
 authors:
 - name: Trans
@@ -24,9 +23,16 @@ repositories:
   scm: git
   name: upstream
 resources:
-  home: http://rubyworks.github.com/detroit
-  code: http://github.com/rubyworks/detroit
-  mail: http://groups.google.com/rubyworks-mailinglist
+- uri: http://rubyworks.github.com/detroit
+  label: Website
+  type: home
+- uri: http://github.com/rubyworks/detroit
+  label: Source Code
+  type: code
+- uri: http://groups.google.com/rubyworks-mailinglist
+  label: Mailing List
+  type: mail
+categories: []
 extra: {}
 load_path:
 - lib
@@ -41,4 +47,4 @@ description: Detroit is an advanced lifecycle build system. With Detroit, build 
   are user defined service instances tied to stops along a track. Whenever the detroit
   console command is run, a track is followed from beginning to designated destination.
 organization: rubyworks
-date: '2012-04-01'
+date: '2012-05-02'
