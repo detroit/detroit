@@ -1,0 +1,50 @@
+---
+type: ruby
+revision: 2013
+sources:
+- var
+authors:
+- name: Trans
+  email: transfire@gmail.com
+organizations: []
+requirements:
+- name: facets
+- name: pom
+- groups:
+  - test
+  development: true
+  name: qed
+conflicts: []
+alternatives: []
+resources:
+- type: home
+  uri: http://rubyworks.github.com/detroit
+  label: Homepage
+- type: code
+  uri: http://github.com/rubyworks/detroit
+  label: Source Code
+- type: mail
+  uri: http://groups.google.com/rubyworks-mailinglist
+  label: Mailing List
+repositories:
+- name: upstream
+  scm: git
+  uri: http://github.com/proutils/detroit.git
+categories: []
+paths:
+  load:
+  - lib
+copyrights:
+- holder: Thomas Sawyer
+  year: '2007'
+  license: GPL3
+created: '2007-10-10'
+summary: Software Production Mangement
+title: Detroit
+version: 0.3.0
+name: detroit
+suite: detroit
+description: Detroit is an advanced lifecycle build system. With Detroit, build tasks
+  are user defined service instances tied to stops along a track. Whenever the detroit
+  console command is run, a track is followed from beginning to designated destination.
+date: '2013-01-04'
