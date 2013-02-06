@@ -3,11 +3,11 @@ module Detroit
   # The default assembly system to use.
   DEFAULT_ASSEMBLY_SYSTEM = :standard
 
+  # TODO: Rename Application to `Session`?
+
   # Application class is the main controller class for running
   # a session of Detroit.
-  #--
-  # TODO: Rename Application to `Session`?
-  #++
+  #
   class Application
 
     # Options (generally from #cli).
@@ -87,6 +87,8 @@ module Detroit
     def config
       @config ||= Detroit::Config.new(assemblies)
     end
+
+    # TODO: Should we deprecate POM ?
 
     # Provides access to the Project instance via `Detroit.project` class method.
     def project

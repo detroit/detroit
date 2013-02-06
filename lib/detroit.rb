@@ -11,9 +11,6 @@ module Detroit
   def self.const_missing(name)
     metadata[name.to_s.downcase] || super(name)
   end
-
-  # TODO: Only here b/c of bug in Ruby 1.8.x
-  #VERSION = "0.3.0"
 end
 
 # Erb is used to to script YAML-based schedule files.
@@ -40,6 +37,7 @@ require 'pom'
 
 # And all the rest is Detroit, baby.
 if RUBY_VERSION > '1.9'
+  require_relative 'detroit/rc'
   require_relative 'detroit/core_ext'
   require_relative 'detroit/config'
   require_relative 'detroit/service'
@@ -51,6 +49,7 @@ if RUBY_VERSION > '1.9'
   require_relative 'detroit/assembly'
   require_relative 'detroit/custom'
 else
+  require 'detroit/rc'
   require 'detroit/core_ext'
   require 'detroit/config'
   require 'detroit/service'
@@ -62,3 +61,4 @@ else
   require 'detroit/assembly'
   require 'detroit/custom'
 end
+

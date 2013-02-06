@@ -2,24 +2,37 @@ module Detroit
 
   # Assembly encapsulates a `Assembly` file and it's service instance
   # configurations.
+  #
   class Assembly
 
-    # Load Scedule file.
+    # Load Assembly file.
     def self.load(input)
-      new(input)
+      new(:file=>input)
     end
 
     # Hash table of services.
     attr :services
 
-    private
+  private
 
     # Initialize new Assembly instance.
-    def initialize(file, options={})
+    def initialize(options={}, &block)
       @project = options[:project]
 
       @services = {}
 
+      if options[:file]
+        initialize_file(options[:file])
+      end
+
+      if block
+        instance_eval(&block)
+      end
+    end
+
+    # Inititalize from assembly file.
+    #
+    def initialize_file(file)
       @file = (String === file ? File.new(file) : file)
 
       case File.extname(@file.path)
@@ -37,8 +50,18 @@ module Detroit
       end
     end
 
+  public
+
+    #  
+    def track(name, &block)
+      @_track = name
+      instance_eval(&block)
+      @_track = nil
+    end
+
     # Define a service.
     def service(name, settings={}, &block)
+      settings[:track] = @_track if @_track
       if block
         block_context = BlockContext.new(&block)
         settings.update(block_context.settings)
@@ -70,6 +93,8 @@ module Detroit
       @project ||= POM::Project.find #(file_directory)
     end
 
+  private
+
     # Capitalized service names called as methods
     # can also define a service.
     def method_missing(sym, *args, &block)
@@ -92,8 +117,6 @@ module Detroit
         super(sym, *args, &block)
       end
     end
-
-    private
 
     # Process Routine document via ERB.
     def erb(text)
@@ -159,7 +182,12 @@ module Detroit
         when /=$/
           @settings[name.chomp('=')] = value
         else
-          super(symbol, value=nil, *args)
+          return super(symbol, value, *args) unless args.empty?
+          if value
+            @settings[name.to_s] = value
+          else
+            @settings[name.to_s]
+          end
         end
       end
     end
@@ -190,7 +218,7 @@ module Detroit
 
   end
 
-  # NOTE: This is problematic, because a Scheudle file should really know from
+  # NOTE: This is problematic, because an Assembly file should know from
   # what file it was derived.
 
   #

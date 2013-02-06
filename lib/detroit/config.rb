@@ -1,7 +1,9 @@
 module Detroit
 
-  # Detroit configuration. Configuration comes from a main +Routine+
-  # and/or +.routine+ files.
+  # Detroit configuration.
+  #
+  # TODO: Greatly simplify this, to support
+  #
   class Config
     #instance_methods.each{ |m| private m unless /^__/ =~ m.to_s }
 
@@ -93,6 +95,21 @@ module Detroit
     def load_assemblies
       assembly_filenames.each do |file|
         load_assembly_file(file)
+      end
+
+      #if config = eval('self', TOPLEVEL_BINDING).rc_detroit
+      #  @assemblies['(rc)'] = Assembly.new(&config)
+      #  @services.merge!(assemblies['(rc)'].services)
+      #end
+
+      if config = Detroit.rc_config
+        assembly = Assembly.new do
+          config.each do |c|
+            track(c.profile, &c)
+          end
+        end
+        @assemblies['(rc)'] = assembly
+        @services.merge!(assemblies['(rc)'].services)
       end
     end
 
