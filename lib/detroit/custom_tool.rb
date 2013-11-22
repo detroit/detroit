@@ -5,7 +5,7 @@ module Detroit
   # This is a useful alternative to writing a full-blown plugin
   # when the need is simple.
   #
-  class Custom < Tool
+  class CustomTool < ShellTool
 
     # Default track(s) in which this plugin operates.
     DEFAULT_TRACK = "main"

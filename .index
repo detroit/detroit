@@ -1,6 +1,6 @@
 ---
-type: ruby
 revision: 2013
+type: ruby
 sources:
 - var
 authors:
@@ -31,20 +31,21 @@ repositories:
   scm: git
   uri: http://github.com/proutils/detroit.git
 categories: []
-paths:
-  load:
-  - lib
 copyrights:
-- holder: Thomas Sawyer
+- holder: Rubyworks
   year: '2007'
-  license: GPL3
+  license: GPL-3.0
+customs: []
+paths:
+  lib:
+  - lib
 created: '2007-10-10'
 summary: Software Production Mangement
 title: Detroit
-version: 0.3.0
+version: 0.4.0
 name: detroit
 suite: detroit
 description: Detroit is an advanced lifecycle build system. With Detroit, build tasks
   are user defined service instances tied to stops along a track. Whenever the detroit
   console command is run, a track is followed from beginning to designated destination.
-date: '2013-01-04'
+date: '2013-03-18'

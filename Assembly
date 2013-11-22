@@ -27,6 +27,7 @@ qedoc:
   output: QED.rdoc
 
 locat:
+  active: false
   output: log/locat.html
 
 yard:

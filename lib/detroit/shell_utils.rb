@@ -1,15 +1,15 @@
-require 'detroit/tool/core_ext/shell_extensions'
-require 'rbconfig'
-require 'ansi/core'
-
 module Detroit
+  require 'detroit/tool/core_ext/shell_extensions'
+  require 'rbconfig'
+  require 'ansi/core'
 
+  ##
   # ShellUtils provides the whole slew of FileUtils,
   # FileTest and File class methods in a single module
   # and modifies methods according to noop? and verbose?
   # options.
+  #
   module ShellUtils
-
     #
     def initialize_extension_defaults
       @quiet = false
@@ -22,7 +22,7 @@ module Detroit
 
     #
     def initialize_extensions
-    #  extend(fileutils)
+      #extend(fileutils)
       super() if defined?(super)
     end
 

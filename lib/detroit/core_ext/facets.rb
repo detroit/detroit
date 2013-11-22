@@ -2,6 +2,10 @@
 # see it as a "heavy" dependency. But really that is far from true, consider
 # the facet that the following libs are all that it used.
 
+require 'facets/to_hash'
+require 'facets/pathname'
+#require 'facets/boolean'
+
 require 'facets/array/not_empty'
 require 'facets/module/basename'
 require 'facets/module/alias_accessor'

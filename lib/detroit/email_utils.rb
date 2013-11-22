@@ -1,6 +1,8 @@
 module Detroit
 
-  # The Mail utility module provides an easy to use +email+ method.
+  ##
+  # The Mail utility module provides an easy to use `email` method.
+  #
   module EmailUtils
 
     # Email function to easily send out an email.
