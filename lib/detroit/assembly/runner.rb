@@ -1,17 +1,22 @@
-require_relative 'core_ext'
-require_relative 'dsl'
+#require_relative 'core_ext'
+require_relative 'script'
 require_relative 'config'
 require_relative 'service'
-require_relative 'assembly'
 
 module Detroit
 
   module Assembly
 
+    # Configuration directory name (most likely a hidden "dot" directory).
+    DIRECTORY = "detroit"
+
+    # File identifier used to find a project's Assembly file(s).
+    FILE_EXTENSION = "assembly"
+
     # The default assembly system to use.
     DEFAULT_TOOLCHAIN = :standard
 
-    # Application class is the main controller class for running
+    # Assembly::Runner class is the main controller class for running
     # a session of Detroit.
     #
     class Runner
@@ -27,7 +32,22 @@ module Detroit
         self.quiet      = options[:quiet]
         self.toolchain  = options[:toolchain]
         self.multitask  = options[:multitask]
-        self.assemblies = options[:assemblies]
+        self.assembly_files = options[:assemblies]
+
+        @assemblies = {}
+        @services   = {}
+        @defaults   = {}
+
+        @loaded_plugins = {}
+
+        load_up
+      end
+
+      #
+      def load_up
+        load_plugins
+        load_defaults
+        load_assemblies
       end
 
       # Quiet mode?
@@ -76,30 +96,45 @@ module Detroit
       end
 
       # List of assembly files to use.
-      def assemblies
-        @assemblies
+      def assembly_files
+        @assembly_files
       end
 
       #
-      def assemblies=(files)
-        @assemblies = files
-      end
-
-      # Detroit configuration.
-      def config
-        @config ||= Detroit::Config.new(assemblies)
+      def assembly_files=(files)
+        @assembly_files = files
       end
 
       # Provides access to the Project instance via `Detroit.project` class method.
       def project
-        @project ||= Detroit::Project.new
+        @project ||= Detroit.project(root)
       end
 
-      # User-defined service defaults.
+      # Detroit configuration.
+      #def config
+      #  @config ||= Assembly::Config.new(root, assembly_files)
+      #end
+
+      # The list of a project's assembly files.
       #
-      # @return [Hash] Service defaults.
-      def defaults
-        config.defaults
+      # @return [Array<String>] routine files
+      attr :assemblies
+
+      # Service configurations from Assembly or *.assembly files.
+      # 
+      # @return [Hash] service settings
+      attr :services
+
+      # Custom service defaults. This is a mapping of service names to
+      # default settings. Very useful for when using the same
+      # service more than once.
+      #
+      # @return [Hash] default settings
+      attr :defaults
+
+      # Set defaults.
+      def defaults=(hash)
+        @defaults = hash.to_h
       end
 
       # Display detailed help for a given tool.
@@ -107,7 +142,7 @@ module Detroit
       # @return [void]
       def display_help(name)
         if not Detroit.tools.key?(name)
-          config.load_plugin(name)
+          load_plugin(name)
         end
         tool = Detroit.tools[name]
         if tool.const_defined?(:MANPAGE)
@@ -122,7 +157,7 @@ module Detroit
       # This is only used for reference purposes.
       def config_template(name)
         if not Detroit.tools.key?(name)
-          config.load_plugin(name)
+          load_plugin(name)
         end
         list = {name => Detroit.tools[name]}
         cfg = {}
@@ -136,6 +171,7 @@ module Detroit
         cfg
       end
 
+      #
       def tool_class_options(tool_class)
 
       end
@@ -148,7 +184,7 @@ module Detroit
         @active_services ||= (
           list = []
 
-          config.each do |key, opts|
+          services.each do |key, opts|
             next unless opts
             next unless opts['active'] != false
 
@@ -162,7 +198,7 @@ module Detroit
                          opts.delete('service') || key).to_s.downcase
 
             unless Detroit.tools.key?(tool_name)
-              config.load_plugin(tool_name)
+              load_plugin(tool_name)
             end
 
             tool_class = Detroit.tools[tool_name]
@@ -249,36 +285,36 @@ module Detroit
         puts "\nFinished in #{stop_time - start_time} seconds." unless quiet?
       end
 
-  =begin
-      # TODO: Deprecate service hooks?
+=begin
+    # TODO: Deprecate service hooks?
 
-      #
-      # Execute service hook for given track and destination.
-      #
-      # @todo Currently only stop counts, maybe add track subdirs.
-      #
-      def service_hooks(track, stop)
-         #hook = dir + ("#{track}/#{stop}.rb".gsub('_', '-'))
-         dir  = hook_directory
-         return unless dir
-         name = stop.to_s.gsub('_', '-')
-         hook = dir + "#{name}.rb"
-         if hook.exist?
-           status_line("hook", name.capitalize)
-           hook_tool.instance_eval(hook.read)
-         end
-      end
+    #
+    # Execute service hook for given track and destination.
+    #
+    # @todo Currently only stop counts, maybe add track subdirs.
+    #
+    def service_hooks(track, stop)
+       #hook = dir + ("#{track}/#{stop}.rb".gsub('_', '-'))
+       dir  = hook_directory
+       return unless dir
+       name = stop.to_s.gsub('_', '-')
+       hook = dir + "#{name}.rb"
+       if hook.exist?
+         status_line("hook", name.capitalize)
+         hook_tool.instance_eval(hook.read)
+       end
+    end
 
-      # Returns a project's Detroit hooks directory.
-      def hook_directory
-        project.root.glob("{.,}detroit/hooks").first
-      end
+    # Returns a project's Detroit hooks directory.
+    def hook_directory
+      project.root.glob("{.,}detroit/hooks").first
+    end
 
-      #
-      def hook_tool
-        @hook_tool ||= Tool.new(common_tool_options)
-      end
-  =end
+    #
+    def hook_tool
+      @hook_tool ||= Tool.new(common_tool_options)
+    end
+=end
 
       # TODO: Do we need verbose?
       def common_tool_options
@@ -447,6 +483,164 @@ module Detroit
       def screen_width
         ANSI::Terminal.terminal_width
       end
+
+      # TODO: Lookup project root.
+      def root
+        Pathname.new(Dir.pwd)
+      end
+
+      # -----------------------------------------------------------------------
+
+      # Load a plugin.
+      def load_plugin(name)
+        @loaded_plugins[name] ||= (
+          begin
+            require "detroit-#{name}"
+          rescue LoadError => e
+            $stderr.puts "ERROR: #{e.message.capitalize}"
+            $stderr.puts "       Perhaps `gem install detroit-#{name}`?"
+            exit -1
+          end
+          name # true ?
+        )
+      end
+
+      # Pre-load plugins using `.detroit/plugins.rb`.
+      def load_plugins
+        if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
+          require file
+        else
+          self.defaults = {}
+        end
+      end
+
+      # Load defaults from `.detroit/defaults.yml`.
+      def load_defaults
+        if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
+          self.defaults = YAML.load(File.new(file))
+        else
+          self.defaults = {}
+        end
+      end
+
+      #
+      def load_assemblies
+        assembly_filenames.each do |file|
+          load_assembly_file(file)
+        end
+
+        #if config = eval('self', TOPLEVEL_BINDING).rc_detroit
+        #  @assemblies['(rc)'] = Assembly.new(&config)
+        #  @services.merge!(assemblies['(rc)'].services)
+        #end
+
+        #if config = Detroit.rc_config
+        #  assembly = Assembly.new do
+        #    services.each do |c|
+        #      track(c.profile, &c)
+        #    end
+        #  end
+        #  @assemblies['(rc)'] = assembly
+        #  @services.merge!(assemblies['(rc)'].services)
+        #end
+      end
+
+      #
+      def load_assembly_file(file)
+        @assemblies[file] = Assembly::Script.load(File.new(file), project)
+        @services.merge!(assemblies[file].services)
+      end
+
+      # If a `Assembly` or `.assembly` file exists, then it is returned. Otherwise
+      # all `*.assembly` files are loaded. To load `*.assembly` files from another
+      # directory add the directory to config options file.
+      def assembly_filenames
+        @assembly_filenames ||= (
+          files = []
+          ## match 'Assembly' or '.assembly' file
+          files = project.root.glob("{,.,*.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
+          ## only files
+          files = files.select{ |f| File.file?(f) }
+          ## 
+          if files.empty?
+            ## match '.detroit/*.assembly' or 'detroit/*.assembly'
+            files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
+            ## match 'task/*.assembly' (OLD SCHOOL)
+            files += project.root.glob("{task,tasks}/*.#{FILE_EXTENSION}", :casefold)
+            ## only files
+            files = files.select{ |f| File.file?(f) }
+          end
+          files
+        )
+      end
+
+      #
+      #def each(&block)
+      #  services.each(&block)
+      #end
+
+      #
+      #def size
+      #  services.size
+      #end
+
+=begin
+    # If using a `Routine` file and want to import antoher file then use
+    # `import:` entry.
+    def load_detroit_file(file)
+      #@dir = File.dirname(file)
+
+      assemblies[file] = 
+
+      # TODO: can we just read the first line of the file and go from there?
+      #text = File.read(file).strip
+
+      ## if yaml vs. ruby file
+      #if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
+      #  #data = parse_detroit_file_yaml(text, file)
+      #  YAML.load(text)
+      #else
+      #  data = parse_detroit_file_ruby(text, file)
+      #end    
+
+      ## extract defaults
+      #if defaults = data.delete('defaults')
+      #  @defaults.merge!(defaults)
+      #end
+
+      ## import other files
+      #if import = data.delete('import')
+      #  [import].flatten.each do |glob|
+      #    routine(glob)
+      #  end
+      #end
+
+      ## require plugins
+      #if plugins = data.delete('plugins')
+      #  [plugins].flatten.each do |file|
+      #    require file
+      #  end
+      #end
+
+      #@services.update(data)
+    end
+=end
+
+      ## Parse a YAML-based routine.
+      #def parse_detroit_file_yaml(text, file)
+      #  YAMLParser.parse(self, text, file)
+      #end
+
+      ## Parse a Ruby-based routine.
+      #def parse_detroit_file_ruby(text, file)
+      #  RubyParser.parse(self, text, file)
+      #end
+
+      ## TODO: Should the +dir+ be relative to the file or root?
+      #def routine(glob)
+      #  pattern = File.join(@dir, glob)
+      #  Dir[pattern].each{ |f| load_detroit_file(f) }
+      #end
 
     end
 

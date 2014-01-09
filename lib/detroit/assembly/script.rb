@@ -8,16 +8,19 @@ module Detroit
     class Script
 
       # Load Assembly file.
-      def self.load(input)
-        new(:file=>input)
+      def self.load(input, project=nil)
+        new(:file=>input,:project=>project)
       end
+
+      #
+      attr :project
 
       # Hash table of services definitions.
       attr :services
 
     private
 
-      # Initialize new Assembly instance.
+      #
       def initialize(options={}, &block)
         @project = options[:project]
 

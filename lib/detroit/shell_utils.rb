@@ -1,7 +1,4 @@
 module Detroit
-  require 'detroit/tool/core_ext/shell_extensions'
-  require 'rbconfig'
-  require 'ansi/core'
 
   ##
   # ShellUtils provides the whole slew of FileUtils,
@@ -10,6 +7,14 @@ module Detroit
   # options.
   #
   module ShellUtils
+
+    #
+    def preinitialize
+      require 'rbconfig'
+      require 'ansi/core'
+      #require 'detroit/core_ext/shell_extensions'
+    end
+
     #
     def initialize_extension_defaults
       @quiet = false

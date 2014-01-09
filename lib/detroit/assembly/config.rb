@@ -15,8 +15,8 @@ module Detroit
       # File identifier used to find a project's Assembly(s).
       FILE_EXTENSION = "assembly"
 
-      # Current POM::Project object.
-      #attr :project
+      # TODO: Should this be project instead?
+      attr :root
 
       # The list of a project's assembly files.
       #
@@ -36,7 +36,9 @@ module Detroit
       attr :defaults
 
       #
-      def initialize(assembly_files=nil)
+      def initialize(root, assembly_files=nil)
+        @root = root
+
         if assembly_files && !assembly_files.empty?
           @assembly_filenames = assembly_files
         else
@@ -52,11 +54,6 @@ module Detroit
         load_plugins
         load_defaults
         load_assemblies
-      end
-
-      #
-      def root
-        @root ||= Detroit::Project.root
       end
 
       # Load a plugin.
@@ -115,7 +112,7 @@ module Detroit
 
       #
       def load_assembly_file(file)
-        @assemblies[file] = Assembly.load(File.new(file))
+        @assemblies[file] = Assembly::Script.load(File.new(file))
         @services.merge!(assemblies[file].services)
       end
 

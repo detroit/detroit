@@ -28,6 +28,7 @@ begin
 rescue LoadError
 end
 
+
 require_relative 'detroit/core_ext'
 require_relative 'detroit/project'
 require_relative 'detroit/assembly' #runner'
@@ -35,12 +36,11 @@ require_relative 'detroit/command'
 
 require_relative 'detroit/basic_utils'
 require_relative 'detroit/shell_utils'
-require_relative 'detroit/ruby_utils'
+#require_relative 'detroit/ruby_utils'
 require_relative 'detroit/email_utils'
 
 require_relative 'detroit/basic_tool'
 require_relative 'detroit/custom_tool'
-
 
 module Detroit
 
@@ -79,7 +79,7 @@ module Detroit
     return tool_class
   end
 
-  # Returns list of Assembly classes.
+  # Returns list of toolchain subclasses.
   def self.toolchains
     @toolchains ||= []
   end
@@ -165,35 +165,6 @@ module Detroit
   end
 
   ##
-  # Base class for more specific Project types.
-  #
-  class Project
-    # Initialize new instance of Project.
-    #
-    # @param [String,Pathname]
-    #   Root directory of project.
-    #
-    def initialize(root)
-      @root = Pathname.new(root)
-    end
-
-    # Root directory.
-    #
-    # @return [Pathname]
-    def root
-      @root
-    end
-
-    # Detroit configuration for project.
-    #
-    # @return [Config]
-    def config
-      @config ||= Config.new(root)
-    end
-
-  end
-
-  ##
   # The Tools module provides an isolated namespace for
   # Detoit's tools. This allows for general use of these
   # tools by other applications, simply by including them
@@ -204,9 +175,9 @@ module Detroit
 
   ##
   # The common base class for tools. Tool is a subclass of BasicTool that
-  # adds additional utility methods, in particular is adds {ShellUtils}.
+  # adds additional utility methods, in particular it adds {ShellUtils}.
   # Unless there is a specific reason not to do so, this is the class 
-  # that tool classes should subclass.
+  # that specific tool classes should subclass.
   #
   # A good tool will check to see if the state of the project is *current*
   # or not to know if some stage of the tool needs to be used or not.
@@ -215,7 +186,7 @@ module Detroit
   # file. In this case it can output a message explaining that the action
   # was not needed. For example, the RDoc tool outputs the message:
   # "RDocs are current (path/to/rdocs)". The tool can also support the 
-  # $FORCE global to force the procedure regardless.
+  # `$FORCE` global to force the procedure regardless.
   #
   class Tool < BasicTool
     include ShellUtils

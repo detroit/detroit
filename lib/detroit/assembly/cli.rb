@@ -2,6 +2,11 @@ module Detroit
 
   module Assembly
 
+    #
+    def self.cli(argv=ARGV)
+      CLI.execute(argv)
+    end
+
     ##
     # The CLI class.
     class CLI
@@ -22,8 +27,10 @@ module Detroit
       #end
 
       #
+      # argv - Command line arguments.
+      #
       def self.execute(argv=ARGV)
-        new.execute(argv)
+        new.execute(*argv)
       end
 
       # Run the command line interface.
@@ -68,9 +75,9 @@ module Detroit
         end
       end
 
-      # Returns Application given options.
+      # Returns Runner instance given options.
       def application(options={})
-        Application.new(options)
+        Runner.new(options)
       end
 
       # Command line options.

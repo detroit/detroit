@@ -3,9 +3,9 @@ require 'detroit'
 module Detroit
 
   ##
-  # The standard tool chain encompasses the set of tools typically used in 
+  # The standard toolchain encompasses the set of tools typically used in 
   # the workflow for building a software project. Since that is the primary
-  # design goal of Detroit, it is consquently the *standard* tool chain.
+  # design goal of Detroit, it is consquently the *standard* toolchain.
   #
   # A ToolChain instance is a module. To register a tool for use with the
   # tool chain simply include it into the tool class.
