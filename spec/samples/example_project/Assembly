@@ -1,9 +1,10 @@
 ---
-rdoc:
-  service: RDoc
-  exclude: [lib/xxx]
-  ignore : [x*.rb]
 
-dnote:
-  service: DNote
+#rdoc:
+#  service: RDoc
+#  exclude: [lib/xxx]
+#  ignore : [x*.rb]
+
+#dnote:
+#  service: DNote
  
