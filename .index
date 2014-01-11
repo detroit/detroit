@@ -9,11 +9,19 @@ authors:
 organizations: []
 requirements:
 - name: facets
-- name: pom
+- name: indexer
 - groups:
   - test
   development: true
   name: qed
+- groups:
+  - build
+  development: true
+  name: detroit-yard
+- groups:
+  - build
+  development: true
+  name: detroit-gem
 conflicts: []
 alternatives: []
 resources:
@@ -39,13 +47,13 @@ customs: []
 paths:
   lib:
   - lib
-created: '2007-10-10'
-summary: Software Production Mangement
-title: Detroit
-version: 0.4.0
 name: detroit
-suite: detroit
+title: Detroit
+summary: Software Production Mangement
+created: '2007-10-10'
 description: Detroit is an advanced lifecycle build system. With Detroit, build tasks
   are user defined service instances tied to stops along a track. Whenever the detroit
   console command is run, a track is followed from beginning to designated destination.
-date: '2013-03-18'
+suite: detroit
+version: 0.4.0
+date: '2013-11-24'

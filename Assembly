@@ -5,44 +5,37 @@
 #  document: |
 #    puts "Hello World!"
 
-announce:
-  service: Email
-  mailto : 
-    - transfire@gmail.com
-    - ruby-talk@ruby-lang.org
-  active : true
+#announce:
+#  service: Email
+#  mailto : 
+#    - transfire@gmail.com
+#    - ruby-talk@ruby-lang.org
+#  active : true
 
 gem:
   service  : Gem
   gemspec  : pkg/detroit.gemspec
 
-dnote:
-  title   : Source Notes
-  output  : log/notes.html
+#dnote:
+#  title   : Source Notes
+#  output  : log/notes.html
 
-qedoc:
-  active: false
-  files : spec/
-  title : Detroit
-  output: QED.rdoc
+#qedoc:
+#  active: false
+#  files : spec/
+#  title : Detroit
+#  output: QED.rdoc
 
-locat:
-  active: false
-  output: log/locat.html
+#locat:
+#  active: false
+#  output: log/locat.html
 
 yard:
-  active   : false
-  service  : yard
-  readme   : [ "README.rdoc" ]
-  topfiles : [ "[A-Z][A-Z]*.*" ]
-  files    : [ lib ]
-  exclude  : [ lib/detroit.yml ]
-  output   : doc
-  extra    : ~
+  active   : true
   priority : 1
 
-github:
-  folder: web
+#github:
+#  folder: web
 
 #rubyforge:
 #  service: forge
