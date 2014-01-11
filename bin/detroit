@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'detroit'
 begin
-  Detroit.cli(*ARGV)
+  Detroit::Assembly.cli(ARGV)
 rescue => err
   raise err #if $DEBUG
   $stderr.puts err
