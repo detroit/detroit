@@ -8,47 +8,44 @@ module Detroit
   class BasicTool
     include BasicUtils
 
-    # Call this method to register the tool with a tool chain.
-    # The provided block determines how the the tool is used
-    # in the toolchain.
+    # Call this method to register a tool with a toolchain.
+    # A tool can only belong to one toolchain, but migration
+    # adapters can be defined to allow tools from one toolchain
+    # to support another.
     #
-    # How to use the tool for a given station. Thie method must either return
-    # then name of a method to call, or a procedure to call. By default it simply
-    # returns the name of the station if a the tool repsonds to a method of the
-    # same name. If the tool does not handle the station it must return nil or
-    # false.
-    #
-    # @param [ToolChain] tool_chain
+    # @param [Toolchain] tc (optional)
+    #   Toolchain for which this tool is designed.
     #
     # @example
     #   class Foo < Tool
-    #     toolchain Standard,
-    #       :document => :save
-    #     ...
+    #     toolchain Standard
     #
-    # @return [Hash] Map of toolchain to assembly procedure.
-    def self.toolchain(tool_chain=nil, *stages)
-      @toolchain ||= {}
-
-      if tool_chain
-        map = stages.inject({}) do |h, s|
-          Hash === s ? h.update(s) : h[s] = s; h
-        end
-        @toolchain[tool_chain] = map  
-
-        Detroit.register_tool(self)
-
-        include(tool_chain)
-      else
-        @toolchain
-      end
+    # @return [Toolchain] toolchain module.
+    def self.toolchain(tc=nil)
+      #include(@toolchain = tc) if tc
+      include(tc) if tc
+      @toolchain
     end
 
-    # @yieldparam [Hash] options
-    #   Additonal information significant to the procedure.
-    #   The only option at this time it `:stop` which is the
-    #   name of the final destination for the current run.
     #
+    def self.toolchain=(tc)
+      @toolchain = tc
+    end
+
+    # Specify a supported station. This is used by the `chain?` method to
+    # determine if station is supporte by a tool. This is more convenient
+    # then overridding `chain?` method.
+    def self.station(name, alt=nil)
+      define_method("station_#{name}") do |options={}|
+		    meth = method(alt || name)
+		    case meth.arity
+		    when 0
+		      meth.call()
+		    else
+		      meth.call(options)
+		    end
+      end
+    end
 
     # Returns a Class which is a new subclass of the current class.
     #def self.factory(&block)
@@ -61,11 +58,13 @@ module Detroit
     def self.new(options={})
       tool = allocate
       ancestors.reverse_each do |anc|
-        if pre = anc.instance_method(:prequisite) rescue nil
+        next if (anc == BasicObject || anc == Object || anc == Kernel)
+        if anc.instance_methods.include?(:prerequisite)
+          pre = anc.instance_method(:prerequisite)
           pre.bind(tool).call
         end
       end
-      tool.initialize(options)
+      tool.send(:initialize, options)
       tool
     end
 
@@ -129,7 +128,7 @@ module Detroit
         if respond_to?("#{k}=")
           send("#{k}=", v) unless v.nil? #if respond_to?("#{k}=") && !v.nil?
         else
-          warn "#{self.class.name} does not respond to `#{k}`."
+          warn "#{self.class.name} does not respond to `#{k}=`."
         end
       end
     end
@@ -144,6 +143,50 @@ module Detroit
     #
     def title
       self.class.name
+    end
+
+    # Does this tool attach to the specified station?
+    #
+    # By default this simply checks for the existence of a method by the name
+    # of the station appended by a `!` mark. The exlimation mark is used to 
+    # protect against unintended name clashes --a method that was not intended
+    # to act as a chain link.
+    #
+    def assemble?(station, options={})
+      respond_to?("station_#{station}")
+    end
+
+    # TODO: deprecate this method and do in service.rb #invoke method instead?
+    def assemble(station, options={})
+      meth = method("station_#{station}")
+      case meth.arity
+      when 0
+        meth.call()
+      else
+        meth.call(options)
+      end
+    end
+
+    # Project instance.
+    def project=(project)
+      @project = project
+    end
+
+    # Project instance.
+    def project
+      @project ||= Project.factory(root)
+    end
+
+    # Shortcut to project metadata.
+    def metadata
+      project.metadata
+    end
+
+    # Project root directory.
+    #
+    # @return [Pathname]
+    def root
+      @root ||= Project.root
     end
 
   end

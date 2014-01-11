@@ -37,10 +37,10 @@ module Detroit
       end
 
       #
-      # Create new ServiceWrapper.
+      # Create new Service wrapper.
       #
       def initialize(key, service_class, options)
-        @key      = key
+        @key = key
 
         ## set service defaults
         @tracks   = nil #service_class.tracks

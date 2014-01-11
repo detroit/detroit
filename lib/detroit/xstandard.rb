@@ -3,10 +3,11 @@ require 'detroit'
 module Detroit
 
   ##
-  # The standard toolchain encompasses the set of tools typically used in 
-  # the workflow for building a software project. Since that is the primary
-  # design goal of Detroit, it is consquently the *standard* toolchain.
+  # The standard toolchain models the workflow of tools typically used in 
+  # the building a software projects. Since that is the primary design goal
+  # of Detroit, it is consquently the *standard* toolchain.
   #
+  #--
   # A ToolChain instance is a module. To register a tool for use with the
   # tool chain simply include it into the tool class.
   #
@@ -14,11 +15,12 @@ module Detroit
   #   class Faux < Tool
   #     include Standard
   #     ...
+  #++
   #
   # @todo Not sure about the name `promote` for the last stage. Is there a 
   #       better name? Perhaps `announce` or `market`?
   #
-  Standard = ToolChain.new do
+  Standard = Toolchain.new :standard do
 
     line :prepare,    # prepare services / ensure service requirements
          :generate,   # code generation

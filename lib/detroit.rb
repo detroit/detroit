@@ -36,8 +36,8 @@ require_relative 'detroit/command'
 
 require_relative 'detroit/basic_utils'
 require_relative 'detroit/shell_utils'
-#require_relative 'detroit/ruby_utils'
 require_relative 'detroit/email_utils'
+require_relative 'detroit/ruby_utils'
 
 require_relative 'detroit/basic_tool'
 require_relative 'detroit/custom_tool'
@@ -77,69 +77,6 @@ module Detroit
     Tools.const_set(name, tool_class)
     Detroit.define_tool_method(name, tool_class)
     return tool_class
-  end
-
-  # Returns list of toolchain subclasses.
-  def self.toolchains
-    @toolchains ||= []
-  end
-
-  ##
-  # An Assembly is a set of lines where each line is a list
-  # named stations.
-  #
-  class ToolChain < Module
-
-    def initialize(&block)
-      Detroit.toolchains << self
-
-      super
-
-      @lines = []
-      @tools = []
-
-      #include BasicUtils
-
-      module_eval(&block)
-    end
-
-    # Returns a Hash of track names mapped to list of stops.
-    def lines
-      @lines
-    end
-
-    # Define a chain of named links.
-    def line(*stations)
-      # TODO: raise error if stage already used ?
-      self.lines << stations.map{ |s| s.to_sym }
-    end
-
-    # Lookup a chain by a given stage name.
-    def find(station)
-      station = station.to_sym
-
-      lines.find do |line|
-        line.include?(station)
-      end
-    end
-
-    # Add tool to toolchain.
-    #
-    # @return [Class] The tool class.
-    def register_tool(tool_class)
-      @tools << tool_class
-
-      Detroit.register_tool(self, tool_class)
-    end
-
-    # When the tool chain is included into a class, register
-    # that class as a tool.
-    #
-    # @return [void] The tool class.
-    def included(tool_class)
-      register_tool(tool_class)
-    end
-
   end
 
   ##
@@ -193,3 +130,7 @@ module Detroit
   end
 
 end
+
+require_relative 'detroit/toolchain'
+#require_relative 'detroit/standard'
+

@@ -37,6 +37,7 @@ module Detroit
 
       #
       def initialize(root, assembly_files=nil)
+p "CONFIG!!!!!!!!!!!!!!!!!"
         @root = root
 
         if assembly_files && !assembly_files.empty?
@@ -112,6 +113,7 @@ module Detroit
 
       #
       def load_assembly_file(file)
+p "HERE!!!!!!!!!"
         @assemblies[file] = Assembly::Script.load(File.new(file))
         @services.merge!(assemblies[file].services)
       end

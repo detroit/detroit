@@ -1,3 +1,5 @@
+require_relative 'project'
+
 module Detroit
 
   ##
@@ -5,7 +7,8 @@ module Detroit
   #
   module RubyUtils
 
-    def preinitialize
+    # TODO: Rename to preinitialize.
+    def prerequisite
       require 'facets/platform'
     end
 
@@ -14,30 +17,12 @@ module Detroit
       Platform.local.to_s
     end
 
-    #
-    def project
-      @project ||= RubyUtils::Project.lookup
-    end
 
     ## Set project manually.
     ##
     #def project=(proj)
     #  @project = proj
     #end
-
-    # Project metadata.
-    #
-    # @return [Indexer::Metadata]
-    def metadata
-      project.metadata
-    end
-
-    # Project root directory.
-    #
-    # @return [Pathname]
-    def root
-      project.root
-    end
 
   end
 

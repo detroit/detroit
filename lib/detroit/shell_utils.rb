@@ -9,7 +9,7 @@ module Detroit
   module ShellUtils
 
     #
-    def preinitialize
+    def prerequisite
       require 'rbconfig'
       require 'ansi/core'
       #require 'detroit/core_ext/shell_extensions'

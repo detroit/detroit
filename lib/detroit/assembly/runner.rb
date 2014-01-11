@@ -70,7 +70,7 @@ module Detroit
         @skip = list.to_list.map{ |s| s.downcase }
       end
 
-      # Name of the tool chain.
+      # Name of the toolchain.
       def toolchain
         @toolchain
       end
@@ -248,9 +248,9 @@ module Detroit
           srv.preconfigure if srv.respond_to?("preconfigure")
         end
 
-        sys  = Detroit.systems[system]
+        sys = Detroit.toolchains[toolchain.to_sym]
 
-        raise "Unkown system `#{sys}'" unless system
+        raise "Unknown toolchain `#{toolchain}'" unless sys
 
         # Lookup chain by stop name.
         chain = sys.find(stop)
@@ -545,6 +545,7 @@ module Detroit
         #end
       end
 
+      # Load assembly file.
       #
       def load_assembly_file(file)
         @assemblies[file] = Assembly::Script.load(File.new(file), project)

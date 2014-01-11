@@ -11,13 +11,18 @@ module Detroit
   #
   class Project
 
+		# FIXME: Lookup root directory. How?
+		def self.root
+		  Dir.pwd 
+		end
+
     # Get a new project instance based on criteria of the project.
     # For instance a project with a `*.gemspec` is recognized as a
     # Ruby project and thus returns an instance of {RubyProject}.
     #
     # @return [Project]
     def self.factory(root)
-      if ruby_project?(root)
+      if RubyProject.project?(root)
         RubyProject.new(root)
       else
         Project.new(root)
@@ -26,7 +31,7 @@ module Detroit
 
     # Initialize new instance of Project.
     #
-    # @param [String,Pathname]
+    # @param [String,Pathname] root
     #   Root directory of project.
     #
     # @return [Pathname]
