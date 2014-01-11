@@ -1,0 +1,22 @@
+---
+revision: 2013
+type: ruby
+sources:
+- meta
+authors: []
+organizations: []
+requirements: []
+conflicts: []
+alternatives: []
+resources: []
+repositories: []
+categories: []
+copyrights: []
+customs: []
+paths:
+  lib:
+  - lib
+name: sandbox
+title: Sandbox
+version: '1.0'
+date: '2013-11-23'

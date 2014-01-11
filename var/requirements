@@ -2,3 +2,10 @@
 - facets
 - indexer
 - qed (test)
+- detroit-yard   (build)
+- detroit-gem    (build)
+#- detroit-email  (build)
+#- detroit-github (build)
+#- detroit-dnote  (build)
+#- detroit-locat  (build)
+
