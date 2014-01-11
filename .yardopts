@@ -1,0 +1,11 @@
+--title "Detroit"
+--output-dir doc
+--readme README.md
+--exclude lib/detroit.yml
+--protected
+--private
+lib
+-
+*.md
+*.txt
+
