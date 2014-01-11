@@ -10,3 +10,4 @@ work/TRASH
 work/sandbox
 QED.rdoc
 *.gem
+Gemfile.lock
