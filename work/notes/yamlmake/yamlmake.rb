@@ -1,3 +1,14 @@
+#
+# resources:
+#   email:
+#     class: Email
+#
+# actions:
+#   email:
+#     - resource: email
+#       action: send
+#       mailto: bar@foomail.com
+#
 
 resources = configuation('resources')
 actions   = configuation('actions')
