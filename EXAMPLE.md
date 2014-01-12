@@ -1,51 +1,51 @@
 # Detroit
 
-Detroit's main configuration file is called an *assembly*. Assemblies define the 
-<i>service instances</i> that a project will utilize. 
+Detroit's main configuration file is called a *toolchain*. Toolchains define the 
+specific *tool instances* that a project will utilize. 
 
-Assemblies can be written in a few different formats thanks to the flexibility
+Toolchains can be written in a few different formats thanks to the flexibility
 of Ruby. All formats are equivalent. Which format you use is strictly a regard
 of your personal preference.
 
 ## Ruby-based Detroit
 
-### Service Method Notation
+### Tool Method Notation
 
-Traditionally a Ruby-based assembly file is dominated by calls to the `service`
+Traditionally a Ruby-based assembly file is dominated by calls to the `tool`
 method with an optional service instance name and a setter block.
 
 ```ruby
-  service :myself do |s|
-    s.service = :Announce
-    s.mailto  = "transfire@gmail.com"
-    s.active  = true
+  tool :myself do |s|
+    s.type   = :Announce
+    s.mailto = "transfire@gmail.com"
+    s.active = true
   end
 
-  service :rdoc do |r|
+  tool :rdoc do |r|
     r.include = [ 'lib', '[A-Z]*' ]
     r.exclude = [ 'Schedule' ]
   end
 ```
 
-If no `service` setting is given, it is assumed to be same as the service instance name.
-In the above example `rdoc` is taken to be both the service desired and the name of
+If no `type` setting is given, it is assumed to be same as the tool instance name.
+In the above example `rdoc` is taken to be both the tool desired and the name of
 this particular instance.
 
 A few years ago, Sinatra came along and popularized the use of the `#set` method.
-A simple addition to Detroit's assembly file parser now allows for the slightly
+A simple addition to Detroit's assembly file parser now allows for this arguably 
 cleaner notation:
 
 ```ruby
-  service :myself do
-    set :service, :Announce
+  tool :myself do
+    set :type, :Announce
     set :mailto, "transfire@gmail.com"
     set :priority, -1
     set :active, true
   end
 
-  service :rdoc do
+  tool :rdoc do
     set :include, [ 'lib', '[A-Z]*' ]
-    set :exclude, [ 'Schedule' ]
+    set :exclude, [ 'Gemfile' ]
   end
 ```
 
@@ -69,15 +69,15 @@ Almost all options have standard defaults so it is often possible for a service
 definition to be written as simply as:
 
 ```ruby
-  service :rdoc
+  tool :rdoc
 ```
 
-### Service Name Notation
+### Tool Name Notation
 
-Thanks to some straight-forward meta-programming, a Ruby-based assembly file can
-be written in a more concise notation by using the name of the service class as a
+Thanks to some straight-forward meta-programming, a Ruby-based toolchain file can
+be written in a more concise notation by using the name of the tool class as a
 method. This can be followed by a settings block, as with the above examples,
-or passed a <i>settings hash</i>. In which case an assembly file can look like this:
+or passed a *settings hash*. In which case an toolchain file can look like this:
 
 ```ruby
   Announce   :mailto   => "ruby-talk@ruby-lang.org",
@@ -88,8 +88,7 @@ or passed a <i>settings hash</i>. In which case an assembly file can look like t
              :priority => -1
              :active   => true
 
-  Gem        :types    => ['gem'],
-             :spec     => false,
+  Gem        :spec     => false,
              :active   => true
 
   DNote      :priority => -1,
@@ -105,12 +104,12 @@ or passed a <i>settings hash</i>. In which case an assembly file can look like t
 
   Rubyforge  :sitemap  => {
                :site => name
-             }
+             },
              :active   => false
 ```
 
 This format is convenient in that it reduced the amount of extraneous syntax
-need to define service instances. With Ruby 1.9 it can be even more conisce
+needed to define tool instances. With Ruby 1.9+ it can be even more conisce
 using the new Hash syntax.
 
 ```ruby
@@ -120,32 +119,29 @@ using the new Hash syntax.
     active:   true
 ```
 
-But you might want to hold off on that a couple of years until Ruby 1.8 is pretty
-much shot and buried ;)
 
-## YAML-based Assembly Files
+## YAML-based Toolchains
 
 We have saved the most concise notation for last. The YAML format is
-essentially the same as the traditional Ruby format except that
-the main key provides the service instance name and the service is a
-setting which defaults to the name. Also, notice the start document indicator
-(<code>---</code>). The indicator is NECESSARY for the Detroit to be
-recognized as YAML, rather than Ruby.
+essentially the same as the traditional Ruby format except that the
+main key provides the tool instance name and the type is a setting
+which defaults to the name. Also, notice the start document indicator
+(`---`). This indicator MUST BE USED for the file to be recognized
+as YAML, rather than Ruby.
 
 ```yaml
   ---
 
   announce:
-    mailto: "transfire@gmail.com"
+    mailto: transfire@gmail.com
     active: true
 
   myself:
-    service: Announce
-    mailto:  "transfire@gmail.com"
-    active:  true
+    type:   Announce
+    mailto: transfire@gmail.com
+    active: true
 
   gem:
-    types:    ['gem']
     autospec: false
     active:   true
 
@@ -154,8 +150,8 @@ recognized as YAML, rather than Ruby.
     active:   true
 
   rdoc:
-    include: [ lib, '[A-Z]*' ]
-    exclude: [ Schedule ]
+    include: [ lib, [A-Z]* ]
+    exclude: [ Gemfile ]
 
   ri:
     exclude: []
@@ -169,10 +165,11 @@ recognized as YAML, rather than Ruby.
     active: true
 
   rubyforge:
-    service: forge
+    type: forge
     sitemap:
       site: <% name %>
     active: false
+```
 
 As we can see in the last entry, the YAML format also supports ERB and provides
 access to project metadata via the ERB's binding.
