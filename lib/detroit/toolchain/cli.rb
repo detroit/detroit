@@ -36,8 +36,8 @@ module Detroit
       # Run the command line interface.
       def initialize
         @options = {
-          :assemblies => [], 
-          :toolchain  => nil,
+          :toolchains => [], 
+          :assembly   => nil,
           :trace      => nil, 
           :trial      => nil,
           :debug      => nil,
@@ -86,8 +86,8 @@ module Detroit
       end
 
       #
-      def assemblies
-        @options[:assemblies]
+      def toolchains
+        @options[:toolchains]
       end
 
       #
@@ -106,13 +106,13 @@ module Detroit
       end
 
       #
-      def toolchain
-        @options[:toolchain]
+      def assembly
+        @options[:assembly]
       end
 
       #
-      def toolchain=(name)
-        @options[:toolchain] = name.to_sym
+      def assembly=(name)
+        @options[:assembly] = name.to_sym
       end
 
       #
@@ -169,8 +169,8 @@ module Detroit
       def option_parser
         usage_banner
         option_multitask
-        option_toolchain
         option_assembly
+        option_toolchain
         option_skip
         option_trial
         option_trace
@@ -205,22 +205,22 @@ module Detroit
       end
 
       # @return [void]
-      def option_toolchain
-        usage.on('-t', '--toolchain=NAME', "Select toolchain. Default is `standard'.") do |tc|
-          self.toolchain = tc
+      def option_assembly
+        usage.on('-a', '--assembly=NAME', "Select assembly. Default is `standard'.") do |a|
+          self.assembly = a
         end
       end
 
       # @return [void]
-      def option_assembly
-        usage.on('-a', '--assembly [FILE]', 'Use specific assembly file(s).') do |file|
-          self.assemblies << file
+      def option_toolchain
+        usage.on('-t', '--toolchain [FILE]', 'Use specific toolchain file(s).') do |file|
+          self.toolchains << file
         end
       end
 
       # @return [void]
       def option_skip
-        usage.on('-S', '--skip [SERVICE]', 'Skip a service.') do |skip|
+        usage.on('-S', '--skip [NAME]', 'Skip a tool instance.') do |skip|
           self.skip << skip
         end
       end
