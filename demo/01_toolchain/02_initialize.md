@@ -1,9 +1,9 @@
 ## initialize
 
-Load schedule text written in Ruby DSL.
+Load toolchain script written in Ruby DSL.
 
     check do |ruby|
-      Detroit::Schedule.new(ruby)
+      Detroit::Toolchain::Script.new(ruby)
     end
 
     ok <<-HERE
@@ -18,19 +18,19 @@ Load schedule text written in Ruby DSL.
       end
     HERE
 
-Load schedule from a file written in Ruby DSL.
+Load toolchain script from a file written in Ruby DSL.
 
     check do |file|
       path = File.join(root_dir, file)
-      Detroit::Schedule.new(File.new(path))
+      Detroit::Toolchain::Script.new(File.new(path))
     end
 
-    ok 'samples/example_schedule.rb'
+    ok 'samples/example_toolchain.rb'
 
-Load schedule text written in YAML"
+Load toolchain script text written in YAML"
 
     check do |yaml|
-      Detroit::Schedule.new(yaml)
+      Detroit::Toolchain::Script.new(yaml)
     end
 
     ok <<-HERE
@@ -46,12 +46,12 @@ Load schedule text written in YAML"
         active : false
     HERE
 
-Load schedule from a file written in YAML.
+Load toolchain script from a file written in YAML.
 
     check do |file|
       path = File.join(root_dir, file)
-      Detroit::Schedule.new(File.new(path))
+      Detroit::Toolchain::Script.new(File.new(path))
     end
 
-    ok 'samples/example_schedule.yml'
+    ok 'samples/example_toolchain.yml'
 
