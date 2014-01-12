@@ -1,17 +1,17 @@
 #require_relative 'core_ext'
 require_relative 'script'
-require_relative 'config'
-require_relative 'service'
+#require_relative 'config'
+require_relative 'worker'
 
 module Detroit
 
-  module Assembly
+  module Toolchain
 
     # Configuration directory name (most likely a hidden "dot" directory).
     DIRECTORY = "detroit"
 
     # File identifier used to find a project's Assembly file(s).
-    FILE_EXTENSION = "assembly"
+    FILE_EXTENSION = "toolchain"
 
     # The default assembly system to use.
     DEFAULT_TOOLCHAIN = :standard
@@ -30,12 +30,13 @@ module Detroit
 
         self.skip       = options[:skip]
         self.quiet      = options[:quiet]
-        self.toolchain  = options[:toolchain]
+        self.assembly   = options[:assembly]
         self.multitask  = options[:multitask]
-        self.assembly_files = options[:assemblies]
 
-        @assemblies = {}
-        @services   = {}
+        self.toolchain_files = options[:toolchains]
+
+        @toolchains = {}
+        @tools      = {}
         @defaults   = {}
 
         @loaded_plugins = {}
@@ -47,7 +48,7 @@ module Detroit
       def load_up
         load_plugins
         load_defaults
-        load_assemblies
+        load_toolchains
       end
 
       # Quiet mode?
@@ -60,7 +61,7 @@ module Detroit
         @quiet = !!boolean
       end
 
-      # List of service names to skip.
+      # List of tool names to skip.
       def skip
         @skip
       end
@@ -70,14 +71,14 @@ module Detroit
         @skip = list.to_list.map{ |s| s.downcase }
       end
 
-      # Name of the toolchain.
-      def toolchain
-        @toolchain
+      # Name of the assembly (default is `:standard`).
+      def assembly
+        @assembly
       end
 
       # Set assembly system to use.
-      def toolchain=(name)
-        @toolchain = (name || DEFAULT_TOOLCHAIN)
+      def assembly=(name)
+        @assembly = (name || DEFAULT_TOOLCHAIN).to_sym
       end
 
       # Multitask mode?
@@ -95,14 +96,14 @@ module Detroit
         end
       end
 
-      # List of assembly files to use.
-      def assembly_files
-        @assembly_files
+      # List of toolchain files to use.
+      def toolchain_files
+        @toolchain_files
       end
 
       #
-      def assembly_files=(files)
-        @assembly_files = files
+      def toolchain_files=(files)
+        @toolchain_files = files
       end
 
       # Provides access to the Project instance via `Detroit.project` class method.
@@ -112,18 +113,18 @@ module Detroit
 
       # Detroit configuration.
       #def config
-      #  @config ||= Assembly::Config.new(root, assembly_files)
+      #  @config ||= Toolchain::Config.new(root, assembly_files)
       #end
 
       # The list of a project's assembly files.
       #
       # @return [Array<String>] routine files
-      attr :assemblies
+      attr :toolchains
 
-      # Service configurations from Assembly or *.assembly files.
+      # Tool configurations from Assembly or *.assembly files.
       # 
       # @return [Hash] service settings
-      attr :services
+      attr :tools
 
       # Custom service defaults. This is a mapping of service names to
       # default settings. Very useful for when using the same
@@ -153,49 +154,48 @@ module Detroit
         end
       end
 
-      # Generates a configuration template for particular tool.
+      # Generates a configuration template for any particular tool.
       # This is only used for reference purposes.
+      #
       def config_template(name)
         if not Detroit.tools.key?(name)
           load_plugin(name)
         end
         list = {name => Detroit.tools[name]}
         cfg = {}
-        list.each do |srv_name, srv_class|
-          attrs = srv_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
+        list.each do |tool_name, tool_class|
+          attrs = tool_class.options #instance_methods.select{ |m| m.to_s =~ /\w+=$/ && !%w{taguri=}.include?(m.to_s) }
           atcfg = attrs.inject({}){ |h, m| h[m.to_s.chomp('=')] = nil; h }
-          atcfg['service'] = srv_class.basename.downcase
+          atcfg['tool']    = tool_class.basename.downcase
           atcfg['active']  = false
-          cfg[srv_name] = atcfg
+          cfg[tool_name] = atcfg
         end
         cfg
       end
 
       #
       def tool_class_options(tool_class)
-
       end
 
-      # Active services are services defined in assembly files and do not
-      # have their active setting turned off.
+      # Active workers are tool instance configured in a project's assembly files
+      # that do not have their active setting turned off.
       #
-      # Returns Array of active services.
-      def active_services(group=nil)
-        @active_services ||= (
+      # @return [Array<Worker>] Active worker instances.
+      def active_workers(track=nil)
+        @active_workers ||= (
           list = []
 
-          services.each do |key, opts|
+          tools.each do |key, opts|
             next unless opts
             next unless opts['active'] != false
 
-            if opts['group']
-              next unless opts['group'].include?((group || 'main').to_s)
+            if opts['track']
+              next unless opts['track'].include?((track || 'main').to_s)
             end
 
             next if skip.include?(key.to_s)
 
-            tool_name = (opts.delete('tool')    ||
-                         opts.delete('service') || key).to_s.downcase
+            tool_name = (opts.delete('tool') || key).to_s.downcase
 
             unless Detroit.tools.key?(tool_name)
               load_plugin(tool_name)
@@ -211,9 +211,9 @@ module Detroit
               options = options.merge(common_tool_options)
               options = options.merge(opts)
 
-              list << Service.new(key, tool_class, options) #script,
+              list << Worker.new(key, tool_class, options) #script,
             #else
-            #  warn "Service #{tool_class} is not available."
+            #  warn "Worker #{tool_class} is not available."
             end
           end
 
@@ -231,26 +231,26 @@ module Detroit
         end
       end
 
-      # Run up to the specified group and stop.
+      # Run up to the specified track stop.
       def run(stop)
         raise "Malformed destination -- #{stop}" unless /^\w+\:{0,1}\w+$/ =~ stop
 
-        group, stop = stop.split(':')
-        group, stop = 'main', group unless stop
+        track, stop = stop.split(':')
+        track, stop = 'main', track unless stop
 
-        group = group.to_sym
+        track = track.to_sym
         stop  = stop.to_sym if stop
 
         # TODO: Using #preconfigure as part of the protocol should probably change.
 
-        # prime the services (so as to fail early)
-        active_services(group).each do |srv|
-          srv.preconfigure if srv.respond_to?("preconfigure")
+        ## prime the workers (so as to fail early)
+        active_workers(track).each do |w|
+          w.preconfigure if w.respond_to?("preconfigure")
         end
 
-        sys = Detroit.toolchains[toolchain.to_sym]
+        sys = Detroit.assemblies[assembly.to_sym]
 
-        raise "Unknown toolchain `#{toolchain}'" unless sys
+        raise "Unknown assembly `#{assembly}'" unless sys
 
         # Lookup chain by stop name.
         chain = sys.find(stop)
@@ -273,15 +273,16 @@ module Detroit
 
         chain.each do |run_stop|
           next if skip.include?("#{run_stop}")  # TODO: Should we really allow skipping stops?
-          #service_hooks(name, ('pre_' + run_stop.to_s).to_sym)
-          service_calls(group, ('pre_' + run_stop.to_s).to_sym)
-          service_calls(group, run_stop)
-          service_calls(group, ('aft_' + run_stop.to_s).to_sym)
-          #service_hooks(name, ('aft_' + run_stop.to_s).to_sym)
+          #tool_hooks(name, ('pre_' + run_stop.to_s).to_sym)
+          tool_calls(track, ('pre_' + run_stop.to_s).to_sym)
+          tool_calls(track, run_stop)
+          tool_calls(track, ('aft_' + run_stop.to_s).to_sym)
+          #tool_hooks(name, ('aft_' + run_stop.to_s).to_sym)
           break if stop == run_stop
         end
 
         stop_time = Time.now
+
         puts "\nFinished in #{stop_time - start_time} seconds." unless quiet?
       end
 
@@ -328,43 +329,51 @@ module Detroit
         }
       end
 
-      # Make service calls.
+      # Make tool calls.
       #
-      # This groups services by priority b/c groups of the same priority can be run
+      # This groups workers by priority b/c groups of the same priority can be run
       # in parallel if the multitask option is on.
-      def service_calls(group, stop)
-        prioritized_services = active_services(group).group_by{ |srv| srv.priority }.sort_by{ |k,v| k }
-        prioritized_services.each do |priority, services|
-          ## remove any services specified by the --skip option on the comamndline
-          #services = services.reject{ |srv| skip.include?(srv.key.to_s) }
+      #
+      def tool_calls(track, stop)
+        prioritized_workers = active_workers(track).group_by{ |w| w.priority }.sort_by{ |k,v| k }
+        prioritized_workers.each do |priority, workers|
+          ## remove any workers specified by the --skip option on the comamndline
+          #workers = workers.reject{ |w| skip.include?(w.key.to_s) }
 
           ## only servies that are on the track
-          #services = services.select{ |srv| srv.tracks.nil? or srv.tracks.include?(track.to_s) }
+          #workers = workers.select{ |w| w.tracks.nil? or w.tracks.include?(w.to_s) }
 
-          tasklist = services.map{ |srv| [srv, group, stop] }
+          worklist = workers.map{ |w| [w, track, stop] }
+
           if multitask?
-            results = Parallel.in_processes(tasklist.size) do |i|
-              run_a_service(*tasklist[i])
+            results = Parallel.in_processes(worklist.size) do |i|
+              run_a_worker(*worklist[i])
             end
           else
-            tasklist.each do |args|
-              run_a_service(*args)
+            worklist.each do |args|
+              run_a_worker(*args)
             end
           end
         end
       end
 
+      # Invoke a worker given the worker, track and stop name.
       #
-      # Run a service given the service, track and stop name.
+      # @todo Provide more robust options, rather than just `@destination`.
       #
-      def run_a_service(srv, group, stop)
-        if srv.stop?(stop, @destination)
+      # TODO: Rename this method.
+      #
+      # @return [void]
+      def run_a_worker(worker, track, stop)
+        if target = worker.stop?(stop, @destination)
+          target = stop if TrueClass === target
+          label  = stop.to_s.gsub('_', '-').capitalize
           if options[:trace] #options[:verbose]
-            status_line("#{srv.key.to_s} (#{srv.class}##{stop})", stop.to_s.gsub('_', '-').capitalize)
+            status_line("#{worker.key.to_s} (#{worker.class}##{target})", label)
           else
-            status_line("#{srv.key.to_s}", stop.to_s.gsub('_', '-').capitalize)
+            status_line("#{worker.key.to_s}", label)
           end
-          srv.invoke(stop, @destination)
+          worker.invoke(target, @destination)
         end
       end
 
@@ -392,7 +401,7 @@ module Detroit
         end
       end
 
-      # Print a status line, which consists of service name on the left
+      # Print a status line, which consists of worker name on the left
       # and stop name on the right.
       #
       def status_line(left, right='')
@@ -479,7 +488,9 @@ module Detroit
         end
       end
 
+      # Get the terminals width.
       #
+      # @return [Integer]
       def screen_width
         ANSI::Terminal.terminal_width
       end
@@ -524,49 +535,52 @@ module Detroit
       end
 
       #
-      def load_assemblies
-        assembly_filenames.each do |file|
-          load_assembly_file(file)
+      def load_toolchains
+        toolchain_filenames.each do |file|
+          load_toolchain_file(file)
         end
 
         #if config = eval('self', TOPLEVEL_BINDING).rc_detroit
-        #  @assemblies['(rc)'] = Assembly.new(&config)
-        #  @services.merge!(assemblies['(rc)'].services)
+        #  @toolchains['(rc)'] = Script.new(&config)
+        #  @tools.merge!(toolchains['(rc)'].tools)
         #end
 
         #if config = Detroit.rc_config
-        #  assembly = Assembly.new do
-        #    services.each do |c|
+        #  tc = Script.new do
+        #    tools.each do |c|
         #      track(c.profile, &c)
         #    end
         #  end
-        #  @assemblies['(rc)'] = assembly
-        #  @services.merge!(assemblies['(rc)'].services)
+        #  @toolchains['(rc)'] = tc
+        #  @tools.merge!(toolchains['(rc)'].tools)
         #end
       end
 
-      # Load assembly file.
+      # Load toolchain file.
       #
-      def load_assembly_file(file)
-        @assemblies[file] = Assembly::Script.load(File.new(file), project)
-        @services.merge!(assemblies[file].services)
+      def load_toolchain_file(file)
+        @toolchains[file] = Toolchain::Script.load(File.new(file), project)
+        @tools.merge!(toolchains[file].tools)
       end
 
-      # If a `Assembly` or `.assembly` file exists, then it is returned. Otherwise
-      # all `*.assembly` files are loaded. To load `*.assembly` files from another
+      # If a `Toolchain` or `.toolchain` file exists, then it is returned. Otherwise
+      # all `*.toolchain` files are loaded. To load `*.toolchain` files from another
       # directory add the directory to config options file.
-      def assembly_filenames
-        @assembly_filenames ||= (
+      #
+      # TODO: Simplify this to just `toolchain`.
+      #
+      def toolchain_filenames
+        @toolchain_filenames ||= (
           files = []
-          ## match 'Assembly' or '.assembly' file
+          ## match 'Toolchain' or '.toolchain' file
           files = project.root.glob("{,.,*.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
           ## only files
           files = files.select{ |f| File.file?(f) }
           ## 
           if files.empty?
-            ## match '.detroit/*.assembly' or 'detroit/*.assembly'
-            files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
-            ## match 'task/*.assembly' (OLD SCHOOL)
+            ## match '.detroit/*.toolchain' or 'detroit/*.toolchain'
+            #files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
+            ## match 'task/*.toolchain' (OLD SCHOOL)
             files += project.root.glob("{task,tasks}/*.#{FILE_EXTENSION}", :casefold)
             ## only files
             files = files.select{ |f| File.file?(f) }
@@ -577,12 +591,12 @@ module Detroit
 
       #
       #def each(&block)
-      #  services.each(&block)
+      #  tools.each(&block)
       #end
 
       #
       #def size
-      #  services.size
+      #  tools.size
       #end
 
 =begin

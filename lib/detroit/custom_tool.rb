@@ -6,29 +6,30 @@ module Detroit
   # when the need is simple.
   #
   class CustomTool < BasicTool
-    # TODO: Should ShellUtils be included here?
+
+    # Make is easy for custom tools to work with the shell.
     include ShellUtils
 
-    # Default track(s) in which this plugin operates.
-    DEFAULT_TRACK = "main"
+    # Default group(s) in which this plugin operates.
+    DEFAULT_GROUP = "main"
 
-    # Which track(s) to run this custom plugin.
-    attr_accessor :track
+    # Which group(s) to run this custom plugin.
+    attr_accessor :group
 
-    # Special writer to allow single track or a list of tracks.
-    def track=(val)
-      @track = val.to_list #[val].flatten
+    # Special writer to allow single group or a list of groups.
+    def group=(val)
+      @group = val.to_list #[val].flatten
     end
 
-    # Plural alias for #track.
-    alias_accessor :tracks, :track
+    # Plural alias for #group.
+    alias_accessor :groups, :group
 
-    alias_accessor :on, :track
+    alias_accessor :on, :group
 
-    private
+  private
 
     SPECIAL_OPTIONS = %w{
-      service track tracks on active priority project 
+      service group groups on active priority project 
       trial trace verbose force quiet
     }
 
@@ -44,8 +45,8 @@ module Detroit
       options.each do |stop, script|
         # skip specific names used for configuration
         next if SPECIAL_OPTIONS.include? stop
-        # remaining options are names of track stops
-        #tracks.each do |t|
+        # remaining options are names of group stops
+        #groups.each do |t|
           src = %{
             def station_#{stop}
               #{script}
@@ -58,7 +59,7 @@ module Detroit
 
     # Set initial attribute defaults.
     def initialize_defaults
-      @track = [DEFAULT_TRACK]
+      @group = [DEFAULT_GROUP]
     end
 
     #
@@ -96,7 +97,7 @@ module Detroit
     end
 
     def inspect
-      "#<Custom @on=#{track.join(',')}>"
+      "#<Custom @group=#{group.join(',')}>"
     end
 
   end

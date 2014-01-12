@@ -147,18 +147,21 @@ module Detroit
 
     # Does this tool attach to the specified station?
     #
-    # By default this simply checks for the existence of a method by the name
-    # of the station appended by a `!` mark. The exlimation mark is used to 
-    # protect against unintended name clashes --a method that was not intended
-    # to act as a chain link.
+    # By default this checks for the definition of a public method in the tool
+    # class with the same name as the station. Note, it does not use `respond_to?`
+    # to do this, which would find any such method in the class hierarchy. Instead
+    # it specifically checks for a definition in the tool class itself. This
+    # helps prevent potential accidental name clashes between support methods
+    # and station names.
     #
     def assemble?(station, options={})
-      respond_to?("station_#{station}")
+      self.class.public_methods(false).include?(station.to_sym)
     end
 
-    # TODO: deprecate this method and do in service.rb #invoke method instead?
+    #
     def assemble(station, options={})
-      meth = method("station_#{station}")
+      meth = method(station)
+
       case meth.arity
       when 0
         meth.call()

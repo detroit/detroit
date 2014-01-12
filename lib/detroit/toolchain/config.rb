@@ -1,6 +1,8 @@
+raise "DEPRECATED"
+
 module Detroit
 
-  module Assembly
+  module Toolchain
 
     # Detroit configuration.
     #
@@ -23,14 +25,14 @@ module Detroit
       # @return [Array<String>] routine files
       attr :assemblies
 
-      # Service configurations from Assembly or *.assembly files.
+      # Worker configurations from Assembly or *.assembly files.
       # 
-      # @return [Hash] service settings
-      attr :services
+      # @return [Hash]
+      attr :workers
 
-      # Service defaults. This is a mapping of service names to
+      # Worker defaults. This is a mapping of worker names to
       # default settings. Very useful for when using the same
-      # service more than once.
+      # worker more than once.
       #
       # @return [Hash] default settings
       attr :defaults
@@ -47,7 +49,7 @@ p "CONFIG!!!!!!!!!!!!!!!!!"
         end
 
         @assemblies = {}
-        @services   = {}
+        @workers    = {}
         @defaults   = {}
 
         @loaded_plugins = {}
@@ -97,7 +99,7 @@ p "CONFIG!!!!!!!!!!!!!!!!!"
 
         #if config = eval('self', TOPLEVEL_BINDING).rc_detroit
         #  @assemblies['(rc)'] = Assembly.new(&config)
-        #  @services.merge!(assemblies['(rc)'].services)
+        #  @workers.merge!(assemblies['(rc)'].workers)
         #end
 
         #if config = Detroit.rc_config
@@ -107,7 +109,7 @@ p "CONFIG!!!!!!!!!!!!!!!!!"
         #    end
         #  end
         #  @assemblies['(rc)'] = assembly
-        #  @services.merge!(assemblies['(rc)'].services)
+        #  @workers.merge!(assemblies['(rc)'].workers)
         #end
       end
 
@@ -115,7 +117,7 @@ p "CONFIG!!!!!!!!!!!!!!!!!"
       def load_assembly_file(file)
 p "HERE!!!!!!!!!"
         @assemblies[file] = Assembly::Script.load(File.new(file))
-        @services.merge!(assemblies[file].services)
+        @workers.merge!(assemblies[file].workers)
       end
 
       # Set defaults.
@@ -148,12 +150,12 @@ p "HERE!!!!!!!!!"
 
       #
       def each(&block)
-        services.each(&block)
+        workers.each(&block)
       end
 
       #
       def size
-        services.size
+        workers.size
       end
 
 =begin
@@ -194,7 +196,7 @@ p "HERE!!!!!!!!!"
       #  end
       #end
 
-      #@services.update(data)
+      #@workers.update(data)
     end
 =end
 

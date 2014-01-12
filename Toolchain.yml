@@ -1,20 +1,20 @@
 ---
 #foo:
-#  service: custom
+#  tool: custom
 #  track: main
 #  document: |
 #    puts "Hello World!"
 
 #announce:
-#  service: Email
-#  mailto : 
+#  tool: Email
+#  mailto: 
 #    - transfire@gmail.com
 #    - ruby-talk@ruby-lang.org
-#  active : true
+#  active: true
 
 gem:
-  service  : Gem
-  gemspec  : pkg/detroit.gemspec
+  tool: Gem
+  gemspec: .gemspec
 
 #dnote:
 #  title   : Source Notes
@@ -38,7 +38,7 @@ yard:
 #  folder: web
 
 #rubyforge:
-#  service: forge
+#  tool: forge
 #  sitemap:
 #    site: detroit
 #  active: false

@@ -1,6 +1,6 @@
 module Detroit
 
-  module Assembly
+  module Toolchain
 
     # Assembly::Script models an *Assembly file* with it's collection of 
     # tool configurations.
@@ -12,11 +12,11 @@ module Detroit
         new(:file=>input,:project=>project)
       end
 
-      #
+      # Project instance.
       attr :project
 
-      # Hash table of services definitions.
-      attr :services
+      # Hash table of tool configuration.
+      attr :tools
 
     private
 
@@ -24,7 +24,7 @@ module Detroit
       def initialize(options={}, &block)
         @project = options[:project]
 
-        @services = {}
+        @tools = {}
 
         if options[:file]
           initialize_file(options[:file])
@@ -44,11 +44,11 @@ module Detroit
         when '.rb'
           instance_eval(@file.read, @file.path)
         when '.yml', '.yaml'
-          @services = YAML.load(erb(@file.read))
+          @tools = YAML.load(erb(@file.read))
         else
           text = @file.read
           if /^---/ =~ text
-            @services = YAML.load(erb(text))
+            @tools = YAML.load(erb(text))
           else
             instance_eval(text, @file.path)
           end
@@ -57,6 +57,7 @@ module Detroit
 
     public
 
+      # Ecapsulate a set of tools within a specific track.
       #  
       def track(name, &block)
         @_track = name
@@ -64,53 +65,53 @@ module Detroit
         @_track = nil
       end
 
-      # Define a service.
-      def service(name, settings={}, &block)
+      # Configure a tool.
+      #
+      def tool(name, settings={}, &block)
         settings[:track] = @_track if @_track
         if block
           block_context = BlockContext.new(&block)
           settings.update(block_context.settings)
         end
-        @services[name.to_s] = settings.rekey(&:to_s)
+        @tools[name.to_s] = settings.rekey(&:to_s)
       end
 
-      alias_method :tool, :service
-
-      #
-      #
-      #
+      # Define a custom tool. A custom tool has no tool class.
+      # Instead, the configuration itself defines the procedure.
       #
       def custom(name, &block)
         context  = CustomContext.new(&block)
         settings = context.settings
-        @services[name.to_s] = settings.rekey(&:to_s)
+        @tools[name.to_s] = settings.rekey(&:to_s)
       end
 
       # Access to project metadata.
+      #
+      # FIXME: Use factory method
       def project
         @project ||= Project.new
       end
 
     private
 
-      # Capitalized service names called as methods
-      # can also define a service.
+      # Capitalized tool names called as methods
+      # can also define a tool.
       def method_missing(sym, *args, &block)
-        service_class = sym.to_s
-        case service_class
+        tool_class = sym.to_s
+        case tool_class
         when /^[A-Z]/
           if Hash === args.last
-            args.last[:service] = service_class
+            args.last[:tool] = tool_class
           else
-            args << {:service=>service_class}
+            args << {:tool=>tool_class}
           end
           case args.first
           when String, Symbol
             name = args.first
           else
-            name = service_class.to_s.downcase
+            name = tool_class.to_s.downcase
           end
-          service(name, *args, &block)
+          tool(name, *args, &block)
         else
           super(sym, *args, &block)
         end

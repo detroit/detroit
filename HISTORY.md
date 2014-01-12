@@ -1,6 +1,25 @@
-= RELEASE HISTORY
+# RELEASE HISTORY
 
-== 0.3.0 / 2012-04-02
+## 0.4.0 / 2014-01-11
+
+This release modifies the interface change of the previous release
+slightly, such that the `assemble` methods do not have to be manually
+defined, although it is still recommended. By default the base class
+definition will look to see if a method of the same name as a station
+is defined in the tool class. Note this differs from using `respond_to?`
+which will return `true` if the method was defined in any part of the
+class hierarchy. Instead the method must be defined directly in the class.
+This helps ensure there are no accidental name clashes between support
+code and assembly stations (which was the purpose of the original
+`station_` that was deprecated in the last release). 
+
+Changes:
+
+* No longer *requires* a custom `assemble?` method for each tool.
+* Improved organization of code.
+
+
+## 0.3.0 / 2012-04-02
 
 This significant release changes the interface for tools to tap
 into the assembly line. Where as before specially named methods
@@ -13,10 +32,10 @@ Changes:
 
 * Simplify the assembly interface for tools.
 * Tool classes ending in Base are abstract base class.
-* Add #on as alias from #track.
+* Add #on as alias for #track.
 
 
-== 0.2.0 / 2011-10-19
+## 0.2.0 / 2011-10-19
 
 The big news here is that Detroit configuration files are now
 called _assembly_ files, and no longer _schedule_ files. The
@@ -36,7 +55,7 @@ Changes:
 * Fix --config output.
 
 
-== 0.1.0 / 2011-06-29
+## 0.1.0 / 2011-06-29
 
 Detroit is a lifecycle build system for Ruby. Detroit was originally
 called Syckle, and was developed and used in house for Rubyworks projects

@@ -1,6 +1,6 @@
 module Detroit
 
-  module Assembly
+  module Toolchain
 
     #
     def self.cli(argv=ARGV)
