@@ -1,12 +1,17 @@
 module Detroit
 
+  # Execute a sepcific detroit tool.
+  #
+  # Note this uses the executable gem to automatically
+  # "cli-ify" a tool class.
+  #
   def self.tool_exec(*argv)
     require 'executable'
 
-    tool, link = argv.shift.split(':')     
+    tool, stop = argv.shift.split(':')     
 
     raise "No tool specified." unless tool
-    raise "No tool link specified." unless link
+    raise "No tool stop specified." unless stop
 
     begin
       require "detroit-#{tool}"
@@ -32,10 +37,10 @@ module Detroit
       alias :h! :help!
 
       define_method(:call) do |*args|
-        if assemble?(link.to_sym)
-          assemble(link.to_sym)
+        if assemble?(stop.to_sym)
+          assemble(stop.to_sym)
         else
-          raise "#{tool} does not know how to #{link}."
+          raise "#{tool} does not know how to #{stop}."
         end
       end
     end

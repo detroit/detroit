@@ -32,12 +32,12 @@ end
 require_relative 'detroit/core_ext'
 require_relative 'detroit/project'
 require_relative 'detroit/toolchain' #runner
-require_relative 'detroit/command'
+require_relative 'detroit/exec'
 
-require_relative 'detroit/utils/basic_utils'
-require_relative 'detroit/utils/shell_utils'
-require_relative 'detroit/utils/email_utils'
-require_relative 'detroit/utils/ruby_utils'
+require_relative 'detroit/basic_utils'
+require_relative 'detroit/shell_utils'
+require_relative 'detroit/email_utils'
+require_relative 'detroit/ruby_utils'
 
 require_relative 'detroit/basic_tool'
 require_relative 'detroit/custom_tool'
