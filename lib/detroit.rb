@@ -22,12 +22,11 @@ require 'indexer'       # Indexer is used to provide project metadata.
 require 'ansi/terminal' # The ANSI gem is used to colorize terminal output.
 require 'ansi/code'
 
-# The parallel gem is used to (optionally) multitask services.
+# The optional parallel gem is used to multitask services.
 begin
   require 'parallel'
 rescue LoadError
 end
-
 
 require_relative 'detroit/core_ext'
 require_relative 'detroit/project'
@@ -79,6 +78,7 @@ module Detroit
     return tool_class
   end
 
+=begin
   ##
   # Per-project configuration for detroit.
   #
@@ -100,12 +100,12 @@ module Detroit
       @data[s.to_s]
     end
   end
+=end
 
   ##
-  # The Tools module provides an isolated namespace for
-  # Detoit's tools. This allows for general use of these
-  # tools by other applications, simply by including them
-  # into their own namespace.
+  # The Tools module provides an isolated namespace for Detoit's tools.
+  # This allows for general use of these tools by other applications,
+  # simply by including the Detroit::Tools module into their own namespace.
   #
   module Tools
   end

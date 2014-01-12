@@ -41,22 +41,21 @@ module Detroit
 
         @loaded_plugins = {}
 
-        load_up
-      end
-
-      #
-      def load_up
-        load_plugins
-        load_defaults
+        #load_plugins
+        #load_defaults
         load_toolchains
       end
 
       # Quiet mode?
+      #
+      # @return [Boolean]
       def quiet?
         @quiet
       end
 
       # Set quiet mode.
+      #
+      # @return [Boolean]
       def quiet=(boolean)
         @quiet = !!boolean
       end
@@ -516,23 +515,23 @@ module Detroit
         )
       end
 
-      # Pre-load plugins using `.detroit/plugins.rb`.
-      def load_plugins
-        if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
-          require file
-        else
-          self.defaults = {}
-        end
-      end
+      ## Pre-load plugins using `.detroit/plugins.rb`.
+      #def load_plugins
+      #  if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
+      #    require file
+      #  else
+      #    self.defaults = {}
+      #  end
+      #end
 
-      # Load defaults from `.detroit/defaults.yml`.
-      def load_defaults
-        if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
-          self.defaults = YAML.load(File.new(file))
-        else
-          self.defaults = {}
-        end
-      end
+      ## Load defaults from `.detroit/defaults.yml`.
+      #def load_defaults
+      #  if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
+      #    self.defaults = YAML.load(File.new(file))
+      #  else
+      #    self.defaults = {}
+      #  end
+      #end
 
       #
       def load_toolchains

@@ -43,3 +43,6 @@ yard:
 #    site: detroit
 #  active: false
 
+#rdoc:
+#  template: redfish
+

@@ -63,6 +63,12 @@ module Detroit
 
         option_parser.parse!(argv)
 
+        if argv.empty?
+          # TODO: What about a defualt destination, e.g. test?
+          $stderr.puts "No assembly destination given."
+          exit -1
+        end
+
         if $DEBUG
           application(options).start(*argv)
         else
