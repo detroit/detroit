@@ -7,7 +7,7 @@ Toolchains can be written in a few different formats thanks to the flexibility
 of Ruby. All formats are equivalent. Which format you use is strictly a regard
 of your personal preference.
 
-## Ruby-based Detroit
+## Ruby-based Toolchain Scripts
 
 ### Tool Method Notation
 
@@ -23,7 +23,7 @@ method with an optional service instance name and a setter block.
 
   tool :rdoc do |r|
     r.include = [ 'lib', '[A-Z]*' ]
-    r.exclude = [ 'Schedule' ]
+    r.exclude = [ 'Gemfile' ]
   end
 ```
 
@@ -98,7 +98,7 @@ or passed a *settings hash*. In which case an toolchain file can look like this:
              :active   => true
 
   RDoc       :include  => [ 'lib', '[A-Z]*' ],
-             :exclude  => [ 'Schedule' ]
+             :exclude  => [ 'Gemfile' ]
 
   Testrb     :active   => true
 
@@ -120,7 +120,7 @@ using the new Hash syntax.
 ```
 
 
-## YAML-based Toolchains
+## YAML-based Toolchain Scripts
 
 We have saved the most concise notation for last. The YAML format is
 essentially the same as the traditional Ruby format except that the
@@ -150,8 +150,8 @@ as YAML, rather than Ruby.
     active:   true
 
   rdoc:
-    include: [ lib, [A-Z]* ]
-    exclude: [ Gemfile ]
+    include: [ "lib", "[A-Z]*" ]
+    exclude: [ "Gemfile" ]
 
   ri:
     exclude: []
