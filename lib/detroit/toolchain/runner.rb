@@ -194,19 +194,33 @@ module Detroit
 
             next if skip.include?(key.to_s)
 
-            tool_name = (opts.delete('tool') || key).to_s.downcase
-
-            unless Detroit.tools.key?(tool_name)
-              load_plugin(tool_name)
+            if opts.key?('tool') && opts.key?('tooltype')
+              abort "Two tool types given for `#{key}'."
             end
 
-            tool_class = Detroit.tools[tool_name]
+            # TODO: Ultimately deprecate completely.
+            if opts.key?('service')
+              abort "The `service` setting has been renamed. " +
+                    "Use `tool` or `tooltype` for `#{key}' instead."
+            end
 
-            abort "Unknown tool `#{tool_name}'." unless tool_class
+            tool_type = (
+              opts.delete('tooltype') || 
+              opts.delete('tool')  ||
+              key
+            ).to_s.downcase
+
+            unless Detroit.tools.key?(tool_type)
+              load_plugin(tool_type)
+            end
+
+            tool_class = Detroit.tools[tool_type]
+
+            abort "Unknown tool `#{tool_type}'." unless tool_class
 
             if tool_class.available? #(project)
               #opts = inject_environment(opts) # TODO: DEPRECATE
-              options = defaults[tool_name.downcase].to_h
+              options = defaults[tool_type.downcase].to_h
               options = options.merge(common_tool_options)
               options = options.merge(opts)
 

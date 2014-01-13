@@ -12,13 +12,13 @@ of your personal preference.
 ### Tool Method Notation
 
 Traditionally a Ruby-based assembly file is dominated by calls to the `tool`
-method with an optional service instance name and a setter block.
+method with an optional instance name and a setter block.
 
 ```ruby
   tool :myself do |s|
-    s.type   = :Announce
-    s.mailto = "transfire@gmail.com"
-    s.active = true
+    s.tooltype = :announce
+    s.mailto   = "transfire@gmail.com"
+    s.active   = true
   end
 
   tool :rdoc do |r|
@@ -27,9 +27,10 @@ method with an optional service instance name and a setter block.
   end
 ```
 
-If no `type` setting is given, it is assumed to be same as the tool instance name.
-In the above example `rdoc` is taken to be both the tool desired and the name of
-this particular instance.
+If no `tooltype` setting is given, it is assumed to be same as the tool
+instance name. In the above example `rdoc` is taken to be both the type
+of tool and the name of the particular instance. (Note that simply `tool`
+can be used as a shorthand for `tooltype`.)
 
 A few years ago, Sinatra came along and popularized the use of the `#set` method.
 A simple addition to Detroit's assembly file parser now allows for this arguably 
@@ -37,7 +38,7 @@ cleaner notation:
 
 ```ruby
   tool :myself do
-    set :type, :Announce
+    set :tooltype, :Announce
     set :mailto, "transfire@gmail.com"
     set :priority, -1
     set :active, true
@@ -52,7 +53,7 @@ cleaner notation:
 The `#set` method also allows for nested set blocks to define hash values.
 
 ```ruby
-  service :rubyforge do
+  tool :rubyforge do
     set :sitemap do
       set :site, name
     end
@@ -137,7 +138,7 @@ as YAML, rather than Ruby.
     active: true
 
   myself:
-    type:   Announce
+    tool:   Announce
     mailto: transfire@gmail.com
     active: true
 
@@ -171,7 +172,10 @@ as YAML, rather than Ruby.
     active: false
 ```
 
-As we can see in the last entry, the YAML format also supports ERB and provides
+Notice we used the shorthand `tool` instead of `tooltype` for the myself accnoune
+tool instance. The effect is the same.
+
+Also notice the last entry, the YAML format supports ERB and provides
 access to project metadata via the ERB's binding.
 
 With the Ruby format it is easy enough to load external library using
