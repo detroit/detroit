@@ -4,7 +4,7 @@
 [Report Issue](http://github.com/rubyworks/detroit/issues) /
 [Development](http://github.com/rubyworks/detroit)
 
-[![Build Status](https://secure.travis-ci.org/rubyworks/detroit.png)](http://travis-ci.org/rubyworks/detroit) 
+[![Build Status](http://travis-ci.org/rubyworks/detroit.png)](http://travis-ci.org/rubyworks/detroit) 
 [![Gem Version](https://badge.fury.io/rb/detroit.png)](http://badge.fury.io/rb/detroit) &nbsp; &nbsp;
 [![Flattr Me](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/324911/Rubyworks-Ruby-Development-Fund)
 

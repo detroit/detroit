@@ -9,7 +9,7 @@ if ENV['local']
   gem "detroit-github", :path => "../detroit-github"
   gem "detroit-locat",  :path => "../detroit-locat"
   gem "detroit-qed",    :path => "../detroit-qed"
-  gem "detroit-ronn",    :path => "../detroit-ronn"
+  gem "detroit-ronn",   :path => "../detroit-ronn"
   gem "detroit-yard",   :path => "../detroit-yard"
 end
 
