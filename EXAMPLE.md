@@ -1,24 +1,23 @@
 # Detroit
 
-Detroit's main configuration file is called a *toolchain*. Toolchains define the 
-specific *tool instances* that a project will utilize. 
-
-Toolchains can be written in a few different formats thanks to the flexibility
-of Ruby. All formats are equivalent. Which format you use is strictly a regard
-of your personal preference.
+Detroit's main configuration file is called *toolchain*. Toolchains define
+the  specific *tool instances* that a project will utilize. Toolchains can
+be written in a few different formats thanks to the flexibility of Ruby. All
+formats are equivalent. Which format you use is strictly a regard of your
+personal preference.
 
 ## Ruby-based Toolchain Scripts
 
 ### Tool Method Notation
 
-Traditionally a Ruby-based assembly file is dominated by calls to the `tool`
+Traditionally a Ruby-based toolchain script is dominated by calls to the `tool`
 method with an optional instance name and a setter block.
 
 ```ruby
   tool :myself do |s|
-    s.tooltype = :announce
-    s.mailto   = "transfire@gmail.com"
-    s.active   = true
+    s.class  = :Announce
+    s.mailto = "transfire@gmail.com"
+    s.active = true
   end
 
   tool :rdoc do |r|
@@ -27,14 +26,16 @@ method with an optional instance name and a setter block.
   end
 ```
 
-If no `tooltype` setting is given, it is assumed to be same as the tool
-instance name. In the above example `rdoc` is taken to be both the type
-of tool and the name of the particular instance. (Note that simply `tool`
-can be used as a shorthand for `tooltype`.)
+In the first example the tool is given an arbitrary *tool name* and the
+*tool type* is given via the `class` setting. (This setting can also be
+called just `tool`, they are synonymous, but `class` reads better when used 
+with the tool method.) If the tool type is not specified, it is assumed to
+be same as the tool instance name. In the above example `rdoc` is taken to
+be both the type of tool and the name of the particular instance.
 
-A few years ago, Sinatra came along and popularized the use of the `#set` method.
-A simple addition to Detroit's assembly file parser now allows for this arguably 
-cleaner notation:
+A few years ago, Sinatra came along and popularized the use of the `#set`
+method. A simple addition to Detroit's toolchain evaluator allows for this
+arguably cleaner notation:
 
 ```ruby
   tool :myself do
@@ -62,12 +63,12 @@ The `#set` method also allows for nested set blocks to define hash values.
 ```
 
 The setting `active` defaults to `true` if not given, so is not strictly
-needed in the above examples, but it is convenient to have in case you
-ever need to deactivate a service temporarily --more convenient than
-remarking out a whole section. 
+needed in the above examples, but it is convenient to have if a tool ever
+needs to be deactivate temporarily --more convenient than remarking out a
+whole tool entry. 
 
-Almost all options have standard defaults so it is often possible for a service
-definition to be written as simply as:
+Almost all options have standard defaults so it is sometimes possible for
+a tool entry to be written as simply as:
 
 ```ruby
   tool :rdoc
@@ -75,10 +76,10 @@ definition to be written as simply as:
 
 ### Tool Name Notation
 
-Thanks to some straight-forward meta-programming, a Ruby-based toolchain file can
-be written in a more concise notation by using the name of the tool class as a
-method. This can be followed by a settings block, as with the above examples,
-or passed a *settings hash*. In which case an toolchain file can look like this:
+Thanks to some straight-forward meta-programming, a Ruby-based toolchain can
+also be written in a more concise notation by using the name of the tool's class
+as a method. This can be followed by a settings block, as with the above examples,
+or passed a *settings hash*. In which case an toolchain script can look like:
 
 ```ruby
   Announce   :mailto   => "ruby-talk@ruby-lang.org",
@@ -109,15 +110,15 @@ or passed a *settings hash*. In which case an toolchain file can look like this:
              :active   => false
 ```
 
-This format is convenient in that it reduced the amount of extraneous syntax
+This format is convenient in that it reduces the amount of extraneous syntax
 needed to define tool instances. With Ruby 1.9+ it can be even more conisce
 using the new Hash syntax.
 
 ```ruby
   Announce :myself,
-    mailto:   "transfire@gmail.com",
-    priority: -1
-    active:   true
+    mailto: "transfire@gmail.com",
+    priority: -1,
+    active: true
 ```
 
 
@@ -172,8 +173,8 @@ as YAML, rather than Ruby.
     active: false
 ```
 
-Notice we used the shorthand `tool` instead of `tooltype` for the myself accnoune
-tool instance. The effect is the same.
+Notice we used the the alternate setting `tool` instead of `class` for the 
+`myself` announce tool instance. The effect is exactly the same.
 
 Also notice the last entry, the YAML format supports ERB and provides
 access to project metadata via the ERB's binding.

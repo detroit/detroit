@@ -205,7 +205,7 @@ module Detroit
             end
 
             tool_type = (
-              opts.delete('tooltype') || 
+              opts.delete('class') || 
               opts.delete('tool')  ||
               key
             ).to_s.downcase
