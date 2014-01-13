@@ -26,10 +26,10 @@ conflicts: []
 alternatives: []
 resources:
 - type: home
-  uri: http://rubyworks.github.com/detroit
+  uri: http://detroit.github.com
   label: Homepage
 - type: code
-  uri: http://github.com/rubyworks/detroit
+  uri: http://github.com/detroit/detroit
   label: Source Code
 - type: mail
   uri: http://groups.google.com/rubyworks-mailinglist
