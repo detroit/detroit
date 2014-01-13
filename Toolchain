@@ -13,26 +13,27 @@
 #  active: true
 
 gem:
-  tool: Gem
   gemspec: .gemspec
 
-#dnote:
-#  title   : Source Notes
-#  output  : log/notes.html
+dnote:
+  title: Source Notes
+  output:
+    - log/notes.md
+    - log/notes.html
 
-#qedoc:
-#  active: false
-#  files : spec/
-#  title : Detroit
-#  output: QED.rdoc
+qedoc:
+  active: false
+  files : demo/
+  title : Detroit
+  output: QED.md
 
-#locat:
-#  active: false
-#  output: log/locat.html
+locat:
+  active: true
+  output: log/locat.html
 
 yard:
-  active   : true
-  priority : 1
+  active: true
+  priority: -1
 
 #github:
 #  folder: web
