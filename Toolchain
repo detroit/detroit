@@ -1,10 +1,4 @@
 ---
-#foo:
-#  tool: custom
-#  track: main
-#  document: |
-#    puts "Hello World!"
-
 #announce:
 #  tool: Email
 #  mailto: 
@@ -33,7 +27,10 @@ locat:
 
 yard:
   active: true
-  priority: -1
+  priority: 1
+
+ronn:
+  active: true
 
 #github:
 #  folder: web
@@ -46,4 +43,11 @@ yard:
 
 #rdoc:
 #  template: redfish
+
+# We're just doing this for testing purposes.
+hello:
+  tool: custom
+  track: main
+  document: |
+    puts "Hello World!"
 
