@@ -1,8 +1,15 @@
 # RELEASE HISTORY
 
-## 0.4.0 / 2014-01-11
+## 0.4.0 / 2014-01-14
 
-This release modifies the interface change of the previous release
+The big change of this release is the swapping of terminology of
+`assembly` and `toolchain`. What was once called an "Assembly" is
+now called a "Toolchain" and vice-versa. This, when thought through,
+makes much more sense. But it has a big effect on every project that
+uses Detroit in that a project's `Assembly` file must be renamed 
+to `Toolchain`.
+
+This release also modifies the interface change of the previous release
 slightly, such that the `assemble` methods do not have to be manually
 defined, although it is still recommended. By default the base class
 definition will look to see if a method of the same name as a station
@@ -15,8 +22,9 @@ code and assembly stations (which was the purpose of the original
 
 Changes:
 
-* No longer *requires* a custom `assemble?` method for each tool.
-* Improved organization of code.
+* Rename `assembly` to `toolchain` and vice-versa.
+* No longer *requires* custom `assemble` methods for each tool.
+* Improved code organization and plenty of bug fixes.
 
 
 ## 0.3.0 / 2012-04-02
