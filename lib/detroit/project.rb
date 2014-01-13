@@ -47,12 +47,16 @@ module Detroit
     # @return [Pathname]
     def initialize(root)
       @root = Pathname.new(root)
+      @log  = @root + 'log'
     end
 
     # Root directory.
     #
     # @return [Pathname]
     attr :root
+
+    # Log directory. By defaul this is `{root}/log/`.
+    attr :log
 
     # Detroit configuration for project.
     #
@@ -66,7 +70,7 @@ module Detroit
     # Access to project metadata. Metadata is handled by Indexer.
     # If a specific project type has different needs then override
     # this method. The return value should work akin to an OpenStruct
-    # instance.
+    # instance, and if possible it should respond to `#to_h` method.
     #
     # @return [Indexer::Metadata]
     def metadata
@@ -94,7 +98,7 @@ module Detroit
     #       cases, there may be a few outlays.
     #
 		def self.project?(root)
-		  Dir["{*,}.gemspec"].first
+		  Dir[File.join(root, "{*,}.gemspec")].first
 		end
 
     #
@@ -102,13 +106,29 @@ module Detroit
     #  super(root)
     #end
 
-    # @todo Import gemspec if no .index file exists.
+    #
     def metadata
-      super
+      @metadata ||= (
+        if index_file
+          Indexer::Metadata.open(root)
+        elsif file = gemspec_file
+          Indexer::Metadata.from_gemspec(file)
+        else
+          super # TODO: what metadata?
+        end
+      )
+    end
+
+    #
+    def index_file
+		  Dir[File.join(root, ".index")].first
+    end
+
+    #
+    def gemspec_file
+		  Dir[File.join(root, "{*,}.gemspec")].first
     end
 
   end
 
 end
-
-
