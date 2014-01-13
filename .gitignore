@@ -4,6 +4,8 @@
 .yardoc
 doc/
 log/
+man/*.html
+man/*.1
 pkg/*.gem
 web/
 work/TRASH
@@ -11,3 +13,4 @@ work/sandbox
 QED.rdoc
 *.gem
 Gemfile.lock
+
