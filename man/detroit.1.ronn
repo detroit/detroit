@@ -1,40 +1,40 @@
-detroit(1) - ruby life-cycle build tool
-=======================================
+detroit(1) - a life-cycle build tool
+====================================
 
 ## DESCRIPTION
 
-Detroit is a software production management aid for Ruby developers.
-Detroit utilizes a life-cycle methodology to help developers prepare and
-release Ruby software in a clear, repeatable, linear fashion.
+Detroit is a software production management aid. Detroit utilizes a
+life-cycle methodology to help developers prepare and release software
+in a clear, repeatable, linear fashion. While programmed in and well
+suited to Ruby projects, Detroit can utilized for any build requirements.
 
 
 ## USAGE
 
-To utilize Detroit add an `Assembly` or `*.assembly` file to your project's
-root directory. In this file add instantiation of service tools, configured
-to your projects build requirements. Assembly files can be written in YAML
-or Ruby.
+To utilize Detroit add a `Toolchain` file to your project's root directory.
+In this file add instantiation of tools, configured to your projects build
+requirements. Toolchain files can be written in YAML or Ruby.
 
-For example to generate RDoc's for a project, a service might be defined:
+For example to generate RDoc's for a project, a tool might be defined:
 
     rdoc:
-      service: rdoc
+      tool: rdoc
       files:
         - lib
         - '[A-Z]*.*'
       main: README.md
 
 See the online [User Guide](http://wiki.rubyworks.github.com/detroit) for
-more details on creating assembly files.
+more details on creating toolchain files.
 
-Once an assembly file is in place, the `detroit` command line tool can be used
-to invoke the service. For example, to generate documentation:
+Once a toolchain file is in place, the `detroit` command line tool can be used
+to invoke the tools. For example, to generate documentation:
 
     $ detroit document
 
-This will run through all standard stops up to and include the document stop.
-Since the RDoc service we setup above defines document job, it would be run
-in due course.
+This will run through all standard stations up to and including `document`.
+Since the RDoc tool we configured above defines a document job, it would be
+run in due course.
 
 
 ## OPTIONS
@@ -50,8 +50,8 @@ These are the available options for the `detroit` command line tool.
   * `-s`, `--system=NAME`
      Select assembly system. Default is 'standard'.
 
-  * `-a`, `--assembly=FILE`
-     Use specific assembly file(s).
+  * `-t`, `--toolchain=FILE`
+     Use specific toolchain file(s).
 
   * `-F`, `--force`
      Force operations.
@@ -93,7 +93,7 @@ These are the available options for the `detroit` command line tool.
 
 ## COPYRIGHT
 
-Copyright (c) Thomas Sawyer, 2011
+Copyright (c) 2011 Rubyworks
 
-Detroit is distributable in accordance with the terms of the GPL v.3 license.
+Detroit is distributable in accordance with the terms of the GPL v3 license.
 
