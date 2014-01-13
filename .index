@@ -56,4 +56,4 @@ description: Detroit is an advanced lifecycle build system. With Detroit, build 
   console command is run, a track is followed from beginning to designated destination.
 suite: detroit
 version: 0.4.0
-date: '2013-11-24'
+date: '2014-01-13'

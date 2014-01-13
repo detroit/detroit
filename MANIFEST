@@ -13,7 +13,6 @@ lib/detroit/core_ext/to_list.rb
 lib/detroit/core_ext/to_yamlfrag.rb
 lib/detroit/core_ext/unfold_paragraphs.rb
 lib/detroit/core_ext.rb
-lib/detroit/custom_tool.rb
 lib/detroit/email_utils.rb
 lib/detroit/exec.rb
 lib/detroit/project.rb

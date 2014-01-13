@@ -1,10 +1,9 @@
 ---
-#announce:
-#  tool: Email
-#  mailto: 
-#    - transfire@gmail.com
-#    - ruby-talk@ruby-lang.org
-#  active: true
+announce:
+  tool: Email
+  mailto: 
+    - transfire@gmail.com
+    - ruby-talk@ruby-lang.org
 
 gem:
   gemspec: .gemspec
