@@ -39,7 +39,7 @@ require_relative 'detroit/email_utils'
 require_relative 'detroit/ruby_utils'
 
 require_relative 'detroit/basic_tool'
-require_relative 'detroit/custom_tool'
+
 
 module Detroit
 
