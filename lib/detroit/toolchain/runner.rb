@@ -224,6 +224,8 @@ module Detroit
               options = options.merge(common_tool_options)
               options = options.merge(opts)
 
+              options['project'] = project
+
               list << Worker.new(key, tool_class, options) #script,
             #else
             #  warn "Worker #{tool_class} is not available."
@@ -333,7 +335,6 @@ module Detroit
       # TODO: Do we need verbose?
       def common_tool_options
         {
-          'project' => project,
           'trial'   => options[:trial],
           'trace'   => options[:trace],
           'quiet'   => options[:quiet],

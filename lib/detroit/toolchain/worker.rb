@@ -12,7 +12,7 @@ module Detroit
     class Worker
 
       attr :key
-      attr :groups
+      attr :track
       attr :priority
       attr :active
       attr :tool
@@ -27,8 +27,8 @@ module Detroit
 
       # Set the tracks a service will be available on.
       #
-      def groups=(list)
-        @groups = list.to_list
+      def track=(list)
+        @track = list.to_list
       end
 
       #
@@ -42,12 +42,12 @@ module Detroit
         @key = key
 
         ## set defaults
-        @groups   = nil
+        @track    = nil
         @priority = 0
         @active   = true
 
         self.active   = options.delete('active')   if !options['active'].nil?
-        self.groups   = options.delete('groups')   if options.key?('groups')
+        self.track    = options.delete('track')    if options.key?('track')
         self.priority = options.delete('priority') if options.key?('priority')
 
         @tool = tool_class.new(options)

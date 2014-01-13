@@ -57,6 +57,9 @@ module Detroit
     # @return [BasicTool]
     def self.new(options={})
       tool = allocate
+      # TODO: I don't exactly like this, but how else to get project
+      #        into the tool befire running `#prerequiste`?
+      tool.project = options['project']
       ancestors.reverse_each do |anc|
         next if (anc == BasicObject || anc == Object || anc == Kernel)
         if anc.instance_methods.include?(:prerequisite)
@@ -71,10 +74,10 @@ module Detroit
     # Returns list of writer method names. This is used for reference.
     #
     # @return [Array<String>]
-    def self.options(service_class=self)
-      i = service_class.ancestors.index(Tool)
+    def self.options(tool_class=self)
+      i = tool_class.ancestors.index(Tool)
       m = []
-      service_class.ancestors[0..i].each do |sc|
+      tool_class.ancestors[0..i].each do |sc|
         sc.public_instance_methods(false).each do |pm|
           next if pm !~ /\w+=$/
           next if %w{taguri=}.include?(m.to_s)
@@ -177,7 +180,7 @@ module Detroit
 
     # Project instance.
     def project
-      @project ||= Project.factory(root)
+      @project #||= Project.factory(root)
     end
 
     # Shortcut to project metadata.
@@ -189,7 +192,7 @@ module Detroit
     #
     # @return [Pathname]
     def root
-      @root ||= Project.root
+      @project.root
     end
 
   end
