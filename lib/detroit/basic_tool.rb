@@ -8,44 +8,44 @@ module Detroit
   class BasicTool
     include BasicUtils
 
-    # Call this method to register a tool with a toolchain.
-    # A tool can only belong to one toolchain, but migration
-    # adapters can be defined to allow tools from one toolchain
-    # to support another.
+    # Call this method to register a tool with an assembly.
+    # A tool can only belong to one assembly, but migration
+    # adapters can be defined to allow tools from one assembly
+    # to work with another (COMING SOON).
     #
-    # @param [Toolchain] tc (optional)
-    #   Toolchain for which this tool is designed.
+    # @param [Assembly] a (optional)
+    #   Assembly for which this tool is designed.
     #
     # @example
-    #   class Foo < Tool
-    #     toolchain Standard
+    #   class SomeTool < Tool
+    #     assembly Standard
     #
-    # @return [Toolchain] toolchain module.
-    def self.toolchain(tc=nil)
-      #include(@toolchain = tc) if tc
-      include(tc) if tc
-      @toolchain
+    # @return [Assembly] Assembly module.
+    def self.assembly(a=nil)
+      #include(@assembly = a) if a
+      include(a) if a
+      @assembly
     end
 
     #
-    def self.toolchain=(tc)
-      @toolchain = tc
+    def self.assembly=(a)
+      @assembly = a
     end
 
-    # Specify a supported station. This is used by the `chain?` method to
-    # determine if station is supporte by a tool. This is more convenient
-    # then overridding `chain?` method.
-    def self.station(name, alt=nil)
-      define_method("station_#{name}") do |options={}|
-		    meth = method(alt || name)
-		    case meth.arity
-		    when 0
-		      meth.call()
-		    else
-		      meth.call(options)
-		    end
-      end
-    end
+    ## Specify a supported station. This is used by the `chain?` method to
+    ## determine if station is supporte by a tool. This is more convenient
+    ## then overridding `chain?` method.
+    #def self.station(name, alt=nil)
+    #  define_method("station_#{name}") do |options={}|
+		#    meth = method(alt || name)
+		#    case meth.arity
+		#    when 0
+		#      meth.call()
+		#    else
+		#      meth.call(options)
+		#    end
+    #  end
+    #end
 
     # Returns a Class which is a new subclass of the current class.
     #def self.factory(&block)

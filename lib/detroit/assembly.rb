@@ -58,7 +58,7 @@ module Detroit
     #
     # @return [Class] The tool class.
     def register_tool(tool_class)
-      tool_class.toolchain = self
+      tool_class.assembly = self
       @tools << tool_class
       Detroit.register_tool(tool_class)
     end
