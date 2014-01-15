@@ -39,6 +39,16 @@ module Detroit
       end
     end
 
+    #
+    def self.memo
+      @memo ||= {}
+    end
+
+    # Override new in order to memoize projects based on root directory.
+    def self.new(root)
+      memo[root] ||= super(root)
+    end
+
     # Initialize new instance of Project.
     #
     # @param [String,Pathname] root

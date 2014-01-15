@@ -57,9 +57,9 @@ module Detroit
     # @return [BasicTool]
     def self.new(options={})
       tool = allocate
-      # TODO: I don't exactly like this, but how else to get project
-      #        into the tool befire running `#prerequiste`?
-      tool.project = options['project']
+      # set root before running prereqs
+      tool.root = options['root']
+      # run prerequsites
       ancestors.reverse_each do |anc|
         next if (anc == BasicObject || anc == Object || anc == Kernel)
         if anc.instance_methods.include?(:prerequisite)
@@ -67,7 +67,9 @@ module Detroit
           pre.bind(tool).call
         end
       end
+      # now initialize
       tool.send(:initialize, options)
+      # return tool instance
       tool
     end
 
@@ -174,13 +176,8 @@ module Detroit
     end
 
     # Project instance.
-    def project=(project)
-      @project = project
-    end
-
-    # Project instance.
     def project
-      @project #||= Project.factory(root)
+      @project ||= Project.factory(root || Dir.pwd)
     end
 
     # Shortcut to project metadata.
@@ -192,7 +189,11 @@ module Detroit
     #
     # @return [Pathname]
     def root
-      @project.root
+      @root
+    end
+
+    def root=(dir)
+      @root = dir
     end
 
   end
