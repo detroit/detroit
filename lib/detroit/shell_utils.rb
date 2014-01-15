@@ -87,7 +87,7 @@ module Detroit
     end
 
     def stderr
-      @stdout ||= $stderr
+      @stderr ||= $stderr
     end
 
     #
