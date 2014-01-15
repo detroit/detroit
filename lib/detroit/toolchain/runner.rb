@@ -10,8 +10,8 @@ module Detroit
     # Configuration directory name (most likely a hidden "dot" directory).
     DIRECTORY = "detroit"
 
-    # File identifier used to find a project's Assembly file(s).
-    FILE_EXTENSION = "toolchain"
+    # File identifier used to find a project's Assembly/Toolchain file.
+    FILE_NAME = "{assembly,toolchain}"
 
     # The default assembly system to use.
     DEFAULT_TOOLCHAIN = :standard
@@ -224,9 +224,10 @@ module Detroit
               options = options.merge(common_tool_options)
               options = options.merge(opts)
 
-              options['project'] = project
+              # tools need to know the project's root directory
+              options['root'] = root
 
-              list << Worker.new(key, tool_class, options) #script,
+              list << Worker.new(key, tool_class, options)
             #else
             #  warn "Worker #{tool_class} is not available."
             end
@@ -391,6 +392,108 @@ module Detroit
         end
       end
 
+ 		  # File glob for finding root of a project.
+      #
+      # @return [String]
+		  def root_pattern
+		    "{.index,.git,.hg,.svn,_darcs}"
+		  end
+	 
+		  # Project root directory.
+      #
+      # @return [Pathname]
+		  def root
+		    @root ||= (
+		      home = File.expand_path('~')
+          dir  = Dir.pwd
+		      path = nil
+
+		      while dir != home && dir != '/'
+		        if Dir[root_pattern].first
+		          path = dir
+		          break
+		        end
+		        dir = File.dirname(dir)
+		      end
+
+		      Pathname.new(path || Dir.pwd)
+		    )
+		  end
+
+      # Load a plugin.
+      #
+      def load_plugin(name)
+        @loaded_plugins[name] ||= (
+          begin
+            require "detroit-#{name}"
+          rescue LoadError => e
+            $stderr.puts "ERROR: #{e.message.capitalize}"
+            $stderr.puts "       Perhaps `gem install detroit-#{name}`?"
+            exit -1
+          end
+          name # true ?
+        )
+      end
+
+      ## Pre-load plugins using `.detroit/plugins.rb`.
+      #def load_plugins
+      #  if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
+      #    require file
+      #  else
+      #    self.defaults = {}
+      #  end
+      #end
+
+      ## Load defaults from `.detroit/defaults.yml`.
+      #def load_defaults
+      #  if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
+      #    self.defaults = YAML.load(File.new(file))
+      #  else
+      #    self.defaults = {}
+      #  end
+      #end
+
+      #
+      def load_toolchains
+        load_script(script_file)
+
+        #if config = eval('self', TOPLEVEL_BINDING).rc_detroit
+        #  @toolchains['(rc)'] = Script.new(&config)
+        #  @tools.merge!(toolchains['(rc)'].tools)
+        #end
+
+        #if config = Detroit.rc_config
+        #  tc = Script.new do
+        #    tools.each do |c|
+        #      track(c.profile, &c)
+        #    end
+        #  end
+        #  @toolchains['(rc)'] = tc
+        #  @tools.merge!(toolchains['(rc)'].tools)
+        #end
+      end
+
+      # Load the detroit script.
+      def load_script(file)
+        script = Toolchain::Script.load(File.new(file), project)
+        @tools.merge!(script.tools)
+      end
+
+      # Find the project's detroit configuration script.
+      def script_file
+        root.glob("{.,}#{FILE_NAME}{,.rb,.yml,.yaml}", :casefold).first
+      end
+
+      #
+      #def each(&block)
+      #  tools.each(&block)
+      #end
+
+      #
+      #def size
+      #  tools.size
+      #end
+
       # --- Print Methods -------------------------------------------------------
 
       def header_message
@@ -508,168 +611,6 @@ module Detroit
       def screen_width
         ANSI::Terminal.terminal_width
       end
-
-      # TODO: Lookup project root.
-      def root
-        Pathname.new(Dir.pwd)
-      end
-
-      # -----------------------------------------------------------------------
-
-      # Load a plugin.
-      def load_plugin(name)
-        @loaded_plugins[name] ||= (
-          begin
-            require "detroit-#{name}"
-          rescue LoadError => e
-            $stderr.puts "ERROR: #{e.message.capitalize}"
-            $stderr.puts "       Perhaps `gem install detroit-#{name}`?"
-            exit -1
-          end
-          name # true ?
-        )
-      end
-
-      ## Pre-load plugins using `.detroit/plugins.rb`.
-      #def load_plugins
-      #  if file = project.root.glob('{.,}#{DIRECTORY}/plugins{,.rb}').first
-      #    require file
-      #  else
-      #    self.defaults = {}
-      #  end
-      #end
-
-      ## Load defaults from `.detroit/defaults.yml`.
-      #def load_defaults
-      #  if file = project.root.glob('{.,}#{DIRECTORY}/defaults{,.yml,.yaml}').first
-      #    self.defaults = YAML.load(File.new(file))
-      #  else
-      #    self.defaults = {}
-      #  end
-      #end
-
-      #
-      def load_toolchains
-        toolchain_filenames.each do |file|
-          load_toolchain_file(file)
-        end
-
-        #if config = eval('self', TOPLEVEL_BINDING).rc_detroit
-        #  @toolchains['(rc)'] = Script.new(&config)
-        #  @tools.merge!(toolchains['(rc)'].tools)
-        #end
-
-        #if config = Detroit.rc_config
-        #  tc = Script.new do
-        #    tools.each do |c|
-        #      track(c.profile, &c)
-        #    end
-        #  end
-        #  @toolchains['(rc)'] = tc
-        #  @tools.merge!(toolchains['(rc)'].tools)
-        #end
-      end
-
-      # Load toolchain file.
-      #
-      def load_toolchain_file(file)
-        @toolchains[file] = Toolchain::Script.load(File.new(file), project)
-        @tools.merge!(toolchains[file].tools)
-      end
-
-      # If a `Toolchain` or `.toolchain` file exists, then it is returned. Otherwise
-      # all `*.toolchain` files are loaded. To load `*.toolchain` files from another
-      # directory add the directory to config options file.
-      #
-      # TODO: Simplify this to just `toolchain`.
-      #
-      def toolchain_filenames
-        @toolchain_filenames ||= (
-          files = []
-          ## match 'Toolchain' or '.toolchain' file
-          files = project.root.glob("{,.,*.}#{FILE_EXTENSION}{,.rb,.yml,.yaml}", :casefold)
-          ## only files
-          files = files.select{ |f| File.file?(f) }
-          ## 
-          if files.empty?
-            ## match '.detroit/*.toolchain' or 'detroit/*.toolchain'
-            #files += project.root.glob("{,.}#{DIRECTORY}/*.#{FILE_EXTENSION}", :casefold)
-            ## match 'task/*.toolchain' (OLD SCHOOL)
-            files += project.root.glob("{task,tasks}/*.#{FILE_EXTENSION}", :casefold)
-            ## only files
-            files = files.select{ |f| File.file?(f) }
-          end
-          files
-        )
-      end
-
-      #
-      #def each(&block)
-      #  tools.each(&block)
-      #end
-
-      #
-      #def size
-      #  tools.size
-      #end
-
-=begin
-    # If using a `Routine` file and want to import antoher file then use
-    # `import:` entry.
-    def load_detroit_file(file)
-      #@dir = File.dirname(file)
-
-      assemblies[file] = 
-
-      # TODO: can we just read the first line of the file and go from there?
-      #text = File.read(file).strip
-
-      ## if yaml vs. ruby file
-      #if (/\A---/ =~ text || /\.(yml|yaml)$/ =~ File.extname(file))
-      #  #data = parse_detroit_file_yaml(text, file)
-      #  YAML.load(text)
-      #else
-      #  data = parse_detroit_file_ruby(text, file)
-      #end    
-
-      ## extract defaults
-      #if defaults = data.delete('defaults')
-      #  @defaults.merge!(defaults)
-      #end
-
-      ## import other files
-      #if import = data.delete('import')
-      #  [import].flatten.each do |glob|
-      #    routine(glob)
-      #  end
-      #end
-
-      ## require plugins
-      #if plugins = data.delete('plugins')
-      #  [plugins].flatten.each do |file|
-      #    require file
-      #  end
-      #end
-
-      #@services.update(data)
-    end
-=end
-
-      ## Parse a YAML-based routine.
-      #def parse_detroit_file_yaml(text, file)
-      #  YAMLParser.parse(self, text, file)
-      #end
-
-      ## Parse a Ruby-based routine.
-      #def parse_detroit_file_ruby(text, file)
-      #  RubyParser.parse(self, text, file)
-      #end
-
-      ## TODO: Should the +dir+ be relative to the file or root?
-      #def routine(glob)
-      #  pattern = File.join(@dir, glob)
-      #  Dir[pattern].each{ |f| load_detroit_file(f) }
-      #end
 
     end
 

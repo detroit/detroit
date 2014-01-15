@@ -8,51 +8,76 @@ module Detroit
     class Script
 
       # Load Assembly file.
+      #
+      # TODO: just pass root instead of project.
       def self.load(input, project=nil)
         new(:file=>input,:project=>project)
       end
 
-      # Project instance.
-      attr :project
-
       # Hash table of tool configuration.
       attr :tools
 
+      # Project instance.
+      attr :project
+
+      # Access to project metadata.
+      #
+      # FIXME: Use factory method with root.
+      def project
+        @project ||= Project.new
+      end
+
     private
 
+      # Initialize new Script instance.
       #
       def initialize(options={}, &block)
-        @project = options[:project]
+        @project   = options[:project]
+        @evaluator = EvalContext.new(self)
+        @tools     = {}
 
-        @tools = {}
-
-        if options[:file]
-          initialize_file(options[:file])
+        if file = options[:file]
+          @file = Pathname.new(file)
+          file_eval(@file)
         end
 
         if block
-          instance_eval(&block)
+          ruby_eval(&block)
         end
       end
 
-      # Inititalize from assembly file.
+      # Evaluate script given it's file name.
       #
-      def initialize_file(file)
-        @file = (String === file ? File.new(file) : file)
-
-        case File.extname(@file.path)
+      # @return [void]
+      def file_eval(file)
+        file = Pathname.new(file)
+        case file.extname
         when '.rb'
-          instance_eval(@file.read, @file.path)
+          ruby_eval(file.read, file.to_s)
         when '.yml', '.yaml'
-          @tools = YAML.load(erb(@file.read))
+          yaml_eval(file.read)
         else
-          text = @file.read
+          text = file.read
           if /^---/ =~ text
-            @tools = YAML.load(erb(text))
+            yaml_eval(text)
           else
-            instance_eval(text, @file.path)
+            ruby_eval(text, file)
           end
         end
+      end
+
+      #
+      def yaml_eval(text)
+        data = YAML.load(erb(text))
+        if imports = data.delete('import')
+          Array(imports).each{ |f| import(f) }
+        end
+        @tools = data
+      end
+
+      #
+      def ruby_eval(*args)
+        @evaluator.instance_eval(*args)
       end
 
     public
@@ -85,42 +110,64 @@ module Detroit
         @tools[name.to_s] = settings.rekey(&:to_s)
       end
 
-      # Access to project metadata.
-      #
-      # FIXME: Use factory method
-      def project
-        @project ||= Project.new
+      # Import tool configuration from another file.
+      def import(file)
+        file_eval(file)
       end
 
     private
-
-      # Capitalized tool names called as methods
-      # can also define a tool.
-      def method_missing(sym, *args, &block)
-        tool_class = sym.to_s
-        case tool_class
-        when /^[A-Z]/
-          if Hash === args.last
-            args.last[:tool] = tool_class
-          else
-            args << {:tool=>tool_class}
-          end
-          case args.first
-          when String, Symbol
-            name = args.first
-          else
-            name = tool_class.to_s.downcase
-          end
-          tool(name, *args, &block)
-        else
-          super(sym, *args, &block)
-        end
-      end
 
       # Process Routine document via ERB.
       def erb(text)
         context = ERBContext.new(project)
         ERB.new(text).result(context.__binding__)
+      end
+
+      ##
+      # Clean context for eveluation Ruby-based scripts.
+      #
+      class EvalContext < BasicObject
+        def initialize(context)
+          @_context = context
+        end
+        
+        def track(name, &block)
+          @_context.track(name, &block)
+        end
+
+        def tool(name, settings={}, &block)
+          @_context.tool(name, settings, &block)
+        end
+
+        def custom(name, &block)
+          @_context.custom(name, &block)
+        end
+
+		    def import(file)
+		      @_context.import(file)
+		    end
+
+		    # Capitalized tool names called as methods can also define a tool.
+		    def method_missing(sym, *args, &block)
+		      tool_class = sym.to_s
+		      case tool_class
+		      when /^[A-Z]/
+		        if Hash === args.last
+		          args.last[:tool] = tool_class
+		        else
+		          args << {:tool => tool_class}
+		        end
+		        case args.first
+		        when ::String, ::Symbol
+		          name = args.first
+		        else
+		          name = tool_class.to_s.downcase
+		        end
+		        tool(name, *args, &block)
+		      else
+		        super(sym, *args, &block)
+		      end
+		    end
       end
 
       # ERBContext provides the clean context to process a Routine
