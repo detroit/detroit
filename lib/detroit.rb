@@ -30,7 +30,10 @@ end
 
 require_relative 'detroit/core_ext'
 require_relative 'detroit/project'
-require_relative 'detroit/toolchain' #runner
+require_relative 'detroit/runner'
+require_relative 'detroit/cli'
+require_relative 'detroit/script'
+require_relative 'detroit/worker'
 require_relative 'detroit/exec'
 
 require_relative 'detroit/basic_utils'
