@@ -68,13 +68,18 @@ module Detroit
   #
   def self.register_tool(tool_class)
     name = tool_class.basename
+    # four good reasons not to ignore
     return if name.nil?
     return if name.empty?
     return if name =~ /Tool$/
     return if name =~ /Base$/
+    # add tool to lookup table
     tools[name.downcase] = tool_class
+    # add tool to Tools module
     Tools.const_set(name, tool_class)
+    # define convenience method in Detroit namespace
     Detroit.define_tool_method(name, tool_class)
+    # return the class
     return tool_class
   end
 
