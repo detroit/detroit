@@ -4,6 +4,7 @@ bin/detroit
 lib/detroit/assembly.rb
 lib/detroit/basic_tool.rb
 lib/detroit/basic_utils.rb
+lib/detroit/cli.rb
 lib/detroit/core_ext/facets.rb
 lib/detroit/core_ext/filetest.rb
 lib/detroit/core_ext/shell_extensions.rb
@@ -17,13 +18,10 @@ lib/detroit/email_utils.rb
 lib/detroit/exec.rb
 lib/detroit/project.rb
 lib/detroit/ruby_utils.rb
+lib/detroit/runner.rb
+lib/detroit/script.rb
 lib/detroit/shell_utils.rb
-lib/detroit/toolchain/cli.rb
-lib/detroit/toolchain/config.rb
-lib/detroit/toolchain/runner.rb
-lib/detroit/toolchain/script.rb
-lib/detroit/toolchain/worker.rb
-lib/detroit/toolchain.rb
+lib/detroit/worker.rb
 lib/detroit.rb
 lib/detroit.yml
 man/detroit.1
