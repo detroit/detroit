@@ -3,10 +3,10 @@ detroit(1) - a life-cycle build tool
 
 ## DESCRIPTION
 
-Detroit is a software production management aid. Detroit utilizes a
-life-cycle methodology to help developers prepare and release software
-in a clear, repeatable, linear fashion. While programmed in and well
-suited to Ruby projects, Detroit can utilized for any build requirements.
+Detroit is a software production management aid, aka a build tool. Detroit
+utilizes a life-cycle methodology to help developers prepare and release
+software in a clear, repeatable, linear fashion. While programmed in and
+well suited to Ruby projects, Detroit can utilized for any build requirements.
 
 
 ## USAGE
