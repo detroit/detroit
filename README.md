@@ -21,10 +21,10 @@ can be used for any language and production requirements.
 ## How It Works
 
 Detroit defines development processions call *assemblies* which consist of
-a set of production *lines* each with a series of named *stations*, or *stops*.
-Developers attach work elements to stations by creating configuring tool
-instances in a project's Toolchain file. Toolchain files are written
-in either YAML or a Ruby DSL.
+a set of production *lines* each with a series of named *stations*, or
+*stops*. Developers attach work elements to stations by configuring
+tool instances in a configuration file placed in a project's root
+directory. This file can be written in either YAML or a Ruby DSL.
 
 For example, a RubyForge tool can be configured:
 
