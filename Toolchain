@@ -18,7 +18,7 @@ qedoc:
   active: false
   files : demo/
   title : Detroit
-  output: QED.md
+  output: DEMO.md
 
 locat:
   active: true
